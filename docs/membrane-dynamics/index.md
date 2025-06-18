@@ -17,7 +17,7 @@ While Nebuchadnezzar models intracellular processes as hierarchical probabilisti
 
 ## Bene Gesserit Integration Architecture
 
-```
+
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    MEMBRANE DYNAMICS ARCHITECTURE                      │
 ├─────────────────────────────────────────────────────────────────────────┤
@@ -55,7 +55,7 @@ While Nebuchadnezzar models intracellular processes as hierarchical probabilisti
 │  └─────────────────────────────────────────────────────────────────┘   │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
-```
+
 
 ## Metacognitive Orchestrator Integration
 

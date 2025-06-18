@@ -1,4 +1,14 @@
-# Bene Gesserit: Membrane Dynamics Module
+<p align="center">
+  <h1 align="center">Bene Gesserit</h1>
+</p>
+
+<p align="center">
+  <img src="assets/img/bene-gesserit.png" alt="Bene Gesserit Logo" width="400">
+</p>
+
+<p align="center">
+  <em>"When a man dips his hand in a river, upon withdrawing, he is no longer the same man, and the river is no longer the same river"</em>
+</p>
 
 **"Membranes define the circuit topology; ATP consumption drives the dynamics"**
 
