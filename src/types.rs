@@ -126,7 +126,7 @@ impl IonConcentrations {
     
     /// Calculate the Nernst potential for a given ion
     pub fn nernst_potential(&self, ion: IonType, temperature: units::Temperature) -> units::Voltage {
-        use crate::constants::*;
+        use crate::constants::{GAS_CONSTANT, FARADAY_CONSTANT};
         
         let inside_conc = self.inside.get(&ion).copied().unwrap_or(0.0);
         let outside_conc = self.outside.get(&ion).copied().unwrap_or(0.0);
@@ -308,7 +308,7 @@ impl MembraneState {
             ion_concentrations: IonConcentrations::physiological(),
             atp: AtpMeasurement {
                 concentration: 5e-3,  // 5 mM ATP
-                molecules: (5e-3 * 6.022e23 * area * 1e-6) as u64,  // Approximate molecule count
+                molecules: crate::constants::molecules_from_concentration(5e-3, area * 1e-6),
                 consumption_rate: 0.0,
                 production_rate: 0.0,
             },
