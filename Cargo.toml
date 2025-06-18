@@ -1,0 +1,100 @@
+[package]
+name = "bene-gesserit"
+version = "0.1.0"
+edition = "2021"
+authors = ["Bene Gesserit Contributors"]
+description = "Biologically authentic cellular membrane dynamics simulation with ATP-constrained computation"
+repository = "https://github.com/your-org/bene-gesserit"
+license = "MIT"
+keywords = ["membrane", "biophysics", "atp", "circuits", "biological-ai"]
+categories = ["science", "simulation"]
+
+[lib]
+name = "bene_gesserit"
+path = "src/lib.rs"
+
+[dependencies]
+# Core numerical computation
+nalgebra = "0.32"
+ndarray = "0.15"
+num-traits = "0.2"
+num-complex = "0.4"
+
+# Random number generation for stochastic processes
+rand = "0.8"
+rand_distr = "0.4"
+
+# Serialization for data exchange
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Async runtime for external system integration
+tokio = { version = "1.0", features = ["full"] }
+tokio-tungstenite = "0.20"  # WebSocket for orchestrator communication
+
+# HTTP client for external APIs
+reqwest = { version = "0.11", features = ["json"] }
+
+# Parallel processing
+rayon = "1.7"
+
+# Scientific computing
+approx = "0.5"  # Floating point comparisons
+statrs = "0.16"  # Statistical distributions
+
+# Logging and error handling
+log = "0.4"
+env_logger = "0.10"
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Configuration management
+config = "0.13"
+
+# Time handling for simulations
+chrono = { version = "0.4", features = ["serde"] }
+
+# Memory management for large simulations
+parking_lot = "0.12"  # Better mutexes
+
+# System information
+num_cpus = "1.0"
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.0"
+tempfile = "3.0"
+
+[features]
+default = ["membrane-dynamics", "circuit-interface"]
+membrane-dynamics = []
+circuit-interface = []
+orchestrator-integration = []
+gpu-acceleration = []
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.bench]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[[bench]]
+name = "membrane_performance"
+harness = false
+
+[[example]]
+name = "basic_membrane_patch"
+path = "examples/basic_membrane_patch.rs"
+
+[[example]]
+name = "atp_constrained_simulation"
+path = "examples/atp_constrained_simulation.rs"
+
+[[example]]
+name = "circuit_integration"
+path = "examples/circuit_integration.rs" 
