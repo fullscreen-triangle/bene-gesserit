@@ -3,6 +3,19 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/Rust-1.70+-orange.svg?logo=rust" alt="Rust Version">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue.svg?logo=python" alt="Python Version">
+  <img src="https://img.shields.io/badge/Status-Development-yellow.svg" alt="Development Status">
+  <img src="https://img.shields.io/badge/Version-0.1.0-green.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg" alt="Platform">
+  <img src="https://img.shields.io/badge/Membrane-Biophysics-purple.svg" alt="Membrane Biophysics">
+  <img src="https://img.shields.io/badge/ATP-Constrained-red.svg" alt="ATP Constrained">
+  <img src="https://img.shields.io/badge/Circuit-Integration-teal.svg" alt="Circuit Integration">
+  <img src="https://img.shields.io/badge/Biological-Authentic-brightgreen.svg" alt="Biological Authentic">
+</p>
+
+<p align="center">
   <img src="assets/img/bene-gesserit.png" alt="Bene Gesserit Logo" width="400">
 </p>
 
