@@ -11,6 +11,18 @@ pub mod interfacial_processes;
 pub mod remodeling;
 pub mod adaptation;
 
+// Core dynamics modules
+pub mod diffusion;
+pub mod flip_flop;
+pub mod fusion;
+pub mod fission;
+
+// Re-export key types for convenience
+pub use diffusion::DiffusionSimulator;
+pub use flip_flop::FlipFlopDynamics;
+pub use fusion::FusionDynamics;
+pub use fission::FissionDynamics;
+
 use crate::{constants::*, error::Result, types::*, lipids::*, proteins::*, endocytosis::*, signaling::*};
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
