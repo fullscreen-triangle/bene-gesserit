@@ -23,69 +23,110 @@
   <em>"When a man dips his hand in a river, upon withdrawing, he is no longer the same man, and the river is no longer the same river"</em>
 </p>
 
-**"Membranes define the circuit topology; ATP consumption drives the dynamics"**
+**"Membranes define the circuit topology; ATP consumption drives the dynamics; Oscillations determine entropy"**
 
-The **Membrane Dynamics Module** provides biologically authentic cellular membrane simulation that integrates with external systems. This module translates real membrane biophysics into dynamic circuit parameters for ATP-based differential equations, enabling biologically realistic artificial intelligence through authentic cellular constraints.
+The **Bene Gesserit** framework provides biologically authentic cellular membrane simulation based on a fundamental reinterpretation of thermodynamics. Rather than treating entropy as an abstract statistical quantity, this system implements entropy as the tangible distribution of oscillation endpoints, making thermodynamic principles directly computable and controllable through ATP-constrained biological processes.
 
-## What This Module Does
+## What This Framework Does
 
-The Membrane Dynamics Module simulates authentic cellular membrane behavior and translates it into computational parameters:
+The Bene Gesserit framework simulates biological quantum computation through three integrated systems:
 
-- **Real Membrane Physics**: Lipid bilayers, ion channels, ATP pumps with authentic biophysical properties
-- **ATP-Based Dynamics**: Uses `dx/dATP` equations instead of traditional `dx/dt` for energy-constrained modeling
-- **Circuit Parameter Generation**: Converts membrane states into dynamic circuit parameters for external systems
-- **Biological Constraints**: Imposes authentic metabolic limitations on computational processes
+- **Oscillatory Entropy Control**: Implements entropy as S = k ln Ω where Ω represents actual oscillations, not abstract microstates
+- **ATP-Constrained Dynamics**: Uses `dx/dATP` equations instead of traditional `dx/dt` for energy-limited biological computation
+- **Membrane Quantum Computing**: Leverages Environment-Assisted Quantum Transport (ENAQT) where environmental coupling enhances rather than destroys quantum coherence
+- **Endpoint Prediction**: Calculates probability distributions of where oscillations terminate, enabling direct entropy manipulation
+- **Biological Authenticity**: All processes operate within genuine cellular constraints and energy limitations
 
 ## Architecture Overview
 
 ```
-Membrane Dynamics Module
-├── Molecular Layer (Rust Core)
-│   ├── Lipid Bilayer Physics
-│   ├── Protein-Membrane Interactions  
-│   ├── Membrane Curvature Dynamics
-│   └── Electrochemical Gradients
-├── Mesoscale Layer (Rust/Python)
-│   ├── Lipid Raft Formation
-│   ├── Protein Clustering
-│   ├── Membrane Domain Organization
-│   └── Local Membrane Properties
-├── Cellular Layer (Python Extensions)
-│   ├── Organelle Membrane Networks
-│   ├── Membrane Contact Sites
-│   ├── Whole-Cell Membrane Topology
-│   └── Membrane Remodeling
+Bene Gesserit Biological Quantum Computer
+├── Oscillatory Dynamics Layer (Rust Core)
+│   ├── Oscillation State Tracking
+│   ├── Endpoint Distribution Calculation
+│   ├── ATP-Coupled Oscillations
+│   └── Entropy Control Systems
+├── Membrane Quantum Layer (Rust/Python)
+│   ├── ENAQT Quantum Transport
+│   ├── Electron Tunneling Dynamics
+│   ├── Radical Generation (Death Mechanism)
+│   └── Quantum Coherence Enhancement
+├── Biological Physics Layer (Python Extensions)
+│   ├── Lipid Bilayer Quantum States
+│   ├── Protein Conformational Oscillations
+│   ├── Ion Channel Quantum Dynamics
+│   └── ATP Synthase Quantum Computing
 └── Circuit Interface Layer
-    ├── Membrane → Circuit Parameter Mapping
-    ├── Dynamic Circuit Topology Updates
-    ├── ATP-Based Differential Equations
-    └── External System Integration
+    ├── Oscillation → Circuit Parameter Mapping
+    ├── Entropy-Based Circuit Topology
+    ├── ATP-Constrained Differential Equations
+    └── Quantum State → Classical Interface
 ```
 
 ## Key Features
 
-### 🔬 Authentic Membrane Biophysics
-- **Lipid Bilayer Modeling**: Real phospholipid behavior with temperature-dependent fluidity
-- **Ion Channel Dynamics**: Voltage-gated and ligand-gated channels with realistic kinetics
-- **ATP Pump Mechanics**: Na⁺/K⁺-ATPase, Ca²⁺-ATPase with authentic energy consumption
-- **Membrane Curvature**: Protein-induced membrane bending and tubulation
+### 🌊 Oscillatory Entropy Framework
+- **Tangible Entropy**: S = k ln Ω where Ω represents actual oscillations, not abstract microstates
+- **Endpoint Prediction**: Calculate probability distributions of where oscillations terminate
+- **Direct Entropy Control**: Manipulate entropy by controlling oscillation dynamics through ATP allocation
+- **Universal Oscillatory Dynamics**: All systems exhibit oscillatory behavior from molecular to cosmic scales
 
-### ⚡ ATP-Based Computation
-- **Energy Constraints**: All processes limited by ATP availability
-- **Metabolic Realism**: ATP consumption rates match biological values
-- **Energy Allocation**: Dynamic ATP budgeting between membrane processes
-- **Efficiency Optimization**: Minimizes ATP waste while maintaining function
+### 🔬 Membrane Quantum Computing
+- **ENAQT Implementation**: Environment-Assisted Quantum Transport where coupling enhances coherence
+- **ATP Synthase Computing**: Biological quantum computer processing ~10⁴ bits while synthesizing ATP
+- **Quantum Death Mechanism**: Radical generation through electron tunneling as quantum mechanical necessity
+- **Room Temperature Operation**: Quantum effects maintained at biological temperatures through protein structure
+
+### ⚡ ATP-Constrained Dynamics
+- **Energy-Based Equations**: Uses `dx/dATP` instead of `dx/dt` for metabolically realistic computation
+- **ATP Budgeting**: Dynamic allocation of ATP between competing oscillatory processes
+- **Efficiency Optimization**: Minimizes ATP consumption while maximizing computational output
+- **Biological Authenticity**: Energy consumption rates match experimental cellular values
 
 ### 🔌 Circuit Integration
-- **Dynamic Parameter Mapping**: Membrane properties → circuit parameters in real-time
-- **Topology Updates**: Membrane changes alter circuit connectivity
-- **Hierarchical Abstraction**: Multi-scale circuit representation
-- **Bidirectional Coupling**: Circuit state influences membrane behavior
+- **Oscillation Mapping**: Converts oscillatory dynamics into circuit parameters in real-time
+- **Entropy-Based Topology**: Circuit connectivity determined by oscillation endpoint distributions
+- **Quantum-Classical Interface**: Seamless translation between quantum membrane states and classical circuits
+- **Multi-Scale Coupling**: Integration from molecular oscillations to macroscopic circuit behavior
 
-### 🧮 External System Integration
-- **Nebuchadnezzar Circuits**: Seamless integration with hierarchical probabilistic circuits
-- **Orchestrator Interface**: Managed operation under external cognitive systems
-- **Modular Design**: Clean APIs for integration with other biological AI components
+## Theoretical Foundation
+
+### The Oscillatory Entropy Principle
+
+Traditional thermodynamics treats entropy as S = k ln Ω where Ω represents abstract microstates that cannot be directly observed or controlled. This framework implements a fundamental reinterpretation:
+
+**S = k ln Ω where Ω = actual oscillations**
+
+This transforms entropy from an abstract statistical measure into a concrete, manipulable parameter:
+
+1. **Oscillations are Observable**: Unlike abstract microstates, oscillations can be directly measured and tracked
+2. **Endpoints are Predictable**: Calculate probability distributions of where oscillations will terminate
+3. **ATP Controls Outcomes**: Energy allocation through ATP determines oscillation endpoint distributions
+4. **Entropy Becomes Controllable**: Direct manipulation of oscillatory dynamics enables entropy engineering
+
+### Environment-Assisted Quantum Transport (ENAQT)
+
+Biological systems achieve quantum computing at room temperature through environmental coupling rather than isolation:
+
+- **Traditional quantum computing**: Minimize environmental interaction to preserve coherence
+- **Biological quantum computing**: Optimize environmental coupling to enhance coherence
+- **Membrane proteins**: Provide structured environments that protect and enhance quantum transport
+- **ATP synthase**: Functions as biological quantum computer processing information while generating energy
+
+### ATP-Constrained Dynamics
+
+All processes operate within metabolic limitations using energy-based differential equations:
+
+```
+Traditional: dx/dt = f(x, t)
+Biological:  dx/dATP = f(x, [ATP], oscillations)
+```
+
+This creates natural optimization where:
+- Processes compete for limited ATP resources
+- Energy efficiency emerges as fundamental constraint  
+- System behavior reflects authentic biological limitations
+- Computation occurs within genuine metabolic bounds
 
 ## Quick Start
 
@@ -97,42 +138,52 @@ Membrane Dynamics Module
 ### Basic Usage
 
 ```python
-from membrane_dynamics import MembranePatch, CircuitInterface
+from bene_gesserit import BiologicalQuantumComputerSolver, BiologicalQuantumState, AtpCoordinates
 
-# Create a membrane patch
-membrane = MembranePatch(
-    area=1e-9,  # 1 μm² patch
-    temperature=310.15,  # 37°C
-    atp_concentration=5e-3  # 5 mM ATP
-)
+# Initialize biological quantum computer
+solver = BiologicalQuantumComputerSolver::new()
 
-# Add membrane components
-membrane.add_lipid_bilayer(
-    composition={'POPC': 0.4, 'POPE': 0.3, 'Cholesterol': 0.3}
-)
+# Create initial state with ATP, oscillations, and membrane quantum components
+initial_state = BiologicalQuantumState {
+    atp_coords: AtpCoordinates {
+        atp_concentration: 5.0,  # 5 mM ATP
+        atp_oscillation_frequency: 10.0,  # 10 Hz ATP cycling
+        atp_oscillation_phase: 0.0
+    },
+    oscillatory_coords: OscillatoryCoordinates::with_oscillations([
+        OscillationState::new("enzymatic_cycle", 1.0, 0.0, 5.0),
+        OscillationState::new("membrane_transport", 0.5, 1.57, 12.0)
+    ]),
+    membrane_coords: MembraneQuantumCoordinates::with_enaqt(
+        temperature=310.15,  # 37°C
+        coupling_strength=0.8
+    )
+}
 
-membrane.add_protein(
-    protein_type='NaKATPase',
-    density=1000,  # proteins/μm²
-    atp_consumption_rate=100  # ATP/s per protein
-)
+# Run biological quantum computation
+result = solver.solve_biological_quantum_computation(
+    &initial_state,
+    atp_budget=10.0,  # 10 mM ATP budget
+    time_horizon=1.0,  # 1 second simulation
+    &QuantumComputationTarget {
+        computation_type: "protein_folding".to_string(),
+        required_coherence: 0.95
+    }
+)?
 
-# Initialize circuit interface
-circuit = CircuitInterface(
-    membrane_patch=membrane,
-    update_frequency=1000  # Hz
-)
+# Analyze oscillation endpoints and entropy
+for endpoint in &result.trajectory.points.last().oscillation_endpoints {
+    println!("Oscillation '{}' ended at position {:.3} with probability {:.3}", 
+             endpoint.oscillator_name, 
+             endpoint.position, 
+             endpoint.probability);
+    println!("Entropy contribution: {:.6} k_B units", endpoint.entropy_contribution);
+}
 
-# Run simulation
-for t in range(1000):  # 1 second at 1ms steps
-    # Update membrane state
-    membrane_state = membrane.step(dt=0.001)
-    
-    # Generate circuit parameters
-    circuit_params = circuit.update_from_membrane(membrane_state)
-    
-    print(f"Time: {t}ms, Voltage: {membrane_state.voltage:.2f}mV, "
-          f"ATP used: {membrane_state.atp_consumed:.1f}")
+# Calculate total system entropy from oscillation endpoints
+let total_entropy = result.final_state.entropy_coords.current_entropy;
+println!("Final system entropy: {:.3} k_B units", total_entropy);
+println!("ATP efficiency: {:.1}%", result.atp_efficiency() * 100.0);
 ```
 
 ## Documentation
@@ -147,34 +198,35 @@ for t in range(1000):  # 1 second at 1ms steps
 - [Orchestrator Integration](docs/membrane-dynamics/orchestrator-integration.md) - For managed operation
 - [Nebuchadnezzar Circuits](docs/membrane-dynamics/circuit-interface-layer.md) - Circuit system integration
 
-## Key Innovations
+## Core Framework Innovations
 
-### 1. Authentic Membrane Biophysics
-Unlike abstract neural networks, this module implements real cellular membrane physics with authentic:
-- Lipid phase transitions and fluidity changes
-- Protein conformational dynamics
-- Ion electrochemical gradients
-- ATP-dependent processes
+### 1. Oscillatory Entropy Reformulation
+This framework redefines entropy from an abstract statistical concept to a tangible computational parameter:
+- **Traditional entropy**: S = k ln Ω where Ω represents abstract microstates
+- **Oscillatory entropy**: S = k ln Ω where Ω represents actual, observable oscillations
+- **Direct manipulation**: Control entropy by directing where oscillations terminate
+- **Endpoint distributions**: Calculate probability distributions of oscillation termination points
 
-### 2. ATP-Constrained Computation
-Computation is limited by ATP availability, creating realistic metabolic constraints:
-- Processes compete for limited ATP resources
-- Energy efficiency becomes a computational objective
-- System behavior emerges from bioenergetic limitations
+### 2. Environment-Assisted Quantum Transport (ENAQT)
+Biological quantum computing operates through environmental enhancement rather than isolation:
+- **Protein-assisted coherence**: Environmental coupling maintains quantum effects at room temperature
+- **Optimal coupling strength**: Specific coupling parameters maximize rather than destroy quantum transport
+- **Biological authenticity**: Implements actual mechanisms found in photosynthetic complexes and ATP synthase
+- **Quantum death mechanism**: Same processes enabling life generate radicals through electron tunneling
 
-### 3. Membrane-Circuit Translation
-Direct translation of membrane biophysics into circuit parameters:
-- Membrane capacitance → circuit capacitance
-- Ion channel conductance → circuit resistance
-- ATP pump activity → dynamic voltage sources
-- Membrane topology → circuit connectivity
+### 3. ATP-Constrained Biological Computing
+All computation operates within authentic metabolic limitations:
+- **Energy-based dynamics**: dx/dATP equations instead of traditional dx/dt time evolution
+- **ATP allocation**: Processes compete for limited energy resources, creating natural optimization
+- **Metabolic realism**: Energy consumption rates match experimental biological values
+- **Efficiency emergence**: System behavior naturally optimizes for energy efficiency
 
-### 4. Multi-Scale Integration
-Seamless integration across biological scales:
-- Molecular: Individual protein dynamics
-- Mesoscale: Protein clustering and lipid rafts
-- Cellular: Whole-cell membrane networks
-- Circuit: Abstract electrical representation
+### 4. Universal Oscillatory Framework
+Oscillations provide the fundamental architecture across all scales:
+- **Causal self-generation**: Complex oscillations become self-sustaining without external drivers
+- **Nested hierarchies**: Molecular oscillations couple to cellular, physiological, and even cosmic scales
+- **Time emergence**: Temporal evolution emerges from oscillatory dynamics rather than being fundamental
+- **First cause resolution**: Eliminates infinite regress through eternally self-consistent oscillatory systems
 
 ## System Requirements
 
@@ -234,13 +286,15 @@ This module focuses on **biological authenticity** above all else. Contributions
 - Include performance benchmarks
 - Maintain clear API documentation
 
-## Philosophy
+## Framework Philosophy
 
-*"The membrane is the fundamental unit of biological computation"*
+*"Oscillations determine where systems land; entropy measures the distribution of endpoints"*
 
-This module recognizes that cellular membranes are not just barriers but active computational elements. By implementing authentic membrane biophysics, we create AI systems that operate within genuine biological constraints rather than abstract mathematical frameworks.
+This framework recognizes that entropy is not an abstract statistical quantity but represents the tangible distribution of where oscillatory systems terminate. By implementing oscillations as fundamental rather than derived phenomena, we create computational systems that operate according to the same principles governing everything from enzyme cycles to cosmic evolution.
 
-Membranes define what's possible - they set the energy costs, the time scales, and the fundamental limits of biological computation. This module brings those constraints into artificial systems, creating more realistic and potentially more capable AI.
+Traditional approaches treat time as fundamental and entropy as abstract. This framework reverses that relationship: oscillatory dynamics are fundamental, time emerges from oscillatory patterns, and entropy becomes a directly manipulable parameter through endpoint control.
+
+The result is biological quantum computing that operates within authentic cellular constraints while providing unprecedented control over thermodynamic processes. Rather than fighting entropy, the system harnesses oscillatory dynamics to direct where energy and information flow, making entropy an engineering parameter rather than an inevitable limitation.
 
 ## License
 
@@ -248,4 +302,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**Membrane Dynamics**: Where cellular biophysics meets computational intelligence.
+**Bene Gesserit**: Where oscillatory dynamics, membrane quantum computing, and entropy control converge to create biologically authentic artificial intelligence.
