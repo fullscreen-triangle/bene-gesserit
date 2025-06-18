@@ -441,3 +441,116 @@ Analysis plots saved to output/plots/
 5. **Integrate with experimental data** for parameter validation and refinement
 
 This example demonstrates the complete workflow for using Membrane Dynamics with Nebuchadnezzar to create biophysically accurate, ATP-driven circuit models of cellular membranes. 
+
+# Membrane Dynamics Quickstart Example
+
+This example demonstrates the complete membrane dynamics system integration with both the **Nebuchadnezzar circuit system** and the **metacognitive orchestrator**.
+
+## Complete Integration Example
+
+### 1. Initialize Orchestrator-Managed Membrane System
+
+```python
+import numpy as np
+from membrane_dynamics import (
+    MembranePatch, 
+    CircuitInterface,
+    OrchestratorInterface
+)
+
+# Initialize with orchestrator connection
+orchestrator_interface = OrchestratorInterface(
+    orchestrator_endpoint="ws://localhost:8888/orchestrator",
+    module_id="membrane_dynamics_001"
+)
+
+# Create membrane patch under orchestrator supervision
+membrane_patch = MembranePatch(
+    area=1e-9,  # 1 μm² patch
+    orchestrator=orchestrator_interface
+)
+
+# Circuit interface receives orchestrator directives
+circuit_interface = CircuitInterface(
+    nebuchadnezzar_endpoint="http://localhost:9999/circuits",
+    orchestrator=orchestrator_interface
+)
+```
+
+### 2. Orchestrator-Coordinated Membrane Setup
+
+```python
+# Orchestrator provides system context
+context_state = orchestrator_interface.get_current_context()
+print(f"System ATP availability: {context_state['global_atp_pool']}")
+print(f"Cognitive load priority: {context_state['processing_priority']}")
+
+# Set up membrane components based on orchestrator guidance
+atp_budget = orchestrator_interface.get_atp_allocation()
+
+# Na⁺/K⁺-ATPase pumps (orchestrator manages ATP allocation)
+na_k_atpase = ATPPump(
+    density=1000,  # pumps/μm²
+    max_atp_rate=atp_budget['na_k_pump_max'],  # orchestrator-limited
+    orchestrator_managed=True
+)
+
+# Voltage-gated channels (orchestrator coordinates opening/closing)
+vgsc = VoltageGatedChannel(
+    type='Na', 
+    density=500,
+    orchestrator_prediction_enabled=True  # use intuition layer predictions
+)
+```
+
+### 3. Real-time Orchestrator Coordination
+
+```python
+def orchestrated_simulation_step(dt=0.01):
+    """Single simulation step with orchestrator coordination"""
+    
+    # Receive orchestrator updates
+    orchestrator_commands = orchestrator_interface.poll_commands()
+    
+    if 'context_update' in orchestrator_commands:
+        membrane_patch.update_global_context(
+            orchestrator_commands['context_update']
+        )
+    
+    if 'reasoning_directive' in orchestrator_commands:
+        circuit_interface.adjust_mapping_strategy(
+            orchestrator_commands['reasoning_directive']
+        )
+    
+    if 'intuition_prediction' in orchestrator_commands:
+        membrane_patch.preload_predicted_changes(
+            orchestrator_commands['intuition_prediction']
+        )
+    
+    # Run membrane dynamics with orchestrator supervision
+    membrane_state = membrane_patch.step(dt)
+    
+    # Report back to orchestrator
+    status_report = {
+        'membrane_voltage': membrane_state.voltage,
+        'atp_consumption': membrane_state.atp_used,
+        'circuit_parameters': circuit_interface.get_current_parameters(),
+        'biological_realism_score': membrane_patch.validate_biology()
+    }
+    orchestrator_interface.report_status(status_report)
+    
+    return membrane_state
+
+# Run orchestrated simulation
+for t in np.arange(0, 10, 0.01):  # 10ms simulation
+    state = orchestrated_simulation_step()
+    
+    # Orchestrator may adjust ATP allocation based on system needs
+    if t > 5.0:  # Mid-simulation orchestrator intervention
+        new_priority = orchestrator_interface.get_priority_update()
+        if new_priority == 'cognitive_focus':
+            # Reduce membrane ATP allocation for cognitive processing
+            membrane_patch.reduce_maintenance_atp(factor=0.8)
+```
+
+### 4. Orchestrator-Validated Results
