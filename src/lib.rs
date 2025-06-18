@@ -45,31 +45,15 @@ pub mod constants;
 
 // Core membrane dynamics modules
 pub mod molecular;
-pub mod mesoscale; 
-pub mod cellular;
+pub mod systems;
 pub mod circuit_interface;
-
-// Supporting systems
-pub mod atp;
-pub mod membrane;
-pub mod proteins;
-pub mod lipids;
-pub mod electrochemistry;
-
-// External integration
-pub mod orchestrator;
-pub mod nebuchadnezzar;
-
-// Utilities
-pub mod math;
-pub mod config;
-pub mod logging;
 
 // Re-exports for convenience
 pub use error::{MembraneError, Result};
 pub use types::*;
-pub use membrane::MembranePatch;
-pub use atp::AtpPool;
+pub use molecular::*;
+pub use systems::*;
+pub use circuit_interface::*;
 
 /// Current version of the Bene Gesserit membrane dynamics system
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");

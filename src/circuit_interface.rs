@@ -410,6 +410,12 @@ impl CircuitInterface {
             levels.push(cellular_level);
         }
         
+        // Level 3: Systems level (physiological flows and gradients)
+        if config.hierarchy_levels > 3 {
+            let systems_level = Self::build_systems_level(membrane)?;
+            levels.push(systems_level);
+        }
+        
         // Build inter-level connections
         let level_connections = Self::build_level_connections(&levels)?;
         
@@ -588,7 +594,7 @@ impl CircuitInterface {
             electrical: ElectricalProperties {
                 voltage: membrane.state.voltage,
                 current: membrane.state.current,
-                resistance: 1.0 / membrane.calculate_total_conductance(),
+                resistance: 1.0 / Self::calculate_total_conductance_for_membrane(membrane),
                 capacitance: membrane.state.capacitance,
                 inductance: 1e-3, // mH
             },
@@ -628,6 +634,96 @@ impl CircuitInterface {
         
         Ok(CircuitLevel {
             level_id: 2,
+            nodes,
+            edges: Vec::new(),
+            properties,
+            atp_constraints,
+        })
+    }
+    
+    /// Build systems level circuit (Level 3)
+    fn build_systems_level(membrane: &MolecularMembrane) -> Result<CircuitLevel> {
+        let mut nodes = Vec::new();
+        
+        // Metabolic node
+        let metabolic_node = CircuitNode {
+            id: "metabolic_system".to_string(),
+            position: (0.0, 0.0, 0.0),
+            electrical: ElectricalProperties {
+                voltage: 0.0,
+                current: membrane.state.atp.consumption_rate * 1e9, // Convert to nA
+                resistance: 1e-3, // mΩ for systems level
+                capacitance: 1e-3, // mF for large scale
+                inductance: 1e-6,  // mH
+            },
+            probabilistic: ProbabilisticProperties {
+                distribution: ProbabilityDistribution::Exponential(0.1),
+                uncertainty: UncertaintyBounds {
+                    lower: 0.0,
+                    upper: 2.0,
+                    confidence: 0.95,
+                },
+                correlations: HashMap::new(),
+                evolution_probability: 0.9,
+            },
+            atp_dependence: AtpDependence {
+                base_value: 100.0, // W metabolic rate
+                atp_sensitivity: 2.0, // High sensitivity at systems level
+                km_atp: 10e-3, // 10 mM
+                hill_coefficient: 2.0,
+                current_value: 100.0,
+            },
+            biological_source: BiologicalSource::MembranePatch(1e-3), // 1 mm² equivalent
+        };
+        nodes.push(metabolic_node);
+        
+        // Thermal node
+        let thermal_node = CircuitNode {
+            id: "thermal_system".to_string(),
+            position: (10.0, 0.0, 0.0),
+            electrical: ElectricalProperties {
+                voltage: (membrane.state.temperature - 273.15) / 100.0, // Normalized temperature
+                current: 0.0,
+                resistance: 1.0, // Ω thermal resistance equivalent
+                capacitance: 3.5, // F, thermal capacitance equivalent
+                inductance: 0.0,
+            },
+            probabilistic: ProbabilisticProperties {
+                distribution: ProbabilityDistribution::Gaussian(37.0, 1.0), // 37±1°C
+                uncertainty: UncertaintyBounds {
+                    lower: 35.0,
+                    upper: 39.0,
+                    confidence: 0.99,
+                },
+                correlations: HashMap::new(),
+                evolution_probability: 0.95,
+            },
+            atp_dependence: AtpDependence {
+                base_value: membrane.state.temperature,
+                atp_sensitivity: 0.05, // Low sensitivity
+                km_atp: 20e-3, // 20 mM
+                hill_coefficient: 1.0,
+                current_value: membrane.state.temperature,
+            },
+            biological_source: BiologicalSource::MembranePatch(1e-3),
+        };
+        nodes.push(thermal_node);
+        
+        let properties = LevelProperties {
+            spatial_scale: 1e-1, // 10 cm scale (organ level)
+            temporal_scale: 10.0, // 10 s scale (physiological responses)
+            node_count: nodes.len(),
+            characteristic_impedance: 1e-3, // mΩ for systems level
+        };
+        
+        let atp_constraints = AtpConstraints {
+            min_atp_required: 50e-3, // 50 mM systems requirement
+            atp_allocation: 0.02, // 2% of ATP to systems level overhead
+            atp_efficiency: 0.9, // 90% efficiency at systems level
+        };
+        
+        Ok(CircuitLevel {
+            level_id: 3,
             nodes,
             edges: Vec::new(),
             properties,
@@ -927,6 +1023,14 @@ impl CircuitInterface {
         1.0 / total_conductance.max(1e-12)
     }
     
+    /// Calculate total conductance for a membrane (static helper)
+    fn calculate_total_conductance_for_membrane(membrane: &MolecularMembrane) -> f64 {
+        membrane.proteins.values()
+            .map(|p| p.protein_type.conductance() * p.activity)
+            .sum::<f64>()
+            .max(1e-12) // Avoid division by zero
+    }
+    
     /// Calculate circuit stability measure
     fn calculate_stability(levels: &[CircuitLevel]) -> f64 {
         // Simplified stability measure based on node activity variance
@@ -1034,7 +1138,7 @@ pub struct NebuchadnezzarEdge {
 impl Default for CircuitInterfaceConfig {
     fn default() -> Self {
         Self {
-            hierarchy_levels: 3,
+            hierarchy_levels: 4,
             atp_constraint_strength: 1.0,
             probabilistic_update_freq: 100.0, // Hz
             circuit_resolution: 1e6, // nodes/m²
