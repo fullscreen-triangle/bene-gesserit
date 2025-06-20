@@ -27,6 +27,8 @@ pub mod systems;
 pub mod coupling;
 pub mod circuits;
 pub mod circuit_interface;
+pub mod quantum_extensions;  // NEW: Extended quantum biology capabilities
+pub mod extended_solver;    // NEW: Extended biological quantum computer solver
 
 // ================================================================================================
 // CORE BIOLOGICAL QUANTUM STATE
@@ -782,6 +784,22 @@ impl BiologicalQuantumComputerSolver {
         new_state.entropy_coords.entropy_production_rate = k4.entropy_derivatives.total_entropy_rate;
         
         Ok(new_state)
+    }
+
+    /// Solve biological quantum computation with extended capabilities
+    pub fn solve_with_extensions(
+        &mut self,
+        initial_state: &BiologicalQuantumState,
+        atp_budget: f64,
+        time_horizon: f64,
+    ) -> Result<extended_solver::ExtendedQuantumBiologyResult, SolverError> {
+        let extended_solver = extended_solver::ExtendedBiologicalQuantumSolver::new();
+        extended_solver.solve_extended_quantum_biology(initial_state, atp_budget, time_horizon)
+    }
+
+    /// Calculate all extended quantum measures for a given state
+    pub fn analyze_extended_quantum_biology(&self, state: &BiologicalQuantumState) -> quantum_extensions::ExtendedQuantumMeasures {
+        quantum_extensions::ExtendedQuantumMeasures::calculate_all(state)
     }
 }
 
