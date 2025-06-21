@@ -1,17 +1,21 @@
-//! # ATP-Oscillatory-Membrane Quantum Biological Simulator
+//! # Complete ATP-Oscillatory-Membrane Quantum Biological Computer
 //! 
-//! This is a complete implementation combining three revolutionary insights:
-//! 1. ATP as the universal energy currency for biological differential equations
+//! This implements the revolutionary biological quantum computation framework combining:
+//! 1. ATP as universal energy currency for biological differential equations (dx/dATP)
 //! 2. Oscillatory entropy as statistical distributions of oscillation endpoints  
 //! 3. Membrane quantum computation through Environment-Assisted Quantum Transport (ENAQT)
-//! 
-//! The simulator demonstrates how biological systems function as room-temperature
-//! quantum computers powered by ATP and organized through oscillatory dynamics.
 
 use std::collections::HashMap;
 use std::f64::consts::PI;
 use ndarray::{Array1, Array2};
 use num_complex::Complex;
+use crate::{
+    BiologicalQuantumState, AtpCoordinates, OscillatoryCoordinates, MembraneQuantumCoordinates,
+    OscillatoryEntropyCoordinates, OscillationState, MembraneOscillation, QuantumStateAmplitude,
+    EnvironmentalCoupling, TunnelingState, MembraneProperties, EndpointDistribution,
+    OscillationEndpoint, MembraneQuantumEndpoint, RadicalEndpoint, RadicalType,
+    error::SolverError
+};
 
 // ================================================================================================
 // CORE DATA STRUCTURES
@@ -307,8 +311,8 @@ impl BiologicalQuantumHamiltonian {
         }
     }
 
-    /// ATP dynamics: dx/dATP from the original framework
-    pub fn calculate_atp_derivatives(&self, state: &BiologicalQuantumState) -> AtpDerivatives {
+    /// ATP dynamics: dx/dATP from your original framework
+    fn calculate_atp_derivatives(&self, state: &BiologicalQuantumState) -> AtpDerivatives {
         let atp_consumption_rate = self.calculate_atp_consumption_rate(state);
         let oscillatory_atp_coupling = self.calculate_oscillatory_atp_coupling(state);
         let membrane_atp_coupling = self.calculate_membrane_atp_coupling(state);
@@ -320,73 +324,6 @@ impl BiologicalQuantumHamiltonian {
             energy_charge_rate: self.calculate_energy_charge_rate(state),
             oscillation_amplitude_rate: oscillatory_atp_coupling * atp_consumption_rate,
             oscillation_phase_rate: state.atp_coords.atp_oscillation_frequency,
-        }
-    }
-
-    /// Oscillatory dynamics: standard Hamiltonian mechanics with ATP driving
-    pub fn calculate_oscillatory_derivatives(&self, state: &BiologicalQuantumState) -> OscillatoryDerivatives {
-        let mut position_derivatives = Vec::new();
-        let mut momentum_derivatives = Vec::new();
-        
-        for (i, oscillation) in state.oscillatory_coords.oscillations.iter().enumerate() {
-            // Position derivative: dq/dt = p (momentum)
-            position_derivatives.push(state.oscillatory_coords.oscillatory_momenta[i]);
-            
-            // Momentum derivative: dp/dt = -∂V/∂q + ATP_driving
-            let force = -self.calculate_oscillatory_force(oscillation, state);
-            let atp_driving = self.calculate_atp_driving_force(oscillation, &state.atp_coords);
-            momentum_derivatives.push(force + atp_driving);
-        }
-        
-        OscillatoryDerivatives {
-            position_derivatives,
-            momentum_derivatives,
-            phase_derivatives: self.calculate_phase_coupling_derivatives(state),
-        }
-    }
-
-    /// Membrane quantum dynamics: Schrödinger equation with ENAQT
-    pub fn calculate_membrane_derivatives(&self, state: &BiologicalQuantumState) -> MembraneDerivatives {
-        let mut quantum_state_derivatives = Vec::new();
-        
-        for quantum_state in &state.membrane_coords.quantum_states {
-            // Time-dependent Schrödinger equation with environmental coupling
-            let hamiltonian_term = -Complex::i() * quantum_state.energy * quantum_state.amplitude;
-            let environmental_term = self.calculate_enaqt_coupling(quantum_state, state);
-            let atp_quantum_coupling = self.calculate_atp_quantum_coupling(quantum_state, state);
-            
-            quantum_state_derivatives.push(hamiltonian_term + environmental_term + atp_quantum_coupling);
-        }
-        
-        MembraneDerivatives {
-            quantum_state_derivatives,
-            tunneling_derivatives: self.calculate_tunneling_derivatives(state),
-            environmental_coupling_derivatives: self.calculate_environmental_derivatives(state),
-        }
-    }
-
-    /// Entropy dynamics: oscillation endpoint statistics
-    pub fn calculate_entropy_derivatives(&self, state: &BiologicalQuantumState) -> EntropyDerivatives {
-        // Calculate how oscillation endpoints are changing
-        let endpoint_evolution_rate = self.calculate_endpoint_evolution_rate(state);
-        
-        // Entropy production from ATP consumption
-        let atp_entropy_production = self.calculate_atp_entropy_production(state);
-        
-        // Oscillatory entropy production
-        let oscillatory_entropy_production = self.calculate_oscillatory_entropy_production(state);
-        
-        // Membrane quantum entropy production
-        let membrane_entropy_production = self.calculate_membrane_entropy_production(state);
-        
-        // Quantum tunneling entropy (death mechanism)
-        let quantum_tunneling_entropy = self.calculate_quantum_tunneling_entropy_production(state);
-        
-        EntropyDerivatives {
-            total_entropy_rate: atp_entropy_production + oscillatory_entropy_production + membrane_entropy_production,
-            endpoint_distribution_rates: endpoint_evolution_rate,
-            membrane_endpoint_entropy_rate: membrane_entropy_production,
-            quantum_tunneling_entropy_rate: quantum_tunneling_entropy,
         }
     }
 
@@ -449,7 +386,29 @@ impl BiologicalQuantumHamiltonian {
             0.0
         }
     }
-    
+
+    /// Oscillatory dynamics: standard Hamiltonian mechanics with ATP driving
+    fn calculate_oscillatory_derivatives(&self, state: &BiologicalQuantumState) -> OscillatoryDerivatives {
+        let mut position_derivatives = Vec::new();
+        let mut momentum_derivatives = Vec::new();
+        
+        for (i, oscillation) in state.oscillatory_coords.oscillations.iter().enumerate() {
+            // Position derivative: dq/dt = p (momentum)
+            position_derivatives.push(state.oscillatory_coords.oscillatory_momenta[i]);
+            
+            // Momentum derivative: dp/dt = -∂V/∂q + ATP_driving
+            let force = -self.calculate_oscillatory_force(oscillation, state);
+            let atp_driving = self.calculate_atp_driving_force(oscillation, &state.atp_coords);
+            momentum_derivatives.push(force + atp_driving);
+        }
+        
+        OscillatoryDerivatives {
+            position_derivatives,
+            momentum_derivatives,
+            phase_derivatives: self.calculate_phase_coupling_derivatives(state),
+        }
+    }
+
     /// Calculate oscillatory force on specific oscillation
     fn calculate_oscillatory_force(&self, oscillation: &OscillationState, _state: &BiologicalQuantumState) -> f64 {
         // Harmonic oscillator force: F = -kx - γv
@@ -489,7 +448,27 @@ impl BiologicalQuantumHamiltonian {
         
         derivatives
     }
-    
+
+    /// Membrane quantum dynamics: Schrödinger equation with ENAQT
+    fn calculate_membrane_derivatives(&self, state: &BiologicalQuantumState) -> MembraneDerivatives {
+        let mut quantum_state_derivatives = Vec::new();
+        
+        for quantum_state in &state.membrane_coords.quantum_states {
+            // Time-dependent Schrödinger equation with environmental coupling
+            let hamiltonian_term = -Complex::i() * quantum_state.energy * quantum_state.amplitude;
+            let environmental_term = self.calculate_enaqt_coupling(quantum_state, state);
+            let atp_quantum_coupling = self.calculate_atp_quantum_coupling(quantum_state, state);
+            
+            quantum_state_derivatives.push(hamiltonian_term + environmental_term + atp_quantum_coupling);
+        }
+        
+        MembraneDerivatives {
+            quantum_state_derivatives,
+            tunneling_derivatives: self.calculate_tunneling_derivatives(state),
+            environmental_coupling_derivatives: self.calculate_environmental_derivatives(state),
+        }
+    }
+
     /// Calculate ENAQT coupling term
     fn calculate_enaqt_coupling(&self, quantum_state: &QuantumStateAmplitude, state: &BiologicalQuantumState) -> Complex<f64> {
         let coupling = &state.membrane_coords.environmental_coupling;
@@ -537,7 +516,32 @@ impl BiologicalQuantumHamiltonian {
             enhancement_factor_rate: -coupling.enhancement_factor * 0.0005, // Gradual decrease
         }
     }
-    
+
+    /// Entropy dynamics: your key insight about oscillation endpoint statistics
+    fn calculate_entropy_derivatives(&self, state: &BiologicalQuantumState) -> EntropyDerivatives {
+        // Calculate how oscillation endpoints are changing
+        let endpoint_evolution_rate = self.calculate_endpoint_evolution_rate(state);
+        
+        // Entropy production from ATP consumption
+        let atp_entropy_production = self.calculate_atp_entropy_production(state);
+        
+        // Oscillatory entropy production
+        let oscillatory_entropy_production = self.calculate_oscillatory_entropy_production(state);
+        
+        // Membrane quantum entropy production
+        let membrane_entropy_production = self.calculate_membrane_entropy_production(state);
+        
+        // Quantum tunneling entropy (death mechanism)
+        let quantum_tunneling_entropy = self.calculate_quantum_tunneling_entropy_production(state);
+        
+        EntropyDerivatives {
+            total_entropy_rate: atp_entropy_production + oscillatory_entropy_production + membrane_entropy_production,
+            endpoint_distribution_rates: endpoint_evolution_rate,
+            membrane_endpoint_entropy_rate: membrane_entropy_production,
+            quantum_tunneling_entropy_rate: quantum_tunneling_entropy,
+        }
+    }
+
     /// Calculate endpoint evolution rate
     fn calculate_endpoint_evolution_rate(&self, state: &BiologicalQuantumState) -> HashMap<String, Vec<f64>> {
         let mut evolution_rates = HashMap::new();
