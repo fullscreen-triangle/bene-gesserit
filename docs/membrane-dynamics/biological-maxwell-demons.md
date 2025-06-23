@@ -15,6 +15,7 @@ iCat = ℑ_input ∘ ℑ_output
 ```
 
 Where:
+
 - `ℑ_input`: Pattern selection operator that filters inputs from enormous possibility spaces
 - `ℑ_output`: Channeling operator that directs outputs toward specific targets
 - `∘`: Functional composition operator
@@ -24,7 +25,7 @@ Where:
 Our biological quantum computer implements multiple layers of BMD:
 
 1. **ATP-Level BMD**: Select energetically favorable pathways
-2. **Oscillatory BMD**: Select specific frequency patterns and phase relationships  
+2. **Oscillatory BMD**: Select specific frequency patterns and phase relationships
 3. **Membrane Quantum BMD**: Select quantum states through ENAQT
 4. **Entropy BMD**: Select oscillation endpoint distributions
 
@@ -37,19 +38,19 @@ pub trait BiologicalMaxwellsDemon {
     type InputPattern;
     type OutputTarget;
     type InformationState;
-    
+  
     /// Pattern selection from input space
     fn select_input_patterns(&self, input_space: &[Self::InputPattern]) -> Vec<Self::InputPattern>;
-    
+  
     /// Channel outputs toward targets
     fn channel_to_targets(&self, patterns: &[Self::InputPattern]) -> Vec<Self::OutputTarget>;
-    
+  
     /// Information processing cycle
     fn catalytic_cycle(&mut self, input: Self::InputPattern) -> Result<Self::OutputTarget, BmdError>;
-    
+  
     /// Measure information processing efficiency
     fn information_efficiency(&self) -> f64;
-    
+  
     /// Track degradation (metastability)
     fn degradation_state(&self) -> f64;
 }
@@ -88,7 +89,7 @@ impl BiologicalMaxwellsDemon for AtpMaxwellsDemon {
     type InputPattern = AtpState;
     type OutputTarget = EnergyAllocation;
     type InformationState = AtpInformationState;
-    
+  
     fn select_input_patterns(&self, atp_states: &[AtpState]) -> Vec<AtpState> {
         // Implement Haldane relation-based selection
         atp_states.iter()
@@ -97,29 +98,29 @@ impl BiologicalMaxwellsDemon for AtpMaxwellsDemon {
             .cloned()
             .collect()
     }
-    
+  
     fn channel_to_targets(&self, atp_states: &[AtpState]) -> Vec<EnergyAllocation> {
         atp_states.iter()
             .map(|state| self.determine_energy_allocation(state))
             .collect()
     }
-    
+  
     fn catalytic_cycle(&mut self, atp_input: AtpState) -> Result<EnergyAllocation, BmdError> {
         // 1. Pattern recognition
         let recognized = self.recognize_atp_pattern(&atp_input)?;
-        
+      
         // 2. Information processing
         let processed = self.process_atp_information(recognized)?;
-        
+      
         // 3. Energy allocation decision
         let allocation = self.decide_energy_allocation(processed)?;
-        
+      
         // 4. Update information state
         self.update_information_state(&atp_input, &allocation);
-        
+      
         // 5. Track degradation
         self.increment_cycle_count();
-        
+      
         Ok(allocation)
     }
 }
@@ -159,7 +160,7 @@ impl BiologicalMaxwellsDemon for OscillatoryMaxwellsDemon {
     type InputPattern = OscillatoryState;
     type OutputTarget = OscillationControl;
     type InformationState = OscillatoryInformationState;
-    
+  
     fn select_input_patterns(&self, oscillations: &[OscillatoryState]) -> Vec<OscillatoryState> {
         oscillations.iter()
             .filter(|osc| self.frequency_in_recognition_band(osc))
@@ -167,33 +168,33 @@ impl BiologicalMaxwellsDemon for OscillatoryMaxwellsDemon {
             .cloned()
             .collect()
     }
-    
+  
     fn channel_to_targets(&self, oscillations: &[OscillatoryState]) -> Vec<OscillationControl> {
         oscillations.iter()
             .map(|osc| self.determine_oscillation_control(osc))
             .collect()
     }
-    
+  
     fn catalytic_cycle(&mut self, osc_input: OscillatoryState) -> Result<OscillationControl, BmdError> {
         // 1. Frequency pattern recognition
         let recognized_frequencies = self.recognize_frequency_patterns(&osc_input)?;
-        
+      
         // 2. Phase relationship analysis
         let phase_analysis = self.analyze_phase_relationships(&osc_input)?;
-        
+      
         // 3. Endpoint prediction
         let predicted_endpoints = self.predict_oscillation_endpoints(&osc_input)?;
-        
+      
         // 4. Control signal generation
         let control = self.generate_oscillation_control(
             recognized_frequencies,
             phase_analysis,
             predicted_endpoints
         )?;
-        
+      
         // 5. Update information state
         self.update_oscillatory_memory(&osc_input, &control);
-        
+      
         Ok(control)
     }
 }
@@ -224,7 +225,7 @@ impl BiologicalMaxwellsDemon for MembraneQuantumMaxwellsDemon {
     type InputPattern = QuantumState;
     type OutputTarget = QuantumOperation;
     type InformationState = QuantumInformationState;
-    
+  
     fn select_input_patterns(&self, quantum_states: &[QuantumState]) -> Vec<QuantumState> {
         quantum_states.iter()
             .filter(|state| self.quantum_coherence_sufficient(state))
@@ -232,33 +233,33 @@ impl BiologicalMaxwellsDemon for MembraneQuantumMaxwellsDemon {
             .cloned()
             .collect()
     }
-    
+  
     fn channel_to_targets(&self, quantum_states: &[QuantumState]) -> Vec<QuantumOperation> {
         quantum_states.iter()
             .map(|state| self.determine_quantum_operation(state))
             .collect()
     }
-    
+  
     fn catalytic_cycle(&mut self, quantum_input: QuantumState) -> Result<QuantumOperation, BmdError> {
         // 1. Quantum pattern recognition
         let recognized = self.recognize_quantum_patterns(&quantum_input)?;
-        
+      
         // 2. ENAQT enhancement calculation
         let enaqt_enhanced = self.calculate_enaqt_enhancement(&quantum_input)?;
-        
+      
         // 3. Tunneling pathway selection
         let tunneling_pathway = self.select_tunneling_pathway(&quantum_input)?;
-        
+      
         // 4. Quantum operation construction
         let operation = self.construct_quantum_operation(
             recognized,
             enaqt_enhanced,
             tunneling_pathway
         )?;
-        
+      
         // 5. Update quantum information state
         self.update_quantum_memory(&quantum_input, &operation);
-        
+      
         Ok(operation)
     }
 }
@@ -285,17 +286,17 @@ impl<P: Clone + Hash + Eq> PatternRecognitionMemory<P> {
     pub fn recognize_pattern(&self, input: &P) -> Option<f64> {
         self.pattern_associations.get(input).copied()
     }
-    
+  
     pub fn learn_pattern(&mut self, pattern: P, strength: f64) {
         if self.pattern_associations.len() >= self.max_patterns {
             self.forget_weakest_pattern();
         }
-        
+      
         let current_strength = self.pattern_associations.get(&pattern).unwrap_or(&0.0);
         let new_strength = current_strength + self.learning_rate * strength;
         self.pattern_associations.insert(pattern, new_strength);
     }
-    
+  
     pub fn forget_pattern(&mut self, pattern: &P) {
         if let Some(strength) = self.pattern_associations.get_mut(pattern) {
             *strength *= (1.0 - self.forgetting_rate);
@@ -329,19 +330,19 @@ impl InformationCatalysisMetrics {
         let degradation_factor = 1.0 - self.degradation_level;
         base_efficiency * degradation_factor
     }
-    
+  
     pub fn update_from_cycle(&mut self, input_size: usize, selected_size: usize, target_hit: bool) {
         // Update selection efficiency
         self.selection_efficiency = 0.9 * self.selection_efficiency + 
             0.1 * (selected_size as f64 / input_size as f64);
-        
+      
         // Update targeting accuracy
         let hit_score = if target_hit { 1.0 } else { 0.0 };
         self.targeting_accuracy = 0.9 * self.targeting_accuracy + 0.1 * hit_score;
-        
+      
         // Increment cycle count
         self.cycle_count += 1;
-        
+      
         // Update degradation (metastability)
         self.degradation_level += 1e-6; // Slow degradation
     }
@@ -374,28 +375,28 @@ impl BmdEnhancedSolver {
         time_horizon: f64,
         quantum_targets: &[ComplexField],
     ) -> Result<EnhancedQuantumTrajectory, BeneGesseritError> {
-        
+      
         let mut trajectory = EnhancedQuantumTrajectory::new();
         let mut current_state = initial_state;
         let mut remaining_atp = atp_budget;
         let dt = time_horizon / 1000.0; // Adaptive step size
-        
+      
         for step in 0..1000 {
             // 1. ATP Maxwell's demon processing
             let atp_allocation = self.atp_demon.catalytic_cycle(
                 current_state.atp_coordinates.clone()
             )?;
-            
+          
             // 2. Oscillatory Maxwell's demon processing
             let oscillation_control = self.oscillatory_demon.catalytic_cycle(
                 current_state.oscillatory_coordinates.clone()
             )?;
-            
+          
             // 3. Quantum Maxwell's demon processing
             let quantum_operation = self.quantum_demon.catalytic_cycle(
                 current_state.membrane_quantum_coordinates.clone()
             )?;
-            
+          
             // 4. Apply information-guided evolution
             let enhanced_derivatives = self.calculate_bmd_enhanced_derivatives(
                 &current_state,
@@ -403,17 +404,17 @@ impl BmdEnhancedSolver {
                 &oscillation_control,
                 &quantum_operation
             )?;
-            
+          
             // 5. Evolve state using enhanced derivatives
             current_state = self.evolve_state_with_bmd(
                 current_state,
                 enhanced_derivatives,
                 dt
             )?;
-            
+          
             // 6. Update ATP budget based on BMD decisions
             remaining_atp -= atp_allocation.energy_cost;
-            
+          
             // 7. Record trajectory point
             trajectory.add_point(TrajectoryPoint {
                 time: step as f64 * dt,
@@ -421,16 +422,16 @@ impl BmdEnhancedSolver {
                 atp_remaining: remaining_atp,
                 bmd_metrics: self.catalysis_metrics.clone(),
             });
-            
+          
             // 8. Check termination conditions
             if remaining_atp <= 0.0 || self.quantum_targets_achieved(&current_state, quantum_targets) {
                 break;
             }
         }
-        
+      
         Ok(trajectory)
     }
-    
+  
     fn calculate_bmd_enhanced_derivatives(
         &self,
         state: &BiologicalQuantumState,
@@ -438,28 +439,28 @@ impl BmdEnhancedSolver {
         oscillation_control: &OscillationControl,
         quantum_operation: &QuantumOperation,
     ) -> Result<EnhancedDerivatives, BeneGesseritError> {
-        
+      
         // Base derivatives from core solver
         let base_derivatives = self.core_solver.calculate_derivatives(state)?;
-        
+      
         // ATP enhancement based on BMD decisions
         let enhanced_atp_derivatives = self.enhance_atp_derivatives(
             &base_derivatives.atp_derivatives,
             atp_allocation
         );
-        
+      
         // Oscillatory enhancement based on pattern recognition
         let enhanced_oscillatory_derivatives = self.enhance_oscillatory_derivatives(
             &base_derivatives.oscillatory_derivatives,
             oscillation_control
         );
-        
+      
         // Quantum enhancement based on information processing
         let enhanced_quantum_derivatives = self.enhance_quantum_derivatives(
             &base_derivatives.membrane_quantum_derivatives,
             quantum_operation
         );
-        
+      
         Ok(EnhancedDerivatives {
             atp_derivatives: enhanced_atp_derivatives,
             oscillatory_derivatives: enhanced_oscillatory_derivatives,
@@ -476,6 +477,7 @@ impl BmdEnhancedSolver {
 ### 1. Enhanced Pattern Recognition
 
 The BMD framework provides:
+
 - **Selective ATP allocation** based on metabolic pattern recognition
 - **Frequency-specific oscillatory control** through pattern filtering
 - **Quantum state selection** via information processing
@@ -484,6 +486,7 @@ The BMD framework provides:
 ### 2. Information-Guided Computation
 
 Instead of blind numerical integration, computation becomes:
+
 - **Purpose-driven**: BMD direct evolution toward computational targets
 - **Efficient**: Pattern recognition eliminates wasteful pathways
 - **Adaptive**: Information processing improves over time
@@ -492,6 +495,7 @@ Instead of blind numerical integration, computation becomes:
 ### 3. Metastability and Renewal
 
 Following Wiener's insight about "metastable Maxwell's demons":
+
 - **Degradation tracking**: Monitor BMD deterioration over cycles
 - **Renewal mechanisms**: Replace degraded BMD with fresh instances
 - **Population dynamics**: Maintain populations of specialized BMD
@@ -500,21 +504,25 @@ Following Wiener's insight about "metastable Maxwell's demons":
 ## Implementation Roadmap
 
 ### Phase 1: Core BMD Traits and Structures
+
 1. Implement `BiologicalMaxwellsDemon` trait
 2. Create pattern recognition memory systems
 3. Develop information catalysis metrics
 
 ### Phase 2: Specific BMD Implementations
+
 1. Implement `AtpMaxwellsDemon` with Haldane relation
 2. Implement `OscillatoryMaxwellsDemon` with frequency filtering
 3. Implement `MembraneQuantumMaxwellsDemon` with ENAQT enhancement
 
 ### Phase 3: Solver Integration
+
 1. Create `BmdEnhancedSolver`
 2. Implement information-guided derivative calculation
 3. Add trajectory recording with BMD metrics
 
 ### Phase 4: Advanced Features
+
 1. BMD population dynamics
 2. Evolutionary adaptation mechanisms
 3. Multi-scale information processing

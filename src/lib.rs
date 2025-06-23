@@ -39,6 +39,10 @@ pub mod hardware_oscillation_harvester;  // NEW: Hardware integration!
 pub mod hardware_demo;  // NEW: Hardware integration demo!
 pub mod pixel_noise_harvester;  // NEW: Pixel noise for biological optimization!
 
+// NEW: Biological Maxwell's Demons for Information Catalysis
+pub mod biological_maxwell_demons;  // NEW: BMD framework implementation!
+pub mod bmd_enhanced_solver;  // NEW: BMD-enhanced solver integration!
+
 // Re-export main structures for easy access
 pub use biological_quantum_computer::*;
 pub use biological_quantum_implementations::*;
@@ -47,6 +51,8 @@ pub use glycolysis_quantum_computer::*;
 pub use hardware_oscillation_harvester::*;  // NEW: Hardware integration!
 pub use hardware_demo::*;  // NEW: Hardware integration demo!
 pub use pixel_noise_harvester::*;  // NEW: Pixel noise for biological optimization!
+pub use biological_maxwell_demons::*;  // NEW: BMD framework!
+pub use bmd_enhanced_solver::*;  // NEW: BMD-enhanced solver!
 
 // ================================================================================================
 // CORE BIOLOGICAL QUANTUM STATE (existing, keeping for compatibility)
