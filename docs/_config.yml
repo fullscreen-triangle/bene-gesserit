@@ -1,0 +1,115 @@
+title: "Bene Gesserit: Biological Quantum Computing Framework"
+description: "Revolutionary framework combining ATP dynamics, oscillatory entropy, and membrane quantum computation with Turbulance DSL for encoding the scientific method"
+url: "https://fullscreen-triangle.github.io"
+baseurl: "/bene-gesserit"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  fundamentals:
+    output: true
+    permalink: /:collection/:name/
+  language:
+    output: true
+    permalink: /:collection/:name/
+  membrane_dynamics:
+    output: true
+    permalink: /:collection/:name/
+  examples:
+    output: true
+    permalink: /:collection/:name/
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Fundamentals"
+    url: "/fundamentals/"
+    subnav:
+      - title: "Quantum Extensions"
+        url: "/fundamentals/quantum-extensions/"
+      - title: "Oscillations"
+        url: "/fundamentals/oscillations/"
+      - title: "Membranes"
+        url: "/fundamentals/membranes/"
+      - title: "Advanced Mathematics"
+        url: "/fundamentals/advanced-mathematical-extensions/"
+  - title: "Turbulance Language"
+    url: "/language/"
+    subnav:
+      - title: "Language Overview"
+        url: "/language/turbulance-language/"
+      - title: "Special Features"
+        url: "/language/special_features/"
+      - title: "Goal System"
+        url: "/language/goal/"
+  - title: "Membrane Dynamics"
+    url: "/membrane-dynamics/"
+    subnav:
+      - title: "Overview"
+        url: "/membrane-dynamics/index/"
+      - title: "Biological Maxwell's Demons"
+        url: "/membrane-dynamics/biological-maxwell-demons/"
+      - title: "Circuit Interface"
+        url: "/membrane-dynamics/circuit-interface-layer/"
+      - title: "Quickstart"
+        url: "/membrane-dynamics/quickstart-example/"
+  - title: "Examples"
+    url: "/examples/"
+  - title: "API Reference"
+    url: "/api/"
+
+# Site settings
+author:
+  name: "Bene Gesserit Research Team"
+  email: "research@bene-gesserit.org"
+
+# SEO
+twitter:
+  username: bene_gesserit
+  card: summary_large_image
+
+social:
+  name: Bene Gesserit
+  links:
+    - https://github.com/your-username/bene-gesserit
+
+# Analytics
+google_analytics: UA-XXXXXXXXX-X
+
+# Syntax highlighting
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - target/
+  - Cargo.toml
+  - Cargo.lock
+
+# Include
+include:
+  - _pages 
