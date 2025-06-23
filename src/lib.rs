@@ -43,6 +43,10 @@ pub mod pixel_noise_harvester;  // NEW: Pixel noise for biological optimization!
 pub mod biological_maxwell_demons;  // NEW: BMD framework implementation!
 pub mod bmd_enhanced_solver;  // NEW: BMD-enhanced solver integration!
 
+// NEW: Turbulance Language Parser/Compiler for Scientific Method
+pub mod turbulance_parser;  // NEW: Turbulance DSL parser!
+pub mod turbulance_tokenizer;  // NEW: Turbulance tokenizer!
+
 // Re-export main structures for easy access
 pub use biological_quantum_computer::*;
 pub use biological_quantum_implementations::*;
@@ -53,6 +57,8 @@ pub use hardware_demo::*;  // NEW: Hardware integration demo!
 pub use pixel_noise_harvester::*;  // NEW: Pixel noise for biological optimization!
 pub use biological_maxwell_demons::*;  // NEW: BMD framework!
 pub use bmd_enhanced_solver::*;  // NEW: BMD-enhanced solver!
+pub use turbulance_parser::*;  // NEW: Turbulance DSL parser!
+pub use turbulance_tokenizer::*;  // NEW: Turbulance tokenizer!
 
 // ================================================================================================
 // CORE BIOLOGICAL QUANTUM STATE (existing, keeping for compatibility)
