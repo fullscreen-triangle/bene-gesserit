@@ -12,11 +12,11 @@ fn main() {
     }
 
     // Enable SIMD optimizations if available
-    if is_x86_feature_detected!("avx2") {
+    if is_x86_feature_detected("avx2") {
         println!("cargo:rustc-cfg=has_avx2");
     }
     
-    if is_x86_feature_detected!("fma") {
+    if is_x86_feature_detected("fma") {
         println!("cargo:rustc-cfg=has_fma");
     }
 
@@ -30,7 +30,7 @@ fn main() {
 }
 
 #[cfg(target_arch = "x86_64")]
-fn is_x86_feature_detected!(feature: &str) -> bool {
+fn is_x86_feature_detected(feature: &str) -> bool {
     match feature {
         "avx2" => std::arch::is_x86_feature_detected!("avx2"),
         "fma" => std::arch::is_x86_feature_detected!("fma"),
@@ -39,6 +39,6 @@ fn is_x86_feature_detected!(feature: &str) -> bool {
 }
 
 #[cfg(not(target_arch = "x86_64"))]
-fn is_x86_feature_detected!(_feature: &str) -> bool {
+fn is_x86_feature_detected(_feature: &str) -> bool {
     false
 } 

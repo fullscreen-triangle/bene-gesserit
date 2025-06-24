@@ -135,6 +135,38 @@ pub enum MembraneError {
     /// Generic validation errors
     #[error("Validation error: {field} - {reason}")]
     ValidationError { field: String, reason: String },
+    
+    /// Environment container errors
+    #[error("Environment error: {reason}")]
+    Environment { reason: String },
+}
+
+/// Environment container specific errors
+#[derive(Error, Debug)]
+pub enum EnvironmentError {
+    /// Energy charge constraint violation
+    #[error("Energy charge violation: outside acceptable range")]
+    EnergyChargeViolation,
+    
+    /// Temperature constraint violation
+    #[error("Temperature constraint violation: {temperature}K outside viable range")]
+    TemperatureViolation { temperature: f64 },
+    
+    /// pH constraint violation
+    #[error("pH constraint violation: {ph} outside physiological range")]
+    PhViolation { ph: f64 },
+    
+    /// Osmolarity constraint violation
+    #[error("Osmolarity constraint violation: {osmolarity} mOsm/L outside viable range")]
+    OsmolarityViolation { osmolarity: f64 },
+    
+    /// General environment constraint violation
+    #[error("Environment constraint violation: {constraint}")]
+    ConstraintViolation { constraint: String },
+    
+    /// Environment interaction processing error
+    #[error("Environment interaction error: {reason}")]
+    InteractionError { reason: String },
 }
 
 impl MembraneError {
