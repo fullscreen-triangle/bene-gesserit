@@ -2,16 +2,33 @@
 name = "bene-gesserit"
 version = "0.1.0"
 edition = "2021"
-authors = ["Bene Gesserit Contributors"]
-description = "Biologically authentic cellular membrane dynamics simulation with ATP-constrained computation"
-repository = "https://github.com/your-org/bene-gesserit"
-license = "MIT"
-keywords = ["membrane", "biophysics", "atp", "circuits", "biological-ai"]
-categories = ["science", "simulation"]
+rust-version = "1.70"
+authors = ["Bene Gesserit Contributors <contact@bene-gesserit.org>"]
+description = "Revolutionary biological quantum computation framework combining ATP-constrained dynamics, oscillatory entropy control, and membrane quantum computing"
+documentation = "https://docs.rs/bene-gesserit"
+homepage = "https://bene-gesserit.org"
+repository = "https://github.com/fullscreen-triangle/bene-gesserit"
+license = "MIT OR Apache-2.0"
+license-file = "LICENSE"
+readme = "README.md"
+keywords = ["biophysics", "quantum-biology", "membrane-dynamics", "atp", "biological-computing"]
+categories = ["science", "simulation", "algorithms", "mathematics"]
+include = [
+    "src/**/*",
+    "examples/**/*",
+    "benches/**/*",
+    "tests/**/*",
+    "README.md",
+    "LICENSE*",
+    "CHANGELOG.md",
+    "Cargo.toml"
+]
+publish = true
 
 [lib]
 name = "bene_gesserit"
 path = "src/lib.rs"
+crate-type = ["lib", "cdylib", "staticlib"]
 
 [dependencies]
 # Core numerical computation
@@ -77,11 +94,18 @@ opt-level = 3
 lto = true
 codegen-units = 1
 panic = "abort"
+strip = true
 
 [profile.bench]
 opt-level = 3
 lto = true
 codegen-units = 1
+debug = true
+
+[profile.dev]
+opt-level = 0
+debug = true
+split-debuginfo = "unpacked"
 
 [[bench]]
 name = "membrane_performance"
@@ -97,4 +121,11 @@ path = "examples/atp_constrained_simulation.rs"
 
 [[example]]
 name = "circuit_integration"
-path = "examples/circuit_integration.rs" 
+path = "examples/circuit_integration.rs"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[package.metadata.playground]
+features = ["default", "membrane-dynamics", "circuit-interface"] 

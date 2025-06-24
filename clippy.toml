@@ -1,0 +1,47 @@
+# Configuration for Clippy
+# See https://doc.rust-lang.org/clippy/configuration.html for all options
+
+# Lints to deny (treat as errors)
+# These are typically warnings but we want them to be errors
+msrv = "1.70.0"
+
+# The maximum number of lines a function or method can have
+too-many-lines-threshold = 150
+
+# The maximum number of arguments a function can have
+too-many-arguments-threshold = 8
+
+# The maximum number of single char bindings a scope may have
+single-char-binding-names-threshold = 5
+
+# The maximum size of an enum variant to suggest using a Box
+enum-variant-size-threshold = 200
+
+# The maximum size of a type to pass by value instead of by reference
+trivial-copy-size-limit = 16
+
+# The maximum complexity a function can have
+cognitive-complexity-threshold = 30
+
+# Maximum number of bool parameters in a function
+max-fn-params-bools = 3
+
+# Maximum number of struct fields treated as a "large" enum variant
+large-type-threshold = 600
+
+# Maximum number of allowed identical items
+identical-items-threshold = 2
+
+# The maximum number of allowed variables declared at module level
+max-pub-exports = 50
+
+# The maximum allowed size for arrays on the stack
+array-size-threshold = 512000
+
+# The minimum rust version supported
+avoid-breaking-exported-api = true
+
+# Allow certain patterns that are common in scientific computing
+allow-expect-in-tests = true
+allow-unwrap-in-tests = true
+suppress-restriction-lint-in-const = true 
