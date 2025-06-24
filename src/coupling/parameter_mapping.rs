@@ -205,7 +205,7 @@ impl ParameterMapper {
         // Count proteins by type
         let mut protein_counts: HashMap<ProteinType, u32> = HashMap::new();
         for protein in proteins.values() {
-            *protein_counts.entry(protein.protein_type).or_insert(0) += 1;
+            *protein_counts.entry(protein.protein_type.clone()).or_insert(0) += 1;
         }
         
         // Convert counts to densities (proteins per μm²)

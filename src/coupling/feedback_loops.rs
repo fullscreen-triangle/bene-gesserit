@@ -136,21 +136,23 @@ impl FeedbackSystem {
     fn validate_feedback_loop(&self, feedback_loop: &FeedbackLoop) -> Result<()> {
         // Check gain limits
         if feedback_loop.gain.abs() > self.control_params.max_gain {
-            return Err(MembraneError::InvalidParameter(
-                format!("Feedback gain {} exceeds maximum {}", 
+            return Err(MembraneError::ValidationError {
+                field: "feedback_gain".to_string(),
+                reason: format!("Feedback gain {} exceeds maximum {}", 
                        feedback_loop.gain, self.control_params.max_gain)
-            ));
+            });
         }
         
         // Check time constant limits
         if feedback_loop.time_constant < self.control_params.min_time_constant ||
            feedback_loop.time_constant > self.control_params.max_time_constant {
-            return Err(MembraneError::InvalidParameter(
-                format!("Time constant {} outside allowed range [{}, {}]",
+            return Err(MembraneError::ValidationError {
+                field: "time_constant".to_string(),
+                reason: format!("Time constant {} outside allowed range [{}, {}]",
                        feedback_loop.time_constant,
                        self.control_params.min_time_constant,
                        self.control_params.max_time_constant)
-            ));
+            });
         }
         
         Ok(())
@@ -164,8 +166,12 @@ impl FeedbackSystem {
         self.state_tracker.update_state(membrane_state, circuit_params);
         
         // Process each feedback loop
-        for (loop_id, feedback_loop) in &mut self.feedback_loops {
-            self.process_feedback_loop(loop_id, feedback_loop, circuit_params, dt)?;
+        let loop_ids: Vec<String> = self.feedback_loops.keys().cloned().collect();
+        for loop_id in loop_ids {
+            if let Some(mut feedback_loop) = self.feedback_loops.remove(&loop_id) {
+                self.process_feedback_loop(&loop_id, &mut feedback_loop, circuit_params, dt)?;
+                self.feedback_loops.insert(loop_id, feedback_loop);
+            }
         }
         
         // Update system statistics
@@ -241,9 +247,10 @@ impl FeedbackSystem {
                     
                     Ok(-(proportional + integral + derivative))
                 } else {
-                    Err(MembraneError::InvalidParameter(
-                        "Homeostatic feedback requires setpoint".to_string()
-                    ))
+                    Err(MembraneError::ValidationError {
+                        field: "setpoint".to_string(),
+                        reason: "Homeostatic feedback requires setpoint".to_string()
+                    })
                 }
             },
             
@@ -287,29 +294,33 @@ impl FeedbackSystem {
                 let channel_name = &param[8..]; // Remove "channel_" prefix
                 self.state_tracker.channel_activities.get(channel_name)
                     .copied()
-                    .ok_or_else(|| MembraneError::InvalidParameter(
-                        format!("Channel activity {} not found", channel_name)
-                    ))
+                    .ok_or_else(|| MembraneError::ValidationError {
+                        field: "channel_activity".to_string(),
+                        reason: format!("Channel activity {} not found", channel_name)
+                    })
             },
             param if param.starts_with("protein_") => {
                 let protein_name = &param[8..]; // Remove "protein_" prefix
                 self.state_tracker.protein_states.get(protein_name)
                     .copied()
-                    .ok_or_else(|| MembraneError::InvalidParameter(
-                        format!("Protein state {} not found", protein_name)
-                    ))
+                    .ok_or_else(|| MembraneError::ValidationError {
+                        field: "protein_state".to_string(),
+                        reason: format!("Protein state {} not found", protein_name)
+                    })
             },
             param if param.starts_with("circuit_") => {
                 let circuit_param = &param[8..]; // Remove "circuit_" prefix
                 self.state_tracker.circuit_params.get(circuit_param)
                     .copied()
-                    .ok_or_else(|| MembraneError::InvalidParameter(
-                        format!("Circuit parameter {} not found", circuit_param)
-                    ))
+                    .ok_or_else(|| MembraneError::ValidationError {
+                        field: "circuit_parameter".to_string(),
+                        reason: format!("Circuit parameter {} not found", circuit_param)
+                    })
             },
-            _ => Err(MembraneError::InvalidParameter(
-                format!("Unknown parameter: {}", parameter_name)
-            )),
+            _ => Err(MembraneError::ValidationError {
+                field: "parameter_name".to_string(),
+                reason: format!("Unknown parameter: {}", parameter_name)
+            }),
         }
     }
     
@@ -341,9 +352,10 @@ impl FeedbackSystem {
                 }
             },
             _ => {
-                return Err(MembraneError::InvalidParameter(
-                    format!("Cannot apply feedback to parameter: {}", parameter_name)
-                ));
+                return Err(MembraneError::ValidationError {
+                    field: "output_parameter".to_string(),
+                    reason: format!("Cannot apply feedback to parameter: {}", parameter_name)
+                });
             },
         }
         
