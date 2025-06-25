@@ -5,11 +5,11 @@
 
 use crate::types::*;
 use crate::constants::*;
-use crate::error::BeneGesseritError;
+use crate::error::MembraneError;
 use std::collections::HashMap;
 
 /// Types of phase separation
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum PhaseType {
     LiquidLiquid,    // Classical LLPS
     LiquidGel,       // Liquid-gel transition
@@ -43,7 +43,7 @@ pub struct PhaseDomain {
 }
 
 /// Component types in phase domains
-#[derive(Debug, Clone, PartialEq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum ComponentType {
     Protein(ProteinType),
     Lipid(LipidType),
@@ -122,24 +122,24 @@ impl Default for PhaseSeparation {
         // Initialize some basic interaction parameters
         // Protein-protein interactions (attractive)
         interactions.insert(
-            (ComponentType::Protein(ProteinType::Membrane), ComponentType::Protein(ProteinType::Membrane)),
+            (ComponentType::Protein(ProteinType::Custom("Membrane".to_string())), ComponentType::Protein(ProteinType::Custom("Membrane".to_string()))),
             -2.0 // kJ/mol
         );
         
         // Lipid-lipid interactions
         interactions.insert(
-            (ComponentType::Lipid(LipidType::Cholesterol), ComponentType::Lipid(LipidType::Sphingomyelin)),
+            (ComponentType::Lipid(LipidType::Cholesterol), ComponentType::Lipid(LipidType::SM)),  // Changed from Sphingomyelin to SM
             -1.5 // Raft formation
         );
         
         // Temperature coefficients
         temp_coeffs.insert(
-            (ComponentType::Protein(ProteinType::Membrane), ComponentType::Protein(ProteinType::Membrane)),
+            (ComponentType::Protein(ProteinType::Custom("Membrane".to_string())), ComponentType::Protein(ProteinType::Custom("Membrane".to_string()))),
             0.01 // kJ/mol/K
         );
         
         // Concentration coefficients
-        conc_coeffs.insert(ComponentType::Protein(ProteinType::Membrane), 0.5);
+        conc_coeffs.insert(ComponentType::Protein(ProteinType::Custom("Membrane".to_string())), 0.5);
         
         // Critical parameters
         critical_params.insert(PhaseType::LiquidLiquid, 0.1); // Critical concentration
@@ -156,7 +156,7 @@ impl Default for PhaseSeparation {
             concentrations: HashMap::new(),
             transition_history: Vec::new(),
             nucleation_sites: Vec::new(),
-            temperature: TEMPERATURE,
+            temperature: PHYSIOLOGICAL_TEMPERATURE,  // Changed from TEMPERATURE
             ph: 7.4,
             ionic_strength: 0.15, // M
             membrane_area: 1e-12, // m^2 (1 μm^2)
@@ -188,7 +188,7 @@ impl PhaseSeparation {
     }
     
     /// Check for phase separation conditions
-    pub fn check_phase_separation(&self) -> Result<Vec<PhaseType>, BeneGesseritError> {
+    pub fn check_phase_separation(&self) -> Result<Vec<PhaseType>, MembraneError> {
         let mut possible_phases = Vec::new();
         
         for (phase_type, &critical_param) in &self.critical_parameters {
@@ -201,7 +201,7 @@ impl PhaseSeparation {
     }
     
     /// Check if a phase is thermodynamically favorable
-    fn is_phase_favorable(&self, phase_type: &PhaseType, critical_param: f64) -> Result<bool, BeneGesseritError> {
+    fn is_phase_favorable(&self, phase_type: &PhaseType, critical_param: f64) -> Result<bool, MembraneError> {
         match phase_type {
             PhaseType::LiquidLiquid => {
                 // Check if any component exceeds critical concentration
@@ -215,14 +215,14 @@ impl PhaseSeparation {
             PhaseType::LiquidGel => {
                 // Requires higher concentration and specific interactions
                 let total_protein_conc = self.get_total_protein_concentration();
-                if total_protein_conc > critical_param && self.temperature < TEMPERATURE * 0.9 {
+                if total_protein_conc > critical_param && self.temperature < PHYSIOLOGICAL_TEMPERATURE * 0.9 {  // Changed from TEMPERATURE
                     return Ok(true);
                 }
             }
             PhaseType::Crystalline => {
                 // Requires very high concentration and low temperature
                 let max_conc = self.concentrations.values().cloned().fold(0.0, f64::max);
-                if max_conc > critical_param && self.temperature < TEMPERATURE * 0.8 {
+                if max_conc > critical_param && self.temperature < PHYSIOLOGICAL_TEMPERATURE * 0.8 {  // Changed from TEMPERATURE
                     return Ok(true);
                 }
             }
@@ -236,12 +236,12 @@ impl PhaseSeparation {
     }
     
     /// Get interaction factor for a component
-    fn get_interaction_factor(&self, component: &ComponentType) -> Result<f64, BeneGesseritError> {
+    fn get_interaction_factor(&self, component: &ComponentType) -> Result<f64, MembraneError> {
         let mut factor = 1.0;
         
         // Temperature dependence
         if let Some(&temp_coeff) = self.interaction_matrix.temperature_coefficients.get(&(component.clone(), component.clone())) {
-            factor *= 1.0 + temp_coeff * (self.temperature - TEMPERATURE);
+            factor *= 1.0 + temp_coeff * (self.temperature - PHYSIOLOGICAL_TEMPERATURE);  // Changed from TEMPERATURE
         }
         
         // Concentration dependence
@@ -267,14 +267,14 @@ impl PhaseSeparation {
     }
     
     /// Initiate domain nucleation
-    pub fn nucleate_domain(&mut self, phase_type: PhaseType, position: (f64, f64)) -> Result<u64, BeneGesseritError> {
+    pub fn nucleate_domain(&mut self, phase_type: PhaseType, position: (f64, f64)) -> Result<u64, MembraneError> {
         let domain_id = self.domain_counter;
         self.domain_counter += 1;
         
         let mut composition = HashMap::new();
         
         // Determine initial composition based on phase type
-        match phase_type {
+        match &phase_type {
             PhaseType::LiquidLiquid => {
                 // Enrich in components with favorable interactions
                 for (component, &concentration) in &self.concentrations {
@@ -298,14 +298,17 @@ impl PhaseSeparation {
             }
         }
         
+        let density = self.calculate_phase_density(&composition);
+        let surface_tension = self.calculate_surface_tension(&phase_type);
+        
         let domain = PhaseDomain {
             domain_id,
             phase_type,
             center_position: position,
             radius: 10.0, // nm - initial radius
-            density: self.calculate_phase_density(&composition),
+            density,
             composition,
-            surface_tension: self.calculate_surface_tension(&phase_type),
+            surface_tension,
             stability: 1.0,
             age: 0.0,
             is_growing: true,
@@ -316,7 +319,7 @@ impl PhaseSeparation {
     }
     
     /// Calculate enrichment factor for a component in a phase
-    fn calculate_enrichment_factor(&self, component: &ComponentType, phase_type: &PhaseType) -> Result<f64, BeneGesseritError> {
+    fn calculate_enrichment_factor(&self, component: &ComponentType, phase_type: &PhaseType) -> Result<f64, MembraneError> {
         let mut enrichment = 1.0;
         
         // Check interactions with other components
@@ -359,7 +362,7 @@ impl PhaseSeparation {
     }
     
     /// Simulate phase separation dynamics
-    pub fn simulate_phase_dynamics(&mut self, dt: f64) -> Result<Vec<PhaseTransition>, BeneGesseritError> {
+    pub fn simulate_phase_dynamics(&mut self, dt: f64) -> Result<Vec<PhaseTransition>, MembraneError> {
         let mut transitions = Vec::new();
         
         // Update existing domains
@@ -385,19 +388,35 @@ impl PhaseSeparation {
     }
     
     /// Update domain growth
-    fn update_domain_growth(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
-        for domain in self.domains.values_mut() {
-            if domain.is_growing {
-                let growth_rate = self.calculate_growth_rate(domain)?;
-                domain.radius += growth_rate * dt;
-                domain.age += dt;
-                
-                // Update composition due to growth
-                self.update_domain_composition(domain)?;
-                
-                // Check if growth should stop
-                if domain.radius > 100.0 || domain.stability < 0.5 {
-                    domain.is_growing = false;
+    fn update_domain_growth(&mut self, dt: f64) -> Result<(), MembraneError> {
+        let domain_ids: Vec<u64> = self.domains.keys().cloned().collect();
+        
+        for domain_id in domain_ids {
+            if let Some(domain) = self.domains.get_mut(&domain_id) {
+                if domain.is_growing {
+                    let growth_rate = {
+                        let base_rate = 1.0; // nm/s
+                        
+                        // Driving force from supersaturation
+                        let supersaturation = self.calculate_supersaturation(&domain.phase_type)?;
+                        let driving_force = supersaturation.max(0.0);
+                        
+                        // Surface tension effects
+                        let surface_effect = 1.0 / (1.0 + domain.surface_tension * domain.radius);
+                        
+                        base_rate * driving_force * surface_effect
+                    };
+                    
+                    domain.radius += growth_rate * dt;
+                    domain.age += dt;
+                    
+                    // Update composition due to growth
+                    self.update_domain_composition_for_domain(domain_id)?;
+                    
+                    // Check if growth should stop
+                    if domain.radius > 100.0 || domain.stability < 0.5 {
+                        domain.is_growing = false;
+                    }
                 }
             }
         }
@@ -406,7 +425,7 @@ impl PhaseSeparation {
     }
     
     /// Calculate domain growth rate
-    fn calculate_growth_rate(&self, domain: &PhaseDomain) -> Result<f64, BeneGesseritError> {
+    fn calculate_growth_rate(&self, domain: &PhaseDomain) -> Result<f64, MembraneError> {
         let base_rate = 1.0; // nm/s
         
         // Driving force from supersaturation
@@ -420,7 +439,7 @@ impl PhaseSeparation {
     }
     
     /// Calculate supersaturation for a phase type
-    fn calculate_supersaturation(&self, phase_type: &PhaseType) -> Result<f64, BeneGesseritError> {
+    fn calculate_supersaturation(&self, phase_type: &PhaseType) -> Result<f64, MembraneError> {
         let critical_conc = self.critical_parameters.get(phase_type).unwrap_or(&0.1);
         let current_conc = self.get_effective_concentration(phase_type);
         
@@ -439,7 +458,7 @@ impl PhaseSeparation {
     }
     
     /// Update domain composition during growth
-    fn update_domain_composition(&self, domain: &mut PhaseDomain) -> Result<(), BeneGesseritError> {
+    fn update_domain_composition(&self, domain: &mut PhaseDomain) -> Result<(), MembraneError> {
         for (component, concentration) in &mut domain.composition {
             let enrichment = self.calculate_enrichment_factor(component, &domain.phase_type)?;
             let bulk_conc = self.concentrations.get(component).unwrap_or(&0.0);
@@ -450,8 +469,35 @@ impl PhaseSeparation {
         Ok(())
     }
     
+    /// Update domain composition for a specific domain ID
+    fn update_domain_composition_for_domain(&mut self, domain_id: u64) -> Result<(), MembraneError> {
+        // First, collect the necessary data
+        let (phase_type, component_keys) = {
+            if let Some(domain) = self.domains.get(&domain_id) {
+                (domain.phase_type.clone(), domain.composition.keys().cloned().collect::<Vec<_>>())
+            } else {
+                return Ok(());
+            }
+        };
+        
+        // Now update the domain
+        if let Some(domain) = self.domains.get_mut(&domain_id) {
+            for component in component_keys {
+                let enrichment = self.calculate_enrichment_factor(&component, &phase_type)?;
+                let bulk_conc = self.concentrations.get(&component).unwrap_or(&0.0);
+                if let Some(concentration) = domain.composition.get_mut(&component) {
+                    *concentration = bulk_conc * enrichment;
+                }
+            }
+            
+            domain.density = self.calculate_phase_density(&domain.composition);
+        }
+        
+        Ok(())
+    }
+    
     /// Update domain stability
-    fn update_domain_stability(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn update_domain_stability(&mut self, dt: f64) -> Result<(), MembraneError> {
         let mut domains_to_remove = Vec::new();
         
         for (domain_id, domain) in self.domains.iter_mut() {
@@ -459,7 +505,7 @@ impl PhaseSeparation {
             let stability_change = -0.01 * dt; // Base decay
             
             // Environmental effects
-            let temp_effect = if self.temperature > TEMPERATURE * 1.1 { -0.05 * dt } else { 0.0 };
+            let temp_effect = if self.temperature > PHYSIOLOGICAL_TEMPERATURE * 1.1 { -0.05 * dt } else { 0.0 };  // Changed from TEMPERATURE
             let ph_effect = if (self.ph - 7.4).abs() > 1.0 { -0.02 * dt } else { 0.0 };
             
             domain.stability += stability_change + temp_effect + ph_effect;
@@ -478,18 +524,21 @@ impl PhaseSeparation {
     }
     
     /// Check for phase transitions
-    fn check_phase_transitions(&mut self, dt: f64) -> Result<Vec<PhaseTransition>, BeneGesseritError> {
+    fn check_phase_transitions(&mut self, _dt: f64) -> Result<Vec<PhaseTransition>, MembraneError> {
         let mut transitions = Vec::new();
+        let domain_ids: Vec<u64> = self.domains.keys().cloned().collect();
         
-        for domain in self.domains.values_mut() {
-            // Check temperature-induced transitions
-            if let Some(transition) = self.check_temperature_transition(domain)? {
-                transitions.push(transition);
-            }
-            
-            // Check concentration-induced transitions
-            if let Some(transition) = self.check_concentration_transition(domain)? {
-                transitions.push(transition);
+        for domain_id in domain_ids {
+            if let Some(domain) = self.domains.get(&domain_id) {
+                // Check temperature-induced transitions
+                if let Some(transition) = self.check_temperature_transition(domain)? {
+                    transitions.push(transition);
+                }
+                
+                // Check concentration-induced transitions
+                if let Some(transition) = self.check_concentration_transition(domain)? {
+                    transitions.push(transition);
+                }
             }
         }
         
@@ -497,12 +546,12 @@ impl PhaseSeparation {
     }
     
     /// Check for temperature-induced phase transitions
-    fn check_temperature_transition(&self, domain: &PhaseDomain) -> Result<Option<PhaseTransition>, BeneGesseritError> {
+    fn check_temperature_transition(&self, domain: &PhaseDomain) -> Result<Option<PhaseTransition>, MembraneError> {
         let critical_temp = match domain.phase_type {
-            PhaseType::LiquidLiquid => TEMPERATURE * 0.95,
-            PhaseType::LiquidGel => TEMPERATURE * 0.85,
-            PhaseType::Crystalline => TEMPERATURE * 0.75,
-            PhaseType::Amorphous => TEMPERATURE * 1.2,
+            PhaseType::LiquidLiquid => PHYSIOLOGICAL_TEMPERATURE * 0.95,  // Changed from TEMPERATURE
+            PhaseType::LiquidGel => PHYSIOLOGICAL_TEMPERATURE * 0.85,     // Changed from TEMPERATURE
+            PhaseType::Crystalline => PHYSIOLOGICAL_TEMPERATURE * 0.75,   // Changed from TEMPERATURE
+            PhaseType::Amorphous => PHYSIOLOGICAL_TEMPERATURE * 1.2,      // Changed from TEMPERATURE
         };
         
         if (self.temperature - critical_temp).abs() < 1.0 {
@@ -530,7 +579,7 @@ impl PhaseSeparation {
     }
     
     /// Check for concentration-induced phase transitions
-    fn check_concentration_transition(&self, domain: &PhaseDomain) -> Result<Option<PhaseTransition>, BeneGesseritError> {
+    fn check_concentration_transition(&self, domain: &PhaseDomain) -> Result<Option<PhaseTransition>, MembraneError> {
         let total_conc = domain.composition.values().sum::<f64>();
         
         if total_conc > 0.5 && matches!(domain.phase_type, PhaseType::LiquidLiquid) {
@@ -550,7 +599,7 @@ impl PhaseSeparation {
     }
     
     /// Check for domain coalescence
-    fn check_domain_coalescence(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn check_domain_coalescence(&mut self, _dt: f64) -> Result<(), MembraneError> {
         let domain_ids: Vec<u64> = self.domains.keys().cloned().collect();
         
         for i in 0..domain_ids.len() {
@@ -575,7 +624,7 @@ impl PhaseSeparation {
     }
     
     /// Coalesce two domains
-    fn coalesce_domains(&mut self, id1: u64, id2: u64) -> Result<(), BeneGesseritError> {
+    fn coalesce_domains(&mut self, id1: u64, id2: u64) -> Result<(), MembraneError> {
         if let (Some(domain1), Some(domain2)) = (self.domains.remove(&id1), self.domains.remove(&id2)) {
             let total_volume = domain1.radius.powi(3) + domain2.radius.powi(3);
             let new_radius = total_volume.powf(1.0/3.0);
@@ -616,7 +665,7 @@ impl PhaseSeparation {
     }
     
     /// Determine if nucleation should occur
-    fn should_nucleate(&self, phase_type: &PhaseType) -> Result<bool, BeneGesseritError> {
+    fn should_nucleate(&self, phase_type: &PhaseType) -> Result<bool, MembraneError> {
         let supersaturation = self.calculate_supersaturation(phase_type)?;
         let nucleation_probability = (supersaturation - 1.0).max(0.0) * 0.01;
         
@@ -707,14 +756,14 @@ mod tests {
     #[test]
     fn test_concentration_setting() {
         let mut phase_sep = PhaseSeparation::new();
-        phase_sep.set_concentration(ComponentType::Protein(ProteinType::Membrane), 0.5);
+        phase_sep.set_concentration(ComponentType::Protein(ProteinType::Custom("Membrane".to_string())), 0.5);
         assert_eq!(phase_sep.concentrations.len(), 1);
     }
     
     #[test]
     fn test_domain_nucleation() {
         let mut phase_sep = PhaseSeparation::new();
-        phase_sep.set_concentration(ComponentType::Protein(ProteinType::Membrane), 0.5);
+        phase_sep.set_concentration(ComponentType::Protein(ProteinType::Custom("Membrane".to_string())), 0.5);
         
         let result = phase_sep.nucleate_domain(PhaseType::LiquidLiquid, (100.0, 100.0));
         assert!(result.is_ok());

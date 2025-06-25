@@ -5,11 +5,15 @@
 
 use crate::types::*;
 use crate::constants::*;
-use crate::error::BeneGesseritError;
+use crate::error::MembraneError;
 use std::collections::HashMap;
 
+/// Unique identifier for proteins
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct ProteinId(pub u64);
+
 /// Raft formation state
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum RaftState {
     Nucleating,    // Initial raft formation
     Growing,       // Raft expansion
@@ -19,7 +23,7 @@ pub enum RaftState {
 }
 
 /// Raft size classification
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum RaftSize {
     Nano,          // < 50 nm
     Micro,         // 50-200 nm
@@ -147,7 +151,7 @@ impl Default for LipidRafts {
         membrane_composition.insert(LipidType::POPC, 0.4);
         membrane_composition.insert(LipidType::POPE, 0.2);
         membrane_composition.insert(LipidType::POPS, 0.1);
-        membrane_composition.insert(LipidType::Sphingomyelin, 0.15);
+        membrane_composition.insert(LipidType::SM, 0.15);  // Changed from Sphingomyelin to SM
         membrane_composition.insert(LipidType::Cholesterol, 0.15);
         
         Self {
@@ -155,7 +159,7 @@ impl Default for LipidRafts {
             raft_proteins: HashMap::new(),
             formation_params: RaftFormationParams::default(),
             membrane_composition,
-            temperature: TEMPERATURE,
+            temperature: PHYSIOLOGICAL_TEMPERATURE,  // Changed from TEMPERATURE
             membrane_area: 1e-12, // m^2 (1 μm^2)
             formation_events: Vec::new(),
             raft_counter: 0,
@@ -169,27 +173,27 @@ impl LipidRafts {
     }
     
     /// Add raft-associated protein
-    pub fn add_raft_protein(&mut self, protein_id: ProteinId, protein_type: ProteinType) -> Result<(), BeneGesseritError> {
+    pub fn add_raft_protein(&mut self, protein_id: ProteinId, protein_type: ProteinType) -> Result<(), MembraneError> {
         let mut lipid_interactions = HashMap::new();
         let mut raft_affinity = 1.0;
         
         // Set protein-specific parameters
         match protein_type {
-            ProteinType::GPI => {
+            ProteinType::Custom(ref name) if name == "GPI" => {
                 // GPI-anchored proteins have high raft affinity
                 raft_affinity = 5.0;
                 lipid_interactions.insert(LipidType::Cholesterol, 2.0);
-                lipid_interactions.insert(LipidType::Sphingomyelin, 1.5);
+                lipid_interactions.insert(LipidType::SM, 1.5);  // Changed from Sphingomyelin to SM
             }
-            ProteinType::Caveolin => {
+            ProteinType::Custom(ref name) if name == "Caveolin" => {
                 // Caveolin proteins are raft markers
                 raft_affinity = 8.0;
                 lipid_interactions.insert(LipidType::Cholesterol, 3.0);
             }
-            ProteinType::Flotillin => {
+            ProteinType::Custom(ref name) if name == "Flotillin" => {
                 // Flotillin proteins associate with rafts
                 raft_affinity = 3.0;
-                lipid_interactions.insert(LipidType::Sphingomyelin, 2.0);
+                lipid_interactions.insert(LipidType::SM, 2.0);  // Changed from Sphingomyelin to SM
             }
             _ => {
                 // Default membrane protein
@@ -221,27 +225,27 @@ impl LipidRafts {
     /// Check if conditions favor raft formation
     pub fn check_raft_formation_conditions(&self) -> bool {
         let cholesterol_level = self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0);
-        let sphingolipid_level = self.membrane_composition.get(&LipidType::Sphingomyelin).unwrap_or(&0.0);
+        let sphingolipid_level = self.membrane_composition.get(&LipidType::SM).unwrap_or(&0.0);  // Changed from Sphingomyelin to SM
         
         *cholesterol_level > self.formation_params.cholesterol_threshold &&
         *sphingolipid_level > self.formation_params.sphingolipid_threshold
     }
     
     /// Nucleate new raft
-    pub fn nucleate_raft(&mut self, position: (f64, f64)) -> Result<u64, BeneGesseritError> {
+    pub fn nucleate_raft(&mut self, position: (f64, f64)) -> Result<u64, MembraneError> {
         let raft_id = self.raft_counter;
         self.raft_counter += 1;
         
         let cholesterol_content = *self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0);
-        let sphingolipid_content = *self.membrane_composition.get(&LipidType::Sphingomyelin).unwrap_or(&0.0);
+        let sphingolipid_content = *self.membrane_composition.get(&LipidType::SM).unwrap_or(&0.0);  // Changed from Sphingomyelin to SM
         
         let mut lipid_composition = HashMap::new();
         // Rafts are enriched in cholesterol and sphingolipids
         lipid_composition.insert(LipidType::Cholesterol, cholesterol_content * 2.0);
-        lipid_composition.insert(LipidType::Sphingomyelin, sphingolipid_content * 3.0);
+        lipid_composition.insert(LipidType::SM, sphingolipid_content * 3.0);  // Changed from Sphingomyelin to SM
         lipid_composition.insert(LipidType::POPC, 0.1); // Depleted in unsaturated PC
         
-        let initial_radius = 25.0; // nm - typical nano-raft size
+        let initial_radius = 25.0_f64; // nm - typical nano-raft size
         let area = std::f64::consts::PI * initial_radius.powi(2);
         
         let raft = LipidRaft {
@@ -280,7 +284,7 @@ impl LipidRafts {
     }
     
     /// Simulate raft dynamics
-    pub fn simulate_raft_dynamics(&mut self, dt: f64) -> Result<Vec<RaftFormationEvent>, BeneGesseritError> {
+    pub fn simulate_raft_dynamics(&mut self, dt: f64) -> Result<Vec<RaftFormationEvent>, MembraneError> {
         let mut events = Vec::new();
         
         // Update existing rafts
@@ -289,7 +293,7 @@ impl LipidRafts {
         // Check for new raft nucleation
         if self.check_raft_formation_conditions() && self.should_nucleate_raft()? {
             let position = self.select_nucleation_site();
-            let raft_id = self.nucleate_raft(position)?;
+            let _raft_id = self.nucleate_raft(position)?;
             events.push(self.formation_events.last().unwrap().clone());
         }
         
@@ -306,54 +310,73 @@ impl LipidRafts {
     }
     
     /// Update raft states
-    fn update_raft_states(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
-        for raft in self.rafts.values_mut() {
-            raft.lifetime += dt;
-            
-            match raft.state {
-                RaftState::Nucleating => {
-                    // Transition to growing state
-                    if raft.lifetime > 1.0 { // 1 second nucleation time
-                        raft.state = RaftState::Growing;
+    fn update_raft_states(&mut self, dt: f64) -> Result<(), MembraneError> {
+        let raft_ids: Vec<u64> = self.rafts.keys().cloned().collect();
+        
+        for raft_id in raft_ids {
+            if let Some(raft) = self.rafts.get_mut(&raft_id) {
+                raft.lifetime += dt;
+                
+                match raft.state {
+                    RaftState::Nucleating => {
+                        // Transition to growing state
+                        if raft.lifetime > 1.0 { // 1 second nucleation time
+                            raft.state = RaftState::Growing;
+                        }
                     }
-                }
-                RaftState::Growing => {
-                    // Grow the raft
-                    let growth_rate = self.calculate_growth_rate(raft)?;
-                    raft.radius += growth_rate * dt;
-                    raft.area = std::f64::consts::PI * raft.radius.powi(2);
-                    
-                    // Update size classification
-                    raft.size_class = match raft.radius {
-                        r if r < 50.0 => RaftSize::Nano,
-                        r if r < 200.0 => RaftSize::Micro,
-                        _ => RaftSize::Macro,
-                    };
-                    
-                    // Transition to mature state
-                    if raft.radius > 100.0 || raft.lifetime > 10.0 {
-                        raft.state = RaftState::Mature;
+                    RaftState::Growing => {
+                        // Calculate growth rate first
+                        let growth_rate = {
+                            let base_rate = self.formation_params.growth_rate;
+                            
+                            // Temperature dependence
+                            let temp_factor = 1.0 + self.formation_params.temperature_dependence * (self.temperature - PHYSIOLOGICAL_TEMPERATURE);
+                            
+                            // Cholesterol availability
+                            let cholesterol_factor = self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0) / 0.3;
+                            
+                            // Size-dependent growth (smaller rafts grow faster)
+                            let size_factor = 50.0 / raft.radius;
+                            
+                            base_rate * temp_factor * cholesterol_factor * size_factor
+                        };
+                        
+                        // Grow the raft
+                        raft.radius += growth_rate * dt;
+                        raft.area = std::f64::consts::PI * raft.radius.powi(2);
+                        
+                        // Update size classification
+                        raft.size_class = match raft.radius {
+                            r if r < 50.0 => RaftSize::Nano,
+                            r if r < 200.0 => RaftSize::Micro,
+                            _ => RaftSize::Macro,
+                        };
+                        
+                        // Transition to mature state
+                        if raft.radius > 100.0 || raft.lifetime > 10.0 {
+                            raft.state = RaftState::Mature;
+                        }
                     }
-                }
-                RaftState::Mature => {
-                    // Stable state - slowly decrease stability
-                    raft.stability -= 0.001 * dt;
-                    
-                    if raft.stability < 0.5 {
-                        raft.state = RaftState::Dissolving;
+                    RaftState::Mature => {
+                        // Stable state - slowly decrease stability
+                        raft.stability -= 0.001 * dt;
+                        
+                        if raft.stability < 0.5 {
+                            raft.state = RaftState::Dissolving;
+                        }
                     }
-                }
-                RaftState::Dissolving => {
-                    // Shrink the raft
-                    raft.radius -= 5.0 * dt; // nm/s dissolution rate
-                    raft.area = std::f64::consts::PI * raft.radius.powi(2);
-                    
-                    if raft.radius < 10.0 {
-                        raft.is_active = false;
+                    RaftState::Dissolving => {
+                        // Shrink the raft
+                        raft.radius -= 5.0 * dt; // nm/s dissolution rate
+                        raft.area = std::f64::consts::PI * raft.radius.powi(2);
+                        
+                        if raft.radius < 10.0 {
+                            raft.is_active = false;
+                        }
                     }
-                }
-                RaftState::Coalescing => {
-                    // Handled in coalescence function
+                    RaftState::Coalescing => {
+                        // Handled in coalescence function
+                    }
                 }
             }
         }
@@ -365,11 +388,11 @@ impl LipidRafts {
     }
     
     /// Calculate raft growth rate
-    fn calculate_growth_rate(&self, raft: &LipidRaft) -> Result<f64, BeneGesseritError> {
+    fn calculate_growth_rate(&self, raft: &LipidRaft) -> Result<f64, MembraneError> {
         let base_rate = self.formation_params.growth_rate;
         
         // Temperature dependence
-        let temp_factor = 1.0 + self.formation_params.temperature_dependence * (self.temperature - TEMPERATURE);
+        let temp_factor = 1.0 + self.formation_params.temperature_dependence * (self.temperature - PHYSIOLOGICAL_TEMPERATURE);  // Changed from TEMPERATURE
         
         // Cholesterol availability
         let cholesterol_factor = self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0) / 0.3;
@@ -381,40 +404,54 @@ impl LipidRafts {
     }
     
     /// Update protein-raft associations
-    fn update_protein_raft_associations(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn update_protein_raft_associations(&mut self, dt: f64) -> Result<(), MembraneError> {
         // For each protein, check if it should associate with or dissociate from rafts
         let protein_ids: Vec<ProteinId> = self.raft_proteins.keys().cloned().collect();
         
         for protein_id in protein_ids {
-            if let Some(protein) = self.raft_proteins.get_mut(&protein_id) {
-                if protein.current_raft.is_none() {
-                    // Protein is not in a raft - check for association
-                    if let Some(raft_id) = self.find_nearby_raft(&protein_id)? {
-                        let binding_probability = self.calculate_binding_probability(protein, raft_id)?;
-                        if self.random_f64() < binding_probability * dt {
+            // First, collect the necessary data
+            let (current_raft, protein_type) = {
+                if let Some(protein) = self.raft_proteins.get(&protein_id) {
+                    (protein.current_raft, protein.protein_type.clone())
+                } else {
+                    continue;
+                }
+            };
+            
+            if current_raft.is_none() {
+                // Protein is not in a raft - check for association
+                if let Some(raft_id) = self.find_nearby_raft(&protein_id)? {
+                    let binding_probability = self.calculate_binding_probability_for_protein(&protein_id, raft_id)?;
+                    if self.random_f64() < binding_probability * dt {
+                        // Update protein
+                        if let Some(protein) = self.raft_proteins.get_mut(&protein_id) {
                             protein.current_raft = Some(raft_id);
-                            
-                            // Add protein to raft
-                            if let Some(raft) = self.rafts.get_mut(&raft_id) {
-                                *raft.protein_content.entry(protein.protein_type).or_insert(0.0) += 1.0;
-                            }
+                        }
+                        
+                        // Add protein to raft
+                        if let Some(raft) = self.rafts.get_mut(&raft_id) {
+                            *raft.protein_content.entry(protein_type).or_insert(0.0) += 1.0;
                         }
                     }
-                } else {
-                    // Protein is in a raft - check for dissociation
-                    let dissociation_probability = self.calculate_dissociation_probability(protein)?;
-                    if self.random_f64() < dissociation_probability * dt {
-                        if let Some(raft_id) = protein.current_raft {
-                            // Remove protein from raft
-                            if let Some(raft) = self.rafts.get_mut(&raft_id) {
-                                if let Some(count) = raft.protein_content.get_mut(&protein.protein_type) {
-                                    *count -= 1.0;
-                                    if *count <= 0.0 {
-                                        raft.protein_content.remove(&protein.protein_type);
-                                    }
+                }
+            } else {
+                // Protein is in a raft - check for dissociation
+                let dissociation_probability = self.calculate_dissociation_probability_for_protein(&protein_id)?;
+                if self.random_f64() < dissociation_probability * dt {
+                    if let Some(raft_id) = current_raft {
+                        // Remove protein from raft
+                        if let Some(raft) = self.rafts.get_mut(&raft_id) {
+                            if let Some(count) = raft.protein_content.get_mut(&protein_type) {
+                                *count -= 1.0;
+                                if *count <= 0.0 {
+                                    raft.protein_content.remove(&protein_type);
                                 }
                             }
                         }
+                    }
+                    
+                    // Update protein
+                    if let Some(protein) = self.raft_proteins.get_mut(&protein_id) {
                         protein.current_raft = None;
                     }
                 }
@@ -425,7 +462,7 @@ impl LipidRafts {
     }
     
     /// Find nearby raft for a protein
-    fn find_nearby_raft(&self, protein_id: &ProteinId) -> Result<Option<u64>, BeneGesseritError> {
+    fn find_nearby_raft(&self, _protein_id: &ProteinId) -> Result<Option<u64>, MembraneError> {
         // Simplified - would need protein position in real implementation
         // For now, return any available raft
         for (raft_id, raft) in &self.rafts {
@@ -437,7 +474,7 @@ impl LipidRafts {
     }
     
     /// Calculate protein binding probability to raft
-    fn calculate_binding_probability(&self, protein: &RaftProtein, raft_id: u64) -> Result<f64, BeneGesseritError> {
+    fn calculate_binding_probability(&self, protein: &RaftProtein, raft_id: u64) -> Result<f64, MembraneError> {
         if let Some(raft) = self.rafts.get(&raft_id) {
             let base_probability = 0.1; // s^-1
             
@@ -458,8 +495,17 @@ impl LipidRafts {
         }
     }
     
+    /// Calculate protein binding probability to raft by protein ID
+    fn calculate_binding_probability_for_protein(&self, protein_id: &ProteinId, raft_id: u64) -> Result<f64, MembraneError> {
+        if let Some(protein) = self.raft_proteins.get(protein_id) {
+            self.calculate_binding_probability(protein, raft_id)
+        } else {
+            Ok(0.0)
+        }
+    }
+    
     /// Calculate protein dissociation probability from raft
-    fn calculate_dissociation_probability(&self, protein: &RaftProtein) -> Result<f64, BeneGesseritError> {
+    fn calculate_dissociation_probability(&self, protein: &RaftProtein) -> Result<f64, MembraneError> {
         let base_probability = 0.01; // s^-1
         
         // Lower dissociation for high-affinity proteins
@@ -468,8 +514,17 @@ impl LipidRafts {
         Ok(base_probability * affinity_factor)
     }
     
+    /// Calculate protein dissociation probability from raft by protein ID
+    fn calculate_dissociation_probability_for_protein(&self, protein_id: &ProteinId) -> Result<f64, MembraneError> {
+        if let Some(protein) = self.raft_proteins.get(protein_id) {
+            self.calculate_dissociation_probability(protein)
+        } else {
+            Ok(0.0)
+        }
+    }
+    
     /// Check for raft coalescence
-    fn check_raft_coalescence(&mut self, dt: f64) -> Result<Vec<RaftFormationEvent>, BeneGesseritError> {
+    fn check_raft_coalescence(&mut self, _dt: f64) -> Result<Vec<RaftFormationEvent>, MembraneError> {
         let mut events = Vec::new();
         let raft_ids: Vec<u64> = self.rafts.keys().cloned().collect();
         
@@ -492,7 +547,7 @@ impl LipidRafts {
                                 raft_id: merged_raft_id,
                                 time: 0.0,
                                 trigger: RaftTrigger::CholesterolIncrease,
-                                cholesterol_level: self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0).clone(),
+                                cholesterol_level: *self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0),
                                 protein_involvement: Vec::new(),
                             };
                             events.push(event);
@@ -514,7 +569,7 @@ impl LipidRafts {
     }
     
     /// Coalesce two rafts
-    fn coalesce_rafts(&mut self, id1: u64, id2: u64) -> Result<u64, BeneGesseritError> {
+    fn coalesce_rafts(&mut self, id1: u64, id2: u64) -> Result<u64, MembraneError> {
         if let (Some(raft1), Some(raft2)) = (self.rafts.remove(&id1), self.rafts.remove(&id2)) {
             let total_area = raft1.area + raft2.area;
             let new_radius = (total_area / std::f64::consts::PI).sqrt();
@@ -573,12 +628,15 @@ impl LipidRafts {
             
             Ok(merged_id)
         } else {
-            Err(BeneGesseritError::InvalidState("Cannot coalesce non-existent rafts".to_string()))
+            Err(MembraneError::ValidationError {
+                field: "raft_coalescence".to_string(),
+                reason: "Cannot coalesce non-existent rafts".to_string(),
+            })
         }
     }
     
     /// Check for raft dissolution
-    fn check_raft_dissolution(&mut self, dt: f64) -> Result<Vec<RaftFormationEvent>, BeneGesseritError> {
+    fn check_raft_dissolution(&mut self, _dt: f64) -> Result<Vec<RaftFormationEvent>, MembraneError> {
         let mut events = Vec::new();
         let mut rafts_to_dissolve = Vec::new();
         
@@ -604,7 +662,7 @@ impl LipidRafts {
                 raft_id,
                 time: 0.0,
                 trigger: RaftTrigger::CholesterolDecrease,
-                cholesterol_level: self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0).clone(),
+                cholesterol_level: *self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0),
                 protein_involvement: Vec::new(),
             };
             events.push(event);
@@ -614,7 +672,7 @@ impl LipidRafts {
     }
     
     /// Determine if raft nucleation should occur
-    fn should_nucleate_raft(&self) -> Result<bool, BeneGesseritError> {
+    fn should_nucleate_raft(&self) -> Result<bool, MembraneError> {
         let cholesterol_level = self.membrane_composition.get(&LipidType::Cholesterol).unwrap_or(&0.0);
         let supersaturation = (cholesterol_level - self.formation_params.cholesterol_threshold) / self.formation_params.cholesterol_threshold;
         
@@ -703,7 +761,7 @@ mod tests {
     #[test]
     fn test_raft_protein_addition() {
         let mut rafts = LipidRafts::new();
-        let result = rafts.add_raft_protein(ProteinId(1), ProteinType::GPI);
+        let result = rafts.add_raft_protein(ProteinId(1), ProteinType::Custom("GPI".to_string()));
         assert!(result.is_ok());
         assert_eq!(rafts.raft_proteins.len(), 1);
     }
@@ -715,7 +773,7 @@ mod tests {
         // Set high cholesterol
         let mut composition = HashMap::new();
         composition.insert(LipidType::Cholesterol, 0.4);
-        composition.insert(LipidType::Sphingomyelin, 0.2);
+        composition.insert(LipidType::SM, 0.2);  // Changed from Sphingomyelin to SM
         rafts.set_lipid_composition(composition);
         
         assert!(rafts.check_raft_formation_conditions());
@@ -728,7 +786,7 @@ mod tests {
         // Set favorable conditions
         let mut composition = HashMap::new();
         composition.insert(LipidType::Cholesterol, 0.4);
-        composition.insert(LipidType::Sphingomyelin, 0.2);
+        composition.insert(LipidType::SM, 0.2);  // Changed from Sphingomyelin to SM
         rafts.set_lipid_composition(composition);
         
         let result = rafts.nucleate_raft((100.0, 100.0));

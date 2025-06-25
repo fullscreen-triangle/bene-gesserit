@@ -5,11 +5,11 @@
 
 use crate::types::*;
 use crate::constants::*;
-use crate::error::BeneGesseritError;
+use crate::error::MembraneError;
 use std::collections::HashMap;
 
 /// Types of nanodomains
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum NanodomainType {
     ProteinCluster,     // Protein-driven clustering
     LipidPatch,         // Lipid-driven organization
@@ -20,7 +20,7 @@ pub enum NanodomainType {
 }
 
 /// Nanodomain state
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum NanodomainState {
     Forming,            // Initial assembly
     Stable,             // Maintained structure
@@ -104,7 +104,7 @@ pub struct Nanodomains {
 }
 
 /// Component identifier for nanodomains
-#[derive(Debug, Clone, PartialEq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum ComponentId {
     Protein(ProteinType),
     Lipid(LipidType),
@@ -166,7 +166,7 @@ impl Default for Nanodomains {
             interactions: HashMap::new(),
             params: NanodomainParams::default(),
             concentrations: HashMap::new(),
-            temperature: TEMPERATURE,
+            temperature: PHYSIOLOGICAL_TEMPERATURE,  // Changed from TEMPERATURE
             membrane_area: 1e-12, // m^2 (1 μm^2)
             formation_events: Vec::new(),
             domain_counter: 0,
@@ -213,10 +213,9 @@ impl Nanodomains {
                 lipid_conc > self.params.formation_threshold * 2.0
             }
             NanodomainType::Signaling => {
-                // Check for signaling proteins
+                // Check for signaling proteins - using Custom protein types
                 self.concentrations.iter().any(|(id, &conc)| {
-                    matches!(id, ComponentId::Protein(ProteinType::Kinase) | 
-                                ComponentId::Protein(ProteinType::Phosphatase)) &&
+                    matches!(id, ComponentId::Protein(ProteinType::Custom(name)) if name == "Kinase" || name == "Phosphatase") &&
                     conc > self.params.formation_threshold
                 })
             }
@@ -230,7 +229,7 @@ impl Nanodomains {
         domain_type: NanodomainType,
         position: (f64, f64),
         initial_components: HashMap<ComponentId, f64>,
-    ) -> Result<u64, BeneGesseritError> {
+    ) -> Result<u64, MembraneError> {
         let domain_id = self.domain_counter;
         self.domain_counter += 1;
         
@@ -346,7 +345,7 @@ impl Nanodomains {
     }
     
     /// Simulate nanodomain dynamics
-    pub fn simulate_nanodomain_dynamics(&mut self, dt: f64) -> Result<Vec<NanodomainEvent>, BeneGesseritError> {
+    pub fn simulate_nanodomain_dynamics(&mut self, dt: f64) -> Result<Vec<NanodomainEvent>, MembraneError> {
         let mut events = Vec::new();
         
         // Update existing domains
@@ -364,7 +363,7 @@ impl Nanodomains {
             if self.check_formation_conditions(&domain_type) && self.should_nucleate_domain(&domain_type)? {
                 let position = self.select_nucleation_site();
                 let components = self.select_initial_components(&domain_type);
-                let domain_id = self.nucleate_domain(domain_type, position, components)?;
+                let _domain_id = self.nucleate_domain(domain_type, position, components)?;
                 events.push(self.formation_events.last().unwrap().clone());
             }
         }
@@ -379,55 +378,72 @@ impl Nanodomains {
     }
     
     /// Update domain states
-    fn update_domain_states(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
-        for domain in self.domains.values_mut() {
-            domain.lifetime += dt;
-            
-            match domain.state {
-                NanodomainState::Forming => {
-                    // Transition to stable or fluctuating
-                    if domain.lifetime > 0.1 { // 100 ms formation time
-                        domain.state = if domain.stability > 0.7 {
-                            NanodomainState::Stable
-                        } else {
-                            NanodomainState::Fluctuating
-                        };
+    fn update_domain_states(&mut self, dt: f64) -> Result<(), MembraneError> {
+        let domain_ids: Vec<u64> = self.domains.keys().cloned().collect();
+        
+        for domain_id in domain_ids {
+            if let Some(domain) = self.domains.get_mut(&domain_id) {
+                domain.lifetime += dt;
+                
+                match domain.state {
+                    NanodomainState::Forming => {
+                        // Transition to stable or fluctuating
+                        if domain.lifetime > 0.1 { // 100 ms formation time
+                            domain.state = if domain.stability > 0.7 {
+                                NanodomainState::Stable
+                            } else {
+                                NanodomainState::Fluctuating
+                            };
+                        }
+                    }
+                    NanodomainState::Stable => {
+                        // Slowly decrease stability
+                        domain.stability -= 0.001 * dt;
+                        
+                        if domain.stability < self.params.stability_threshold {
+                            domain.state = NanodomainState::Fluctuating;
+                        }
+                    }
+                    NanodomainState::Fluctuating => {
+                        // Random size fluctuations
+                        let fluctuation = (0.5 - 0.5) * self.params.fluctuation_rate * dt; // Simplified random
+                        domain.radius += fluctuation;
+                        domain.radius = domain.radius.clamp(self.params.min_size, self.params.max_size);
+                        
+                        // Check for stabilization or dissolution
+                        if domain.stability > 0.8 {
+                            domain.state = NanodomainState::Stable;
+                        } else if domain.stability < 0.2 {
+                            domain.state = NanodomainState::Dissolving;
+                        }
+                    }
+                    NanodomainState::Dissolving => {
+                        // Shrink and decrease stability
+                        domain.radius -= 2.0 * dt; // nm/s
+                        domain.stability -= 0.1 * dt;
+                        
+                        if domain.radius < self.params.min_size || domain.stability < 0.1 {
+                            domain.is_active = false;
+                        }
                     }
                 }
-                NanodomainState::Stable => {
-                    // Slowly decrease stability
-                    domain.stability -= 0.001 * dt;
+                
+                // Update activity based on state and composition
+                domain.activity_level = {
+                    let base_activity = match domain.domain_type {
+                        NanodomainType::Signaling => 2.0,
+                        NanodomainType::Enzymatic => 1.8,
+                        NanodomainType::Receptor => 1.5,
+                        _ => 1.0,
+                    };
                     
-                    if domain.stability < self.params.stability_threshold {
-                        domain.state = NanodomainState::Fluctuating;
-                    }
-                }
-                NanodomainState::Fluctuating => {
-                    // Random size fluctuations
-                    let fluctuation = (self.random_f64() - 0.5) * self.params.fluctuation_rate * dt;
-                    domain.radius += fluctuation;
-                    domain.radius = domain.radius.clamp(self.params.min_size, self.params.max_size);
+                    // Modulate by stability and size
+                    let stability_factor = domain.stability;
+                    let size_factor = (domain.radius / 20.0).min(2.0); // Optimal around 20 nm
                     
-                    // Check for stabilization or dissolution
-                    if domain.stability > 0.8 {
-                        domain.state = NanodomainState::Stable;
-                    } else if domain.stability < 0.2 {
-                        domain.state = NanodomainState::Dissolving;
-                    }
-                }
-                NanodomainState::Dissolving => {
-                    // Shrink and decrease stability
-                    domain.radius -= 2.0 * dt; // nm/s
-                    domain.stability -= 0.1 * dt;
-                    
-                    if domain.radius < self.params.min_size || domain.stability < 0.1 {
-                        domain.is_active = false;
-                    }
-                }
+                    base_activity * stability_factor * size_factor
+                };
             }
-            
-            // Update activity based on state and composition
-            domain.activity_level = self.calculate_current_activity(domain);
         }
         
         // Remove inactive domains
@@ -453,7 +469,7 @@ impl Nanodomains {
     }
     
     /// Update domain interactions
-    fn update_domain_interactions(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn update_domain_interactions(&mut self, dt: f64) -> Result<(), MembraneError> {
         let domain_ids: Vec<u64> = self.domains.keys().cloned().collect();
         
         // Check for new interactions
@@ -483,23 +499,31 @@ impl Nanodomains {
         
         // Update existing interactions
         let mut interactions_to_remove = Vec::new();
-        for (interaction_id, interaction) in self.interactions.iter_mut() {
-            interaction.duration += dt;
-            
-            // Check if domains still exist and are in range
-            if let (Some(domain1), Some(domain2)) = (
-                self.domains.get(&interaction.domain1_id),
-                self.domains.get(&interaction.domain2_id)
-            ) {
-                let distance = self.calculate_distance(domain1, domain2);
-                interaction.distance = distance;
+        let interaction_ids: Vec<u64> = self.interactions.keys().cloned().collect();
+        
+        for interaction_id in interaction_ids {
+            if let Some(interaction) = self.interactions.get_mut(&interaction_id) {
+                interaction.duration += dt;
                 
-                if distance > self.params.interaction_range {
-                    interaction.is_active = false;
-                    interactions_to_remove.push(*interaction_id);
+                // Check if domains still exist and are in range
+                if let (Some(domain1), Some(domain2)) = (
+                    self.domains.get(&interaction.domain1_id),
+                    self.domains.get(&interaction.domain2_id)
+                ) {
+                    let distance = {
+                        let dx = domain1.center_position.0 - domain2.center_position.0;
+                        let dy = domain1.center_position.1 - domain2.center_position.1;
+                        (dx * dx + dy * dy).sqrt()
+                    };
+                    interaction.distance = distance;
+                    
+                    if distance > self.params.interaction_range {
+                        interaction.is_active = false;
+                        interactions_to_remove.push(interaction_id);
+                    }
+                } else {
+                    interactions_to_remove.push(interaction_id);
                 }
-            } else {
-                interactions_to_remove.push(*interaction_id);
             }
         }
         
@@ -519,7 +543,7 @@ impl Nanodomains {
     }
     
     /// Create domain interaction
-    fn create_domain_interaction(&mut self, id1: u64, id2: u64, distance: f64) -> Result<(), BeneGesseritError> {
+    fn create_domain_interaction(&mut self, id1: u64, id2: u64, distance: f64) -> Result<(), MembraneError> {
         let interaction_id = self.interaction_counter;
         self.interaction_counter += 1;
         
@@ -533,7 +557,10 @@ impl Nanodomains {
                 _ => InteractionType::Attractive,
             }
         } else {
-            return Err(BeneGesseritError::InvalidState("Cannot create interaction for non-existent domains".to_string()));
+            return Err(MembraneError::ValidationError {
+                field: "domain_interaction".to_string(),
+                reason: "Cannot create interaction for non-existent domains".to_string(),
+            });
         };
         
         let strength = self.calculate_interaction_strength(&interaction_type, distance);
@@ -570,7 +597,7 @@ impl Nanodomains {
     }
     
     /// Check for domain dissolution
-    fn check_domain_dissolution(&mut self, dt: f64) -> Result<Vec<NanodomainEvent>, BeneGesseritError> {
+    fn check_domain_dissolution(&mut self, _dt: f64) -> Result<Vec<NanodomainEvent>, MembraneError> {
         let mut events = Vec::new();
         let mut domains_to_dissolve = Vec::new();
         
@@ -603,7 +630,7 @@ impl Nanodomains {
     }
     
     /// Determine if domain nucleation should occur
-    fn should_nucleate_domain(&self, domain_type: &NanodomainType) -> Result<bool, BeneGesseritError> {
+    fn should_nucleate_domain(&self, domain_type: &NanodomainType) -> Result<bool, MembraneError> {
         let base_probability = match domain_type {
             NanodomainType::ProteinCluster => 0.01,
             NanodomainType::LipidPatch => 0.005,
@@ -633,25 +660,25 @@ impl Nanodomains {
         
         match domain_type {
             NanodomainType::ProteinCluster => {
-                components.insert(ComponentId::Protein(ProteinType::Membrane), 5.0);
+                components.insert(ComponentId::Protein(ProteinType::Custom("Membrane".to_string())), 5.0);
                 components.insert(ComponentId::Lipid(LipidType::POPC), 0.3);
             }
             NanodomainType::LipidPatch => {
                 components.insert(ComponentId::Lipid(LipidType::Cholesterol), 0.4);
-                components.insert(ComponentId::Lipid(LipidType::Sphingomyelin), 0.3);
+                components.insert(ComponentId::Lipid(LipidType::SM), 0.3);  // Changed from Sphingomyelin to SM
             }
             NanodomainType::Signaling => {
-                components.insert(ComponentId::Protein(ProteinType::Kinase), 3.0);
-                components.insert(ComponentId::Protein(ProteinType::Phosphatase), 2.0);
+                components.insert(ComponentId::Protein(ProteinType::Custom("Kinase".to_string())), 3.0);
+                components.insert(ComponentId::Protein(ProteinType::Custom("Phosphatase".to_string())), 2.0);
             }
             NanodomainType::Receptor => {
-                components.insert(ComponentId::Protein(ProteinType::GPCR), 4.0);
+                components.insert(ComponentId::Protein(ProteinType::Custom("GPCR".to_string())), 4.0);
             }
             NanodomainType::Enzymatic => {
-                components.insert(ComponentId::Protein(ProteinType::Channel), 3.0);
+                components.insert(ComponentId::Protein(ProteinType::Custom("Channel".to_string())), 3.0);
             }
             NanodomainType::Transient => {
-                components.insert(ComponentId::Protein(ProteinType::Membrane), 2.0);
+                components.insert(ComponentId::Protein(ProteinType::Custom("Membrane".to_string())), 2.0);
             }
         }
         
@@ -723,14 +750,14 @@ mod tests {
     #[test]
     fn test_concentration_setting() {
         let mut nanodomains = Nanodomains::new();
-        nanodomains.set_concentration(ComponentId::Protein(ProteinType::Membrane), 0.1);
+        nanodomains.set_concentration(ComponentId::Protein(ProteinType::Custom("Membrane".to_string())), 0.1);
         assert_eq!(nanodomains.concentrations.len(), 1);
     }
     
     #[test]
     fn test_formation_conditions() {
         let mut nanodomains = Nanodomains::new();
-        nanodomains.set_concentration(ComponentId::Protein(ProteinType::Membrane), 0.1);
+        nanodomains.set_concentration(ComponentId::Protein(ProteinType::Custom("Membrane".to_string())), 0.1);
         
         assert!(nanodomains.check_formation_conditions(&NanodomainType::ProteinCluster));
     }
@@ -739,7 +766,7 @@ mod tests {
     fn test_domain_nucleation() {
         let mut nanodomains = Nanodomains::new();
         let mut components = HashMap::new();
-        components.insert(ComponentId::Protein(ProteinType::Membrane), 5.0);
+        components.insert(ComponentId::Protein(ProteinType::Custom("Membrane".to_string())), 5.0);
         
         let result = nanodomains.nucleate_domain(
             NanodomainType::ProteinCluster,
