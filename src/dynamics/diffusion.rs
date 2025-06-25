@@ -151,9 +151,10 @@ impl DiffusionSimulator {
     pub fn add_particle(&mut self, particle: DiffusingParticle) -> Result<()> {
         // Validate particle position within boundaries
         if !self.is_position_valid(particle.position) {
-            return Err(MembraneError::InvalidParameter(
-                format!("Particle position {:?} outside boundaries", particle.position)
-            ));
+            return Err(MembraneError::ValidationError {
+                field: "particle_position".to_string(),
+                reason: format!("Particle position {:?} outside boundaries", particle.position),
+            });
         }
         
         // Initialize statistics for this particle
@@ -183,7 +184,7 @@ impl DiffusionSimulator {
         
         // Apply new positions and handle collisions
         for (particle_id, new_position) in new_positions {
-            if let Some(particle) = self.particles.get_mut(&particle_id) {
+            if let Some(particle) = self.particles.get(&particle_id) {
                 let old_position = particle.position;
                 
                 // Check for collisions and boundaries
@@ -191,13 +192,16 @@ impl DiffusionSimulator {
                     &particle_id, old_position, new_position
                 )?;
                 
-                particle.position = final_position;
-                
-                // Update velocity
-                particle.velocity = (
-                    (final_position.0 - old_position.0) / dt,
-                    (final_position.1 - old_position.1) / dt,
-                );
+                // Update particle
+                if let Some(particle) = self.particles.get_mut(&particle_id) {
+                    particle.position = final_position;
+                    
+                    // Update velocity
+                    particle.velocity = (
+                        (final_position.0 - old_position.0) / dt,
+                        (final_position.1 - old_position.1) / dt,
+                    );
+                }
                 
                 // Update statistics
                 self.update_particle_statistics(&particle_id, final_position);
@@ -313,7 +317,7 @@ impl DiffusionSimulator {
     fn calculate_active_velocity(&self, particle: &DiffusingParticle) -> Result<(f64, f64)> {
         // ATP-dependent transport velocity
         let base_velocity = 100.0; // nm/s
-        let angle = 0.0; // Could be dynamic based on gradients
+        let angle = 0.0_f64; // Could be dynamic based on gradients
         
         Ok((
             base_velocity * angle.cos(),

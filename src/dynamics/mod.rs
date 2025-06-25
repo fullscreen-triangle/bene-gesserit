@@ -4,13 +4,6 @@
 //! fuzzy and deterministic programming approaches for interfacial processes,
 //! membrane remodeling, and complex biological phenomena.
 
-pub mod fuzzy_logic;
-pub mod deterministic_models;
-pub mod hybrid_control;
-pub mod interfacial_processes;
-pub mod remodeling;
-pub mod adaptation;
-
 // Core dynamics modules
 pub mod diffusion;
 pub mod flip_flop;
@@ -19,9 +12,9 @@ pub mod fission;
 
 // Re-export key types for convenience
 pub use diffusion::DiffusionSimulator;
-pub use flip_flop::FlipFlopDynamics;
-pub use fusion::FusionDynamics;
-pub use fission::FissionDynamics;
+pub use flip_flop::FlipFlop;
+pub use fusion::Fusion;
+pub use fission::Fission;
 
 use crate::{constants::*, error::Result, types::*, lipids::*, proteins::*, endocytosis::*, signaling::*};
 use std::collections::HashMap;

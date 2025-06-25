@@ -5,11 +5,19 @@
 
 use crate::types::*;
 use crate::constants::*;
-use crate::error::BeneGesseritError;
+use crate::error::MembraneError;
 use std::collections::HashMap;
 
+/// Unique identifier for membranes
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct MembraneId(pub u64);
+
+/// Unique identifier for proteins
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct ProteinId(pub u64);
+
 /// Types of membrane fusion
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FusionType {
     Vesicle,        // Vesicle-to-membrane fusion
     Membrane,       // Membrane-to-membrane fusion
@@ -18,7 +26,7 @@ pub enum FusionType {
 }
 
 /// Fusion mechanism
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FusionMechanism {
     SNAREMediated,  // SNARE protein complex
     CalciumTriggered, // Calcium-dependent fusion
@@ -27,7 +35,7 @@ pub enum FusionMechanism {
 }
 
 /// Fusion stage
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FusionStage {
     Docking,        // Initial membrane contact
     Priming,        // SNARE complex assembly
@@ -141,9 +149,9 @@ impl Default for Fusion {
             stage_barriers,
             fusion_history: Vec::new(),
             calcium_concentration: 1e-7, // 100 nM resting
-            atp_concentration: ATP_CONCENTRATION,
+            atp_concentration: PHYSIOLOGICAL_ATP,
             ph: 7.4,
-            temperature: TEMPERATURE,
+            temperature: PHYSIOLOGICAL_TEMPERATURE,
             curvature_effects: HashMap::new(),
             event_counter: 0,
         }
@@ -156,7 +164,7 @@ impl Fusion {
     }
     
     /// Add fusion protein
-    pub fn add_fusion_protein(&mut self, protein_id: ProteinId, protein_type: FusionProteinType) -> Result<(), BeneGesseritError> {
+    pub fn add_fusion_protein(&mut self, protein_id: ProteinId, protein_type: FusionProteinType) -> Result<(), MembraneError> {
         let machinery = FusionMachinery {
             protein_id,
             protein_type: protein_type.clone(),
@@ -179,7 +187,7 @@ impl Fusion {
     }
     
     /// Create SNARE complex
-    pub fn create_snare_complex(&mut self, v_snare: ProteinId, t_snare: ProteinId) -> Result<u64, BeneGesseritError> {
+    pub fn create_snare_complex(&mut self, v_snare: ProteinId, t_snare: ProteinId) -> Result<u64, MembraneError> {
         let complex_id = self.event_counter;
         self.event_counter += 1;
         
@@ -204,7 +212,7 @@ impl Fusion {
         mechanism: FusionMechanism,
         membrane1: MembraneId,
         membrane2: MembraneId,
-    ) -> Result<u64, BeneGesseritError> {
+    ) -> Result<u64, MembraneError> {
         let event_id = self.event_counter;
         self.event_counter += 1;
         
@@ -230,7 +238,7 @@ impl Fusion {
     }
     
     /// Simulate fusion dynamics
-    pub fn simulate_fusion(&mut self, dt: f64) -> Result<Vec<FusionEvent>, BeneGesseritError> {
+    pub fn simulate_fusion(&mut self, dt: f64) -> Result<Vec<FusionEvent>, MembraneError> {
         let mut completed_events = Vec::new();
         
         // Update protein states
@@ -289,7 +297,7 @@ impl Fusion {
     }
     
     /// Update SNARE complex assembly
-    fn update_snare_complexes(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn update_snare_complexes(&mut self, dt: f64) -> Result<(), MembraneError> {
         for complex in self.snare_complexes.values_mut() {
             if !complex.is_zipped {
                 // Assembly rate depends on protein regulators
@@ -330,7 +338,7 @@ impl Fusion {
     }
     
     /// Advance fusion through stages
-    fn advance_fusion_stage(&mut self, event: &mut FusionEvent, dt: f64) -> Result<bool, BeneGesseritError> {
+    fn advance_fusion_stage(&mut self, event: &mut FusionEvent, dt: f64) -> Result<bool, MembraneError> {
         let current_stage = event.stage.clone();
         let barrier = *self.stage_barriers.get(&current_stage).unwrap_or(&20.0);
         
@@ -365,7 +373,7 @@ impl Fusion {
     }
     
     /// Calculate stage transition rate
-    fn calculate_stage_transition_rate(&self, event: &FusionEvent, stage: &FusionStage) -> Result<f64, BeneGesseritError> {
+    fn calculate_stage_transition_rate(&self, event: &FusionEvent, stage: &FusionStage) -> Result<f64, MembraneError> {
         let base_rate = match stage {
             FusionStage::Docking => 10.0,
             FusionStage::Priming => 5.0,

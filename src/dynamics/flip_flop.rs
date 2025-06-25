@@ -5,11 +5,19 @@
 
 use crate::types::*;
 use crate::constants::*;
-use crate::error::BeneGesseritError;
+use crate::error::MembraneError;
 use std::collections::HashMap;
 
+/// Unique identifier for lipids
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct LipidId(pub u64);
+
+/// Unique identifier for proteins
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct ProteinId(pub u64);
+
 /// Represents the mechanism of flip-flop
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FlipFlopMechanism {
     Spontaneous,
     Flippase,      // ATP-dependent inward translocation
@@ -31,7 +39,7 @@ pub struct FlipFlopEvent {
 }
 
 /// Leaflet specification
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum Leaflet {
     Outer,
     Inner,
@@ -102,13 +110,13 @@ impl Default for FlipFlop {
         let mut energy_barriers = HashMap::new();
         
         // Initialize spontaneous flip-flop rates (very slow for most lipids)
-        for lipid_type in [LipidType::POPC, LipidType::POPE, LipidType::POPS, LipidType::Sphingomyelin, LipidType::Cholesterol] {
+        for lipid_type in [LipidType::POPC, LipidType::POPE, LipidType::POPS, LipidType::SM, LipidType::Cholesterol] {
             flip_rates.insert((lipid_type, FlipFlopMechanism::Spontaneous), match lipid_type {
                 LipidType::Cholesterol => 1e-3, // Relatively fast
                 LipidType::POPC => 1e-6,        // Very slow
                 LipidType::POPE => 1e-7,        // Extremely slow (charged)
                 LipidType::POPS => 1e-8,        // Extremely slow (charged)
-                LipidType::Sphingomyelin => 1e-7, // Very slow
+                LipidType::SM => 1e-7, // Very slow
                 _ => 1e-6,
             });
             
@@ -118,7 +126,7 @@ impl Default for FlipFlop {
                 LipidType::POPC => 80.0,
                 LipidType::POPE => 120.0,
                 LipidType::POPS => 150.0,
-                LipidType::Sphingomyelin => 100.0,
+                LipidType::SM => 100.0,
                 _ => 80.0,
             });
         }
@@ -131,10 +139,10 @@ impl Default for FlipFlop {
             floppases: HashMap::new(),
             scramblases: HashMap::new(),
             event_history: Vec::new(),
-            atp_concentration: ATP_CONCENTRATION,
+            atp_concentration: PHYSIOLOGICAL_ATP,
             calcium_concentration: 1e-7, // 100 nM resting Ca2+
             asymmetry_index: 0.0,
-            temperature: TEMPERATURE,
+            temperature: PHYSIOLOGICAL_TEMPERATURE,
         }
     }
 }
@@ -145,7 +153,7 @@ impl FlipFlop {
     }
     
     /// Add a flippase protein
-    pub fn add_flippase(&mut self, protein_id: ProteinId, specificity: HashMap<LipidType, f64>) -> Result<(), BeneGesseritError> {
+    pub fn add_flippase(&mut self, protein_id: ProteinId, specificity: HashMap<LipidType, f64>) -> Result<(), MembraneError> {
         let flippase = FlippaseState {
             protein_id,
             activity: 1.0,
@@ -160,7 +168,7 @@ impl FlipFlop {
     }
     
     /// Add a floppase protein
-    pub fn add_floppase(&mut self, protein_id: ProteinId, specificity: HashMap<LipidType, f64>) -> Result<(), BeneGesseritError> {
+    pub fn add_floppase(&mut self, protein_id: ProteinId, specificity: HashMap<LipidType, f64>) -> Result<(), MembraneError> {
         let floppase = FloppaseState {
             protein_id,
             activity: 1.0,
@@ -175,7 +183,7 @@ impl FlipFlop {
     }
     
     /// Add a scramblase protein
-    pub fn add_scramblase(&mut self, protein_id: ProteinId, specificity: HashMap<LipidType, f64>) -> Result<(), BeneGesseritError> {
+    pub fn add_scramblase(&mut self, protein_id: ProteinId, specificity: HashMap<LipidType, f64>) -> Result<(), MembraneError> {
         let scramblase = ScramblaseState {
             protein_id,
             activity: 1.0,
@@ -198,13 +206,15 @@ impl FlipFlop {
     
     /// Calculate membrane asymmetry index
     pub fn calculate_asymmetry(&mut self) {
-        let outer = self.leaflet_distribution.get(&Leaflet::Outer).unwrap_or(&HashMap::new());
-        let inner = self.leaflet_distribution.get(&Leaflet::Inner).unwrap_or(&HashMap::new());
+        let default_outer = HashMap::new();
+        let default_inner = HashMap::new();
+        let outer = self.leaflet_distribution.get(&Leaflet::Outer).unwrap_or(&default_outer);
+        let inner = self.leaflet_distribution.get(&Leaflet::Inner).unwrap_or(&default_inner);
         
         let mut total_asymmetry = 0.0;
         let mut total_lipids = 0;
         
-        for lipid_type in [LipidType::POPC, LipidType::POPE, LipidType::POPS, LipidType::Sphingomyelin, LipidType::Cholesterol] {
+        for lipid_type in [LipidType::POPC, LipidType::POPE, LipidType::POPS, LipidType::SM, LipidType::Cholesterol] {
             let outer_count = *outer.get(&lipid_type).unwrap_or(&0) as f64;
             let inner_count = *inner.get(&lipid_type).unwrap_or(&0) as f64;
             let total = outer_count + inner_count;
@@ -224,7 +234,7 @@ impl FlipFlop {
     }
     
     /// Simulate flip-flop events over time
-    pub fn simulate_flip_flop(&mut self, dt: f64) -> Result<Vec<FlipFlopEvent>, BeneGesseritError> {
+    pub fn simulate_flip_flop(&mut self, dt: f64) -> Result<Vec<FlipFlopEvent>, MembraneError> {
         let mut events = Vec::new();
         
         // Update protein states based on current conditions
@@ -286,7 +296,7 @@ impl FlipFlop {
     }
     
     /// Simulate spontaneous flip-flop events
-    fn simulate_spontaneous_flip_flop(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, BeneGesseritError> {
+    fn simulate_spontaneous_flip_flop(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, MembraneError> {
         let mut events = Vec::new();
         
         for (leaflet, lipids) in &self.leaflet_distribution {
@@ -329,7 +339,7 @@ impl FlipFlop {
     }
     
     /// Simulate flippase-mediated flip-flop (outer to inner)
-    fn simulate_flippase_activity(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, BeneGesseritError> {
+    fn simulate_flippase_activity(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, MembraneError> {
         let mut events = Vec::new();
         
         if let Some(outer_lipids) = self.leaflet_distribution.get(&Leaflet::Outer) {
@@ -373,7 +383,7 @@ impl FlipFlop {
     }
     
     /// Simulate floppase-mediated flip-flop (inner to outer)
-    fn simulate_floppase_activity(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, BeneGesseritError> {
+    fn simulate_floppase_activity(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, MembraneError> {
         let mut events = Vec::new();
         
         if let Some(inner_lipids) = self.leaflet_distribution.get(&Leaflet::Inner) {
@@ -417,7 +427,7 @@ impl FlipFlop {
     }
     
     /// Simulate scramblase-mediated bidirectional flip-flop
-    fn simulate_scramblase_activity(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, BeneGesseritError> {
+    fn simulate_scramblase_activity(&self, dt: f64) -> Result<Vec<FlipFlopEvent>, MembraneError> {
         let mut events = Vec::new();
         
         for scramblase in self.scramblases.values() {
@@ -467,7 +477,7 @@ impl FlipFlop {
     }
     
     /// Apply flip-flop event to update leaflet distributions
-    fn apply_flip_flop_event(&mut self, event: &FlipFlopEvent) -> Result<(), BeneGesseritError> {
+    fn apply_flip_flop_event(&mut self, event: &FlipFlopEvent) -> Result<(), MembraneError> {
         // Remove from source leaflet
         if let Some(from_leaflet) = self.leaflet_distribution.get_mut(&event.from_leaflet) {
             if let Some(count) = from_leaflet.get_mut(&event.lipid_type) {

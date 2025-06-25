@@ -5,11 +5,23 @@
 
 use crate::types::*;
 use crate::constants::*;
-use crate::error::BeneGesseritError;
+use crate::error::MembraneError;
 use std::collections::HashMap;
 
+/// Unique identifier for membranes
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct MembraneId(pub u64);
+
+/// Unique identifier for vesicles
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct VesicleId(pub u64);
+
+/// Unique identifier for proteins
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct ProteinId(pub u64);
+
 /// Types of membrane fission
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FissionType {
     Endocytosis,    // Clathrin-mediated endocytosis
     Exocytosis,     // Vesicle budding from organelles
@@ -19,7 +31,7 @@ pub enum FissionType {
 }
 
 /// Fission mechanism
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FissionMechanism {
     DynaminMediated,  // Dynamin GTPase activity
     ESCRTMediated,    // ESCRT complex machinery
@@ -29,7 +41,7 @@ pub enum FissionMechanism {
 }
 
 /// Fission stage
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FissionStage {
     Initiation,     // Membrane deformation begins
     Budding,        // Bud formation
@@ -176,10 +188,10 @@ impl Default for Fission {
             fission_rates,
             stage_barriers,
             fission_history: Vec::new(),
-            atp_concentration: ATP_CONCENTRATION,
+            atp_concentration: PHYSIOLOGICAL_ATP,
             gtp_concentration: 1e-4, // 100 μM GTP
             membrane_tensions: HashMap::new(),
-            temperature: TEMPERATURE,
+            temperature: PHYSIOLOGICAL_TEMPERATURE,
             event_counter: 0,
         }
     }
@@ -191,7 +203,7 @@ impl Fission {
     }
     
     /// Add fission protein
-    pub fn add_fission_protein(&mut self, protein_id: ProteinId, protein_type: FissionProteinType) -> Result<(), BeneGesseritError> {
+    pub fn add_fission_protein(&mut self, protein_id: ProteinId, protein_type: FissionProteinType) -> Result<(), MembraneError> {
         let machinery = FissionMachinery {
             protein_id,
             protein_type: protein_type.clone(),
@@ -214,7 +226,7 @@ impl Fission {
     }
     
     /// Create dynamin assembly
-    pub fn create_dynamin_assembly(&mut self, dynamin_proteins: Vec<ProteinId>) -> Result<u64, BeneGesseritError> {
+    pub fn create_dynamin_assembly(&mut self, dynamin_proteins: Vec<ProteinId>) -> Result<u64, MembraneError> {
         let assembly_id = self.event_counter;
         self.event_counter += 1;
         
@@ -239,7 +251,7 @@ impl Fission {
         escrt_ii: Vec<ProteinId>,
         escrt_iii: Vec<ProteinId>,
         vps4: Option<ProteinId>,
-    ) -> Result<u64, BeneGesseritError> {
+    ) -> Result<u64, MembraneError> {
         let complex_id = self.event_counter;
         self.event_counter += 1;
         
@@ -259,7 +271,7 @@ impl Fission {
     }
     
     /// Create clathrin coat
-    pub fn create_clathrin_coat(&mut self, clathrin_proteins: Vec<ProteinId>, adaptors: Vec<ProteinId>) -> Result<u64, BeneGesseritError> {
+    pub fn create_clathrin_coat(&mut self, clathrin_proteins: Vec<ProteinId>, adaptors: Vec<ProteinId>) -> Result<u64, MembraneError> {
         let coat_id = self.event_counter;
         self.event_counter += 1;
         
@@ -282,7 +294,7 @@ impl Fission {
         fission_type: FissionType,
         mechanism: FissionMechanism,
         parent_membrane: MembraneId,
-    ) -> Result<u64, BeneGesseritError> {
+    ) -> Result<u64, MembraneError> {
         let event_id = self.event_counter;
         self.event_counter += 1;
         
@@ -306,7 +318,7 @@ impl Fission {
     }
     
     /// Simulate fission dynamics
-    pub fn simulate_fission(&mut self, dt: f64) -> Result<Vec<FissionEvent>, BeneGesseritError> {
+    pub fn simulate_fission(&mut self, dt: f64) -> Result<Vec<FissionEvent>, MembraneError> {
         let mut completed_events = Vec::new();
         
         // Update protein states
@@ -317,14 +329,17 @@ impl Fission {
         self.update_escrt_complexes(dt)?;
         self.update_clathrin_coats(dt)?;
         
-        // Process active fission events
+        // Process active fission events - collect event IDs first to avoid borrow issues
+        let event_ids: Vec<u64> = self.active_fissions.keys().cloned().collect();
         let mut events_to_remove = Vec::new();
         
-        for (event_id, event) in self.active_fissions.iter_mut() {
-            if self.advance_fission_stage(event, dt)? {
-                // Fission completed
-                completed_events.push(event.clone());
-                events_to_remove.push(*event_id);
+        for event_id in event_ids {
+            if let Some(event) = self.active_fissions.get_mut(&event_id) {
+                if self.advance_fission_stage(event, dt)? {
+                    // Fission completed
+                    completed_events.push(event.clone());
+                    events_to_remove.push(event_id);
+                }
             }
         }
         
@@ -348,7 +363,7 @@ impl Fission {
                 }
                 FissionProteinType::VPS4 => {
                     protein.nucleotide_binding = self.atp_concentration / (self.atp_concentration + 1e-5);
-                    protein.is_active = self.atp_concentration > ATP_CONCENTRATION * 0.1;
+                    protein.is_active = self.atp_concentration > PHYSIOLOGICAL_ATP * 0.1;
                 }
                 _ => {
                     protein.is_active = true;
@@ -364,7 +379,7 @@ impl Fission {
     }
     
     /// Update dynamin assembly states
-    fn update_dynamin_assemblies(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn update_dynamin_assemblies(&mut self, dt: f64) -> Result<(), MembraneError> {
         for assembly in self.dynamin_assemblies.values_mut() {
             if !assembly.is_active {
                 // Check if enough GTP-bound dynamin is available
@@ -394,7 +409,7 @@ impl Fission {
     }
     
     /// Update ESCRT complex states
-    fn update_escrt_complexes(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn update_escrt_complexes(&mut self, dt: f64) -> Result<(), MembraneError> {
         for complex in self.escrt_complexes.values_mut() {
             if !complex.is_assembled {
                 // Sequential assembly: ESCRT-I -> ESCRT-II -> ESCRT-III
@@ -408,7 +423,7 @@ impl Fission {
             } else {
                 // Active scission by ESCRT-III filaments
                 if complex.vps4_atpase.is_some() {
-                    let atp_factor = self.atp_concentration / (self.atp_concentration + ATP_CONCENTRATION * 0.1);
+                    let atp_factor = self.atp_concentration / (self.atp_concentration + PHYSIOLOGICAL_ATP * 0.1);
                     complex.scission_activity = 5.0 * atp_factor; // ATP-dependent activity
                 } else {
                     complex.scission_activity = 1.0; // Basal activity
@@ -420,7 +435,7 @@ impl Fission {
     }
     
     /// Update clathrin coat states
-    fn update_clathrin_coats(&mut self, dt: f64) -> Result<(), BeneGesseritError> {
+    fn update_clathrin_coats(&mut self, dt: f64) -> Result<(), MembraneError> {
         for coat in self.clathrin_coats.values_mut() {
             if !coat.is_complete {
                 // Clathrin polymerization
@@ -441,7 +456,7 @@ impl Fission {
     }
     
     /// Advance fission through stages
-    fn advance_fission_stage(&mut self, event: &mut FissionEvent, dt: f64) -> Result<bool, BeneGesseritError> {
+    fn advance_fission_stage(&mut self, event: &mut FissionEvent, dt: f64) -> Result<bool, MembraneError> {
         let current_stage = event.stage.clone();
         let barrier = *self.stage_barriers.get(&current_stage).unwrap_or(&25.0);
         
@@ -490,7 +505,7 @@ impl Fission {
     }
     
     /// Calculate stage transition rate
-    fn calculate_stage_transition_rate(&self, event: &FissionEvent, stage: &FissionStage) -> Result<f64, BeneGesseritError> {
+    fn calculate_stage_transition_rate(&self, event: &FissionEvent, stage: &FissionStage) -> Result<f64, MembraneError> {
         let base_rate = match stage {
             FissionStage::Initiation => 5.0,
             FissionStage::Budding => 2.0,
