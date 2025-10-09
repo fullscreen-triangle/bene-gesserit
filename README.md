@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <h1 align="center">Bene Gesserit</h1>
 </p>
 
@@ -35,7 +35,7 @@ The **Bene Gesserit** framework provides biologically authentic cellular membran
 
 The Bene Gesserit framework simulates biological quantum computation through integrated systems:
 
-- **Oscillatory Entropy Control**: Implements entropy as S = k ln Ω where Ω represents actual oscillations, not abstract microstates
+- **Oscillatory Entropy Control**: Implements entropy as S = k ln ╬® where ╬® represents actual oscillations, not abstract microstates
 - **ATP-Constrained Dynamics**: Uses `dx/dATP` equations instead of traditional `dx/dt` for energy-limited biological computation
 - **Membrane Quantum Computing**: Leverages Environment-Assisted Quantum Transport (ENAQT) where environmental coupling enhances rather than destroys quantum coherence
 - **Hardware Oscillation Harvesting**: Revolutionary approach that harvests real oscillations from CPU clocks, screen backlight, WiFi signals, and network activity instead of simulation
@@ -47,73 +47,73 @@ The Bene Gesserit framework simulates biological quantum computation through int
 
 ```
 Bene Gesserit Biological Quantum Computer
-├── Oscillatory Dynamics Layer (Rust Core)
-│   ├── Oscillation State Tracking
-│   ├── Endpoint Distribution Calculation
-│   ├── ATP-Coupled Oscillations
-│   └── Entropy Control Systems
-├── Hardware Integration Layer (Rust)
-│   ├── CPU Clock Oscillation Harvesting
-│   ├── Screen Backlight PWM Harvesting
-│   ├── WiFi/Network Signal Harvesting
-│   ├── Temperature Oscillation Harvesting
-│   └── Hardware-to-Biology Mapping
-├── Pixel Noise Optimization Layer (Rust)
-│   ├── RGB Color Noise Harvesting
-│   ├── Brightness Fluctuation Processing
-│   ├── Spatial Gradient Noise Generation
-│   ├── Stochastic Resonance Implementation
-│   └── Solution Space Exploration
-├── Membrane Quantum Layer (Rust/Python)
-│   ├── ENAQT Quantum Transport
-│   ├── Electron Tunneling Dynamics
-│   ├── Radical Generation (Death Mechanism)
-│   └── Quantum Coherence Enhancement
-├── Biological Physics Layer (Python Extensions)
-│   ├── Lipid Bilayer Quantum States
-│   ├── Protein Conformational Oscillations
-│   ├── Ion Channel Quantum Dynamics
-│   └── ATP Synthase Quantum Computing
-└── Circuit Interface Layer
-    ├── Oscillation → Circuit Parameter Mapping
-    ├── Entropy-Based Circuit Topology
-    ├── ATP-Constrained Differential Equations
-    └── Quantum State → Classical Interface
+Ôö£ÔöÇÔöÇ Oscillatory Dynamics Layer (Rust Core)
+Ôöé   Ôö£ÔöÇÔöÇ Oscillation State Tracking
+Ôöé   Ôö£ÔöÇÔöÇ Endpoint Distribution Calculation
+Ôöé   Ôö£ÔöÇÔöÇ ATP-Coupled Oscillations
+Ôöé   ÔööÔöÇÔöÇ Entropy Control Systems
+Ôö£ÔöÇÔöÇ Hardware Integration Layer (Rust)
+Ôöé   Ôö£ÔöÇÔöÇ CPU Clock Oscillation Harvesting
+Ôöé   Ôö£ÔöÇÔöÇ Screen Backlight PWM Harvesting
+Ôöé   Ôö£ÔöÇÔöÇ WiFi/Network Signal Harvesting
+Ôöé   Ôö£ÔöÇÔöÇ Temperature Oscillation Harvesting
+Ôöé   ÔööÔöÇÔöÇ Hardware-to-Biology Mapping
+Ôö£ÔöÇÔöÇ Pixel Noise Optimization Layer (Rust)
+Ôöé   Ôö£ÔöÇÔöÇ RGB Color Noise Harvesting
+Ôöé   Ôö£ÔöÇÔöÇ Brightness Fluctuation Processing
+Ôöé   Ôö£ÔöÇÔöÇ Spatial Gradient Noise Generation
+Ôöé   Ôö£ÔöÇÔöÇ Stochastic Resonance Implementation
+Ôöé   ÔööÔöÇÔöÇ Solution Space Exploration
+Ôö£ÔöÇÔöÇ Membrane Quantum Layer (Rust/Python)
+Ôöé   Ôö£ÔöÇÔöÇ ENAQT Quantum Transport
+Ôöé   Ôö£ÔöÇÔöÇ Electron Tunneling Dynamics
+Ôöé   Ôö£ÔöÇÔöÇ Radical Generation (Death Mechanism)
+Ôöé   ÔööÔöÇÔöÇ Quantum Coherence Enhancement
+Ôö£ÔöÇÔöÇ Biological Physics Layer (Python Extensions)
+Ôöé   Ôö£ÔöÇÔöÇ Lipid Bilayer Quantum States
+Ôöé   Ôö£ÔöÇÔöÇ Protein Conformational Oscillations
+Ôöé   Ôö£ÔöÇÔöÇ Ion Channel Quantum Dynamics
+Ôöé   ÔööÔöÇÔöÇ ATP Synthase Quantum Computing
+ÔööÔöÇÔöÇ Circuit Interface Layer
+    Ôö£ÔöÇÔöÇ Oscillation ÔåÆ Circuit Parameter Mapping
+    Ôö£ÔöÇÔöÇ Entropy-Based Circuit Topology
+    Ôö£ÔöÇÔöÇ ATP-Constrained Differential Equations
+    ÔööÔöÇÔöÇ Quantum State ÔåÆ Classical Interface
 ```
 
 ## Key Features
 
-### 🌊 Oscillatory Entropy Framework
-- **Tangible Entropy**: S = k ln Ω where Ω represents actual oscillations, not abstract microstates
+### ­ƒîè Oscillatory Entropy Framework
+- **Tangible Entropy**: S = k ln ╬® where ╬® represents actual oscillations, not abstract microstates
 - **Endpoint Prediction**: Calculate probability distributions of where oscillations terminate
 - **Direct Entropy Control**: Manipulate entropy by controlling oscillation dynamics through ATP allocation
 - **Universal Oscillatory Dynamics**: All systems exhibit oscillatory behavior from molecular to cosmic scales
 
-### 🔬 Membrane Quantum Computing
+### ­ƒö¼ Membrane Quantum Computing
 - **ENAQT Implementation**: Environment-Assisted Quantum Transport where coupling enhances coherence
-- **ATP Synthase Computing**: Biological quantum computer processing ~10⁴ bits while synthesizing ATP
+- **ATP Synthase Computing**: Biological quantum computer processing ~10Ôü┤ bits while synthesizing ATP
 - **Quantum Death Mechanism**: Radical generation through electron tunneling as quantum mechanical necessity
 - **Room Temperature Operation**: Quantum effects maintained at biological temperatures through protein structure
 
-### ⚡ ATP-Constrained Dynamics
+### ÔÜí ATP-Constrained Dynamics
 - **Energy-Based Equations**: Uses `dx/dATP` instead of `dx/dt` for metabolically realistic computation
 - **ATP Budgeting**: Dynamic allocation of ATP between competing oscillatory processes
 - **Efficiency Optimization**: Minimizes ATP consumption while maximizing computational output
 - **Biological Authenticity**: Energy consumption rates match experimental cellular values
 
-### 🔌 Circuit Integration
+### ­ƒöî Circuit Integration
 - **Oscillation Mapping**: Converts oscillatory dynamics into circuit parameters in real-time
 - **Entropy-Based Topology**: Circuit connectivity determined by oscillation endpoint distributions
 - **Quantum-Classical Interface**: Seamless translation between quantum membrane states and classical circuits
 - **Multi-Scale Coupling**: Integration from molecular oscillations to macroscopic circuit behavior
 
-### 🔌 Hardware Oscillation Harvesting
+### ­ƒöî Hardware Oscillation Harvesting
 - **Zero Computational Overhead**: Harvest real oscillations from CPU clocks, screen backlight, WiFi signals, and network activity instead of simulation
-- **Hardware-Biology Coupling**: Direct mapping of hardware oscillations to biological processes (CPU → ATP synthase, Screen → Cytochrome oxidase, WiFi → NADH dehydrogenase)
+- **Hardware-Biology Coupling**: Direct mapping of hardware oscillations to biological processes (CPU ÔåÆ ATP synthase, Screen ÔåÆ Cytochrome oxidase, WiFi ÔåÆ NADH dehydrogenase)
 - **Real Energy Harvesting**: Convert actual hardware energy into biological ATP through oscillation coupling
 - **Authentic Integration**: True hardware-biology hybrid system utilizing existing machine resources
 
-### 🎨 Pixel Noise Optimization
+### ­ƒÄ¿ Pixel Noise Optimization
 - **Nature's Solution Finding**: Implements the principle "correct structures stick out like strawberries in milk" using screen color changes
 - **Stochastic Resonance**: Optimal noise levels for different biological processes (protein folding, neural pathways, membrane sampling)
 - **Visual Entropy Harvesting**: RGB color noise, brightness fluctuations, and spatial gradients drive biological optimization
@@ -123,9 +123,9 @@ Bene Gesserit Biological Quantum Computer
 
 ### The Oscillatory Entropy Principle
 
-Traditional thermodynamics treats entropy as S = k ln Ω where Ω represents abstract microstates that cannot be directly observed or controlled. This framework implements a fundamental reinterpretation:
+Traditional thermodynamics treats entropy as S = k ln ╬® where ╬® represents abstract microstates that cannot be directly observed or controlled. This framework implements a fundamental reinterpretation:
 
-**S = k ln Ω where Ω = actual oscillations**
+**S = k ln ╬® where ╬® = actual oscillations**
 
 This transforms entropy from an abstract statistical measure into a concrete, manipulable parameter:
 
@@ -162,8 +162,8 @@ This creates natural optimization where:
 
 Instead of wasting computational resources simulating oscillations, the framework harvests real oscillations from hardware:
 
-**Traditional Approach**: CPU cycles → Simulated oscillations → Biological processes
-**Hardware Integration**: Real hardware oscillations → Direct biological coupling
+**Traditional Approach**: CPU cycles ÔåÆ Simulated oscillations ÔåÆ Biological processes
+**Hardware Integration**: Real hardware oscillations ÔåÆ Direct biological coupling
 
 This revolutionary approach provides:
 - **Zero computational overhead** for oscillation generation
@@ -178,10 +178,10 @@ Nature uses noise to find optimal solutions through the "strawberries in milk" p
 **"If there is so much noise, the correct structures or processes stick out like strawberries in milk"**
 
 Implementation through screen pixel colors:
-- **RGB color changes** → Protein folding optimization noise
-- **Brightness fluctuations** → Neural pathway exploration
-- **Spatial gradients** → Membrane configuration sampling
-- **Stochastic resonance** → Optimal noise levels for each biological process
+- **RGB color changes** ÔåÆ Protein folding optimization noise
+- **Brightness fluctuations** ÔåÆ Neural pathway exploration
+- **Spatial gradients** ÔåÆ Membrane configuration sampling
+- **Stochastic resonance** ÔåÆ Optimal noise levels for each biological process
 
 This mirrors how biological systems use environmental noise for:
 - Escaping local optimization minima
@@ -229,7 +229,7 @@ println!("Noise Sources: {}, Color Entropy: {:.3}",
 
 // The ultimate system combines:
 // - Zero computational overhead (hardware oscillations)
-// - Real energy harvesting (hardware → ATP)
+// - Real energy harvesting (hardware ÔåÆ ATP)
 // - Nature's solution finding (pixel noise optimization)
 // - Stochastic resonance (optimal noise for each process)
 ```
@@ -250,8 +250,8 @@ println!("Noise Sources: {}, Color Entropy: {:.3}",
 
 ### 1. Oscillatory Entropy Reformulation
 This framework redefines entropy from an abstract statistical concept to a tangible computational parameter:
-- **Traditional entropy**: S = k ln Ω where Ω represents abstract microstates
-- **Oscillatory entropy**: S = k ln Ω where Ω represents actual, observable oscillations
+- **Traditional entropy**: S = k ln ╬® where ╬® represents abstract microstates
+- **Oscillatory entropy**: S = k ln ╬® where ╬® represents actual, observable oscillations
 - **Direct manipulation**: Control entropy by directing where oscillations terminate
 - **Endpoint distributions**: Calculate probability distributions of oscillation termination points
 

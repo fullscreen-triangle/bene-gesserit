@@ -1,4 +1,4 @@
-# Configuration for rustfmt
+﻿# Configuration for rustfmt
 # See https://rust-lang.github.io/rustfmt/ for all options
 
 edition = "2021"
