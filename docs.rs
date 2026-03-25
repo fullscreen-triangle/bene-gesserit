@@ -1,4 +1,4 @@
-﻿//! # Bene Gesserit Documentation Build Configuration
+//! # Bene Gesserit Documentation Build Configuration
 //! 
 //! This file configures documentation generation for docs.rs
 

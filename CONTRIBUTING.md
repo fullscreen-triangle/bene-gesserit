@@ -1,4 +1,4 @@
-﻿# Contributing to Bene Gesserit
+# Contributing to Bene Gesserit
 
 Thank you for your interest in contributing to Bene Gesserit! This document provides guidelines and information for contributors.
 

@@ -1,4 +1,4 @@
-﻿# Makefile for Bene Gesserit Development
+# Makefile for Bene Gesserit Development
 
 .PHONY: help build test check fmt clippy doc bench clean install-tools setup ci
 
@@ -32,89 +32,89 @@ help:
 
 # Setup development environment
 setup: install-tools
-	@echo "­ƒöº Setting up development environment..."
+	@echo "🔧 Setting up development environment..."
 	cargo build
-	@echo "Ô£à Setup complete!"
+	@echo "✅ Setup complete!"
 
 # Install development tools
 install-tools:
-	@echo "­ƒôª Installing development tools..."
+	@echo "📦 Installing development tools..."
 	cargo install cargo-audit cargo-deny cargo-tarpaulin cargo-outdated cargo-edit
-	@echo "Ô£à Tools installed!"
+	@echo "✅ Tools installed!"
 
 # Build the project
 build:
-	@echo "­ƒö¿ Building project..."
+	@echo "🔨 Building project..."
 	cargo build --all-features
 
 # Run tests
 test:
-	@echo "­ƒº¬ Running tests..."
+	@echo "🧪 Running tests..."
 	cargo test --all-features
 
 # Run cargo check
 check:
-	@echo "­ƒöì Checking code..."
+	@echo "🔍 Checking code..."
 	cargo check --all-features
 
 # Format code
 fmt:
-	@echo "­ƒÄ¿ Formatting code..."
+	@echo "🎨 Formatting code..."
 	cargo fmt --all
 
 # Run clippy
 clippy:
-	@echo "­ƒôÄ Running clippy..."
+	@echo "📎 Running clippy..."
 	cargo clippy --all-targets --all-features -- -D warnings
 
 # Build documentation
 doc:
-	@echo "­ƒôÜ Building documentation..."
+	@echo "📚 Building documentation..."
 	cargo doc --all-features --no-deps --open
 
 # Run benchmarks
 bench:
-	@echo "ÔÜí Running benchmarks..."
+	@echo "⚡ Running benchmarks..."
 	cargo bench --all-features
 
 # Run all CI checks locally
 ci: fmt clippy test doc
-	@echo "­ƒÜÇ Running CI checks..."
+	@echo "🚀 Running CI checks..."
 	cargo audit
 	cargo deny check
-	@echo "Ô£à All CI checks passed!"
+	@echo "✅ All CI checks passed!"
 
 # Security audit
 audit:
-	@echo "­ƒöÆ Running security audit..."
+	@echo "🔒 Running security audit..."
 	cargo audit
 
 # Check with cargo-deny
 deny:
-	@echo "­ƒÜ½ Running cargo-deny..."
+	@echo "🚫 Running cargo-deny..."
 	cargo deny check
 
 # Generate test coverage
 coverage:
-	@echo "­ƒôè Generating test coverage..."
+	@echo "📊 Generating test coverage..."
 	cargo tarpaulin --all-features --out Html
 
 # Clean build artifacts
 clean:
-	@echo "­ƒº╣ Cleaning build artifacts..."
+	@echo "🧹 Cleaning build artifacts..."
 	cargo clean
 
 # Update dependencies
 update:
-	@echo "­ƒöä Updating dependencies..."
+	@echo "🔄 Updating dependencies..."
 	cargo update
 	cargo outdated
 
 # Quick development cycle
 dev: fmt clippy test
-	@echo "Ô£à Development cycle complete!"
+	@echo "✅ Development cycle complete!"
 
 # Release preparation
 release-prep: ci coverage
-	@echo "­ƒôª Preparing for release..."
-	@echo "Ô£à Release preparation complete!" 
+	@echo "📦 Preparing for release..."
+	@echo "✅ Release preparation complete!" 

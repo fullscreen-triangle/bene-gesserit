@@ -1,4 +1,4 @@
-﻿# Configuration for Clippy
+# Configuration for Clippy
 # See https://doc.rust-lang.org/clippy/configuration.html for all options
 
 # Lints to deny (treat as errors)

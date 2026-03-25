@@ -1,4 +1,4 @@
-﻿use std::env;
+use std::env;
 
 fn main() {
     // Enable documentation features for docs.rs builds
