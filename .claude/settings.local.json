@@ -3,7 +3,15 @@
     "allow": [
       "Bash(git log:*)",
       "Bash(git ls-tree:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(find c:/Users/kunda/Documents/architecture/bene-gesserit/src -type f -name *.rs -exec wc -l {} +)",
+      "Bash(grep -c '\\\\\\\\\\\\\\\\begin{proof}' \"c:/Users/kunda/Documents/architecture/bene-gesserit/reverend/publications/membrane-cognitive-architecture/membrane-cognitive-architecture.tex\")",
+      "Bash(grep -oP '\\\\\\\\cite\\\\{[^}]+\\\\}' \"c:/Users/kunda/Documents/architecture/bene-gesserit/reverend/publications/isomorphism-atlas/tripple-isomorphism-architecture.tex\")",
+      "Bash(grep -oP '\\\\\\\\cite\\\\{[^}]+\\\\}' \"c:/Users/kunda/Documents/architecture/bene-gesserit/reverend/publications/membrane-cognitive-architecture/membrane-cognitive-architecture.tex\")",
+      "Bash(grep -oP '@\\\\w+\\\\{\\([^,]+\\),' \"c:/Users/kunda/Documents/architecture/bene-gesserit/reverend/publications/isomorphism-atlas/references.bib\")",
+      "Bash(grep -c '\\\\\\\\begin{theorem}\\\\|\\\\\\\\begin{lemma}\\\\|\\\\\\\\begin{proposition}\\\\|\\\\\\\\begin{corollary}\\\\|\\\\\\\\begin{definition}\\\\|\\\\\\\\begin{axiom}\\\\|\\\\\\\\begin{proof}' reverend/publications/isomorphism-atlas/tripple-isomorphism-architecture.tex)",
+      "Bash(grep -c '\\\\\\\\begin{theorem}\\\\|\\\\\\\\begin{lemma}\\\\|\\\\\\\\begin{proposition}\\\\|\\\\\\\\begin{corollary}\\\\|\\\\\\\\begin{definition}\\\\|\\\\\\\\begin{axiom}\\\\|\\\\\\\\begin{proof}' reverend/publications/membrane-cognitive-architecture/membrane-cognitive-architecture.tex)"
     ]
   }
 }
