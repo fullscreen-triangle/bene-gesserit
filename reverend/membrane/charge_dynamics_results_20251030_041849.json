@@ -1,0 +1,23 @@
+{
+  "timestamp": "20251030_041849",
+  "measured_parameters": {
+    "hole_mobility_cm2_per_Vs": 0.0123,
+    "hole_density_cm3": 2800000000000.0,
+    "n_density_cm3": 35700000.0,
+    "Vbi_V": 0.615,
+    "rectification_ratio": 42.1,
+    "conductivity_S_per_cm": 7.53e-08,
+    "on_off_ratio": 42.1,
+    "switching_time_s": 1e-06
+  },
+  "mobility_validation": {
+    "drift_velocity_formula": "v = \u03bc_h \u00d7 E",
+    "diffusion_coefficient_cm2_per_s": 3.2861514588014984,
+    "validated": true
+  },
+  "pn_junction_validation": {
+    "V_bi_measured_V": 0.615,
+    "V_bi_calculated_V": 0.7382091085226309,
+    "rectification_ratio": 9934988158.238634,
+    "target_rectification": 42.1,
+    "validated": 

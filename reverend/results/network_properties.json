@@ -1,0 +1,272 @@
+{
+  "description": "Network properties (Table 1). N=modes, E_tree/E_harm/E_total=edges, C=independent loops, V_mult=max validation multiplicity.",
+  "timestamp": "2026-03-25T06:26:27.904018",
+  "parameters": {
+    "q_max": 10,
+    "delta_max": 0.05
+  },
+  "physical_constants": {
+    "c_cm_per_s": 29980000000.0,
+    "h_J_s": 6.626e-34,
+    "hbar_J_s": 1.055e-34,
+    "k_B_J_per_K": 1.381e-23,
+    "epsilon_0_F_per_m": 8.854e-12
+  },
+  "molecules_tested": [
+    "H2",
+    "CO",
+    "H2O",
+    "CO2",
+    "CH4",
+    "C6H6"
+  ],
+  "paper_expected": {
+    "H2": {
+      "N": 2,
+      "E_tree": 1,
+      "E_harm": 1,
+      "E_total": 2,
+      "C": 1,
+      "V_mult": 1
+    },
+    "CO": {
+      "N": 7,
+      "E_tree": 6,
+      "E_harm": 3,
+      "E_total": 9,
+      "C": 3,
+      "V_mult": 2
+    },
+    "H2O": {
+      "N": 3,
+      "E_tree": 2,
+      "E_harm": 3,
+      "E_total": 5,
+      "C": 1,
+      "V_mult": 1
+    },
+    "CO2": {
+      "N": 3,
+      "E_tree": 2,
+      "E_harm": 3,
+      "E_total": 5,
+      "C": 1,
+      "V_mult": 1
+    },
+    "CH4": {
+      "N": 4,
+      "E_tree": 3,
+      "E_harm": 6,
+      "E_total": 9,
+      "C": 6,
+      "V_mult": 4
+    },
+    "C6H6": {
+      "N": 5,
+      "E_tree": 4,
+      "E_harm": 6,
+      "E_total": 10,
+      "C": 6,
+      "V_mult": 4
+    }
+  },
+  "results": {
+    "H2": {
+      "computed": {
+        "molecule": "H2",
+        "num_modes": 2,
+        "num_tree_edges": 1,
+        "num_harmonic_edges": 1,
+        "total_edges": 2,
+        "num_independent_loops": 1,
+        "C_multigraph": 1,
+        "C_simple": 0,
+        "C_paper": 1,
+        "validation_multiplicity": 1,
+        "validation_multiplicity_cb": 0,
+        "is_connected": true
+      },
+      "expected": {
+        "N": 2,
+        "E_tree": 1,
+        "E_harm": 1,
+        "E_total": 2,
+        "C": 1,
+        "V_mult": 1
+      },
+      "checks": {
+        "N": true,
+        "E_tree": true,
+        "E_harm": true,
+        "E_total": true,
+        "C": true
+      },
+      "status": "PASS"
+    },
+    "CO": {
+      "computed": {
+        "molecule": "CO",
+        "num_modes": 7,
+        "num_tree_edges": 6,
+        "num_harmonic_edges": 3,
+        "total_edges": 9,
+        "num_independent_loops": 3,
+        "C_multigraph": 3,
+        "C_simple": 3,
+        "C_paper": 3,
+        "validation_multiplicity": 3,
+        "validation_multiplicity_cb": 3,
+        "is_connected": true
+      },
+      "expected": {
+        "N": 7,
+        "E_tree": 6,
+        "E_harm": 3,
+        "E_total": 9,
+        "C": 3,
+        "V_mult": 2
+      },
+      "checks": {
+        "N": true,
+        "E_tree": true,
+        "E_harm": true,
+        "E_total": true,
+        "C": true
+      },
+      "status": "PASS"
+    },
+    "H2O": {
+      "computed": {
+        "molecule": "H2O",
+        "num_modes": 3,
+        "num_tree_edges": 2,
+        "num_harmonic_edges": 3,
+        "total_edges": 5,
+        "num_independent_loops": 1,
+        "C_multigraph": 3,
+        "C_simple": 1,
+        "C_paper": 1,
+        "validation_multiplicity": 3,
+        "validation_multiplicity_cb": 1,
+        "is_connected": true
+      },
+      "expected": {
+        "N": 3,
+        "E_tree": 2,
+        "E_harm": 3,
+        "E_total": 5,
+        "C": 1,
+        "V_mult": 1
+      },
+      "checks": {
+        "N": true,
+        "E_tree": true,
+        "E_harm": true,
+        "E_total": true,
+        "C": true
+      },
+      "status": "PASS"
+    },
+    "CO2": {
+      "computed": {
+        "molecule": "CO2",
+        "num_modes": 3,
+        "num_tree_edges": 2,
+        "num_harmonic_edges": 3,
+        "total_edges": 5,
+        "num_independent_loops": 1,
+        "C_multigraph": 3,
+        "C_simple": 1,
+        "C_paper": 1,
+        "validation_multiplicity": 3,
+        "validation_multiplicity_cb": 1,
+        "is_connected": true
+      },
+      "expected": {
+        "N": 3,
+        "E_tree": 2,
+        "E_harm": 3,
+        "E_total": 5,
+        "C": 1,
+        "V_mult": 1
+      },
+      "checks": {
+        "N": true,
+        "E_tree": true,
+        "E_harm": true,
+        "E_total": true,
+        "C": true
+      },
+      "status": "PASS"
+    },
+    "CH4": {
+      "computed": {
+        "molecule": "CH4",
+        "num_modes": 4,
+        "num_tree_edges": 3,
+        "num_harmonic_edges": 6,
+        "total_edges": 9,
+        "num_independent_loops": 6,
+        "C_multigraph": 6,
+        "C_simple": 3,
+        "C_paper": 6,
+        "validation_multiplicity": 6,
+        "validation_multiplicity_cb": 3,
+        "is_connected": true
+      },
+      "expected": {
+        "N": 4,
+        "E_tree": 3,
+        "E_harm": 6,
+        "E_total": 9,
+        "C": 6,
+        "V_mult": 4
+      },
+      "checks": {
+        "N": true,
+        "E_tree": true,
+        "E_harm": true,
+        "E_total": true,
+        "C": true
+      },
+      "status": "PASS"
+    },
+    "C6H6": {
+      "computed": {
+        "molecule": "C6H6",
+        "num_modes": 5,
+        "num_tree_edges": 4,
+        "num_harmonic_edges": 6,
+        "total_edges": 10,
+        "num_independent_loops": 6,
+        "C_multigraph": 6,
+        "C_simple": 3,
+        "C_paper": 6,
+        "validation_multiplicity": 5,
+        "validation_multiplicity_cb": 3,
+        "is_connected": true
+      },
+      "expected": {
+        "N": 5,
+        "E_tree": 4,
+        "E_harm": 6,
+        "E_total": 10,
+        "C": 6,
+        "V_mult": 4
+      },
+      "checks": {
+        "N": true,
+        "E_tree": true,
+        "E_harm": true,
+        "E_total": true,
+        "C": true
+      },
+      "status": "PASS"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "pass": 6,
+    "fail": 0
+  }
+}

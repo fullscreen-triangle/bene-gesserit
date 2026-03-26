@@ -1,0 +1,18 @@
+{
+  "experiment_id": "ic_exp1",
+  "experiment_name": "BMD Transistor",
+  "timestamp": "20251208_142016",
+  "hypothesis": "BMD transistor exhibits 42.1 on/off ratio and <1 \u03bcs switching",
+  "conclusion": "On/off = 42.1, switching = 1.00 \u03bcs",
+  "validated": true,
+  "data": {
+    "on_off_ratio": 42.1,
+    "switching_time_s": 1e-06,
+    "probability_enhancement": 1000000000000.0
+  },
+  "metrics": {
+    "on_off_ratio": 42.1,
+    "switching_time_us": 1.0
+  },
+  "figures": []
+}

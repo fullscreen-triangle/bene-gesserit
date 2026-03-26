@@ -1,0 +1,647 @@
+{
+  "hardware_oscillators": {
+    "n_samples": 30,
+    "sources": [
+      "memory_timing",
+      "perf_counter",
+      "computation_jitter"
+    ],
+    "precision_diff_mean": 0.0003191343306763859,
+    "precision_diff_std": 0.1468323216969361,
+    "precision_diff_range": [
+      -0.3870649635036497,
+      0.42853503649635033
+    ],
+    "calibration": {
+      "timing_jitter": 0.0007900182478394135,
+      "perf_counter": 524835.0364963503
+    },
+    "s_coordinate": {
+      "S_k": 0.2460587772865668,
+      "S_t": 0.012453605547243776,
+      "S_e": 1.0888999749443347
+    }
+  },
+  "precision_navigation": {
+    "addresses": {
+      "alpha": {
+        "trajectory_hash": "8bfb84c27c2916ab",
+        "trajectory_length": 21,
+        "hierarchy_depth": 21,
+        "branch_path": [
+          2,
+          1,
+          1,
+          0,
+          1,
+          0,
+          2,
+          0,
+          2,
+          1
+        ],
+        "completion_predicted": {
+          "S_k": 0.04437117095823594,
+          "S_t": 0.01635688,
+          "S_e": 0.9502705389342291
+        }
+      },
+      "beta": {
+        "trajectory_hash": "77d3d86c1a3c6b79",
+        "trajectory_length": 21,
+        "hierarchy_depth": 21,
+        "branch_path": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          1,
+          0,
+          1,
+          0,
+          2
+        ],
+        "completion_predicted": {
+          "S_k": 0.04437117095823594,
+          "S_t": 0.01635688,
+          "S_e": 0.9502705389342291
+        }
+      },
+      "gamma": {
+        "trajectory_hash": "0d4e3cfb522855de",
+        "trajectory_length": 21,
+        "hierarchy_depth": 21,
+        "branch_path": [
+          0,
+          2,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "completion_predicted": {
+          "S_k": 0.04437117095823594,
+          "S_t": 0.01635688,
+          "S_e": 0.9502705389342291
+        }
+      }
+    },
+    "navigation_paths": {
+      "alpha->beta": {
+        "path_length": 42,
+        "cost": 5230176601.5,
+        "path_preview": [
+          [
+            1,
+            "ascend"
+          ],
+          [
+            1,
+            "ascend"
+          ],
+          [
+            1,
+            "ascend"
+          ],
+          [
+            2,
+            "ascend"
+          ],
+          [
+            2,
+            "ascend"
+          ]
+        ]
+      },
+      "alpha->gamma": {
+        "path_length": 42,
+        "cost": 5230176601.5,
+        "path_preview": [
+          [
+            1,
+            "ascend"
+          ],
+          [
+            1,
+            "ascend"
+          ],
+          [
+            1,
+            "ascend"
+          ],
+          [
+            2,
+            "ascend"
+          ],
+          [
+            2,
+            "ascend"
+          ]
+        ]
+      },
+      "beta->gamma": {
+        "path_length": 40,
+        "cost": 5230176600.166666,
+        "path_preview": [
+          [
+            0,
+            "ascend"
+          ],
+          [
+            1,
+            "ascend"
+          ],
+          [
+            2,
+            "ascend"
+          ],
+          [
+            2,
+            "ascend"
+          ],
+          [
+            1,
+            "ascend"
+          ]
+        ]
+      }
+    },
+    "calculator_stats": {
+      "total_calculations": 63,
+      "mean_precision": -1.9206564768254676e-07,
+      "std_precision": 8.58787574716537e-07,
+      "active_addresses": 3,
+      "history_length": 63
+    }
+  },
+  "hierarchy_storage": {
+    "stored_items": [
+      {
+        "key": "data_0",
+        "depth": 6,
+        "branch_index": 1,
+        "path": [
+          2,
+          1,
+          0,
+          2,
+          0
+        ]
+      },
+      {
+        "key": "data_1",
+        "depth": 7,
+        "branch_index": 0,
+        "path": [
+          2,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "key": "data_2",
+        "depth": 8,
+        "branch_index": 1,
+        "path": [
+          1,
+          0,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "key": "data_3",
+        "depth": 9,
+        "branch_index": 2,
+        "path": [
+          1,
+          1,
+          2,
+          2,
+          1
+        ]
+      },
+      {
+        "key": "data_4",
+        "depth": 10,
+        "branch_index": 1,
+        "path": [
+          1,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "key": "data_5",
+        "depth": 11,
+        "branch_index": 0,
+        "path": [
+          1,
+          2,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "key": "data_6",
+        "depth": 12,
+        "branch_index": 2,
+        "path": [
+          0,
+          0,
+          1,
+          2,
+          1
+        ]
+      },
+      {
+        "key": "data_7",
+        "depth": 13,
+        "branch_index": 1,
+        "path": [
+          1,
+          0,
+          2,
+          0,
+          2
+        ]
+      },
+      {
+        "key": "data_8",
+        "depth": 14,
+        "branch_index": 2,
+        "path": [
+          0,
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "key": "data_9",
+        "depth": 15,
+        "branch_index": 0,
+        "path": [
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      },
+      {
+        "key": "data_10",
+        "depth": 16,
+        "branch_index": 1,
+        "path": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "key": "data_11",
+        "depth": 17,
+        "branch_index": 2,
+        "path": [
+          1,
+          0,
+          0,
+          0,
+          2
+        ]
+      },
+      {
+        "key": "data_12",
+        "depth": 18,
+        "branch_index": 0,
+        "path": [
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      },
+      {
+        "key": "data_13",
+        "depth": 19,
+        "branch_index": 1,
+        "path": [
+          0,
+          0,
+          2,
+          2,
+          0
+        ]
+      },
+      {
+        "key": "data_14",
+        "depth": 20,
+        "branch_index": 0,
+        "path": [
+          2,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "key": "data_15",
+        "depth": 20,
+        "branch_index": 2,
+        "path": [
+          1,
+          0,
+          2,
+          0,
+          1
+        ]
+      },
+      {
+        "key": "data_16",
+        "depth": 20,
+        "branch_index": 0,
+        "path": [
+          2,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "key": "data_17",
+        "depth": 20,
+        "branch_index": 1,
+        "path": [
+          2,
+          2,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "key": "data_18",
+        "depth": 20,
+        "branch_index": 2,
+        "path": [
+          0,
+          2,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "key": "data_19",
+        "depth": 20,
+        "branch_index": 0,
+        "path": [
+          2,
+          0,
+          0,
+          2,
+          1
+        ]
+      }
+    ],
+    "branch_stats": {
+      "branch_counts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          3,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          4
+        ]
+      ],
+      "node_counts": [
+        1,
+        3,
+        8
+      ],
+      "total_nodes": 256,
+      "total_data": 20,
+      "total_accesses": 0
+    },
+    "retrievals": [
+      {
+        "key": "data_0",
+        "found": true,
+        "node_depth": 6
+      },
+      {
+        "key": "data_5",
+        "found": true,
+        "node_depth": 11
+      },
+      {
+        "key": "data_10",
+        "found": true,
+        "node_depth": 16
+      },
+      {
+        "key": "data_15",
+        "found": true,
+        "node_depth": 20
+      }
+    ],
+    "nearest_neighbors": [
+      {
+        "data": "Content for item 10",
+        "distance": 0
+      }
+    ],
+    "compression": {
+      "nodes_removed": 0,
+      "nodes_remaining": 256,
+      "compression_ratio": 0.9961089494163424
+    }
+  },
+  "memory_controller": {
+    "final_statistics": {
+      "tier_sizes": {
+        "L1_CACHE": 30,
+        "L2_CACHE": 0,
+        "RAM": 0,
+        "SSD": 0,
+        "ARCHIVE": 0
+      },
+      "tier_capacities": {
+        "L1_CACHE": 64,
+        "L2_CACHE": 256,
+        "RAM": 4096,
+        "SSD": 65536,
+        "ARCHIVE": Infinity
+      },
+      "hits_by_tier": {
+        "L1_CACHE": 33,
+        "L2_CACHE": 0,
+        "RAM": 0,
+        "SSD": 0,
+        "ARCHIVE": 0
+      },
+      "total_hits": 33,
+      "misses": 0,
+      "hit_rate": 1.0,
+      "promotions": 0,
+      "demotions": 0,
+      "evictions": 0,
+      "hierarchy_stats": {
+        "branch_counts": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            3,
+            3
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "node_counts": [
+          1,
+          3,
+          9
+        ],
+        "total_nodes": 13,
+        "total_data": 30,
+        "total_accesses": 0
+      },
+      "precision_stats": {
+        "total_calculations": 157,
+        "mean_precision": -6.127357870854816e-07,
+        "std_precision": 5.496769822117297e-07,
+        "active_addresses": 31,
+        "history_length": 157
+      }
+    },
+    "current_position": {
+      "coordinate": {
+        "S_k": 0.4093756281841715,
+        "S_t": 0.1957785,
+        "S_e": 0.6730116668157962
+      },
+      "depth": 64,
+      "branch_path": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2,
+        2,
+        1,
+        0,
+        2,
+        1,
+        0,
+        2,
+        2,
+        1,
+        2,
+        2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        1,
+        2,
+        1,
+        0,
+        2,
+        1,
+        1,
+        1,
+        1,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        2,
+        2,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1
+      ],
+      "trajectory_hash": "5873f0b9e9525145"
+    },
+    "hot_items": [
+      "item_5",
+      "item_10",
+      "item_15"
+    ],
+    "cold_items": [
+      "item_25",
+      "item_26",
+      "item_27"
+    ],
+    "prefetched": []
+  },
+  "harmonic_coincidences": {
+    "molecular_frequencies": {
+      "C-H_stretch": 90000000000000.0,
+      "C=O_stretch": 51000000000000.0,
+      "O-H_bend": 45000000000000.0,
+      "protein_vibration": 1000000000000.0,
+      "membrane_fluctuation": 1000000.0
+    },
+    "coincidences_found": {}
+  }
+}

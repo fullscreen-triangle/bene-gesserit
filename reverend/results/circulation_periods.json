@@ -1,0 +1,942 @@
+{
+  "description": "Circulation periods (Table 3). T_beat = beat period for harmonic edge.",
+  "timestamp": "2026-03-25T06:26:27.904018",
+  "parameters": {
+    "q_max": 10,
+    "delta_max": 0.05
+  },
+  "physical_constants": {
+    "c_cm_per_s": 29980000000.0,
+    "h_J_s": 6.626e-34,
+    "hbar_J_s": 1.055e-34,
+    "k_B_J_per_K": 1.381e-23,
+    "epsilon_0_F_per_m": 8.854e-12
+  },
+  "molecules_tested": [
+    "H2",
+    "CO",
+    "H2O",
+    "CO2",
+    "CH4",
+    "C6H6"
+  ],
+  "results": {
+    "H2": {
+      "circulations": [
+        {
+          "loop_label": "vib-rot-vib",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "vib",
+              "to": "rot",
+              "type": "tree",
+              "delta_omega_cm": 4282.3,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "rot",
+              "to": "vib",
+              "type": "harmonic",
+              "delta_omega_cm": 4282.3,
+              "T_beat_s": 7.789171795589636e-15,
+              "T_beat_ps": 0.0078
+            }
+          ],
+          "total_beat_period_s": 7.789171795589636e-15,
+          "total_beat_period_ps": 0.0078,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 4282.3,
+              "T_spectroscopic_ps": 0.0078,
+              "T_beat_ps": 0.0078,
+              "relative_difference": 0.0013901612,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        }
+      ],
+      "num": 1,
+      "all_agree": true
+    },
+    "CO": {
+      "circulations": [
+        {
+          "loop_label": "R1-vib-R0-R1",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "R1",
+              "to": "vib",
+              "type": "tree",
+              "delta_omega_cm": 7.86,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "vib",
+              "to": "R0",
+              "type": "tree",
+              "delta_omega_cm": 4.08,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "R0",
+              "to": "R1",
+              "type": "harmonic",
+              "delta_omega_cm": 3.78,
+              "T_beat_s": 8.824224968320565e-12,
+              "T_beat_ps": 8.8242
+            }
+          ],
+          "total_beat_period_s": 8.824224968320565e-12,
+          "total_beat_period_ps": 8.8242,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 3.78,
+              "T_spectroscopic_ps": 8.8242,
+              "T_beat_ps": 8.8242,
+              "relative_difference": 2.82952e-06,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "R2-vib-R1-R2",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "R2",
+              "to": "vib",
+              "type": "tree",
+              "delta_omega_cm": 11.59,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "vib",
+              "to": "R1",
+              "type": "tree",
+              "delta_omega_cm": 7.86,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "R1",
+              "to": "R2",
+              "type": "harmonic",
+              "delta_omega_cm": 3.73,
+              "T_beat_s": 8.942512166287758e-12,
+              "T_beat_ps": 8.9425
+            }
+          ],
+          "total_beat_period_s": 8.942512166287758e-12,
+          "total_beat_period_ps": 8.9425,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 3.73,
+              "T_spectroscopic_ps": 8.9425,
+              "T_beat_ps": 8.9425,
+              "relative_difference": 1.3605e-06,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "P2-vib-P3-P2",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "P2",
+              "to": "vib",
+              "type": "tree",
+              "delta_omega_cm": 7.45,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "vib",
+              "to": "P3",
+              "type": "tree",
+              "delta_omega_cm": 11.37,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "P3",
+              "to": "P2",
+              "type": "harmonic",
+              "delta_omega_cm": 3.92,
+              "T_beat_s": 8.509074076595123e-12,
+              "T_beat_ps": 8.5091
+            }
+          ],
+          "total_beat_period_s": 8.509074076595123e-12,
+          "total_beat_period_ps": 8.5091,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 3.92,
+              "T_spectroscopic_ps": 8.5091,
+              "T_beat_ps": 8.5091,
+              "relative_difference": 3.04656e-06,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        }
+      ],
+      "num": 3,
+      "all_agree": true
+    },
+    "H2O": {
+      "circulations": [
+        {
+          "loop_label": "nu1-nu2-nu1",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu1",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 2062.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu1",
+              "type": "harmonic",
+              "delta_omega_cm": 2062.0,
+              "T_beat_s": 1.6176319292072504e-14,
+              "T_beat_ps": 0.0162
+            }
+          ],
+          "total_beat_period_s": 1.6176319292072504e-14,
+          "total_beat_period_ps": 0.0162,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 2062.0,
+              "T_spectroscopic_ps": 0.0162,
+              "T_beat_ps": 0.0162,
+              "relative_difference": 0.001463912,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu2-nu1-nu3",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 2161.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu1",
+              "type": "tree",
+              "delta_omega_cm": 2062.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu1",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 99.0,
+              "T_beat_s": 3.3692495333589397e-13,
+              "T_beat_ps": 0.3369
+            }
+          ],
+          "total_beat_period_s": 3.3692495333589397e-13,
+          "total_beat_period_ps": 0.3369,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 99.0,
+              "T_spectroscopic_ps": 0.3369,
+              "T_beat_ps": 0.3369,
+              "relative_difference": 7.4062e-05,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu2-nu3",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 2161.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 2161.0,
+              "T_beat_s": 1.5435247746531007e-14,
+              "T_beat_ps": 0.0154
+            }
+          ],
+          "total_beat_period_s": 1.5435247746531007e-14,
+          "total_beat_period_ps": 0.0154,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 2161.0,
+              "T_spectroscopic_ps": 0.0154,
+              "T_beat_ps": 0.0154,
+              "relative_difference": 0.002283588,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        }
+      ],
+      "num": 3,
+      "all_agree": true
+    },
+    "CO2": {
+      "circulations": [
+        {
+          "loop_label": "nu1-nu2-nu1",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu1",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 721.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu1",
+              "type": "harmonic",
+              "delta_omega_cm": 721.0,
+              "T_beat_s": 4.626292701838211e-14,
+              "T_beat_ps": 0.0463
+            }
+          ],
+          "total_beat_period_s": 4.626292701838211e-14,
+          "total_beat_period_ps": 0.0463,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 721.0,
+              "T_spectroscopic_ps": 0.0463,
+              "T_beat_ps": 0.0463,
+              "relative_difference": 0.000801354,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu2-nu1-nu3",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 1682.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu1",
+              "type": "tree",
+              "delta_omega_cm": 721.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu1",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 961.0,
+              "T_beat_s": 3.4709230364467746e-14,
+              "T_beat_ps": 0.0347
+            }
+          ],
+          "total_beat_period_s": 3.4709230364467746e-14,
+          "total_beat_period_ps": 0.0347,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 961.0,
+              "T_spectroscopic_ps": 0.0347,
+              "T_beat_ps": 0.0347,
+              "relative_difference": 0.000265934,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu2-nu3",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 1682.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 1682.0,
+              "T_beat_s": 1.9830897966857017e-14,
+              "T_beat_ps": 0.0198
+            }
+          ],
+          "total_beat_period_s": 1.9830897966857017e-14,
+          "total_beat_period_ps": 0.0198,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 1682.0,
+              "T_spectroscopic_ps": 0.0198,
+              "T_beat_ps": 0.0198,
+              "relative_difference": 0.001558072,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        }
+      ],
+      "num": 3,
+      "all_agree": true
+    },
+    "CH4": {
+      "circulations": [
+        {
+          "loop_label": "nu1-nu2-nu1",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu1",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 1383.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu1",
+              "type": "harmonic",
+              "delta_omega_cm": 1383.0,
+              "T_beat_s": 2.4118272147688722e-14,
+              "T_beat_ps": 0.0241
+            }
+          ],
+          "total_beat_period_s": 2.4118272147688722e-14,
+          "total_beat_period_ps": 0.0241,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 1383.0,
+              "T_spectroscopic_ps": 0.0241,
+              "T_beat_ps": 0.0241,
+              "relative_difference": 0.000757606,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu2-nu1-nu3",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 1485.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu1",
+              "type": "tree",
+              "delta_omega_cm": 1383.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu1",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 102.0,
+              "T_beat_s": 3.2701539588483827e-13,
+              "T_beat_ps": 0.327
+            }
+          ],
+          "total_beat_period_s": 3.2701539588483827e-13,
+          "total_beat_period_ps": 0.327,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 102.0,
+              "T_spectroscopic_ps": 0.327,
+              "T_beat_ps": 0.327,
+              "relative_difference": 4.708e-05,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu1-nu2-nu4-nu1",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu1",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 1383.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu4",
+              "type": "tree",
+              "delta_omega_cm": 228.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu4",
+              "to": "nu1",
+              "type": "harmonic",
+              "delta_omega_cm": 1611.0,
+              "T_beat_s": 2.0704885400529796e-14,
+              "T_beat_ps": 0.0207
+            }
+          ],
+          "total_beat_period_s": 2.0704885400529796e-14,
+          "total_beat_period_ps": 0.0207,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 1611.0,
+              "T_spectroscopic_ps": 0.0207,
+              "T_beat_ps": 0.0207,
+              "relative_difference": 0.000235954,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu2-nu3",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 1485.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 1485.0,
+              "T_beat_s": 2.2461663555726264e-14,
+              "T_beat_ps": 0.0225
+            }
+          ],
+          "total_beat_period_s": 2.2461663555726264e-14,
+          "total_beat_period_ps": 0.0225,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 1485.0,
+              "T_spectroscopic_ps": 0.0225,
+              "T_beat_ps": 0.0225,
+              "relative_difference": 0.00170675,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu2-nu4-nu2",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu2",
+              "to": "nu4",
+              "type": "tree",
+              "delta_omega_cm": 228.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu4",
+              "to": "nu2",
+              "type": "harmonic",
+              "delta_omega_cm": 228.0,
+              "T_beat_s": 1.4629636131690131e-13,
+              "T_beat_ps": 0.1463
+            }
+          ],
+          "total_beat_period_s": 1.4629636131690131e-13,
+          "total_beat_period_ps": 0.1463,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 228.0,
+              "T_spectroscopic_ps": 0.1463,
+              "T_beat_ps": 0.1463,
+              "relative_difference": 2.4872e-05,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu2-nu4-nu3",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "tree",
+              "delta_omega_cm": 1485.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu2",
+              "to": "nu4",
+              "type": "tree",
+              "delta_omega_cm": 228.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu4",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 1713.0,
+              "T_beat_s": 1.9472020070200527e-14,
+              "T_beat_ps": 0.0195
+            }
+          ],
+          "total_beat_period_s": 1.9472020070200527e-14,
+          "total_beat_period_ps": 0.0195,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 1713.0,
+              "T_spectroscopic_ps": 0.0195,
+              "T_beat_ps": 0.0195,
+              "relative_difference": 0.00143693,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        }
+      ],
+      "num": 6,
+      "all_agree": true
+    },
+    "C6H6": {
+      "circulations": [
+        {
+          "loop_label": "nu2-nu3-nu2",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu2",
+              "to": "nu3",
+              "type": "tree",
+              "delta_omega_cm": 418.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu3",
+              "to": "nu2",
+              "type": "harmonic",
+              "delta_omega_cm": 418.0,
+              "T_beat_s": 7.979801526376436e-14,
+              "T_beat_ps": 0.0798
+            }
+          ],
+          "total_beat_period_s": 7.979801526376436e-14,
+          "total_beat_period_ps": 0.0798,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 418.0,
+              "T_spectroscopic_ps": 0.0798,
+              "T_beat_ps": 0.0798,
+              "relative_difference": 2.4872e-05,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu2-nu3-nu5-nu4-nu2",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu2",
+              "to": "nu3",
+              "type": "tree",
+              "delta_omega_cm": 418.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu3",
+              "to": "nu5",
+              "type": "tree",
+              "delta_omega_cm": 185.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu5",
+              "to": "nu4",
+              "type": "tree",
+              "delta_omega_cm": 320.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu4",
+              "to": "nu2",
+              "type": "harmonic",
+              "delta_omega_cm": 923.0,
+              "T_beat_s": 3.6138212763004876e-14,
+              "T_beat_ps": 0.0361
+            }
+          ],
+          "total_beat_period_s": 3.6138212763004876e-14,
+          "total_beat_period_ps": 0.0361,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 923.0,
+              "T_spectroscopic_ps": 0.0361,
+              "T_beat_ps": 0.0361,
+              "relative_difference": 0.001057406,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu2-nu3-nu5-nu2",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu2",
+              "to": "nu3",
+              "type": "tree",
+              "delta_omega_cm": 418.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu3",
+              "to": "nu5",
+              "type": "tree",
+              "delta_omega_cm": 185.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu5",
+              "to": "nu2",
+              "type": "harmonic",
+              "delta_omega_cm": 603.0,
+              "T_beat_s": 5.5316037114848263e-14,
+              "T_beat_ps": 0.0553
+            }
+          ],
+          "total_beat_period_s": 5.5316037114848263e-14,
+          "total_beat_period_ps": 0.0553,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 603.0,
+              "T_spectroscopic_ps": 0.0553,
+              "T_beat_ps": 0.0553,
+              "relative_difference": 0.000289918,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu5-nu4-nu3",
+          "is_overlap_loop": false,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu5",
+              "type": "tree",
+              "delta_omega_cm": 185.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu5",
+              "to": "nu4",
+              "type": "tree",
+              "delta_omega_cm": 320.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu4",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 505.0,
+              "T_beat_s": 6.605063441634356e-14,
+              "T_beat_ps": 0.0661
+            }
+          ],
+          "total_beat_period_s": 6.605063441634356e-14,
+          "total_beat_period_ps": 0.0661,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 505.0,
+              "T_spectroscopic_ps": 0.0661,
+              "T_beat_ps": 0.0661,
+              "relative_difference": 0.00074739,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu3-nu5-nu3",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu3",
+              "to": "nu5",
+              "type": "tree",
+              "delta_omega_cm": 185.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu5",
+              "to": "nu3",
+              "type": "harmonic",
+              "delta_omega_cm": 185.0,
+              "T_beat_s": 1.8030038043380272e-13,
+              "T_beat_ps": 0.1803
+            }
+          ],
+          "total_beat_period_s": 1.8030038043380272e-13,
+          "total_beat_period_ps": 0.1803,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 185.0,
+              "T_spectroscopic_ps": 0.1803,
+              "T_beat_ps": 0.1803,
+              "relative_difference": 2.11e-06,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        },
+        {
+          "loop_label": "nu5-nu4-nu5",
+          "is_overlap_loop": true,
+          "edge_transits": [
+            {
+              "from": "nu5",
+              "to": "nu4",
+              "type": "tree",
+              "delta_omega_cm": 320.0,
+              "note": "Transit = tau_em (radiative lifetime)"
+            },
+            {
+              "from": "nu4",
+              "to": "nu5",
+              "type": "harmonic",
+              "delta_omega_cm": 320.0,
+              "T_beat_s": 1.0423615743829219e-13,
+              "T_beat_ps": 0.1042
+            }
+          ],
+          "total_beat_period_s": 1.0423615743829219e-13,
+          "total_beat_period_ps": 0.1042,
+          "freq_diff_sum_cm": 0.0,
+          "closed_loop_check": true,
+          "spectroscopic_intervals": [
+            {
+              "delta_omega_cm": 320.0,
+              "T_spectroscopic_ps": 0.1042,
+              "T_beat_ps": 0.1042,
+              "relative_difference": 0.00034688,
+              "agreement": true,
+              "agreement_label": "Exact"
+            }
+          ],
+          "constructive_interference": true
+        }
+      ],
+      "num": 6,
+      "all_agree": true
+    }
+  },
+  "summary": {
+    "total": 22,
+    "all_agree": true,
+    "status": "PASS"
+  }
+}

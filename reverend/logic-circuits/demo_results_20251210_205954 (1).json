@@ -1,0 +1,88 @@
+{
+  "optimization": {
+    "problem": "rosenbrock",
+    "converged": true,
+    "solution": {
+      "minimize": true,
+      "x": 0.0,
+      "y": 0.0
+    },
+    "steps": 0,
+    "time": 0.0014984607696533203,
+    "trajectory_length": 1
+  },
+  "constraint": {
+    "problem": "4_queens",
+    "converged": true,
+    "solution": {
+      "q0": 1.830232717521581,
+      "q1": 2.895817317617584,
+      "q2": 0,
+      "q3": 2.408053685474945
+    },
+    "steps": 9,
+    "violation": 0.012236367857361152
+  },
+  "pattern_match": {
+    "problem": "pattern_match",
+    "matches": [
+      [
+        "candidate_0",
+        1.0,
+        {
+          "type": "kinase",
+          "active": true,
+          "mass": 40000
+        }
+      ],
+      [
+        "candidate_3",
+        1.0,
+        {
+          "type": "kinase",
+          "active": true,
+          "mass": 43000
+        }
+      ],
+      [
+        "candidate_4",
+        1.0,
+        {
+          "type": "kinase",
+          "active": true,
+          "mass": 34000
+        }
+      ],
+      [
+        "candidate_1",
+        0.75,
+        {
+          "type": "kinase",
+          "active": false,
+          "mass": 80000
+        }
+      ]
+    ],
+    "steps": 0
+  },
+  "biological": {
+    "problem": "drug_binding",
+    "converged": true,
+    "steps": 0,
+    "final_position": {
+      "S_k": 23.570226039551585,
+      "S_t": -16.666666666666668,
+      "S_e": 0.6365141681069291
+    }
+  },
+  "natural_language": {
+    "problem": "resource_allocation",
+    "solution": {
+      "minimize": 0.0,
+      "A": 33.60000000001037,
+      "B": 33.64999999985571,
+      "C": 33.70000000001028
+    },
+    "converged": true
+  }
+}

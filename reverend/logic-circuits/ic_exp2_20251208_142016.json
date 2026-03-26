@@ -1,0 +1,18 @@
+{
+  "experiment_id": "ic_exp2",
+  "experiment_name": "Tri-dimensional Logic Gates",
+  "timestamp": "20251208_142016",
+  "hypothesis": "Logic gates compute AND/OR/XOR simultaneously with >90% agreement",
+  "conclusion": "Average agreement: 100.0%",
+  "validated": true,
+  "data": {
+    "and_agreement": 1.0,
+    "or_agreement": 1.0,
+    "xor_agreement": 1.0,
+    "average_agreement": 1.0
+  },
+  "metrics": {
+    "average_agreement_pct": 100.0
+  },
+  "figures": []
+}

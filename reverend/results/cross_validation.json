@@ -1,0 +1,815 @@
+{
+  "timestamp": "2026-03-25T05:26:31.620590+00:00",
+  "description": "Cross-validation: four virtual-spectrometer modalities (Clock, Phase, LED, Refresh) must agree on partition coordinates for each valence electron",
+  "theorem": "Commutation Theorem -- all modalities commute with the partition operator",
+  "modalities": [
+    "Clock",
+    "Phase",
+    "LED",
+    "Refresh"
+  ],
+  "results": [
+    {
+      "symbol": "H",
+      "Z": 1,
+      "num_valence_electrons": 1,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 1,
+            "l": 0,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 1.0,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -13.605693,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "4/4"
+    },
+    {
+      "symbol": "C",
+      "Z": 6,
+      "num_valence_electrons": 2,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 2,
+            "l": 1,
+            "ml": 1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.25,
+            "phase_phi": 2.094395,
+            "led_E_n_eV": -3.401423,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 1,
+          "quantum_numbers": {
+            "n": 2,
+            "l": 1,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.25,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -3.401423,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "8/8"
+    },
+    {
+      "symbol": "Na",
+      "Z": 11,
+      "num_valence_electrons": 1,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 0,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "4/4"
+    },
+    {
+      "symbol": "Si",
+      "Z": 14,
+      "num_valence_electrons": 2,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 1,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "8/8"
+    },
+    {
+      "symbol": "Cl",
+      "Z": 17,
+      "num_valence_electrons": 5,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 1,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 2,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": -1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": -2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 3,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 1,
+            "ms": -0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": -0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 4,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 0,
+            "ms": -0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": -0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "20/20"
+    },
+    {
+      "symbol": "Ar",
+      "Z": 18,
+      "num_valence_electrons": 6,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 1,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 2,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": -1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": -2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 3,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 1,
+            "ms": -0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": -0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 4,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": 0,
+            "ms": -0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": -0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 5,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 1,
+            "ml": -1,
+            "ms": -0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": -2.094395,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": -0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "24/24"
+    },
+    {
+      "symbol": "Ca",
+      "Z": 20,
+      "num_valence_electrons": 2,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 0,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 1,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 0,
+            "ml": 0,
+            "ms": -0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": -0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "8/8"
+    },
+    {
+      "symbol": "Fe",
+      "Z": 26,
+      "num_valence_electrons": 6,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 2,
+            "ml": 2,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 2.513274,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 1,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 2,
+            "ml": 1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 1.256637,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 2,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 2,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 3,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 2,
+            "ml": -1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": -1.256637,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 4,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 2,
+            "ml": -2,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": -2.513274,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 5,
+          "quantum_numbers": {
+            "n": 3,
+            "l": 2,
+            "ml": 2,
+            "ms": -0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.111111,
+            "phase_phi": 2.513274,
+            "led_E_n_eV": -1.511744,
+            "refresh_s_z": -0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "24/24"
+    },
+    {
+      "symbol": "Gd",
+      "Z": 64,
+      "num_valence_electrons": 8,
+      "electrons": [
+        {
+          "electron_index": 0,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 3,
+            "ml": 3,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": 2.692794,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 1,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 3,
+            "ml": 2,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": 1.795196,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 2,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 3,
+            "ml": 1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": 0.897598,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 3,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 3,
+            "ml": 0,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": 0.0,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 4,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 3,
+            "ml": -1,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": -0.897598,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 5,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 3,
+            "ml": -2,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": -1.795196,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 6,
+          "quantum_numbers": {
+            "n": 4,
+            "l": 3,
+            "ml": -3,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.0625,
+            "phase_phi": -2.692794,
+            "led_E_n_eV": -0.850356,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        },
+        {
+          "electron_index": 7,
+          "quantum_numbers": {
+            "n": 5,
+            "l": 2,
+            "ml": 2,
+            "ms": 0.5
+          },
+          "partition_coordinates": {
+            "clock_omega_n": 0.04,
+            "phase_phi": 2.513274,
+            "led_E_n_eV": -0.544228,
+            "refresh_s_z": 0.5
+          },
+          "modality_agreement": {
+            "Clock": true,
+            "Phase": true,
+            "LED": true,
+            "Refresh": true
+          },
+          "agreements": "4/4"
+        }
+      ],
+      "element_agreement": "32/32"
+    }
+  ],
+  "total_agreements": 132,
+  "total_checks": 132,
+  "summary": "132/132 modality-electron checks passed",
+  "all_pass": true
+}

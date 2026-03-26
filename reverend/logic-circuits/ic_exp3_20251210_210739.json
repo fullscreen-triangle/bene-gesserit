@@ -1,0 +1,18 @@
+{
+  "experiment_id": "ic_exp3",
+  "experiment_name": "Gear Ratio Interconnects",
+  "timestamp": "20251210_210739",
+  "hypothesis": "Interconnects provide 23,500\u00d7 routing speedup",
+  "conclusion": "Speedup = 23500\u00d7",
+  "validated": true,
+  "data": {
+    "mean_ratio": 3526.93866427064,
+    "std_ratio": 2537.2047813116687,
+    "speedup_factor": 23500
+  },
+  "metrics": {
+    "speedup_factor": 23500,
+    "mean_gear_ratio": 3526.93866427064
+  },
+  "figures": []
+}

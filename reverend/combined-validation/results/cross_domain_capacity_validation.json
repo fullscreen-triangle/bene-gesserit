@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-03-26T17:07:21.706130+00:00",
+  "validation": "One Axiom, Seven Domains -- C(n)=2n^2",
+  "num_domains": 7,
+  "domains": [
+    {
+      "domain": "Atomic (Shell Capacity)",
+      "description": "C(n)=2n^2 for n=1..7",
+      "tests": 7,
+      "passed": 7,
+      "pass_rate": 1.0,
+      "key_result": "All 7 shells match 2n^2 exactly"
+    },
+    {
+      "domain": "Atomic (Electron Config)",
+      "description": "Aufbau/Madelung vs NIST for 9 elements",
+      "tests": 9,
+      "passed": 9,
+      "pass_rate": 1.0,
+      "key_result": "9/9 NIST match"
+    },
+    {
+      "domain": "Atomic (Term Symbols)",
+      "description": "Hund's rules vs NIST for 9 elements",
+      "tests": 9,
+      "passed": 9,
+      "pass_rate": 1.0,
+      "key_result": "9/9 NIST match"
+    },
+    {
+      "domain": "Spectroscopic (H lines)",
+      "description": "Rydberg vs NIST wavelengths, Lyman+Balmer",
+      "tests": 6,
+      "passed": 6,
+      "pass_rate": 1.0,
+      "key_result": "6 lines, mean error 0.0395%"
+    },
+    {
+      "domain": "Molecular (6 molecules)",
+      "description": "Tick hierarchy / harmonic / network / loop / circulation / self-consistency",
+      "tests": 6,
+      "passed": 6,
+      "pass_rate": 1.0,
+      "key_result": "6/6 molecules all PASS"
+    },
+    {
+      "domain": "Semiconductor (BMD Transistor)",
+      "description": "On/off ratio and switching time",
+      "tests": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "key_result": "On/off ratio = 42.1"
+    },
+    {
+      "domain": "Computing (Categorical Sort)",
+      "description": "O(log_3 N) categorical ops vs O(N log N)",
+      "tests": 9,
+      "passed": 9,
+      "pass_rate": 1.0,
+      "key_result": "Categorical ops: [6, 8, 10]"
+    }
+  ],
+  "overall_pass_rate": 1.0
+}

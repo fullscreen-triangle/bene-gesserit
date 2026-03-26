@@ -1,0 +1,68 @@
+{
+  "demo_type": "simple_demonstration",
+  "timestamp": "2025-09-19T00:27:27.994472",
+  "tests": {
+    "quick_compression_test": {
+      "test_name": "Quick Compression Test",
+      "success": true,
+      "timestamp": "2025-09-19T00:27:28.002681",
+      "results": {
+        "original_size": 190,
+        "compressed_size": 264,
+        "compression_ratio": 1.3894736842105264,
+        "understanding_score": 0.35,
+        "equivalence_classes_count": 1,
+        "navigation_rules_count": 1,
+        "test_data_sample": "The number 5 represents different concepts:\n    Mathematical: 2 + 3 = 5\n    Array index: element[5] ..."
+      }
+    },
+    "quick_equivalence_detection_test": {
+      "test_name": "Quick Equivalence Detection Test",
+      "success": false,
+      "timestamp": "2025-09-19T00:27:28.003552",
+      "error": "'EquivalenceDetector' object has no attribute 'analyze_text'"
+    },
+    "quick_network_evolution_test": {
+      "test_name": "Quick Network Evolution Test",
+      "success": false,
+      "timestamp": "2025-09-19T00:27:28.006477",
+      "error": "'network_state'"
+    },
+    "quick_foundry_architecture_test": {
+      "test_name": "Quick Foundry Architecture Test",
+      "success": true,
+      "timestamp": "2025-09-19T00:28:03.514720",
+      "results": {
+        "theoretical_density_achieved": 9.561701526630733e-19,
+        "actual_processors_created": 1000000,
+        "processing_efficiency": 0.9250957124779191,
+        "quantum_coherence_duration": 6e-11,
+        "validation_score": 0.6655132601426427
+      }
+    },
+    "quick_virtual_processing_acceleration_test": {
+      "test_name": "Quick Virtual Processing Acceleration Test",
+      "success": true,
+      "timestamp": "2025-09-19T00:28:05.422900",
+      "results": {
+        "target_frequency_hz": 1e+29,
+        "achieved_frequency_hz": 1.992392674967637e+30,
+        "frequency_accuracy": 19.923926749676372,
+        "temporal_precision_seconds": 1e-15,
+        "parallel_processing_capacity": 1000000000000000,
+        "validation_score": 0.9163496947903181
+      }
+    }
+  },
+  "demo_summary": {
+    "total_tests": 5,
+    "successful_tests": 3,
+    "failed_tests": 2,
+    "success_rate": 0.6,
+    "all_tests_passed": false,
+    "failed_test_names": [
+      "Quick Equivalence Detection Test",
+      "Quick Network Evolution Test"
+    ]
+  }
+}

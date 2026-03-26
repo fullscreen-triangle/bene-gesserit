@@ -1,0 +1,154 @@
+{
+  "summary": {
+    "total_experiments": 5,
+    "successful_experiments": "3",
+    "success_rate": 0.6,
+    "bm\u0434_consciousness_validated": "False",
+    "key_findings": {
+      "frame_selection_validated": true,
+      "counterfactual_bias_validated": "True",
+      "reality_fusion_validated": "False",
+      "navigation_validated": true,
+      "temporal_consistency_validated": false
+    }
+  },
+  "individual_experiments": {
+    "experiment_1": {
+      "selection_analysis": {
+        "most_selected_frame": [
+          "4157",
+          4
+        ],
+        "least_selected_frame": [
+          "5144",
+          1
+        ],
+        "selection_entropy": 6.791986148795357,
+        "mean_selection_probability": 0.00556008304319216
+      },
+      "function_validation": {
+        "probability_normalization": true,
+        "positive_probabilities": true,
+        "bm\u0434_function_valid": true
+      },
+      "total_experiences": 1000,
+      "total_frames": 10000,
+      "experiment": "Frame Selection Probability Dynamics",
+      "validation_success": true
+    },
+    "experiment_2": {
+      "bias_analysis": {
+        "goal": {
+          "count": 2456,
+          "mean_memory_prob": 0.15,
+          "mean_encoding_strength": 0.15351031194237308,
+          "mean_persistence": 0.2943991624376299,
+          "uncertainty_level": 0.0
+        },
+        "miss": {
+          "count": 3006,
+          "mean_memory_prob": 0.27,
+          "mean_encoding_strength": 0.27561873916053764,
+          "mean_persistence": 0.5394685670295583,
+          "uncertainty_level": 0.1
+        },
+        "crossbar": {
+          "count": 488,
+          "mean_memory_prob": 0.7499999999999999,
+          "mean_encoding_strength": 0.7184256249514984,
+          "mean_persistence": 1.4496977135778824,
+          "uncertainty_level": 0.5
+        },
+        "post": {
+          "count": 517,
+          "mean_memory_prob": 0.715,
+          "mean_encoding_strength": 0.7478094911349643,
+          "mean_persistence": 1.4063124694778606,
+          "uncertainty_level": 0.5
+        },
+        "saved": {
+          "count": 2564,
+          "mean_memory_prob": 0.35500000000000004,
+          "mean_encoding_strength": 0.36159714834984147,
+          "mean_persistence": 0.7033052963473178,
+          "uncertainty_level": 0.2
+        },
+        "blocked": {
+          "count": 969,
+          "mean_memory_prob": 0.4400000000000001,
+          "mean_encoding_strength": 0.42599426715576266,
+          "mean_persistence": 0.8808380335086605,
+          "uncertainty_level": 0.3
+        }
+      },
+      "crossbar_phenomenon": {
+        "crossbar_memory_advantage": 4.679982835427964,
+        "crossbar_persistence_advantage": 4.924258960434402,
+        "uncertainty_correlation": 0.9929894006829635,
+        "counterfactual_bias_validated": "True"
+      },
+      "uncertainty_analysis": {
+        "peak_uncertainty_bin": "(0.4, 0.5]",
+        "peak_memory_probability": 0.7319950248756218,
+        "uncertainty_peak_confirmed": "True"
+      },
+      "total_shots": 10000,
+      "experiment": "Counterfactual Selection Bias",
+      "validation_success": "True"
+    },
+    "experiment_3": {
+      "fusion_analysis": {
+        "mean_fusion_strength": 0.0048000000000000004,
+        "fusion_stability": -5.377042156569665,
+        "mean_frames_per_moment": 0.024,
+        "fusion_successful": "False"
+      },
+      "continuity_analysis": {
+        "consciousness_gaps": 0.135,
+        "consciousness_continuous": "False"
+      },
+      "simulation_duration": 10.0,
+      "time_resolution": 0.01,
+      "experiment": "Reality-Frame Fusion Dynamics",
+      "validation_success": "False"
+    },
+    "experiment_4": {
+      "navigation_analysis": {
+        "coverage_ratio": 0.3337,
+        "path_efficiency": 0.3337,
+        "total_visited_frames": 3337,
+        "navigation_successful": true
+      },
+      "availability_validation": {
+        "frames_pre_existed": true,
+        "appropriate_frames_found": true,
+        "predetermined_availability_confirmed": true
+      },
+      "total_navigation_steps": 10000,
+      "landscape_size": 10000,
+      "experiment": "Predetermined Cognitive Landscape Navigation",
+      "validation_success": true
+    },
+    "experiment_5": {
+      "consistency_analysis": {
+        "violation_rate": 0.9854666666666667,
+        "consistency_rate": 0.005,
+        "total_violations": 59128,
+        "consistency_maintained": false
+      },
+      "constraint_validation": {
+        "low_violation_rate": false,
+        "high_consistency": false,
+        "constraints_satisfied": false
+      },
+      "total_time_points": 60000,
+      "sampled_points": 600,
+      "experiment": "Temporal Consistency Constraints",
+      "validation_success": false
+    }
+  },
+  "timestamp": "2025-11-02T23:44:03.286348",
+  "total_experiments": 5,
+  "successful_experiments": "3",
+  "overall_validation_success": "False"
+}

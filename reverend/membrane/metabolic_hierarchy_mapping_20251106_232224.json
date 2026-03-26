@@ -1,0 +1,168 @@
+{
+  "timestamp": "20251106_232224",
+  "description": "Patient metabolic hierarchy mapping",
+  "profiles": [
+    {
+      "patient_id": "PT001",
+      "age": 55,
+      "sex": "M",
+      "bmi": 32.5,
+      "fasting_glucose": 145,
+      "hba1c": 7.2,
+      "insulin": 18.5,
+      "triglycerides": 220,
+      "hdl_cholesterol": 35,
+      "ldl_cholesterol": 145,
+      "homa_ir": 6.6234567901234565,
+      "metabolic_syndrome_score": 5,
+      "hierarchical_depth_estimate": 0.11520000000000002,
+      "disease_state": "type_2_diabetes",
+      "severity": "moderate"
+    },
+    {
+      "patient_id": "PT002",
+      "age": 48,
+      "sex": "F",
+      "bmi": 28.3,
+      "fasting_glucose": 105,
+      "hba1c": 6.0,
+      "insulin": 14.2,
+      "triglycerides": 165,
+      "hdl_cholesterol": 45,
+      "ldl_cholesterol": 120,
+      "homa_ir": 3.6814814814814816,
+      "metabolic_syndrome_score": 4,
+      "hierarchical_depth_estimate": 0.3024,
+      "disease_state": "metabolic_syndrome",
+      "severity": "moderate"
+    },
+    {
+      "patient_id": "PT003",
+      "age": 35,
+      "sex": "M",
+      "bmi": 23.1,
+      "fasting_glucose": 88,
+      "hba1c": 5.2,
+      "insulin": 6.5,
+      "triglycerides": 95,
+      "hdl_cholesterol": 55,
+      "ldl_cholesterol": 105,
+      "homa_ir": 1.4123456790123456,
+      "metabolic_syndrome_score": 0,
+      "hierarchical_depth_estimate": 1.0,
+      "disease_state": "healthy",
+      "severity": "none"
+    }
+  ],
+  "mappings": [
+    {
+      "patient_id": "PT001",
+      "disease": "Type 2 Diabetes",
+      "severity": "moderate",
+      "current_depth": 0.11520000000000002,
+      "target_depth": 0.8,
+      "depth_deficit": 0.6848000000000001,
+      "dysfunction_levels": [
+        {
+          "level": 1,
+          "name": "Glucose_Transport",
+          "dysfunction_severity": 0.7,
+          "affected": true
+        },
+        {
+          "level": 2,
+          "name": "Glycolysis",
+          "dysfunction_severity": 0.6,
+          "affected": true
+        },
+        {
+          "level": 3,
+          "name": "TCA_Cycle",
+          "dysfunction_severity": 0.5,
+          "affected": true
+        },
+        {
+          "level": 4,
+          "name": "Oxidative_Phosphorylation",
+          "dysfunction_severity": 0.2,
+          "affected": false
+        },
+        {
+          "level": 5,
+          "name": "Gene_Expression",
+          "dysfunction_severity": 0.1,
+          "affected": false
+        }
+      ],
+      "primary_pathway": "Glucose_Transport",
+      "biomarkers": [
+        "glucose",
+        "HbA1c",
+        "insulin",
+        "HOMA-IR"
+      ],
+      "recommended_drug": "metformin",
+      "expected_timeline_weeks": 12,
+      "monitoring_frequency": "quarterly"
+    },
+    {
+      "patient_id": "PT002",
+      "disease": "Metabolic Syndrome",
+      "severity": "moderate",
+      "current_depth": 0.3024,
+      "target_depth": 0.7,
+      "depth_deficit": 0.39759999999999995,
+      "dysfunction_levels": [
+        {
+          "level": 1,
+          "name": "Glucose_Transport",
+          "dysfunction_severity": 0.5,
+          "affected": true
+        },
+        {
+          "level": 2,
+          "name": "Glycolysis",
+          "dysfunction_severity": 0.6,
+          "affected": true
+        },
+        {
+          "level": 3,
+          "name": "TCA_Cycle",
+          "dysfunction_severity": 0.7,
+          "affected": true
+        },
+        {
+          "level": 4,
+          "name": "Oxidative_Phosphorylation",
+          "dysfunction_severity": 0.5,
+          "affected": true
+        },
+        {
+          "level": 5,
+          "name": "Gene_Expression",
+          "dysfunction_severity": 0.2,
+          "affected": false
+        }
+      ],
+      "primary_pathway": "Multiple",
+      "biomarkers": [
+        "glucose",
+        "triglycerides",
+        "HDL",
+        "blood_pressure",
+        "waist_circumference"
+      ],
+      "recommended_drug": "metformin",
+      "expected_timeline_weeks": 24,
+      "monitoring_frequency": "quarterly"
+    },
+    {
+      "patient_id": "PT003",
+      "disease": "healthy",
+      "current_depth": 1.0,
+      "dysfunction_levels": [],
+      "recommended_intervention": "lifestyle_maintenance",
+      "expected_outcome": "maintain health"
+    }
+  ]
+}

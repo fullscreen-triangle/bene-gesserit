@@ -1,0 +1,63 @@
+{
+  "n_thoughts_captured": 4,
+  "similarity": {
+    "n_thoughts": 4,
+    "n_comparisons": 6,
+    "similarities": [
+      {
+        "thought_i": 0,
+        "thought_j": 1,
+        "geometric_similarity": 0.8211338664490324
+      },
+      {
+        "thought_i": 0,
+        "thought_j": 2,
+        "geometric_similarity": 0.7926085644494247
+      },
+      {
+        "thought_i": 0,
+        "thought_j": 3,
+        "geometric_similarity": 0.804007415114423
+      },
+      {
+        "thought_i": 1,
+        "thought_j": 2,
+        "geometric_similarity": 0.8524383162497662
+      },
+      {
+        "thought_i": 1,
+        "thought_j": 3,
+        "geometric_similarity": 0.838594820326126
+      },
+      {
+        "thought_i": 2,
+        "thought_j": 3,
+        "geometric_similarity": 0.8632619281443068
+      }
+    ],
+    "mean_similarity": 0.8286741517888464,
+    "std_similarity": 0.025250412014051603
+  },
+  "navigation": {
+    "n_steps": 15,
+    "path_length": 16,
+    "adjacent_similarities": [
+      0.9799961313601172,
+      0.9904845865535661,
+      0.9826623253057201,
+      0.985576255842699,
+      0.9801391698942699,
+      0.9852046317419224,
+      0.9906134539249759,
+      0.9918384906905149,
+      0.9817878852982309,
+      0.9841991623544198,
+      0.983292728810845,
+      0.9878264987796581,
+      0.9831245168662287,
+      0.9919258411510026,
+      0.9817338320665259
+    ],
+    "mean_adjacent_similarity": 0.9853603673760465,
+    "min_adjacent_similarity": 0.9799961313601172,
+    "continuity_validated": 

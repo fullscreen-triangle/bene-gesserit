@@ -1,0 +1,20 @@
+{
+  "experiment_id": "semi_exp3",
+  "experiment_name": "Carrier-Hole Recombination",
+  "timestamp": "20251208_142016",
+  "hypothesis": "Carriers recombine with holes when signatures match",
+  "conclusion": "15 recombinations observed",
+  "validated": true,
+  "data": {
+    "initial_holes": 20,
+    "initial_carriers": 15,
+    "final_holes": 5,
+    "final_carriers": 0,
+    "total_recombined": 15
+  },
+  "metrics": {
+    "recombination_count": 15,
+    "recombination_rate": 0.75
+  },
+  "figures": []
+}

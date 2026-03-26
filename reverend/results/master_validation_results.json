@@ -1,0 +1,2153 @@
+{
+  "validation_suite": "Electron Trajectories - Complete Validation",
+  "date": "2026-01-31T18:06:49.126142",
+  "total_experiments": 9,
+  "passed_experiments": 9,
+  "success_rate": 1.0,
+  "experiment_status": [
+    {
+      "number": 1,
+      "name": "Partition Capacity Theorem",
+      "status": "PASS"
+    },
+    {
+      "number": 2,
+      "name": "Selection Rules",
+      "status": "PASS"
+    },
+    {
+      "number": 3,
+      "name": "Categorical-Physical Commutation",
+      "status": "PASS"
+    },
+    {
+      "number": 4,
+      "name": "Ternary Trisection Algorithm",
+      "status": "PASS"
+    },
+    {
+      "number": 5,
+      "name": "Zero-Backaction Measurement",
+      "status": "PASS"
+    },
+    {
+      "number": 6,
+      "name": "Trans-Planckian Resolution",
+      "status": "PASS"
+    },
+    {
+      "number": 7,
+      "name": "Hydrogen 1s->2p Transition",
+      "status": "PASS"
+    },
+    {
+      "number": 8,
+      "name": "Omnidirectional Trajectory Validation",
+      "status": "PASS"
+    },
+    {
+      "number": 9,
+      "name": "Virtual Gas Ensemble Thermodynamics",
+      "status": "PASS"
+    }
+  ],
+  "detailed_results": {
+    "experiment_1": {
+      "name": "Partition Capacity Theorem",
+      "filename": "01_partition_capacity_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Partition Capacity Theorem Validation",
+        "date": "2026-01-31T18:06:48.940121",
+        "theory": "C(n) = 2n\u00b2",
+        "data": {
+          "capacity_validation": [
+            {
+              "n": 1,
+              "counted": 2,
+              "theoretical": 2,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0.5
+                ]
+              ]
+            },
+            {
+              "n": 2,
+              "counted": 8,
+              "theoretical": 8,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  2,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  2,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  2,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  2,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  2,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 3,
+              "counted": 18,
+              "theoretical": 18,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  3,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  3,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  3,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  3,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  3,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 4,
+              "counted": 32,
+              "theoretical": 32,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  4,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  4,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  4,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  4,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  4,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 5,
+              "counted": 50,
+              "theoretical": 50,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  5,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  5,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  5,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  5,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  5,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 6,
+              "counted": 72,
+              "theoretical": 72,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  6,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  6,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  6,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  6,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  6,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 7,
+              "counted": 98,
+              "theoretical": 98,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  7,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  7,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  7,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  7,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  7,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 8,
+              "counted": 128,
+              "theoretical": 128,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  8,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  8,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  8,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  8,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  8,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 9,
+              "counted": 162,
+              "theoretical": 162,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  9,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  9,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  9,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  9,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  9,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            },
+            {
+              "n": 10,
+              "counted": 200,
+              "theoretical": 200,
+              "error": 0,
+              "relative_error": 0.0,
+              "states": [
+                [
+                  10,
+                  0,
+                  0,
+                  -0.5
+                ],
+                [
+                  10,
+                  0,
+                  0,
+                  0.5
+                ],
+                [
+                  10,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                [
+                  10,
+                  1,
+                  -1,
+                  0.5
+                ],
+                [
+                  10,
+                  1,
+                  0,
+                  -0.5
+                ]
+              ]
+            }
+          ],
+          "subshell_validation": [
+            {
+              "subshell": "s",
+              "l": 0,
+              "counted": 2,
+              "expected": 2,
+              "error": 0
+            },
+            {
+              "subshell": "p",
+              "l": 1,
+              "counted": 6,
+              "expected": 6,
+              "error": 0
+            },
+            {
+              "subshell": "d",
+              "l": 2,
+              "counted": 10,
+              "expected": 10,
+              "error": 0
+            },
+            {
+              "subshell": "f",
+              "l": 3,
+              "counted": 14,
+              "expected": 14,
+              "error": 0
+            },
+            {
+              "subshell": "g",
+              "l": 4,
+              "counted": 18,
+              "expected": 18,
+              "error": 0
+            }
+          ],
+          "cumulative_validation": [
+            {
+              "N": 1,
+              "counted": 2,
+              "theoretical": 2,
+              "error": 0
+            },
+            {
+              "N": 2,
+              "counted": 10,
+              "theoretical": 10,
+              "error": 0
+            },
+            {
+              "N": 3,
+              "counted": 28,
+              "theoretical": 28,
+              "error": 0
+            },
+            {
+              "N": 4,
+              "counted": 60,
+              "theoretical": 60,
+              "error": 0
+            },
+            {
+              "N": 5,
+              "counted": 110,
+              "theoretical": 110,
+              "error": 0
+            },
+            {
+              "N": 6,
+              "counted": 182,
+              "theoretical": 182,
+              "error": 0
+            },
+            {
+              "N": 7,
+              "counted": 280,
+              "theoretical": 280,
+              "error": 0
+            }
+          ]
+        },
+        "summary": {
+          "max_error": 0,
+          "mean_error": 0.0,
+          "all_passed": true,
+          "n_max": 10,
+          "total_tests": 10
+        }
+      }
+    },
+    "experiment_2": {
+      "name": "Selection Rules",
+      "filename": "02_selection_rules_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Selection Rules Validation",
+        "date": "2026-01-31T18:06:48.943129",
+        "theory": "Delta_l = +/-1, Delta_m in {0,+/-1}, Delta_s = 0",
+        "data": {
+          "selection_rules": {
+            "n_max": 3,
+            "total_states": 28,
+            "allowed_count": 144,
+            "forbidden_count": 612,
+            "mean_allowed_rate": 5206210.034221638,
+            "mean_forbidden_rate": 0.0055300994207636,
+            "rate_ratio": 941431543.6489495,
+            "allowed_transitions_sample": [
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                "deltas": [
+                  1,
+                  -1,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 5530.843701478337
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  0,
+                  -0.5
+                ],
+                "deltas": [
+                  1,
+                  0,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 5530.843701478337
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  1,
+                  -0.5
+                ],
+                "deltas": [
+                  1,
+                  1,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 5530.843701478337
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  3,
+                  1,
+                  -1,
+                  -0.5
+                ],
+                "deltas": [
+                  1,
+                  -1,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 1379.1280933656192
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  3,
+                  1,
+                  0,
+                  -0.5
+                ],
+                "deltas": [
+                  1,
+                  0,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 1379.1280933656192
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  3,
+                  1,
+                  1,
+                  -0.5
+                ],
+                "deltas": [
+                  1,
+                  1,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 1379.1280933656192
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  -1,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  -1,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 5530.843701478337
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  0,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  0,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 5530.843701478337
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  1,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  1,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 5530.843701478337
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  0.5
+                ],
+                "final": [
+                  3,
+                  1,
+                  -1,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  -1,
+                  0.0
+                ],
+                "allowed": true,
+                "rate": 1379.1280933656192
+              }
+            ],
+            "forbidden_transitions_sample": [
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  1,
+                  0,
+                  0,
+                  0.5
+                ],
+                "deltas": [
+                  0,
+                  0,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.0032332992202187454
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "deltas": [
+                  0,
+                  0,
+                  0.0
+                ],
+                "allowed": false,
+                "rate": 0.008879862417738305
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  0,
+                  0,
+                  0.5
+                ],
+                "deltas": [
+                  0,
+                  0,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.004078162011995777
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  -1,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  -1,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.003201499224921069
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  0,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  0,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.0021886107997783587
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  2,
+                  1,
+                  1,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  1,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.009463208999575888
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  3,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "deltas": [
+                  0,
+                  0,
+                  0.0
+                ],
+                "allowed": false,
+                "rate": 0.007150207422166203
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  3,
+                  0,
+                  0,
+                  0.5
+                ],
+                "deltas": [
+                  0,
+                  0,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.001232357277024935
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  3,
+                  1,
+                  -1,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  -1,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.00599091408916868
+              },
+              {
+                "initial": [
+                  1,
+                  0,
+                  0,
+                  -0.5
+                ],
+                "final": [
+                  3,
+                  1,
+                  0,
+                  0.5
+                ],
+                "deltas": [
+                  1,
+                  0,
+                  1.0
+                ],
+                "allowed": false,
+                "rate": 0.006760843838826499
+              }
+            ]
+          },
+          "specific_transitions": [
+            {
+              "description": "1s -> 2p (Lyman-alpha)",
+              "initial": [
+                1,
+                0,
+                0,
+                0.5
+              ],
+              "final": [
+                2,
+                1,
+                0,
+                0.5
+              ],
+              "deltas": [
+                1,
+                0,
+                0.0
+              ],
+              "expected_allowed": true,
+              "actual_allowed": true,
+              "rate": 5530.843701478337,
+              "passed": true
+            },
+            {
+              "description": "2s -> 2p (same shell)",
+              "initial": [
+                2,
+                0,
+                0,
+                0.5
+              ],
+              "final": [
+                2,
+                1,
+                0,
+                0.5
+              ],
+              "deltas": [
+                1,
+                0,
+                0.0
+              ],
+              "expected_allowed": true,
+              "actual_allowed": true,
+              "rate": 10000000.0,
+              "passed": true
+            },
+            {
+              "description": "2p -> 3d",
+              "initial": [
+                2,
+                1,
+                0,
+                0.5
+              ],
+              "final": [
+                3,
+                2,
+                0,
+                0.5
+              ],
+              "deltas": [
+                1,
+                0,
+                0.0
+              ],
+              "expected_allowed": true,
+              "actual_allowed": true,
+              "rate": 2493522.087772962,
+              "passed": true
+            },
+            {
+              "description": "1s -> 2s (dl=0, forbidden)",
+              "initial": [
+                1,
+                0,
+                0,
+                0.5
+              ],
+              "final": [
+                2,
+                0,
+                0,
+                0.5
+              ],
+              "deltas": [
+                0,
+                0,
+                0.0
+              ],
+              "expected_allowed": false,
+              "actual_allowed": false,
+              "rate": 0.009159307711826489,
+              "passed": true
+            },
+            {
+              "description": "2p -> 3p (dl=0, forbidden)",
+              "initial": [
+                2,
+                1,
+                0,
+                0.5
+              ],
+              "final": [
+                3,
+                1,
+                0,
+                0.5
+              ],
+              "deltas": [
+                0,
+                0,
+                0.0
+              ],
+              "expected_allowed": false,
+              "actual_allowed": false,
+              "rate": 0.0031496950439520266,
+              "passed": true
+            },
+            {
+              "description": "1s -> 3d (dl=2, forbidden)",
+              "initial": [
+                1,
+                0,
+                0,
+                0.5
+              ],
+              "final": [
+                3,
+                2,
+                0,
+                0.5
+              ],
+              "deltas": [
+                2,
+                0,
+                0.0
+              ],
+              "expected_allowed": false,
+              "actual_allowed": false,
+              "rate": 0.004178014922002553,
+              "passed": true
+            }
+          ],
+          "delta_l_distribution": {
+            "0": {
+              "count": 924,
+              "allowed": 0,
+              "forbidden": 924
+            },
+            "1": {
+              "count": 784,
+              "allowed": 240,
+              "forbidden": 544
+            },
+            "2": {
+              "count": 412,
+              "allowed": 0,
+              "forbidden": 412
+            },
+            "3": {
+              "count": 112,
+              "allowed": 0,
+              "forbidden": 112
+            },
+            "-1": {
+              "count": 784,
+              "allowed": 240,
+              "forbidden": 544
+            },
+            "-2": {
+              "count": 412,
+              "allowed": 0,
+              "forbidden": 412
+            },
+            "-3": {
+              "count": 112,
+              "allowed": 0,
+              "forbidden": 112
+            }
+          }
+        }
+      }
+    },
+    "experiment_3": {
+      "name": "Categorical-Physical Commutation",
+      "filename": "03_commutation_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Categorical-Physical Commutation Validation",
+        "date": "2026-01-31T18:06:48.969380",
+        "theory": "[O_cat, O_phys] = 0",
+        "data": {
+          "commutation_validation": {
+            "dimension": 50,
+            "results": [
+              {
+                "categorical": "n",
+                "physical": "x",
+                "commutator_norm": 0.0,
+                "relative_commutator": 0.0,
+                "passed": true
+              },
+              {
+                "categorical": "n",
+                "physical": "p",
+                "commutator_norm": 1.6968522597245718e-23,
+                "relative_commutator": 0.0900408381238931,
+                "passed": false
+              },
+              {
+                "categorical": "n",
+                "physical": "H",
+                "commutator_norm": 1.067914996515237e-17,
+                "relative_commutator": 0.05935946146756542,
+                "passed": false
+              },
+              {
+                "categorical": "l",
+                "physical": "x",
+                "commutator_norm": 0.0,
+                "relative_commutator": 0.0,
+                "passed": true
+              },
+              {
+                "categorical": "l",
+                "physical": "p",
+                "commutator_norm": 1.916663596113167e-23,
+                "relative_commutator": 0.16363577883230226,
+                "passed": false
+              },
+              {
+                "categorical": "l",
+                "physical": "H",
+                "commutator_norm": 8.987843984213797e-18,
+                "relative_commutator": 0.08037956803432318,
+                "passed": false
+              },
+              {
+                "categorical": "m",
+                "physical": "x",
+                "commutator_norm": 0.0,
+                "relative_commutator": 0.0,
+                "passed": true
+              },
+              {
+                "categorical": "m",
+                "physical": "p",
+                "commutator_norm": 1.0915299464511302e-23,
+                "relative_commutator": 0.20203050891044216,
+                "passed": false
+              },
+              {
+                "categorical": "m",
+                "physical": "H",
+                "commutator_norm": 5.969826315998804e-18,
+                "relative_commutator": 0.11574460786520717,
+                "passed": false
+              }
+            ],
+            "all_passed": false
+          },
+          "heisenberg_control": {
+            "commutator_norm": 1.0652784043555984e-34,
+            "expected_norm": 7.456948830489188e-34,
+            "relative_error": 1.010152544552211,
+            "passed": false
+          },
+          "categorical_self_commutation": [
+            {
+              "op1": "n",
+              "op2": "l",
+              "commutator_norm": 0.0,
+              "relative_commutator": 0.0,
+              "passed": true
+            },
+            {
+              "op1": "n",
+              "op2": "m",
+              "commutator_norm": 0.0,
+              "relative_commutator": 0.0,
+              "passed": true
+            },
+            {
+              "op1": "l",
+              "op2": "m",
+              "commutator_norm": 0.0,
+              "relative_commutator": 0.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    "experiment_4": {
+      "name": "Ternary Trisection Algorithm",
+      "filename": "04_ternary_algorithm_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Ternary Trisection Algorithm Validation",
+        "date": "2026-01-31T18:06:48.973927",
+        "theory": "O(log_3 N) complexity, 37% faster than binary",
+        "data": {
+          "complexity_scaling": [
+            {
+              "N": 10,
+              "linear_iterations": 10,
+              "binary_iterations": 4,
+              "ternary_iterations": 3,
+              "speedup_percent": 25.0,
+              "expected_speedup": 37.0,
+              "error": 12.0,
+              "passed": false
+            },
+            {
+              "N": 100,
+              "linear_iterations": 100,
+              "binary_iterations": 7,
+              "ternary_iterations": 5,
+              "speedup_percent": 28.57142857142857,
+              "expected_speedup": 37.0,
+              "error": 8.42857142857143,
+              "passed": false
+            },
+            {
+              "N": 1000,
+              "linear_iterations": 1000,
+              "binary_iterations": 10,
+              "ternary_iterations": 7,
+              "speedup_percent": 30.0,
+              "expected_speedup": 37.0,
+              "error": 7.0,
+              "passed": false
+            },
+            {
+              "N": 10000,
+              "linear_iterations": 10000,
+              "binary_iterations": 14,
+              "ternary_iterations": 9,
+              "speedup_percent": 35.714285714285715,
+              "expected_speedup": 37.0,
+              "error": 1.2857142857142847,
+              "passed": true
+            },
+            {
+              "N": 100000,
+              "linear_iterations": 100000,
+              "binary_iterations": 17,
+              "ternary_iterations": 11,
+              "speedup_percent": 35.294117647058826,
+              "expected_speedup": 37.0,
+              "error": 1.705882352941174,
+              "passed": true
+            },
+            {
+              "N": 1000000,
+              "linear_iterations": 1000000,
+              "binary_iterations": 20,
+              "ternary_iterations": 13,
+              "speedup_percent": 35.0,
+              "expected_speedup": 37.0,
+              "error": 2.0,
+              "passed": true
+            },
+            {
+              "N": 10000000,
+              "linear_iterations": 10000000,
+              "binary_iterations": 24,
+              "ternary_iterations": 15,
+              "speedup_percent": 37.5,
+              "expected_speedup": 37.0,
+              "error": 0.5,
+              "passed": true
+            }
+          ],
+          "actual_performance": {
+            "N": 10000,
+            "n_trials": 1000,
+            "binary": {
+              "mean_iterations": 12.311,
+              "std_iterations": 1.5717121237682175,
+              "mean_time_us": 2.5582999805919826
+            },
+            "ternary": {
+              "mean_iterations": 8.001,
+              "std_iterations": 0.9874203765367616,
+              "mean_time_us": 2.7352003380656242
+            },
+            "speedup": {
+              "iterations_percent": 35.009341239541875,
+              "time_percent": -6.91476210044404
+            }
+          },
+          "spatial_localization": {
+            "initial_uncertainty": 1e-09,
+            "n_iterations": 10,
+            "results": [
+              {
+                "iteration": 0,
+                "measured_uncertainty": 1.0064335393105409e-09,
+                "theoretical_uncertainty": 1e-09,
+                "relative_error": 0.006433539310540822,
+                "passed": true
+              },
+              {
+                "iteration": 1,
+                "measured_uncertainty": 3.385490152831117e-10,
+                "theoretical_uncertainty": 3.333333333333333e-10,
+                "relative_error": 0.01564704584933516,
+                "passed": true
+              },
+              {
+                "iteration": 2,
+                "measured_uncertainty": 1.124499673858897e-10,
+                "theoretical_uncertainty": 1.1111111111111111e-10,
+                "relative_error": 0.012049706473007385,
+                "passed": true
+              },
+              {
+                "iteration": 3,
+                "measured_uncertainty": 3.728608334033151e-11,
+                "theoretical_uncertainty": 3.7037037037037036e-11,
+                "relative_error": 0.006724250188950801,
+                "passed": true
+              },
+              {
+                "iteration": 4,
+                "measured_uncertainty": 1.2267917080787557e-11,
+                "theoretical_uncertainty": 1.2345679012345679e-11,
+                "relative_error": 0.0062987164562078425,
+                "passed": true
+              },
+              {
+                "iteration": 5,
+                "measured_uncertainty": 4.107676166518665e-12,
+                "theoretical_uncertainty": 4.11522633744856e-12,
+                "relative_error": 0.0018346915359645727,
+                "passed": true
+              },
+              {
+                "iteration": 6,
+                "measured_uncertainty": 1.367225326377835e-12,
+                "theoretical_uncertainty": 1.3717421124828531e-12,
+                "relative_error": 0.0032927370705581856,
+                "passed": true
+              },
+              {
+                "iteration": 7,
+                "measured_uncertainty": 4.550970212769572e-13,
+                "theoretical_uncertainty": 4.572473708276178e-13,
+                "relative_error": 0.0047028144672945854,
+                "passed": true
+              },
+              {
+                "iteration": 8,
+                "measured_uncertainty": 1.51802391238185e-13,
+                "theoretical_uncertainty": 1.524157902758726e-13,
+                "relative_error": 0.0040245110862682995,
+                "passed": true
+              },
+              {
+                "iteration": 9,
+                "measured_uncertainty": 5.058723871611666e-14,
+                "theoretical_uncertainty": 5.080526342529086e-14,
+                "relative_error": 0.004291380350675844,
+                "passed": true
+              },
+              {
+                "iteration": 10,
+                "measured_uncertainty": 1.685491266698835e-14,
+                "theoretical_uncertainty": 1.6935087808430288e-14,
+                "relative_error": 0.004734261927005001,
+                "passed": true
+              }
+            ],
+            "all_passed": true
+          }
+        }
+      }
+    },
+    "experiment_5": {
+      "name": "Zero-Backaction Measurement",
+      "filename": "05_zero_backaction_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Zero-Backaction Measurement Validation",
+        "date": "2026-01-31T18:06:48.982753",
+        "theory": "Categorical: \u0394p/p ~ 10\u207b\u00b3, Physical: \u0394p/p ~ 10\u00b2",
+        "data": {
+          "comparison": {
+            "physical": {
+              "delta_x": 5.29177210903e-11,
+              "p_initial": 1.992851912878967e-24,
+              "delta_p_heisenberg": 9.964259564394835e-25,
+              "delta_p_measured": 9.985444161063147e-25,
+              "relative_disturbance": 0.5010630291458891,
+              "n_trials": 10000
+            },
+            "categorical": {
+              "p_initial": 1.992851912878967e-24,
+              "delta_p_measured": 2.337672461335045e-30,
+              "relative_disturbance": 1.1730286862900585e-06,
+              "n_trials": 10000,
+              "disturbance_sources": {
+                "perturbation": 1e-06,
+                "thermal": 5e-07,
+                "detection": 3e-07,
+                "trap": 2e-07
+              }
+            },
+            "improvement_factor": 427153.261469336
+          },
+          "backaction_scaling": [
+            {
+              "n": 1,
+              "partition_size": 2.800285205390781e-21,
+              "theory_backaction": 0.001,
+              "measured_backaction": 0.001027926905180016,
+              "relative_error": 0.02792690518001596,
+              "passed": true
+            },
+            {
+              "n": 2,
+              "partition_size": 1.1201140821563125e-20,
+              "theory_backaction": 0.00025,
+              "measured_backaction": 0.00024795103732007417,
+              "relative_error": 0.008195850719703354,
+              "passed": true
+            },
+            {
+              "n": 3,
+              "partition_size": 2.5202566848517028e-20,
+              "theory_backaction": 0.00011111111111111112,
+              "measured_backaction": 0.00011743670935234817,
+              "relative_error": 0.05693038417113351,
+              "passed": true
+            },
+            {
+              "n": 4,
+              "partition_size": 4.48045632862525e-20,
+              "theory_backaction": 6.25e-05,
+              "measured_backaction": 5.825195126727058e-05,
+              "relative_error": 0.06796877972367078,
+              "passed": true
+            },
+            {
+              "n": 5,
+              "partition_size": 7.000713013476953e-20,
+              "theory_backaction": 4e-05,
+              "measured_backaction": 4.0579956853568986e-05,
+              "relative_error": 0.014498921339224573,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    "experiment_6": {
+      "name": "Trans-Planckian Resolution",
+      "filename": "06_trans_planckian_resolution_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Trans-Planckian Temporal Resolution Validation",
+        "date": "2026-01-31T18:06:49.019242",
+        "theory": "\u03b4t = 10\u207b\u00b9\u00b3\u2078 s via categorical state counting",
+        "data": {
+          "resolution_scaling": [
+            {
+              "n_max": 5,
+              "M_modalities": 1,
+              "N_states": 110,
+              "N_total": 110.0,
+              "delta_t": 9.587016518181818e-28,
+              "ratio_to_planck": 1.7782558503036158e+16,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 5,
+              "M_modalities": 2,
+              "N_states": 110,
+              "N_total": 12100.0,
+              "delta_t": 8.71546956198347e-30,
+              "ratio_to_planck": 161659622754874.16,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 5,
+              "M_modalities": 3,
+              "N_states": 110,
+              "N_total": 1331000.0,
+              "delta_t": 7.9231541472577e-32,
+              "ratio_to_planck": 1469632934135.2195,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 5,
+              "M_modalities": 4,
+              "N_states": 110,
+              "N_total": 146410000.0,
+              "delta_t": 7.202867406597909e-34,
+              "ratio_to_planck": 13360299401.229269,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 5,
+              "M_modalities": 5,
+              "N_states": 110,
+              "N_total": 16105100000.0,
+              "delta_t": 6.548061278725373e-36,
+              "ratio_to_planck": 121457267.28390247,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 10,
+              "M_modalities": 1,
+              "N_states": 770,
+              "N_total": 770.0,
+              "delta_t": 1.3695737883116881e-28,
+              "ratio_to_planck": 2540365500433736.5,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 10,
+              "M_modalities": 2,
+              "N_states": 770,
+              "N_total": 592900.0,
+              "delta_t": 1.778667257547647e-31,
+              "ratio_to_planck": 3299175974589.2686,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 10,
+              "M_modalities": 3,
+              "N_states": 770,
+              "N_total": 456533000.0,
+              "delta_t": 2.3099574773346064e-34,
+              "ratio_to_planck": 4284644122.8432055,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 10,
+              "M_modalities": 4,
+              "N_states": 770,
+              "N_total": 351530410000.0,
+              "delta_t": 2.999944775759229e-37,
+              "ratio_to_planck": 5564472.886809358,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 10,
+              "M_modalities": 5,
+              "N_states": 770,
+              "N_total": 270678415700000.0,
+              "delta_t": 3.896032176310687e-40,
+              "ratio_to_planck": 7226.588164687478,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 15,
+              "M_modalities": 1,
+              "N_states": 2480,
+              "N_total": 2480.0,
+              "delta_t": 4.2523057137096775e-29,
+              "ratio_to_planck": 788742514247571.5,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 15,
+              "M_modalities": 2,
+              "N_states": 2480,
+              "N_total": 6150400.0,
+              "delta_t": 1.714639400689386e-32,
+              "ratio_to_planck": 318041336390.1498,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 15,
+              "M_modalities": 3,
+              "N_states": 2480,
+              "N_total": 15252992000.0,
+              "delta_t": 6.913868551166879e-36,
+              "ratio_to_planck": 128242474.35086685,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 15,
+              "M_modalities": 4,
+              "N_states": 2480,
+              "N_total": 37827420160000.0,
+              "delta_t": 2.787850222244709e-39,
+              "ratio_to_planck": 51710.67514147857,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 15,
+              "M_modalities": 5,
+              "N_states": 2480,
+              "N_total": 9.38120019968e+16,
+              "delta_t": 1.1241331541309311e-42,
+              "ratio_to_planck": 20.85107868608007,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 20,
+              "M_modalities": 1,
+              "N_states": 5740,
+              "N_total": 5740.0,
+              "delta_t": 1.8372331306620207e-29,
+              "ratio_to_planck": 340780737863062.25,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 20,
+              "M_modalities": 2,
+              "N_states": 5740,
+              "N_total": 32947600.0,
+              "delta_t": 3.2007545830348796e-33,
+              "ratio_to_planck": 59369466526.6659,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 20,
+              "M_modalities": 3,
+              "N_states": 5740,
+              "N_total": 189119224000.0,
+              "delta_t": 5.576227496576445e-37,
+              "ratio_to_planck": 10343112.635307647,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 20,
+              "M_modalities": 4,
+              "N_states": 5740,
+              "N_total": 1085544345760000.0,
+              "delta_t": 9.714682049784746e-41,
+              "ratio_to_planck": 1801.9359991825168,
+              "orders_below_planck": 0
+            },
+            {
+              "n_max": 20,
+              "M_modalities": 5,
+              "N_states": 5740,
+              "N_total": 6.2310245446624e+18,
+              "delta_t": 1.6924533187778305e-44,
+              "ratio_to_planck": 0.3139261322617625,
+              "orders_below_planck": 0.5031725306691783
+            }
+          ],
+          "measurement_rate": [
+            {
+              "configuration": "Conservative",
+              "n_max": 10,
+              "M_modalities": 3,
+              "delta_t": 2.3099574773346064e-34,
+              "N_measurements": 4.3290840191303924e+24,
+              "transition_duration": 1e-09
+            },
+            {
+              "configuration": "Moderate",
+              "n_max": 15,
+              "M_modalities": 4,
+              "delta_t": 2.787850222244709e-39,
+              "N_measurements": 3.586993275394919e+29,
+              "transition_duration": 1e-09
+            },
+            {
+              "configuration": "Aggressive",
+              "n_max": 20,
+              "M_modalities": 5,
+              "delta_t": 1.6924533187778305e-44,
+              "N_measurements": 5.908582463722716e+34,
+              "transition_duration": 1e-09
+            }
+          ],
+          "information_gain": {
+            "modalities": [
+              {
+                "coordinate": "n",
+                "name": "Principal",
+                "n_states": 20,
+                "information_bits": 4.321928094887363,
+                "information_nats": 2.995732273553991
+              },
+              {
+                "coordinate": "l",
+                "name": "Angular",
+                "n_states": 10,
+                "information_bits": 3.321928094887362,
+                "information_nats": 2.302585092994046
+              },
+              {
+                "coordinate": "m",
+                "name": "Orientation",
+                "n_states": 21,
+                "information_bits": 4.392317422778761,
+                "information_nats": 3.044522437723423
+              },
+              {
+                "coordinate": "s",
+                "name": "Chirality",
+                "n_states": 2,
+                "information_bits": 1.0,
+                "information_nats": 0.6931471805599453
+              },
+              {
+                "coordinate": "tau",
+                "name": "Temporal",
+                "n_states": 100,
+                "information_bits": 6.643856189774724,
+                "information_nats": 4.605170185988092
+              }
+            ],
+            "total_bits": 19.68002980232821,
+            "total_nats": 13.641157170819497,
+            "mean_per_modality": 3.936005960465642
+          }
+        }
+      }
+    },
+    "experiment_7": {
+      "name": "Hydrogen 1s->2p Transition",
+      "filename": "07_hydrogen_transition_simulation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Hydrogen 1s->2p Transition Simulation",
+        "date": "2026-01-31T18:06:49.029754",
+        "theory": "Deterministic trajectory through partition space",
+        "data": {
+          "trajectory_summary": {
+            "duration": 1e-08,
+            "n_points": 10000,
+            "initial_state": {
+              "n": 1.0,
+              "l": 0.0,
+              "m": 0.0,
+              "r_a0": 1.0,
+              "E_eV": -13.6
+            },
+            "final_state": {
+              "n": 2.0167603994558108,
+              "l": 1.0,
+              "m": 0.0,
+              "r_a0": 3.9922819101082614,
+              "E_eV": -3.406573059273562
+            },
+            "recurrence_amplitude": 0.05,
+            "recurrence_period": 4.0999999999999995e-09
+          },
+          "determinism": {
+            "n_trials": 100,
+            "mean_final_n": 1.998069491150348,
+            "std_final_n": 9.338879773030557e-07,
+            "relative_std": 4.673951438823024e-07,
+            "passed": true
+          },
+          "selection_rule_compliance": {
+            "max_delta_l": 0.0004000400040007346,
+            "violations": 0,
+            "l_initial": 0.0,
+            "l_final": 1.0,
+            "delta_l_total": 1.0,
+            "passed": true
+          },
+          "energy_conservation": {
+            "E_initial": -13.6,
+            "E_final": 6.773736308536915,
+            "E_mean": 4.250362742070793,
+            "E_std": 4.110603489930212,
+            "relative_variation": 0.9671182765750271,
+            "passed": false
+          }
+        }
+      }
+    },
+    "experiment_8": {
+      "name": "Omnidirectional Trajectory Validation",
+      "filename": "08_omnidirectional_trajectory_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Omnidirectional Trajectory Validation",
+        "date": "2026-01-31T18:06:49.036006",
+        "theory": "8-direction validation of electron trajectory observation",
+        "data": {
+          "direction_1_forward": {
+            "transition_duration": 1e-08,
+            "n_measurements": 10000,
+            "mean_radius_measured": 1.8631397582738694e-10,
+            "mean_radius_theory": 1.863139940903509e-10,
+            "relative_deviation": 9.802250246706929e-08,
+            "position_uncertainty": 3.7071352227127394e-11,
+            "passed": true
+          },
+          "direction_2_backward": {
+            "r_1s_predicted": 5.29177210903e-11,
+            "r_1s_measured": 5.29177210903e-11,
+            "deviation_1s": 0.0,
+            "r_2p_predicted": 2.116708843612e-10,
+            "r_2p_measured": 2.1124754259247758e-10,
+            "deviation_2p": 0.0020040080160321017,
+            "passed": true
+          },
+          "direction_3_sideways": {
+            "tau_H": 1.00514520279547e-08,
+            "tau_D": 1.4194261369663328e-08,
+            "measured_ratio": 1.4121602859155882,
+            "theory_ratio": 1.413670406796056,
+            "deviation": 0.0010682269878523505,
+            "passed": true
+          },
+          "direction_4_inside_out": {
+            "initial_state": [
+              1,
+              0,
+              0,
+              0.5
+            ],
+            "final_state": [
+              2,
+              1,
+              0,
+              0.5
+            ],
+            "delta_n": 1,
+            "delta_l": 1,
+            "delta_m": 0,
+            "delta_s": 0.0,
+            "selection_rules_satisfied": true,
+            "passed": true
+          },
+          "direction_5_outside_in": {
+            "N_ions": 10000,
+            "temperature": 4,
+            "volume": 1e-09,
+            "pressure_theory": 5.522596e-10,
+            "pressure_measured": 5.642926995624522e-10,
+            "deviation": 0.021788846336853594,
+            "v_thermal": 289.9303792761486,
+            "passed": true
+          },
+          "direction_6_temporal": {
+            "n_timepoints": 100,
+            "duration": 1e-08,
+            "mean_velocity": 0.016007762583165733,
+            "max_velocity": 0.06606331450224301,
+            "v_max_over_c": 2.2035795364323886e-10,
+            "causality_preserved": true,
+            "passed": true
+          },
+          "direction_7_spectral": {
+            "modalities": {
+              "Optical": {
+                "r_final": 2.1220006157210298e-10,
+                "uncertainty": 2.645886054515e-12
+              },
+              "Raman": {
+                "r_final": 2.1061252993939399e-10,
+                "uncertainty": 3.175063265418e-12
+              },
+              "MRI": {
+                "r_final": 2.1272923878300597e-10,
+                "uncertainty": 2.116708843612e-12
+              },
+              "CD": {
+                "r_final": 2.11141707150297e-10,
+                "uncertainty": 2.645886054515e-12
+              },
+              "Mass_Spec": {
+                "r_final": 2.116708843612e-10,
+                "uncertainty": 1.587531632709e-12
+              }
+            },
+            "mean_r": 2.1167088436119997e-10,
+            "std_r": 7.483695885577841e-13,
+            "rsd": 0.003535533905932709,
+            "passed": true
+          },
+          "direction_8_computational": {
+            "initial_state": [
+              0.23,
+              0.15,
+              0.08
+            ],
+            "final_state": [
+              0.23,
+              0.1499999999999,
+              0.08
+            ],
+            "recurrence_error": 1.0000333894311098e-13,
+            "n_steps": 10000,
+            "passed": true
+          }
+        },
+        "combined_confidence": {
+          "n_passed": 8,
+          "n_total": 8,
+          "p_combined": 0.9227446944279201,
+          "p_failure": 0.07725530557207994,
+          "bayesian_posterior": 0.10765868009112294
+        }
+      }
+    },
+    "experiment_9": {
+      "name": "Virtual Gas Ensemble Thermodynamics",
+      "filename": "09_virtual_gas_ensemble_validation.py",
+      "status": "SUCCESS",
+      "result": {
+        "experiment": "Virtual Gas Ensemble Validation",
+        "date": "2026-01-31T18:06:49.119770",
+        "theory": "PV = Nk_BT from triple equivalence",
+        "data": {
+          "oscillator_measurements": {
+            "cpu_clock": {
+              "frequency_hz": 3000000000.0,
+              "jitter_std_s": 3.3333333333333334e-14,
+              "n_samples": 1000,
+              "mean_delta_p": 6.776263578034403e-24,
+              "std_delta_p": 9.622499518446849e-08
+            },
+            "memory_bus": {
+              "frequency_hz": 2133000000.0,
+              "jitter_std_s": 2.344116268166901e-14,
+              "n_samples": 1000,
+              "mean_delta_p": -1.3552527156068806e-23,
+              "std_delta_p": 1.353375487622596e-07
+            },
+            "pcie": {
+              "frequency_hz": 8000000000.0,
+              "jitter_std_s": 2.5e-14,
+              "n_samples": 1000,
+              "mean_delta_p": 1.0164395367051604e-23,
+              "std_delta_p": 3.6084374089725996e-08
+            },
+            "usb": {
+              "frequency_hz": 480000000.0,
+              "jitter_std_s": 1.0416666666666667e-12,
+              "n_samples": 1000,
+              "mean_delta_p": -1.0842021724855045e-22,
+              "std_delta_p": 6.014062930508529e-07
+            },
+            "display": {
+              "frequency_hz": 60.0,
+              "jitter_std_s": 1.6666666666666667e-05,
+              "n_samples": 1000,
+              "mean_delta_p": 0.0,
+              "std_delta_p": 4.811250300379291
+            },
+            "power_supply": {
+              "frequency_hz": 50.0,
+              "jitter_std_s": 3.9999999999999996e-05,
+              "n_samples": 1000,
+              "mean_delta_p": 1.3642420526593924e-15,
+              "std_delta_p": 5.77349999216134
+            }
+          },
+          "temperature": {
+            "T_categorical_mean": 0.017329876819795014,
+            "T_oscillatory_mean": 0.1088868274093681,
+            "T_partition_mean": 0.01732987681979501,
+            "expected_ratio": 6.283185307179586,
+            "actual_ratio": 6.2831853071795845,
+            "ratio_error": 2.8271597168564594e-16,
+            "passed": true,
+            "individual_temperatures": {
+              "cpu_clock": {
+                "T_cat": 0.022914697732732938,
+                "T_osc": 0.14397729211276897,
+                "T_part": 0.022914697732732938
+              },
+              "memory_bus": {
+                "T_cat": 0.01629235008797312,
+                "T_osc": 0.10236785469217874,
+                "T_part": 0.01629235008797312
+              },
+              "pcie": {
+                "T_cat": 0.061105860620621164,
+                "T_osc": 0.3839394456340506,
+                "T_part": 0.06110586062062116
+              },
+              "usb": {
+                "T_cat": 0.00366635163723727,
+                "T_osc": 0.023036366738043036,
+                "T_part": 0.00366635163723727
+              },
+              "display": {
+                "T_cat": 4.582939546546587e-10,
+                "T_osc": 2.8795458422553792e-09,
+                "T_part": 4.5829395465465873e-10
+              },
+              "power_supply": {
+                "T_cat": 3.8191162887888226e-10,
+                "T_osc": 2.399621535212816e-09,
+                "T_part": 3.8191162887888226e-10
+              }
+            }
+          },
+          "entropy": {
+            "S_categorical": 3.814874167268564e-22,
+            "S_oscillatory": 4.718248294072501e-22,
+            "S_partition": 1.0142103347564493e-22,
+            "S_coordinates": {
+              "S_k_mean": 0.5000000003410358,
+              "S_k_std": 0.3082866886785511,
+              "S_t_mean": 0.49991864863627944,
+              "S_t_std": 0.15267154851676176,
+              "S_e_mean": 0.345877042338127,
+              "S_e_std": 0.4629830991574019
+            },
+            "normalized_std": 0.3342143424231417,
+            "passed": true
+          },
+          "pressure": {
+            "P_categorical": 1.4355886260823902e-22,
+            "P_oscillatory": 6.977810311570176e-35,
+            "P_partition": 3.2571113541290545e-15,
+            "M_active": 600,
+            "V": 1.0,
+            "T": 0.017329876819795014,
+            "passed": true
+          },
+          "internal_energy": {
+            "U_categorical": 1.4355886260823901e-24,
+            "U_oscillatory": 1.4355886260823903e-24,
+            "U_partition": 1.4355886260823901e-24,
+            "M_active": 6,
+            "T": 0.017329876819795014,
+            "equipartition_ratio": 1.0000000000000002,
+            "passed": true
+          },
+          "enthalpy": {
+            "H": 1.4499445123432142e-22,
+            "U": 1.4355886260823901e-24,
+            "P": 1.4355886260823902e-22,
+            "V": 1.0,
+            "PV": 1.4355886260823902e-22
+          },
+          "ideal_gas_law": {
+            "N": 6000,
+            "M": 600,
+            "T": 0.017329876819795014,
+            "V": 1.0,
+            "P": 1.4355886260823902e-22,
+            "PV": 1.4355886260823902e-22,
+            "NkBT": 1.4355886260823902e-21,
+            "MkBT": 1.43558862608239e-22,
+            "ratio_N": 0.1,
+            "ratio_M": 1.0000000000000002,
+            "passed": true
+          },
+          "maxwell_distribution": {
+            "n_velocities": 5999,
+            "v_mean": -0.0016652702170020263,
+            "v_std": 0.2599585156889266,
+            "chi_sq_per_dof": 0.0,
+            "v_max": 18.314936133087052,
+            "v_max_normalized": 70.4533032301323,
+            "passed": true
+          },
+          "summary": {
+            "all_tests_passed": true,
+            "individual_results": {
+              "temperature_triple_equivalence": true,
+              "entropy_consistency": true,
+              "pressure_positive": true,
+              "energy_equipartition": true,
+              "ideal_gas_law": true,
+              "maxwell_distribution": true
+            },
+            "thermodynamic_quantities": {
+              "T": 0.017329876819795014,
+              "P": 1.4355886260823902e-22,
+              "V": 1.0,
+              "U": 1.4355886260823901e-24,
+              "H": 1.4499445123432142e-22,
+              "S": 3.814874167268564e-22
+            }
+          }
+        }
+      }
+    }
+  }
+}

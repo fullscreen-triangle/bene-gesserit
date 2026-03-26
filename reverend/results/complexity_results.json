@@ -1,0 +1,403 @@
+{
+  "timestamp": "2025-12-12 19:05:13",
+  "experiments": {
+    "poincare_complexity": {
+      "data": [
+        {
+          "problem_size": 10,
+          "poincare_complexity": 3,
+          "total_recognitions": 10,
+          "is_closed": "False",
+          "effective_poincare_count": 0
+        },
+        {
+          "problem_size": 20,
+          "poincare_complexity": 9,
+          "total_recognitions": 20,
+          "is_closed": "False",
+          "effective_poincare_count": 0
+        },
+        {
+          "problem_size": 50,
+          "poincare_complexity": 36,
+          "total_recognitions": 50,
+          "is_closed": "False",
+          "effective_poincare_count": 0
+        },
+        {
+          "problem_size": 100,
+          "poincare_complexity": 93,
+          "total_recognitions": 100,
+          "is_closed": "False",
+          "effective_poincare_count": 0
+        }
+      ],
+      "unit_definition": "1 Poincar\u00e9 = 1 local solution recognition"
+    },
+    "completion_rate": {
+      "rate_history": [
+        {
+          "step": 0,
+          "time": 0.1,
+          "completion_rate": 2.0
+        },
+        {
+          "step": 10,
+          "time": 1.0999999999999999,
+          "completion_rate": 20.0
+        },
+        {
+          "step": 20,
+          "time": 2.1000000000000005,
+          "completion_rate": 16.0
+        },
+        {
+          "step": 30,
+          "time": 3.1000000000000014,
+          "completion_rate": 20.0
+        },
+        {
+          "step": 40,
+          "time": 4.100000000000001,
+          "completion_rate": 24.0
+        },
+        {
+          "step": 50,
+          "time": 5.099999999999998,
+          "completion_rate": 23.0
+        },
+        {
+          "step": 60,
+          "time": 6.099999999999994,
+          "completion_rate": 23.0
+        },
+        {
+          "step": 70,
+          "time": 7.099999999999991,
+          "completion_rate": 26.0
+        },
+        {
+          "step": 80,
+          "time": 8.099999999999987,
+          "completion_rate": 28.0
+        },
+        {
+          "step": 90,
+          "time": 9.099999999999984,
+          "completion_rate": 30.0
+        },
+        {
+          "step": 100,
+          "time": 10.09999999999998,
+          "completion_rate": 22.0
+        },
+        {
+          "step": 110,
+          "time": 11.099999999999977,
+          "completion_rate": 34.0
+        },
+        {
+          "step": 120,
+          "time": 12.099999999999973,
+          "completion_rate": 40.0
+        },
+        {
+          "step": 130,
+          "time": 13.09999999999997,
+          "completion_rate": 42.0
+        },
+        {
+          "step": 140,
+          "time": 14.099999999999966,
+          "completion_rate": 42.0
+        },
+        {
+          "step": 150,
+          "time": 15.099999999999962,
+          "completion_rate": 32.0
+        },
+        {
+          "step": 160,
+          "time": 16.09999999999996,
+          "completion_rate": 59.0
+        },
+        {
+          "step": 170,
+          "time": 17.099999999999973,
+          "completion_rate": 41.0
+        },
+        {
+          "step": 180,
+          "time": 18.099999999999987,
+          "completion_rate": 48.0
+        },
+        {
+          "step": 190,
+          "time": 19.1,
+          "completion_rate": 49.0
+        }
+      ],
+      "final_rate": 42.0,
+      "interpretation": "rho_C independent of physical time units"
+    },
+    "unknowable_origin": {
+      "n_trials": 100,
+      "mean_inference_error": 0.03963009864889315,
+      "min_inference_error": 0.008186595631848552,
+      "max_inference_error": 0.08521654285046067,
+      "perfect_observations": 0,
+      "demonstrates_unknowability": true
+    },
+    "asymptotic_return": {
+      "analyses": [
+        {
+          "n_steps": 100,
+          "min_distance": 0.018897369687123224,
+          "final_distance": 0.1185695323793961,
+          "reaches_zero": false,
+          "asymptotic": "True",
+          "distance_progression": [
+            0.17512820462912349,
+            0.08688220714429112,
+            0.046483169728183095,
+            0.020439664989440023,
+            0.0384420441604409,
+            0.046650429691342116,
+            0.06240859726750906,
+            0.07930335959533212,
+            0.04769100161760963,
+            0.08214920117813664,
+            0.06999452716734095,
+            0.08181699489717194,
+            0.07353512599543346,
+            0.05906919733666898,
+            0.07815839731279424,
+            0.08962665566952935,
+            0.08109442689290725,
+            0.0740775510925008,
+            0.08448096853837435,
+            0.10704882626671589
+          ]
+        },
+        {
+          "n_steps": 500,
+          "min_distance": 0.019503538700034965,
+          "final_distance": 0.30587106734425784,
+          "reaches_zero": false,
+          "asymptotic": "True",
+          "distance_progression": [
+            0.2541405140785744,
+            0.09179886658409013,
+            0.07821327863676288,
+            0.1242755380279855,
+            0.1472503331384511,
+            0.17149378093089904,
+            0.19846426679407353,
+            0.2209853726455113,
+            0.2710752817799288,
+            0.35268637362255456,
+            0.30220236282018736,
+            0.3408736548835904,
+            0.4782036347614646,
+            0.44074545912152757,
+            0.46692349991363885,
+            0.3541527329701273,
+            0.296029320077666,
+            0.28495012488772153,
+            0.28317685518138314,
+            0.26163707590535634
+          ]
+        },
+        {
+          "n_steps": 1000,
+          "min_distance": 0.006463662677727629,
+          "final_distance": 0.24642531863983838,
+          "reaches_zero": false,
+          "asymptotic": "True",
+          "distance_progression": [
+            0.1295400970595987,
+            0.14797117749042016,
+            0.11699207973648044,
+            0.04525792368852856,
+            0.1049356617440717,
+            0.09826837836291469,
+            0.07412673735067438,
+            0.12045580291425341,
+            0.16087997643781707,
+            0.18563137801952925,
+            0.16875959386354122,
+            0.03644788396283146,
+            0.030040202076514387,
+            0.15830306098960076,
+            0.14024810616845784,
+            0.16355037878115475,
+            0.14095027198830137,
+            0.2813603268671979,
+            0.26561129252792975,
+            0.23055895307577026
+          ]
+        },
+        {
+          "n_steps": 2000,
+          "min_distance": 0.029853210381741286,
+          "final_distance": 0.3262638590988531,
+          "reaches_zero": false,
+          "asymptotic": "True",
+          "distance_progression": [
+            0.23920149900138746,
+            0.03929692531039228,
+            0.23856140119146993,
+            0.16235460894816742,
+            0.20181561606058449,
+            0.32256859893175477,
+            0.3271186673625462,
+            0.25538472389980676,
+            0.3493333266106966,
+            0.2771630753214622,
+            0.33617175223644835,
+            0.2848846055943592,
+            0.37023243622276786,
+            0.5078167722815577,
+            0.2867897901335147,
+            0.31461922978504114,
+            0.36926490066168605,
+            0.22183501792160137,
+            0.30433596171075533,
+            0.3216441189834168
+          ]
+        }
+      ],
+      "all_asymptotic": true
+    },
+    "chain_closure": [
+      {
+        "epsilon": 0.05,
+        "is_closed": "True",
+        "chain_length": 50,
+        "poincare_complexity": 50
+      },
+      {
+        "epsilon": 0.1,
+        "is_closed": "True",
+        "chain_length": 50,
+        "poincare_complexity": 50
+      },
+      {
+        "epsilon": 0.2,
+        "is_closed": "True",
+        "chain_length": 50,
+        "poincare_complexity": 50
+      },
+      {
+        "epsilon": 0.3,
+        "is_closed": "True",
+        "chain_length": 50,
+        "poincare_complexity": 50
+      }
+    ],
+    "time_independence": {
+      "measurements": [
+        {
+          "rate_multiplier": 0.5,
+          "physical_time": 4.000000000000003,
+          "poincare_count": 26,
+          "completion_rate": 6.499999999999996,
+          "categorical_complexity": 26
+        },
+        {
+          "rate_multiplier": 1.0,
+          "physical_time": 2.0000000000000013,
+          "poincare_count": 26,
+          "completion_rate": 12.999999999999991,
+          "categorical_complexity": 26
+        },
+        {
+          "rate_multiplier": 2.0,
+          "physical_time": 1.0000000000000007,
+          "poincare_count": 26,
+          "completion_rate": 25.999999999999982,
+          "categorical_complexity": 26
+        },
+        {
+          "rate_multiplier": 5.0,
+          "physical_time": 0.4000000000000003,
+          "poincare_count": 26,
+          "completion_rate": 64.99999999999996,
+          "categorical_complexity": 26
+        }
+      ],
+      "complexity_variance": 0.0,
+      "is_time_independent": "True"
+    },
+    "flops_irrelevance": {
+      "comparison": [
+        {
+          "simulated_flops": 1000000.0,
+          "poincare_complexity": 72,
+          "categorical_completions": 100
+        },
+        {
+          "simulated_flops": 1000000000.0,
+          "poincare_complexity": 72,
+          "categorical_completions": 100
+        },
+        {
+          "simulated_flops": 1000000000000.0,
+          "poincare_complexity": 72,
+          "categorical_completions": 100
+        }
+      ],
+      "complexity_invariant": true,
+      "interpretation": "FLOPS measures different quantity than Poincar\u00e9 complexity"
+    },
+    "incommensurability": {
+      "turing_steps": [
+        540,
+        752,
+        900,
+        476,
+        672,
+        1584,
+        280,
+        513,
+        693,
+        832,
+        342,
+        175,
+        1360,
+        460,
+        1666,
+        820,
+        969,
+        275,
+        416,
+        400
+      ],
+      "poincare_completions": [
+        12,
+        27,
+        11,
+        21,
+        32,
+        40,
+        18,
+        16,
+        17,
+        25,
+        20,
+        21,
+        40,
+        22,
+        41,
+        30,
+        15,
+        29,
+        11,
+        27
+      ],
+      "correlation": 0.629263355706192,
+      "are_incommensurable": "False",
+      "interpretation": "Low correlation indicates different complexity measures"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-10-26T22:11:39.472526",
+  "metric": "euclidean",
+  "molecules": [
+    "Vanillin (vanilla)",
+    "Ethyl Vanillin (vanilla)",
+    "Benzene (aromatic)",
+    "Indole (fecal)",
+    "Citral (lemon)"
+  ],
+  "similarity_matrix": {
+    "Vanillin (vanilla)": {
+      "Vanillin (vanilla)": 0.0,
+      "Ethyl Vanillin (vanilla)": 1325457179838.8906,
+      "Benzene (aromatic)": 945826186057.7422,
+      "Indole (fecal)": 2083058587552.625,
+      "Citral (lemon)": 7829346261984.844
+    },
+    "Ethyl Vanillin (vanilla)": {
+      "Vanillin (vanilla)": 1325457179838.8906,
+      "Ethyl Vanillin (vanilla)": 0.0,
+      "Benzene (aromatic)": 379630993781.14844,
+      "Indole (fecal)": 3408515767391.5156,
+      "Citral (lemon)": 6503889082145.953
+    },
+    "Benzene (aromatic)": {
+      "Vanillin (vanilla)": 945826186057.7422,
+      "Ethyl Vanillin (vanilla)": 379630993781.14844,
+      "Benzene (aromatic)": 0.0,
+      "Indole (fecal)": 3028884773610.367,
+      "Citral (lemon)": 6883520075927.102
+    },
+    "Indole (fecal)": {
+      "Vanillin (vanilla)": 2083058587552.625,
+      "Ethyl Vanillin (vanilla)": 3408515767391.5156,
+      "Benzene (aromatic)": 3028884773610.367,
+      "Indole (fecal)": 0.0,
+      "Citral (lemon)": 9912404849537.469
+    },
+    "Citral (lemon)": {
+      "Vanillin (vanilla)": 7829346261984.844,
+      "Ethyl Vanillin (vanilla)": 6503889082145.953,
+      "Benzene (aromatic)": 6883520075927.102,
+      "Indole (fecal)": 9912404849537.469,
+      "Citral (lemon)": 0.0
+    }
+  }
+}

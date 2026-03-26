@@ -1,0 +1,36 @@
+{
+  "timestamp": "2025-10-26T23:03:07.913922",
+  "num_signatures": 3,
+  "signatures": {
+    "Vanillin": {
+      "frequency": 15000000000000.0,
+      "amplitude": 5.0,
+      "phase": 1.2,
+      "damping": 0.7,
+      "symmetry": 0.8,
+      "domain": "molecular",
+      "source": "vanillin",
+      "timestamp": 1761516187.898089
+    },
+    "Ethyl Vanillin": {
+      "frequency": 15200000000000.0,
+      "amplitude": 5.1,
+      "phase": 1.25,
+      "damping": 0.68,
+      "symmetry": 0.82,
+      "domain": "molecular",
+      "source": "ethyl_vanillin",
+      "timestamp": 1761516187.898089
+    },
+    "Indole": {
+      "frequency": 21000000000000.0,
+      "amplitude": 6.2,
+      "phase": 2.3,
+      "damping": 0.4,
+      "symmetry": 0.5,
+      "domain": "molecular",
+      "source": "indole",
+      "timestamp": 1761516187.898089
+    }
+  }
+}

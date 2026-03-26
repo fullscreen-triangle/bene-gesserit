@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-03-25T05:26:31.620590+00:00",
+  "description": "Ground-state term symbol derivation via Hund's rules vs NIST for 9 benchmark elements",
+  "results": [
+    {
+      "symbol": "H",
+      "Z": 1,
+      "derived_term": "2S_1/2",
+      "nist_term": "2S_1/2",
+      "match": true
+    },
+    {
+      "symbol": "C",
+      "Z": 6,
+      "derived_term": "3P_0",
+      "nist_term": "3P_0",
+      "match": true
+    },
+    {
+      "symbol": "Na",
+      "Z": 11,
+      "derived_term": "2S_1/2",
+      "nist_term": "2S_1/2",
+      "match": true
+    },
+    {
+      "symbol": "Si",
+      "Z": 14,
+      "derived_term": "3P_0",
+      "nist_term": "3P_0",
+      "match": true
+    },
+    {
+      "symbol": "Cl",
+      "Z": 17,
+      "derived_term": "2P_3/2",
+      "nist_term": "2P_3/2",
+      "match": true
+    },
+    {
+      "symbol": "Ar",
+      "Z": 18,
+      "derived_term": "1S_0",
+      "nist_term": "1S_0",
+      "match": true
+    },
+    {
+      "symbol": "Ca",
+      "Z": 20,
+      "derived_term": "1S_0",
+      "nist_term": "1S_0",
+      "match": true
+    },
+    {
+      "symbol": "Fe",
+      "Z": 26,
+      "derived_term": "5D_4",
+      "nist_term": "5D_4",
+      "match": true
+    },
+    {
+      "symbol": "Gd",
+      "Z": 64,
+      "derived_term": "9D_2",
+      "nist_term": "9D_2",
+      "match": true
+    }
+  ],
+  "pass_count": 9,
+  "total": 9,
+  "all_pass": true
+}

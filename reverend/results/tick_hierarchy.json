@@ -1,0 +1,244 @@
+{
+  "description": "Tick hierarchy: tree structure, subdivision N_ij, partition depth M_ij.",
+  "timestamp": "2026-03-25T06:26:27.904018",
+  "parameters": {
+    "q_max": 10,
+    "delta_max": 0.05
+  },
+  "physical_constants": {
+    "c_cm_per_s": 29980000000.0,
+    "h_J_s": 6.626e-34,
+    "hbar_J_s": 1.055e-34,
+    "k_B_J_per_K": 1.381e-23,
+    "epsilon_0_F_per_m": 8.854e-12
+  },
+  "molecules_tested": [
+    "H2",
+    "CO",
+    "H2O",
+    "CO2",
+    "CH4",
+    "C6H6"
+  ],
+  "results": {
+    "H2": {
+      "root": "vib",
+      "nodes": [
+        "vib",
+        "rot"
+      ],
+      "edges": [
+        {
+          "parent": "vib",
+          "child": "rot",
+          "omega_parent": 4401.0,
+          "omega_child": 118.7,
+          "N_subdivision": 37,
+          "M_partition_depth": 3.2887
+        }
+      ],
+      "num_tree_edges": 1
+    },
+    "CO": {
+      "root": "vib",
+      "nodes": [
+        "vib",
+        "R0",
+        "R1",
+        "R2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "edges": [
+        {
+          "parent": "vib",
+          "child": "P3",
+          "omega_parent": 2143.0,
+          "omega_child": 2131.63,
+          "N_subdivision": 1,
+          "M_partition_depth": -0.0048
+        },
+        {
+          "parent": "vib",
+          "child": "P2",
+          "omega_parent": 2143.0,
+          "omega_child": 2135.55,
+          "N_subdivision": 1,
+          "M_partition_depth": -0.0032
+        },
+        {
+          "parent": "vib",
+          "child": "P1",
+          "omega_parent": 2143.0,
+          "omega_child": 2139.43,
+          "N_subdivision": 1,
+          "M_partition_depth": -0.0015
+        },
+        {
+          "parent": "vib",
+          "child": "R0",
+          "omega_parent": 2143.0,
+          "omega_child": 2147.08,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.0017
+        },
+        {
+          "parent": "vib",
+          "child": "R1",
+          "omega_parent": 2143.0,
+          "omega_child": 2150.86,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.0033
+        },
+        {
+          "parent": "vib",
+          "child": "R2",
+          "omega_parent": 2143.0,
+          "omega_child": 2154.59,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.0049
+        }
+      ],
+      "num_tree_edges": 6
+    },
+    "H2O": {
+      "root": "nu2",
+      "nodes": [
+        "nu2",
+        "nu1",
+        "nu3"
+      ],
+      "edges": [
+        {
+          "parent": "nu2",
+          "child": "nu1",
+          "omega_parent": 1595.0,
+          "omega_child": 3657.0,
+          "N_subdivision": 2,
+          "M_partition_depth": 0.7553
+        },
+        {
+          "parent": "nu2",
+          "child": "nu3",
+          "omega_parent": 1595.0,
+          "omega_child": 3756.0,
+          "N_subdivision": 2,
+          "M_partition_depth": 0.7796
+        }
+      ],
+      "num_tree_edges": 2
+    },
+    "CO2": {
+      "root": "nu2",
+      "nodes": [
+        "nu2",
+        "nu1",
+        "nu3"
+      ],
+      "edges": [
+        {
+          "parent": "nu2",
+          "child": "nu1",
+          "omega_parent": 667.0,
+          "omega_child": 1388.0,
+          "N_subdivision": 2,
+          "M_partition_depth": 0.667
+        },
+        {
+          "parent": "nu2",
+          "child": "nu3",
+          "omega_parent": 667.0,
+          "omega_child": 2349.0,
+          "N_subdivision": 3,
+          "M_partition_depth": 1.146
+        }
+      ],
+      "num_tree_edges": 2
+    },
+    "CH4": {
+      "root": "nu4",
+      "nodes": [
+        "nu4",
+        "nu2",
+        "nu1",
+        "nu3"
+      ],
+      "edges": [
+        {
+          "parent": "nu4",
+          "child": "nu2",
+          "omega_parent": 1306.0,
+          "omega_child": 1534.0,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.1465
+        },
+        {
+          "parent": "nu2",
+          "child": "nu1",
+          "omega_parent": 1534.0,
+          "omega_child": 2917.0,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.585
+        },
+        {
+          "parent": "nu2",
+          "child": "nu3",
+          "omega_parent": 1534.0,
+          "omega_child": 3019.0,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.6163
+        }
+      ],
+      "num_tree_edges": 3
+    },
+    "C6H6": {
+      "root": "nu4",
+      "nodes": [
+        "nu4",
+        "nu5",
+        "nu3",
+        "nu2",
+        "nu1"
+      ],
+      "edges": [
+        {
+          "parent": "nu4",
+          "child": "nu5",
+          "omega_parent": 673.0,
+          "omega_child": 993.0,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.3541
+        },
+        {
+          "parent": "nu5",
+          "child": "nu3",
+          "omega_parent": 993.0,
+          "omega_child": 1178.0,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.1555
+        },
+        {
+          "parent": "nu3",
+          "child": "nu2",
+          "omega_parent": 1178.0,
+          "omega_child": 1596.0,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.2764
+        },
+        {
+          "parent": "nu2",
+          "child": "nu1",
+          "omega_parent": 1596.0,
+          "omega_child": 3062.0,
+          "N_subdivision": 1,
+          "M_partition_depth": 0.5931
+        }
+      ],
+      "num_tree_edges": 4
+    }
+  },
+  "summary": {
+    "status": "PASS"
+  }
+}

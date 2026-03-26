@@ -1,0 +1,49 @@
+{
+  "timestamp": "20251030_043235",
+  "measured_parameters": {
+    "hole_mobility_cm2_per_Vs": 0.0123,
+    "hole_density_cm3": 2800000000000.0,
+    "n_density_cm3": 35700000.0,
+    "Vbi_V": 0.615,
+    "rectification_ratio": 42.1,
+    "conductivity_S_per_cm": 7.53e-08,
+    "on_off_ratio": 42.1,
+    "switching_time_s": 1e-06
+  },
+  "mobility_validation": {
+    "drift_velocity_formula": "v = \u03bc_h \u00d7 E",
+    "diffusion_coefficient_cm2_per_s": 3.2861514588014984,
+    "validated": true
+  },
+  "pn_junction_validation": {
+    "V_bi_measured_V": 0.615,
+    "V_bi_calculated_V": 0.7382091085226309,
+    "rectification_ratio": 9934988158.238634,
+    "target_rectification": 42.1,
+    "validated": 0.0
+  },
+  "conductivity_validation": {
+    "sigma_holes_S_per_cm": 5.517288e-09,
+    "sigma_electrons_S_per_cm": 1.40690844e-13,
+    "sigma_total_S_per_cm": 5.517428690844e-09,
+    "sigma_measured_S_per_cm": 7.53e-08,
+    "relative_error": 0.9267273746235857,
+    "validated": false
+  },
+  "switching_validation": {
+    "t_90_us": 0.4514514514514516,
+    "requirement_us": 1.0,
+    "validated": 1.0
+  },
+  "on_off_validation": {
+    "I_ON_nA": 9934988157.238636,
+    "I_OFF_nA": -0.9763165845851627,
+    "ratio": 10175990364.293583,
+    "target_ratio": 42.1,
+    "relative_error": 241709983.9000851,
+    "validated": 0.0
+  },
+  "validation_summary": {
+    "all_tests_passed": false
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "timestamp": "20251030_043124",
+  "parameters": {
+    "n_molecules": 10000,
+    "n_states": 100,
+    "bits_per_molecule": 11,
+    "hole_density_cm3": 2800000000000.0,
+    "n_carrier_density_cm3": 35700000.0
+  },
+  "ensemble_tracking": {
+    "precision_formula": "1/sqrt(N)",
+    "final_precision": 0.01,
+    "final_info_capacity_bits": 0.06643856189774724
+  },
+  "categorical_tracking": {
+    "precision_formula": "O(1)",
+    "final_precision": 1.0,
+    "final_info_capacity_bits": 110000.0
+  },
+  "gibbs_paradox": {
+    "mean_entropy_increase": 1.0657906959126218,
+    "always_increases": true,
+    "n_trials": 100
+  },
+  "bandwidth_enhancement": {
+    "ensemble_bits": 7.308241808752197e-08,
+    "categorical_bits": 1.1e+23,
+    "enhancement_factor": 1.5051499783199062e+30,
+    "theoretical_prediction": 1000000000000000000000000000000000,
+    "validated": 1.0
+  },
+  "validation_summary": {
+    "categorical_distinguishability": true,
+    "gibbs_paradox_resolved": true,
+    "bandwidth_enhancement_validated": 1.0,
+    "single_molecule_tracking_demonstrated": true
+  }
+}

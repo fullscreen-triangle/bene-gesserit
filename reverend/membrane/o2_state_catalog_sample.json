@@ -1,0 +1,1809 @@
+{
+  "timestamp": "2025-10-26T23:18:15.658877",
+  "n_states": 100,
+  "cycle_frequency": 10000000000000.0,
+  "temperature": 310.0,
+  "information_capacity_bits": 6.643856189774724,
+  "states": [
+    {
+      "index": 0,
+      "quantum_numbers": {
+        "J": 0,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.21471720805e-20,
+      "frequency": 0.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 1.0,
+      "symmetry": 0.3333333333333333,
+      "degeneracy": 1,
+      "boltzmann_weight": 5.1121789550638976e-06
+    },
+    {
+      "index": 1,
+      "quantum_numbers": {
+        "J": 0,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.2213432781999997e-20,
+      "frequency": 0.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 1.0,
+      "symmetry": 0.6666666666666666,
+      "degeneracy": 1,
+      "boltzmann_weight": 5.033644598753805e-06
+    },
+    {
+      "index": 2,
+      "quantum_numbers": {
+        "J": 0,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.22796934835e-20,
+      "frequency": 0.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 1.0,
+      "symmetry": 1.0,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.956316703558484e-06
+    },
+    {
+      "index": 3,
+      "quantum_numbers": {
+        "J": 1,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.233874495454101e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.888403807526711e-06
+    },
+    {
+      "index": 4,
+      "quantum_numbers": {
+        "J": 1,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.233874541824101e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.3333333333333333,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.88840327791306e-06
+    },
+    {
+      "index": 5,
+      "quantum_numbers": {
+        "J": 1,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.2338745881941013e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.888402748299465e-06
+    },
+    {
+      "index": 6,
+      "quantum_numbers": {
+        "J": 1,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.2405005656041007e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.813307131572589e-06
+    },
+    {
+      "index": 7,
+      "quantum_numbers": {
+        "J": 1,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.240500611974101e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.6666666666666666,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.813306610094972e-06
+    },
+    {
+      "index": 8,
+      "quantum_numbers": {
+        "J": 1,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.240500658344101e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.813306088617412e-06
+    },
+    {
+      "index": 9,
+      "quantum_numbers": {
+        "J": 1,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.247126635754101e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.7393641063726605e-06
+    },
+    {
+      "index": 10,
+      "quantum_numbers": {
+        "J": 1,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.247126682124101e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 1.0,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.7393635929060914e-06
+    },
+    {
+      "index": 11,
+      "quantum_numbers": {
+        "J": 1,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.2471267284941014e-20,
+      "frequency": 289120600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9900990099009901,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.739363079439577e-06
+    },
+    {
+      "index": 12,
+      "quantum_numbers": {
+        "J": 2,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.2721814038866483e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.46989070174027e-06
+    },
+    {
+      "index": 13,
+      "quantum_numbers": {
+        "J": 2,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.272181450256648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.469890217468677e-06
+    },
+    {
+      "index": 14,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.272181496626648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.3333333333333333,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.469889733197128e-06
+    },
+    {
+      "index": 15,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.272181542996648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.469889248925632e-06
+    },
+    {
+      "index": 16,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.272181589366648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.469888764654196e-06
+    },
+    {
+      "index": 17,
+      "quantum_numbers": {
+        "J": 2,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.278807474036648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.4012233111572625e-06
+    },
+    {
+      "index": 18,
+      "quantum_numbers": {
+        "J": 2,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.2788075204066476e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.4012228343251505e-06
+    },
+    {
+      "index": 19,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.278807566776648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.6666666666666666,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.4012223574930824e-06
+    },
+    {
+      "index": 20,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.278807613146648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.401221880661065e-06
+    },
+    {
+      "index": 21,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.2788076595166475e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.401221403829108e-06
+    },
+    {
+      "index": 22,
+      "quantum_numbers": {
+        "J": 2,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.2854335441866484e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.9960573506572391,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.333610803309445e-06
+    },
+    {
+      "index": 23,
+      "quantum_numbers": {
+        "J": 2,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.285433590556648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.333610333802526e-06
+    },
+    {
+      "index": 24,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.285433636926648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 1.0,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.3336098642956514e-06
+    },
+    {
+      "index": 25,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.285433683296648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.333609394788827e-06
+    },
+    {
+      "index": 26,
+      "quantum_numbers": {
+        "J": 2,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.285433729666648e-20,
+      "frequency": 867245400000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9803921568627451,
+      "symmetry": 0.9960573506572391,
+      "degeneracy": 1,
+      "boltzmann_weight": 4.3336089252820615e-06
+    },
+    {
+      "index": 27,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.329622507856332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.33038120845478147,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.908509671356326e-06
+    },
+    {
+      "index": 28,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.3296225542263325e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.908509247905203e-06
+    },
+    {
+      "index": 29,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.329622600596332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.908508824454133e-06
+    },
+    {
+      "index": 30,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.329622646966332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.3333333333333333,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.908508401003102e-06
+    },
+    {
+      "index": 31,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.3296226933363324e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.908507977552117e-06
+    },
+    {
+      "index": 32,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.329622739706332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.908507554101185e-06
+    },
+    {
+      "index": 33,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.329622786076332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.33038120845478147,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.908507130650291e-06
+    },
+    {
+      "index": 34,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.336248578006332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.6607624169095629,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.848466332914965e-06
+    },
+    {
+      "index": 35,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.336248624376332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.848465915968986e-06
+    },
+    {
+      "index": 36,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.336248670746332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.84846549902306e-06
+    },
+    {
+      "index": 37,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.336248717116332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.6666666666666666,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.848465082077171e-06
+    },
+    {
+      "index": 38,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.336248763486332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.848464665131328e-06
+    },
+    {
+      "index": 39,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.3362488098563317e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.848464248185537e-06
+    },
+    {
+      "index": 40,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.336248856226332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.6607624169095629,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.848463831239784e-06
+    },
+    {
+      "index": 41,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.3428746481563323e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.9911436253643444,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.7893453927262107e-06
+    },
+    {
+      "index": 42,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.3428746945263325e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.9960573506572391,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.789344982185443e-06
+    },
+    {
+      "index": 43,
+      "quantum_numbers": {
+        "J": 3,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.342874740896332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.789344571644726e-06
+    },
+    {
+      "index": 44,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.342874787266332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 1.0,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.7893441611040477e-06
+    },
+    {
+      "index": 45,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.3428748336363324e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.7893437505634132e-06
+    },
+    {
+      "index": 46,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.342874880006332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.9960573506572391,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.78934334002283e-06
+    },
+    {
+      "index": 47,
+      "quantum_numbers": {
+        "J": 3,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.342874926376332e-20,
+      "frequency": 1734141600000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.970873786407767,
+      "symmetry": 0.9911436253643444,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.789342929482285e-06
+    },
+    {
+      "index": 48,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.40617466912619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.3280971935214385,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2683865407652606e-06
+    },
+    {
+      "index": 49,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.40617471549619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.33038120845478147,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2683861866655993e-06
+    },
+    {
+      "index": 50,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.4061747618661905e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.268385832565976e-06
+    },
+    {
+      "index": 51,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.40617480823619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.268385478466398e-06
+    },
+    {
+      "index": 52,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.40617485460619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.3333333333333333,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2683851243668514e-06
+    },
+    {
+      "index": 53,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.4061749009761904e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.268384770267344e-06
+    },
+    {
+      "index": 54,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.40617494734619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2683844161678804e-06
+    },
+    {
+      "index": 55,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.40617499371619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.33038120845478147,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.268384062068449e-06
+    },
+    {
+      "index": 56,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.4061750400861903e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.3280971935214385,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2683837079690567e-06
+    },
+    {
+      "index": 57,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280073927619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.656194387042877,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.218176906985268e-06
+    },
+    {
+      "index": 58,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280078564619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.6607624169095629,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2181765583253596e-06
+    },
+    {
+      "index": 59,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280083201619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2181762096654887e-06
+    },
+    {
+      "index": 60,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280087838619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2181758610056615e-06
+    },
+    {
+      "index": 61,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280092475619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.6666666666666666,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2181755123458665e-06
+    },
+    {
+      "index": 62,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280097112619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2181751636861087e-06
+    },
+    {
+      "index": 63,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280101749619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.218174815026389e-06
+    },
+    {
+      "index": 64,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280106386619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.6607624169095629,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.218174466366707e-06
+    },
+    {
+      "index": 65,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.41280111023619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.656194387042877,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.2181741177070688e-06
+    },
+    {
+      "index": 66,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.41942680942619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9842915805643155,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.168738604041712e-06
+    },
+    {
+      "index": 67,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.4194268557961904e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9911436253643444,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.168738260737995e-06
+    },
+    {
+      "index": 68,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.4194269021661905e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9960573506572391,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.16873791743431e-06
+    },
+    {
+      "index": 69,
+      "quantum_numbers": {
+        "J": 4,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.41942694853619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.1687375741306616e-06
+    },
+    {
+      "index": 70,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.41942699490619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 1.0,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.1687372308270506e-06
+    },
+    {
+      "index": 71,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.4194270412761905e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9990133642141358,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.168736887523477e-06
+    },
+    {
+      "index": 72,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.41942708764619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9960573506572391,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.168736544219946e-06
+    },
+    {
+      "index": 73,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.41942713401619e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9911436253643444,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.1687362009164463e-06
+    },
+    {
+      "index": 74,
+      "quantum_numbers": {
+        "J": 4,
+        "M": 4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.4194271803861904e-20,
+      "frequency": 2889460000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9615384615384615,
+      "symmetry": 0.9842915805643155,
+      "degeneracy": 1,
+      "boltzmann_weight": 3.1687358576129844e-06
+    },
+    {
+      "index": 75,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -5,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807036713603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.3251760860491923,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139355536408505e-06
+    },
+    {
+      "index": 76,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807083083603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.3280971935214385,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139352704449425e-06
+    },
+    {
+      "index": 77,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807129453602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.33038120845478147,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139349872490747e-06
+    },
+    {
+      "index": 78,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807175823602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.613934704053228e-06
+    },
+    {
+      "index": 79,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807222193603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.613934420857412e-06
+    },
+    {
+      "index": 80,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807268563603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.3333333333333333,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.613934137661627e-06
+    },
+    {
+      "index": 81,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807314933603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.33300445473804524,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139338544658726e-06
+    },
+    {
+      "index": 82,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807361303603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.3320191168857463,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139335712701484e-06
+    },
+    {
+      "index": 83,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807407673603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.33038120845478147,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139332880744556e-06
+    },
+    {
+      "index": 84,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807454043602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.3280971935214385,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139330048787975e-06
+    },
+    {
+      "index": 85,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 5,
+        "v": 0,
+        "electronic": 0,
+        "spin": 0
+      },
+      "energy": 5.501807500413602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.3251760860491923,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.6139327216831656e-06
+    },
+    {
+      "index": 86,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -5,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433106863603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6503521720983846,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.57377973203412e-06
+    },
+    {
+      "index": 87,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433153233603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.656194387042877,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.5737794531887267e-06
+    },
+    {
+      "index": 88,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433199603602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6607624169095629,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.573779174343368e-06
+    },
+    {
+      "index": 89,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433245973602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.573778895498035e-06
+    },
+    {
+      "index": 90,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433292343602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.5737786166527322e-06
+    },
+    {
+      "index": 91,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 0,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433338713602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6666666666666666,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.5737783378074595e-06
+    },
+    {
+      "index": 92,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 1,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433385083603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6660089094760905,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.5737780589622168e-06
+    },
+    {
+      "index": 93,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 2,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433431453603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6640382337714926,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.5737777801170046e-06
+    },
+    {
+      "index": 94,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433477823603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6607624169095629,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.5737775012718225e-06
+    },
+    {
+      "index": 95,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433524193602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.656194387042877,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.57377722242668e-06
+    },
+    {
+      "index": 96,
+      "quantum_numbers": {
+        "J": 5,
+        "M": 5,
+        "v": 0,
+        "electronic": 0,
+        "spin": 1
+      },
+      "energy": 5.508433570563602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.6503521720983846,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.573776943581558e-06
+    },
+    {
+      "index": 97,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -5,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.515059177013602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.9755282581475768,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.534240792510291e-06
+    },
+    {
+      "index": 98,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -4,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.515059223383603e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.9842915805643155,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.5342405179485788e-06
+    },
+    {
+      "index": 99,
+      "quantum_numbers": {
+        "J": 5,
+        "M": -3,
+        "v": 0,
+        "electronic": 0,
+        "spin": 2
+      },
+      "energy": 5.515059269753602e-20,
+      "frequency": 4332735000000.0,
+      "amplitude": 0.7071067811865476,
+      "phase": 0.0,
+      "damping": 0.9523809523809523,
+      "symmetry": 0.9911436253643444,
+      "degeneracy": 1,
+      "boltzmann_weight": 2.534240243386905e-06
+    }
+  ]
+}

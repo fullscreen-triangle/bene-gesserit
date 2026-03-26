@@ -1,0 +1,123 @@
+{
+  "encoding": {
+    "text": "The cat sat on the mat",
+    "words": [
+      "the",
+      "cat",
+      "sat",
+      "on",
+      "the",
+      "mat"
+    ],
+    "molecules": [
+      {
+        "word": "the",
+        "fundamental_frequency": 579146759084.381,
+        "s_coordinate": {
+          "S_k": 0.11538461538461539,
+          "S_t": 0.3333333333333333,
+          "S_e": 0.3371945169664171
+        },
+        "mass": 3
+      },
+      {
+        "word": "cat",
+        "fundamental_frequency": 578509581663.7318,
+        "s_coordinate": {
+          "S_k": 0.11538461538461539,
+          "S_t": 0.3333333333333333,
+          "S_e": 0.3371945169664171
+        },
+        "mass": 3
+      },
+      {
+        "word": "sat",
+        "fundamental_frequency": 577850287950.7473,
+        "s_coordinate": {
+          "S_k": 0.11538461538461539,
+          "S_t": 0.3333333333333333,
+          "S_e": 0.3371945169664171
+        },
+        "mass": 3
+      },
+      {
+        "word": "on",
+        "fundamental_frequency": 709299408760.983,
+        "s_coordinate": {
+          "S_k": 0.07692307692307693,
+          "S_t": 0.5,
+          "S_e": 0.2127460534919776
+        },
+        "mass": 2
+      },
+      {
+        "word": "the",
+        "fundamental_frequency": 579146759084.381,
+        "s_coordinate": {
+          "S_k": 0.11538461538461539,
+          "S_t": 0.3333333333333333,
+          "S_e": 0.3371945169664171
+        },
+        "mass": 3
+      },
+      {
+        "word": "mat",
+        "fundamental_frequency": 577467577024.4261,
+        "s_coordinate": {
+          "S_k": 0.11538461538461539,
+          "S_t": 0.3333333333333333,
+          "S_e": 0.3371945169664171
+        },
+        "mass": 3
+      }
+    ]
+  },
+  "understanding": {
+    "text": "The cat sat on the mat",
+    "words_processed": 6,
+    "network_stats": {
+      "molecules": 5,
+      "coincidences": 187,
+      "mean_degree": 4.0,
+      "max_degree": 4,
+      "density": 7.48
+    },
+    "processing_time": 0.0209805965423584
+  },
+  "similarity": {
+    "comparison_1": {
+      "text1": "The quick brown fox jumps over the lazy dog",
+      "text2": "A fast red wolf leaps above the tired hound",
+      "similarity": 0,
+      "s_distance": 0.12202803542869234
+    },
+    "comparison_2": {
+      "text1": "The quick brown fox jumps over the lazy dog",
+      "text2": "The cat is sleeping",
+      "similarity": 0,
+      "s_distance": 0.07709186891735904
+    }
+  },
+  "atmospheric_memory": {
+    "sentences_stored": [
+      "The quick brown fox",
+      "A lazy dog sleeps",
+      "Science explores nature"
+    ],
+    "statistics": {
+      "volume_cm3": 10.0,
+      "total_molecules": 250000000000000000000,
+      "n_addresses": 1000000,
+      "addresses_used": 9,
+      "words_stored": 11,
+      "network_stats": {
+        "molecules": 11,
+        "coincidences": 701,
+        "mean_degree": 9.636363636363637,
+        "max_degree": 10,
+        "density": 5.793388429752066
+      },
+      "capacity_per_address_bytes": 31250000000000
+    }
+  }
+}

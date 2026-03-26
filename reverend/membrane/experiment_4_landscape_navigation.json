@@ -1,0 +1,17 @@
+{
+  "navigation_analysis": {
+    "coverage_ratio": 0.3337,
+    "path_efficiency": 0.3337,
+    "total_visited_frames": 3337,
+    "navigation_successful": true
+  },
+  "availability_validation": {
+    "frames_pre_existed": true,
+    "appropriate_frames_found": true,
+    "predetermined_availability_confirmed": true
+  },
+  "total_navigation_steps": 10000,
+  "landscape_size": 10000,
+  "experiment": "Predetermined Cognitive Landscape Navigation",
+  "validation_success": true
+}

@@ -1,0 +1,23 @@
+{
+  "experiment_id": "ic_exp4",
+  "experiment_name": "S-Dictionary Memory",
+  "timestamp": "20251208_142016",
+  "hypothesis": "Memory provides O(1) retrieval with 10\u00b9\u2070 addressable states",
+  "conclusion": "Retrieval rate: 100.0%, states: 1e+10",
+  "validated": true,
+  "data": {
+    "entries": 1000,
+    "capacity": 10000,
+    "hole_utilization": 0.1,
+    "total_stores": 1000,
+    "total_retrievals": 100,
+    "cache_hit_rate": 1.0,
+    "equivalence_classes": 276,
+    "addressable_states": 10000000000.0
+  },
+  "metrics": {
+    "retrieval_rate_pct": 100.0,
+    "addressable_states": 10000000000.0
+  },
+  "figures": []
+}

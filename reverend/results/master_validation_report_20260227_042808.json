@@ -1,0 +1,49 @@
+{
+  "timestamp": "20260227_042808",
+  "mode": "quick",
+  "validations": {
+    "sorting": {
+      "status": "SUCCESS",
+      "summary": {
+        "overall_mean_speedup": 24.308361056043907,
+        "overall_std_speedup": 18.07499113213404,
+        "best_speedup": 55.15612605259014,
+        "best_speedup_size": 10000,
+        "overall_mean_energy_ratio": 0.10729183023816419,
+        "best_energy_ratio": 0.05991647650965107,
+        "speedup_scaling": "INCREASING",
+        "all_tests_passed": true,
+        "claim_validation": {
+          "categorical_is_log3_n": true,
+          "conventional_is_n_log_n": true,
+          "speedup_increases_with_n": true,
+          "energy_dramatically_lower": false
+        }
+      },
+      "file": "sorting_validation_20260227_042808.json"
+    },
+    "ipc": {
+      "status": "SUCCESS",
+      "summary": {
+        "best_speedup_vs_pipe": 0.11606432422850904,
+        "best_speedup_vs_shared_mem": 0.06017624897761601,
+        "best_speedup_vs_message_queue": 0.12132757124945122,
+        "latency_is_constant": "False",
+        "true_zero_copy_validated": true,
+        "claim_validation": {
+          "100x_speedup_achieved": false,
+          "speedup_increases_with_size": false,
+          "energy_dramatically_lower": true,
+          "latency_independent_of_size": "False"
+        }
+      },
+      "file": "ipc_validation_20260227_042808.json"
+    },
+    "commutation": {
+      "status": "FAILED",
+      "error": "'charmap' codec can't encode character '\\u210f' in position 12: character maps to <undefined>"
+    }
+  },
+  "completion_time": "2026-02-27T04:28:09.721043",
+  "overall_status": "PARTIAL"
+}

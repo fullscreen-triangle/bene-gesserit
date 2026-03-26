@@ -1,0 +1,16 @@
+{
+  "timestamp": "20251030_041940",
+  "bmd_circuit": {
+    "n_bmds": 240,
+    "n_edges": 1847,
+    "target_edges": 1847,
+    "mean_degree": 15.391666666666667,
+    "max_degree": 78,
+    "scale_free_validated": true
+  },
+  "fibonacci_program": {
+    "n_iterations": 100,
+    "success_rate_measured": 0.91,
+    "success_rate_target": 0.915,
+    "p_value": 1.6610244897268262e-18,
+    "statistically_significant": 

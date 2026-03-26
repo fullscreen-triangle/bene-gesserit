@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "test_suite": "Complete Framework Integration Test",
+    "version": "1.0.0",
+    "timestamp": "2025-10-29T09:00:44.359911",
+    "start_time": "2025-10-29T09:00:43.559139",
+    "end_time": "2025-10-29T09:00:44.359911",
+    "total_duration_seconds": 0.800772,
+    "platform": "win32"
+  },
+  "summary": {
+    "total_tests": 14,
+    "passed": 13,
+    "failed": 1,
+    "success_rate": 92.85714285714286
+  },
+  "test_results": {
+    "Psychon Creation (Tri-Dimensional)": {
+      "status": "PASSED",
+      "duration_seconds": 0.033425,
+      "timestamp": "2025-10-29T09:00:43.608071",
+      "data": {
+        "psychon_id": "psychon_f65c6b72",
+        "s_knowledge": 0.9604093769761877,
+        "s_time": 0.815836249209525,
+        "s_entropy": 0.9968700736015667,
+        "s_packing": 0.6736942168698042,
+        "s_hydrophobic": 0.7149586977073585,
+        "equivalence_class_id": 120,
+        "equivalence_class_members": 143,
+        "bmd_filtering_efficiency": 1936.7659073525422,
+        "frequency_hz": 120.0,
+        "amplitude": 1.0
+      }
+    },
+    "BMD Tri-Dimensional Operation (R-C-L)": {
+      "status": "FAILED",
+      "duration_seconds": 0.0,
+      "timestamp": "2025-10-29T09:00:43.608071",
+      "error": "Should select RESISTIVE for high S_knowledge"
+    },
+    "S-Entropy Coordinate Calculation": {
+      "status": "PASSED",
+      "duration_seconds": 0.0,
+      "timestamp": "2025-10-29T09:00:43.608071",
+      "data": {}
+    },
+    "BMD Transistor (Tri-Dimensional)": {
+      "status": "PASSED",
+      "duration_seconds": 0.033413,
+      "timestamp": "2025-10-29T09:00:43.641484",
+      "data": {}
+    },
+    "Logic Gate (AND-OR-XOR Parallel)": {
+      "status": "PASSED",
+      "duration_seconds": 0.0,
+      "timestamp": "2025-10-29T09:00:43.641484",
+      "data": {}
+    },
+    "S-Dictionary Memory (Content-Addressable)": {
+      "status": "PASSED",
+      "duration_seconds": 0.001179,
+      "timestamp": "2025-10-29T09:00:43.658228",
+      "data": {}
+    },
+    "Virtual Processor ALU (O(1) Operations)": {
+      "status": "PASSED",
+      "duration_seconds": 0.0,
+      "timestamp": "2025-10-29T09:00:43.658228",
+      "data": {}
+    },
+    "S-Coordinate Decoder": {
+      "status": "PASSED",
+      "duration_seconds": 0.0,
+      "timestamp": "2025-10-29T09:00:43.658228",
+      "data": {}
+    },
+    "Register File (S-Coordinate)": {
+      "status": "PASSED",
+      "duration_seconds": 0.0,
+      "timestamp": "2025-10-29T09:00:43.658228",
+      "data": {}
+    },
+    "Multiplexer (Gear Ratio)": {
+      "status": "PASSED",
+      "duration_seconds": 0.01656,
+      "timestamp": "2025-10-29T09:00:43.674788",
+      "data": {}
+    },
+    "CPU Clock Harvester": {
+      "status": "PASSED",
+      "duration_seconds": 0.216587,
+      "timestamp": "2025-10-29T09:00:43.891375",
+      "data": {}
+    },
+    "Screen Oscillation Harvester": {
+      "status": "PASSED",
+      "duration_seconds": 0.195257,
+      "timestamp": "2025-10-29T09:00:44.086632",
+      "data": {}
+    },
+    "Electromagnetic Harvester": {
+      "status": "PASSED",
+      "duration_seconds": 0.222015,
+      "timestamp": "2025-10-29T09:00:44.323303",
+      "data": {}
+    },
+    "Memory Access Harvester": {
+      "status": "PASSED",
+      "duration_seconds": 0.036608,
+      "timestamp": "2025-10-29T09:00:44.359911",
+      "data": {}
+    }
+  },
+  "failed_tests": [
+    {
+      "name": "BMD Tri-Dimensional Operation (R-C-L)",
+      "error": "Should select RESISTIVE for high S_knowledge"
+    }
+  ]
+}

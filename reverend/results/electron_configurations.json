@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-03-25T05:26:31.620590+00:00",
+  "description": "Electron configuration derivation via aufbau/Madelung vs NIST for 9 benchmark elements",
+  "filling_order": "1s -> 2s -> 2p -> 3s -> 3p -> 4s -> 3d -> 4p -> 5s -> 4d -> 5p -> 6s -> 4f -> 5d -> 6p -> 7s -> 5f -> 6d -> 7p",
+  "alpha_parameter": 0.4,
+  "results": [
+    {
+      "symbol": "H",
+      "Z": 1,
+      "derived_config": "1s1",
+      "nist_config": "1s1",
+      "match": true
+    },
+    {
+      "symbol": "C",
+      "Z": 6,
+      "derived_config": "[He]2s2.2p2",
+      "nist_config": "[He]2s2.2p2",
+      "match": true
+    },
+    {
+      "symbol": "Na",
+      "Z": 11,
+      "derived_config": "[Ne]3s1",
+      "nist_config": "[Ne]3s1",
+      "match": true
+    },
+    {
+      "symbol": "Si",
+      "Z": 14,
+      "derived_config": "[Ne]3s2.3p2",
+      "nist_config": "[Ne]3s2.3p2",
+      "match": true
+    },
+    {
+      "symbol": "Cl",
+      "Z": 17,
+      "derived_config": "[Ne]3s2.3p5",
+      "nist_config": "[Ne]3s2.3p5",
+      "match": true
+    },
+    {
+      "symbol": "Ar",
+      "Z": 18,
+      "derived_config": "[Ar]",
+      "nist_config": "[Ar]",
+      "match": true
+    },
+    {
+      "symbol": "Ca",
+      "Z": 20,
+      "derived_config": "[Ar]4s2",
+      "nist_config": "[Ar]4s2",
+      "match": true
+    },
+    {
+      "symbol": "Fe",
+      "Z": 26,
+      "derived_config": "[Ar]3d6.4s2",
+      "nist_config": "[Ar]3d6.4s2",
+      "match": true
+    },
+    {
+      "symbol": "Gd",
+      "Z": 64,
+      "derived_config": "[Xe]4f7.5d1.6s2",
+      "nist_config": "[Xe]4f7.5d1.6s2",
+      "match": true
+    }
+  ],
+  "pass_count": 9,
+  "total": 9,
+  "all_pass": true
+}

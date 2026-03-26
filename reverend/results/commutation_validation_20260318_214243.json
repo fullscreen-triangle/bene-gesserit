@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-03-18T21:42:46.403481",
+  "n_max": 3,
+  "hilbert_space_dim": 56,
+  "commutation_tests": [
+    {
+      "categorical_op": "n",
+      "physical_op": "x",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "n",
+      "physical_op": "p",
+      "commutator_norm": 5.8743138983698545e-24,
+      "relative_commutator": 0.062253269521893126,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "n",
+      "physical_op": "H",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "l",
+      "physical_op": "x",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "l",
+      "physical_op": "p",
+      "commutator_norm": 6.740109444950502e-24,
+      "relative_commutator": 0.1386750490563073,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "l",
+      "physical_op": "H",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "m",
+      "physical_op": "x",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "m",
+      "physical_op": "p",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True",
+      "tolerance": 1e-10
+    },
+    {
+      "categorical_op": "m",
+      "physical_op": "H",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True",
+      "tolerance": 1e-10
+    }
+  ],
+  "summary": {
+    "position_commutes_with_categorical": true,
+    "momentum_commutes_with_categorical": true,
+    "hamiltonian_commutes_with_categorical": true,
+    "categorical_ops_mutually_commute": true,
+    "claim_validation": {
+      "commutation_exact_for_position": true,
+      "commutation_holds_for_all": true,
+      "categorical_ops_form_complete_set": true
+    }
+  },
+  "heisenberg_control": {
+    "commutator_norm": 1.8647707173983593e-33,
+    "expected_norm": 7.891692857923334e-34,
+    "relative_error": 2.565843250727057,
+    "passed": "False"
+  },
+  "categorical_self_commutation": [
+    {
+      "op1": "l",
+      "op2": "n",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True"
+    },
+    {
+      "op1": "l",
+      "op2": "m",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True"
+    },
+    {
+      "op1": "m",
+      "op2": "n",
+      "commutator_norm": 0.0,
+      "relative_commutator": 0.0,
+      "commutes": "True"
+    }
+  ]
+}

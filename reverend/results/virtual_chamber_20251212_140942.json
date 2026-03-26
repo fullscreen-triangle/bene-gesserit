@@ -1,0 +1,258 @@
+{
+  "timestamp": "2025-12-12 14:09:42",
+  "demonstration": "virtual_chamber",
+  "experiments": [
+    {
+      "name": "chamber_population",
+      "description": "Populating chamber from hardware oscillations",
+      "final_molecule_count": 1000,
+      "population_dynamics": [
+        {
+          "molecules": 0,
+          "temperature": 0.0,
+          "pressure": 0.0,
+          "volume": 0.0
+        },
+        {
+          "molecules": 100,
+          "temperature": 0.07217156522612755,
+          "pressure": 73844.33566004939,
+          "volume": 0.0
+        },
+        {
+          "molecules": 200,
+          "temperature": 0.0794488310343913,
+          "pressure": 54586.64239120673,
+          "volume": 0.0
+        },
+        {
+          "molecules": 300,
+          "temperature": 0.08162767839081753,
+          "pressure": 56690.41348568952,
+          "volume": 0.0
+        },
+        {
+          "molecules": 400,
+          "temperature": 0.07903371732759079,
+          "pressure": 54041.638972081826,
+          "volume": 0.0
+        },
+        {
+          "molecules": 500,
+          "temperature": 0.08321413107780712,
+          "pressure": 52772.67627988184,
+          "volume": 0.0
+        },
+        {
+          "molecules": 600,
+          "temperature": 0.08385324953579545,
+          "pressure": 46286.29612035644,
+          "volume": 0.0
+        },
+        {
+          "molecules": 700,
+          "temperature": 0.08511378105168406,
+          "pressure": 34929.96541266637,
+          "volume": 0.0
+        },
+        {
+          "molecules": 800,
+          "temperature": 0.08480170195145963,
+          "pressure": 34080.11380325355,
+          "volume": 0.0
+        },
+        {
+          "molecules": 900,
+          "temperature": 0.08280249949829756,
+          "pressure": 33592.86933580616,
+          "volume": 0.0
+        },
+        {
+          "molecules": 1000,
+          "temperature": 0.08285587457085723,
+          "pressure": 29229.253805572127,
+          "volume": 0.0
+        }
+      ]
+    },
+    {
+      "name": "chamber_statistics",
+      "description": "Real thermodynamic quantities from hardware",
+      "statistics": {
+        "molecule_count": 1000,
+        "mean_S_k": 1.0,
+        "mean_S_t": 0.9999679737069732,
+        "mean_S_e": 0.49109529209136965,
+        "temperature": 0.08285587457085723,
+        "pressure": 19192.936991880335,
+        "volume": 0.0,
+        "S_k_variance": 0.0,
+        "S_t_variance": 1.42255849879813e-10,
+        "S_e_variance": 0.08285587442860168
+      },
+      "note": "Temperature IS hardware timing jitter, Pressure IS sampling rate"
+    },
+    {
+      "name": "molecule_distribution",
+      "description": "Distribution of molecules in S-space",
+      "histograms": {
+        "S_k": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1000
+        ],
+        "S_t": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1000
+        ],
+        "S_e": [
+          101,
+          119,
+          97,
+          96,
+          89,
+          114,
+          112,
+          82,
+          92,
+          98
+        ]
+      }
+    },
+    {
+      "name": "categorical_navigation",
+      "description": "Navigating to different categorical locations",
+      "locations": {
+        "room_temperature": {
+          "accessible": true,
+          "S_k": 0.5,
+          "S_t": 0.5,
+          "S_e": 0.5
+        },
+        "jupiter_core": {
+          "accessible": true,
+          "S_k": 0.95,
+          "S_t": 0.73,
+          "S_e": 0.88
+        },
+        "deep_space": {
+          "accessible": true,
+          "S_k": 0.01,
+          "S_t": 0.01,
+          "S_e": 0.01
+        },
+        "sun_center": {
+          "accessible": true,
+          "S_k": 0.99,
+          "S_t": 0.85,
+          "S_e": 0.95
+        },
+        "earth_mantle": {
+          "accessible": true,
+          "S_k": 0.7,
+          "S_t": 0.5,
+          "S_e": 0.6
+        }
+      },
+      "conclusion": "All locations accessed instantaneously - no spatial propagation"
+    },
+    {
+      "name": "extreme_molecules",
+      "description": "Finding coldest and hottest molecules (by S_e)",
+      "coldest": {
+        "S_k": 1.0,
+        "S_t": 0.9999837596907275,
+        "S_e": 0.00254058837890625
+      },
+      "hottest": {
+        "S_k": 1.0,
+        "S_t": 0.9999683274323428,
+        "S_e": 0.9974555969238281
+      },
+      "temperature_range": 0.9949150085449219
+    },
+    {
+      "name": "timing_analysis",
+      "description": "Analysis of sampling timing",
+      "sample_count": 100,
+      "mean_sample_time_ns": 15681.0,
+      "samples": [
+        {
+          "sample_time_ns": 52700,
+          "S_k": 1.0,
+          "S_t": 0.9999997641712253,
+          "S_e": 0.35986328125
+        },
+        {
+          "sample_time_ns": 31700,
+          "S_k": 1.0,
+          "S_t": 0.9999942852805381,
+          "S_e": 0.7390899658203125
+        },
+        {
+          "sample_time_ns": 11000,
+          "S_k": 1.0,
+          "S_t": 0.9999901299254574,
+          "S_e": 0.8523025512695312
+        },
+        {
+          "sample_time_ns": 11000,
+          "S_k": 1.0,
+          "S_t": 0.9999726772663329,
+          "S_e": 0.35639190673828125
+        },
+        {
+          "sample_time_ns": 34900,
+          "S_k": 1.0,
+          "S_t": 0.9999805315150796,
+          "S_e": 0.6447734832763672
+        },
+        {
+          "sample_time_ns": 15700,
+          "S_k": 1.0,
+          "S_t": 0.9999907736266949,
+          "S_e": 0.5471572875976562
+        },
+        {
+          "sample_time_ns": 8800,
+          "S_k": 1.0,
+          "S_t": 0.999979917362781,
+          "S_e": 0.3980884552001953
+        },
+        {
+          "sample_time_ns": 13000,
+          "S_k": 1.0,
+          "S_t": 0.9999663163595565,
+          "S_e": 0.470977783203125
+        },
+        {
+          "sample_time_ns": 9600,
+          "S_k": 1.0,
+          "S_t": 0.9999765085230321,
+          "S_e": 0.8937950134277344
+        },
+        {
+          "sample_time_ns": 8100,
+          "S_k": 1.0,
+          "S_t": 0.9999701117304163,
+          "S_e": 0.8630218505859375
+        }
+      ]
+    }
+  ]
+}

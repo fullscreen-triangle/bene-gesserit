@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-10-26T22:11:39.472526",
+  "num_molecules": 5,
+  "signatures": {
+    "Vanillin (vanilla)": {
+      "frequency": 61385895387231.18,
+      "amplitude": 8.669391932253395,
+      "phase": 3.9683275624292125,
+      "damping": 0.7498003594352941,
+      "symmetry": 0.6756987419764706,
+      "smiles": "COc1cc(C=O)ccc1O",
+      "molecular_weight": 152.14900000000006
+    },
+    "Ethyl Vanillin (vanilla)": {
+      "frequency": 62711352567070.07,
+      "amplitude": 9.4426250540365,
+      "phase": 3.8555909839511098,
+      "damping": 0.785619459196294,
+      "symmetry": 0.6812684693456872,
+      "smiles": "CCOc1cc(C=O)ccc1O",
+      "molecular_weight": 166.17600000000007
+    },
+    "Benzene (aromatic)": {
+      "frequency": 62331721573288.92,
+      "amplitude": 6.532439495806119,
+      "phase": 3.9269908169872414,
+      "damping": 0.3499999999998831,
+      "symmetry": 0.6750000000008763,
+      "smiles": "c1ccccc1",
+      "molecular_weight": 78.11399999999996
+    },
+    "Indole (fecal)": {
+      "frequency": 59302836799678.555,
+      "amplitude": 7.812579821119256,
+      "phase": 4.065590492880909,
+      "damping": 0.2624999999989632,
+      "symmetry": 0.675000000010368,
+      "smiles": "c1ccc2c(c1)cc[nH]2",
+      "molecular_weight": 117.15099999999995
+    },
+    "Citral (lemon)": {
+      "frequency": 69215241649216.02,
+      "amplitude": 10.596733019719702,
+      "phase": 0.18124573001479577,
+      "damping": 0.9253506443796171,
+      "symmetry": 0.6974513126823263,
+      "smiles": "CC(C)=CCCC(C)=CC=O",
+      "molecular_weight": 152.23700000000014
+    }
+  },
+  "metadata": {
+    "description": "Oscillatory signatures of odorant molecules"
+  }
+}

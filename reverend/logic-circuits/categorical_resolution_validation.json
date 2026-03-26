@@ -1,0 +1,47 @@
+{
+  "molecule": "CH4+",
+  "temperature_K": 4.0,
+  "resolution_data": {
+    "n_oscillators": 1950,
+    "categorical_resolution": 9.997529852533433e-51,
+    "temperature": 4.0,
+    "integration_time": 1.0,
+    "raman_resolution": 4.9727145238140424e-29,
+    "ir_resolution": 4.9727145238140424e-29,
+    "dual_mode_resolution": 3.318109734295327e-29
+  },
+  "regime_analysis": {
+    "categorical_regime": "sub-Planckian",
+    "raman_regime": "trans-Planckian",
+    "ir_regime": "trans-Planckian",
+    "dual_mode_regime": "trans-Planckian",
+    "planck_ratio_categorical": 1.8548292861843106e-07,
+    "planck_ratio_raman": 922581544306872.5,
+    "planck_ratio_ir": 922581544306872.5,
+    "planck_ratio_dual": 615604774451823.2,
+    "orders_beyond_planck_categorical": 6.731696055579861,
+    "orders_beyond_planck_raman": -14.965004762557253,
+    "orders_beyond_planck_dual": -14.78930197943436
+  },
+  "theorem_12_2_validation": {
+    "n_oscillators": 1950,
+    "average_frequency_Hz": 67018899696715.76,
+    "average_omega_rad_s": 421092165877746.9,
+    "tau_cat_theoretical": 7.651879024293255e-18,
+    "tau_cat_measured": 9.997529852533433e-51,
+    "relative_error": 7.653769618256477e+32,
+    "agreement": false,
+    "formula_validated": true
+  },
+  "state_accumulation": {
+    "integration_time_s": 1.0,
+    "categorical_states_total": 1.0002470757780174e+50,
+    "categorical_states_raman_computed": 2.010974077058029e+28,
+    "categorical_states_raman_measured": 268315499392320.12,
+    "categorical_states_dual_computed": 3.013764100880081e+28,
+    "categorical_states_dual_measured": 402113398180294.56,
+    "raman_agreement": 74948114499999.0,
+    "dual_agreement": 74948114499999.0
+  },
+  "validation_pass": false
+}

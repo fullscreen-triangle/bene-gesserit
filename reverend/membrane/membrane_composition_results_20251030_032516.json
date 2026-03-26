@@ -1,0 +1,55 @@
+{
+  "timestamp": "20251030_032516",
+  "lipid_composition": {
+    "standard_unsaturated_pct": 60,
+    "optimized_unsaturated_pct": 85,
+    "improvement_pct": 25
+  },
+  "radical_density": {
+    "standard_radicals_per_um2": 5000.0,
+    "optimized_radicals_per_um2": 10000.0,
+    "improvement": 5000.0
+  },
+  "oxidation_kinetics": {
+    "standard_k_ox_M_inv_s_inv": 0.0003,
+    "optimized_k_ox_M_inv_s_inv": 0.00085,
+    "temperature_K": 310
+  },
+  "fragment_production": {
+    "standard_fragments_per_m2_per_s": 15000000000.0,
+    "optimized_fragments_per_m2_per_s": 42499999999.99999,
+    "target_fragments_per_m2_per_s": 10000000000.0
+  },
+  "ensemble_amplification": {
+    "standard_amplification": 2.5,
+    "optimized_amplification": 5.249999999999999,
+    "improvement_pct": 109.99999999999997,
+    "target_amplification": 2.0
+  },
+  "paramagnetic_species": {
+    "species": [
+      "O2",
+      "NO",
+      "R-O\u2022",
+      "\u2022OH",
+      "ROO\u2022"
+    ],
+    "frequencies_Hz": {
+      "O2": 1400000000.0,
+      "NO": 700000000.0,
+      "R-O\u2022": 650000000.0,
+      "\u2022OH": 720000000.0,
+      "ROO\u2022": 680000000.0
+    }
+  },
+  "antioxidant_control": {
+    "standard_vitamin_e": 0.8333333333333333,
+    "optimized_vitamin_e": 0.5555555555555556
+  },
+  "validation_summary": {
+    "composition_optimized": true,
+    "radical_density_optimized": true,
+    "ensemble_amplified": true,
+    "all_tests_passed": true
+  }
+}

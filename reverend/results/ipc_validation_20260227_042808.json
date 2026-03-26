@@ -1,0 +1,173 @@
+{
+  "timestamp": "2026-02-27T04:28:09.468075",
+  "configuration": {
+    "data_sizes_bytes": [
+      1024,
+      102400,
+      10240000
+    ],
+    "n_trials": 3
+  },
+  "benchmarks": [
+    {
+      "size_bytes": 1024,
+      "n_elements": 128,
+      "conventional": {
+        "pipe": {
+          "mean_time_s": 3.8000095325211682e-06,
+          "std_time_s": 1.3063925954458257e-06,
+          "mean_energy_J": 4.703811805312981e-17,
+          "mean_latency_ms": 0.0038000095325211682,
+          "bandwidth_GBps": 0.26947300822180126
+        },
+        "shared_memory": {
+          "mean_time_s": 2.0333391148597e-06,
+          "std_time_s": 6.236272768258409e-07,
+          "mean_energy_J": 2.3523300380292905e-17,
+          "mean_latency_ms": 0.0020333391148597,
+          "bandwidth_GBps": 0.5036051254395191
+        },
+        "message_queue": {
+          "mean_time_s": 2.8333258039007583e-06,
+          "std_time_s": 7.31822185749422e-07,
+          "mean_energy_J": 5.879764756641227e-17,
+          "mean_latency_ms": 0.0028333258039007583,
+          "bandwidth_GBps": 0.3614127251409691
+        }
+      },
+      "categorical": {
+        "address_sharing": {
+          "mean_time_s": 6.709999676483373e-05,
+          "std_time_s": 6.860012802650841e-06,
+          "mean_energy_J": 5.540989538138228e-19,
+          "mean_latency_ms": 0.06709999676483373,
+          "mean_nav_steps": 7.0,
+          "address_size_bytes": 24,
+          "data_size_bytes": 1024,
+          "true_zero_copy": true
+        }
+      },
+      "speedups": {
+        "pipe": 0.05663203749232825,
+        "shared_memory": 0.030303117926904995,
+        "message_queue": 0.04222542385256371
+      },
+      "energy_ratios": {
+        "pipe": 0.011779785772635823,
+        "shared_memory": 0.023555323651694292,
+        "message_queue": 0.009423828618108657
+      }
+    },
+    {
+      "size_bytes": 102400,
+      "n_elements": 12800,
+      "conventional": {
+        "pipe": {
+          "mean_time_s": 3.696665711080035e-05,
+          "std_time_s": 3.410908620052898e-05,
+          "mean_energy_J": 4.703811805312981e-15,
+          "mean_latency_ms": 0.03696665711080035,
+          "bandwidth_GBps": 2.7700638359880894
+        },
+        "shared_memory": {
+          "mean_time_s": 6.666668923571706e-06,
+          "std_time_s": 1.699648066920738e-07,
+          "mean_energy_J": 2.3523300380292907e-15,
+          "mean_latency_ms": 0.006666668923571706,
+          "bandwidth_GBps": 15.35999480009255
+        },
+        "message_queue": {
+          "mean_time_s": 1.2433340695376197e-05,
+          "std_time_s": 2.0548203139528444e-07,
+          "mean_energy_J": 5.8797647566412265e-15,
+          "mean_latency_ms": 0.012433340695376197,
+          "bandwidth_GBps": 8.235920056311276
+        }
+      },
+      "categorical": {
+        "address_sharing": {
+          "mean_time_s": 0.00040113333185824257,
+          "std_time_s": 2.6909777614296935e-05,
+          "mean_energy_J": 5.5409897038161075e-19,
+          "mean_latency_ms": 0.40113333185824257,
+          "mean_nav_steps": 11.0,
+          "address_size_bytes": 24,
+          "data_size_bytes": 102400,
+          "true_zero_copy": true
+        }
+      },
+      "speedups": {
+        "pipe": 0.09215553576550971,
+        "shared_memory": 0.016619583550158967,
+        "message_queue": 0.030995531181063865
+      },
+      "energy_ratios": {
+        "pipe": 0.0001177978612485629,
+        "shared_memory": 0.00023555324356008212,
+        "message_queue": 9.423828899885032e-05
+      }
+    },
+    {
+      "size_bytes": 10240000,
+      "n_elements": 1280000,
+      "conventional": {
+        "pipe": {
+          "mean_time_s": 0.005046933336416259,
+          "std_time_s": 0.00012606755729203912,
+          "mean_energy_J": 4.703811805312981e-13,
+          "mean_latency_ms": 5.046933336416259,
+          "bandwidth_GBps": 2.028954875649546
+        },
+        "shared_memory": {
+          "mean_time_s": 0.0026166999984222152,
+          "std_time_s": 0.00022561105321272946,
+          "mean_energy_J": 2.3523300380292905e-13,
+          "mean_latency_ms": 2.6166999984222152,
+          "bandwidth_GBps": 3.91332594725203
+        },
+        "message_queue": {
+          "mean_time_s": 0.0052758000189593686,
+          "std_time_s": 0.000406493314208076,
+          "mean_energy_J": 5.879764756641227e-13,
+          "mean_latency_ms": 5.275800018959369,
+          "bandwidth_GBps": 1.9409378602678349
+        }
+      },
+      "categorical": {
+        "address_sharing": {
+          "mean_time_s": 0.043483933327176295,
+          "std_time_s": 0.010418137744394687,
+          "mean_energy_J": 5.540989869493987e-19,
+          "mean_latency_ms": 43.483933327176295,
+          "mean_nav_steps": 15.0,
+          "address_size_bytes": 24,
+          "data_size_bytes": 10240000,
+          "true_zero_copy": true
+        }
+      },
+      "speedups": {
+        "pipe": 0.11606432422850904,
+        "shared_memory": 0.06017624897761601,
+        "message_queue": 0.12132757124945122
+      },
+      "energy_ratios": {
+        "pipe": 1.1779786477076758e-06,
+        "shared_memory": 2.3555325060322136e-06,
+        "message_queue": 9.423829181661407e-07
+      }
+    }
+  ],
+  "summary": {
+    "best_speedup_vs_pipe": 0.11606432422850904,
+    "best_speedup_vs_shared_mem": 0.06017624897761601,
+    "best_speedup_vs_message_queue": 0.12132757124945122,
+    "latency_is_constant": "False",
+    "true_zero_copy_validated": true,
+    "claim_validation": {
+      "100x_speedup_achieved": false,
+      "speedup_increases_with_size": false,
+      "energy_dramatically_lower": true,
+      "latency_independent_of_size": "False"
+    }
+  }
+}

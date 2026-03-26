@@ -1,0 +1,50 @@
+{
+  "molecule": "CH4+",
+  "enhancement_data": {
+    "raman_states": 268315499392320.12,
+    "ir_states": 133797898787974.44,
+    "dual_mode_states": 402113398180294.56,
+    "raman_resolution": 4.9727145238140424e-29,
+    "ir_resolution": 4.9727145238140424e-29,
+    "dual_mode_resolution": 3.318109734295327e-29,
+    "enhancement_factor": 1.4986588515795747
+  },
+  "formula_validation": {
+    "M_dual_expected": 402113398180294.56,
+    "M_dual_measured": 402113398180294.56,
+    "state_agreement": 1.0,
+    "enhancement_theoretical": 1.4986588515795747,
+    "enhancement_measured": 1.4986588515795747,
+    "enhancement_agreement": 1.0,
+    "formula_validated": true
+  },
+  "complementarity_analysis": {
+    "n_raman_modes": 4,
+    "n_ir_modes": 2,
+    "n_overlap_modes": 2,
+    "n_expected_overlap": 2,
+    "n_unexpected_overlap": 0,
+    "n_effective_modes": 4,
+    "complementarity_index": 1.0,
+    "redundancy_fraction": 0.3333333333333333,
+    "is_complementary": true
+  },
+  "information_gain": {
+    "M_avg_single": 201056699090147.28,
+    "M_dual": 402113398180294.56,
+    "information_gain_bits": 1.0,
+    "relative_improvement": 1.0,
+    "improvement_percent": 100.0
+  },
+  "resolution_improvement": {
+    "tau_raman": 4.9727145238140424e-29,
+    "tau_ir": 4.9727145238140424e-29,
+    "tau_dual": 3.318109734295327e-29,
+    "improvement_over_raman": 0.3327367339498193,
+    "improvement_over_ir": 0.3327367339498193,
+    "average_improvement": 0.3327367339498193,
+    "improvement_percent": 33.27367339498193,
+    "is_improved": true
+  },
+  "validation_pass": true
+}

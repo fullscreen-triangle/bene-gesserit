@@ -1,0 +1,76 @@
+{
+  "timestamp": "20251210_220734",
+  "paper_reference": "Sachikonye (2025) - Oscillatory Quantum Biology",
+  "quantum_gates": {
+    "X_gate": {
+      "p1": 1.0,
+      "correct": true
+    },
+    "H_gate": {
+      "p0": 0.5000000000000001,
+      "p1": 0.5000000000000001,
+      "correct": true
+    },
+    "Phase_gate": {
+      "phase": 0.7853981633974483,
+      "correct": true
+    },
+    "Measure": {
+      "p0": 0.503,
+      "p1": 0.497,
+      "correct": true
+    },
+    "Bell_state": {
+      "counts": {
+        "00": 502,
+        "01": 0,
+        "10": 0,
+        "11": 498
+      },
+      "correct": true
+    },
+    "circuit_stats": {
+      "n_qubits": 2,
+      "n_operations": 2,
+      "total_time_us": 170.0,
+      "average_fidelity": 0.884354913949494,
+      "gate_counts": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
+        "Hadamard": 1,
+        "CNOT": 1,
+        "Phase": 0,
+        "T": 0,
+        "SWAP": 0,
+        "Measure": 0
+      }
+    }
+  },
+  "transistor_circuits": {
+    "inverter": {
+      "correct": true
+    },
+    "nand": {
+      "correct": true
+    },
+    "add": {
+      "correct": true
+    },
+    "subtract": {
+      "correct": true
+    },
+    "multiply": {
+      "correct": true
+    },
+    "alu_stats": {
+      "operations": 127,
+      "gate_uses": 600,
+      "gates_per_operation": 4.724409448818897
+    }
+  },
+  "summary": {
+    "all_gates_valid": true,
+    "all_transistors_valid": true
+  }
+}

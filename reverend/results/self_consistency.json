@@ -1,0 +1,292 @@
+{
+  "description": "Self-consistency (Table 4). Max deviation of predicted vs observed frequency across loops.",
+  "timestamp": "2026-03-25T06:26:27.904018",
+  "parameters": {
+    "q_max": 10,
+    "delta_max": 0.05
+  },
+  "physical_constants": {
+    "c_cm_per_s": 29980000000.0,
+    "h_J_s": 6.626e-34,
+    "hbar_J_s": 1.055e-34,
+    "k_B_J_per_K": 1.381e-23,
+    "epsilon_0_F_per_m": 8.854e-12
+  },
+  "molecules_tested": [
+    "H2",
+    "CO",
+    "H2O",
+    "CO2",
+    "CH4",
+    "C6H6"
+  ],
+  "paper_expected": {
+    "H2": {
+      "max_dev_pct": null,
+      "status": "PASS"
+    },
+    "CO": {
+      "max_dev_pct": 0.18,
+      "status": "PASS"
+    },
+    "H2O": {
+      "max_dev_pct": null,
+      "status": "PASS"
+    },
+    "CO2": {
+      "max_dev_pct": null,
+      "status": "PASS"
+    },
+    "CH4": {
+      "max_dev_pct": 0.74,
+      "status": "PASS"
+    },
+    "C6H6": {
+      "max_dev_pct": 1.66,
+      "status": "PASS"
+    }
+  },
+  "results": {
+    "H2": {
+      "predictions": {},
+      "shared_vertices": {},
+      "num_shared_vertices": 0,
+      "max_deviation_pct": 0.0,
+      "max_deviation_details": null,
+      "status": "PASS",
+      "is_single_loop": true,
+      "note": "PASS (single loop)"
+    },
+    "CO": {
+      "predictions": {},
+      "shared_vertices": {
+        "R1": [
+          0,
+          1
+        ],
+        "vib": [
+          0,
+          1,
+          2
+        ]
+      },
+      "num_shared_vertices": 2,
+      "max_deviation_pct": 0.0,
+      "max_deviation_details": null,
+      "status": "PASS",
+      "is_single_loop": false,
+      "note": "PASS (max deviation = 0.00%)"
+    },
+    "H2O": {
+      "predictions": {},
+      "shared_vertices": {},
+      "num_shared_vertices": 0,
+      "max_deviation_pct": 0.0,
+      "max_deviation_details": null,
+      "status": "PASS",
+      "is_single_loop": true,
+      "note": "PASS (single loop)"
+    },
+    "CO2": {
+      "predictions": {},
+      "shared_vertices": {},
+      "num_shared_vertices": 0,
+      "max_deviation_pct": 0.0,
+      "max_deviation_details": null,
+      "status": "PASS",
+      "is_single_loop": true,
+      "note": "PASS (single loop)"
+    },
+    "CH4": {
+      "predictions": {
+        "nu3": [
+          {
+            "loop": "nu3-nu2-nu4-nu3",
+            "via_mode": "nu4",
+            "ratio_p_q": "7/3",
+            "predicted_freq": 3047.33,
+            "observed_freq": 3019.0,
+            "deviation_cm": 28.33,
+            "relative_deviation_pct": 0.9385
+          }
+        ],
+        "nu1": [
+          {
+            "loop": "nu1-nu2-nu4-nu1",
+            "via_mode": "nu4",
+            "ratio_p_q": "9/4",
+            "predicted_freq": 2938.5,
+            "observed_freq": 2917.0,
+            "deviation_cm": 21.5,
+            "relative_deviation_pct": 0.7371
+          }
+        ],
+        "nu4": [
+          {
+            "loop": "nu1-nu2-nu4-nu1",
+            "via_mode": "nu1",
+            "ratio_p_q": "9/4",
+            "predicted_freq": 1296.44,
+            "observed_freq": 1306.0,
+            "deviation_cm": 9.56,
+            "relative_deviation_pct": 0.7317
+          },
+          {
+            "loop": "nu3-nu2-nu4-nu3",
+            "via_mode": "nu3",
+            "ratio_p_q": "7/3",
+            "predicted_freq": 1293.86,
+            "observed_freq": 1306.0,
+            "deviation_cm": 12.14,
+            "relative_deviation_pct": 0.9298
+          }
+        ]
+      },
+      "shared_vertices": {
+        "nu3": [
+          0,
+          2
+        ],
+        "nu2": [
+          0,
+          1,
+          2
+        ],
+        "nu1": [
+          0,
+          1
+        ],
+        "nu4": [
+          1,
+          2
+        ]
+      },
+      "num_shared_vertices": 4,
+      "max_deviation_pct": 0.9385,
+      "max_deviation_details": {
+        "node": "nu3",
+        "prediction": {
+          "loop": "nu3-nu2-nu4-nu3",
+          "via_mode": "nu4",
+          "ratio_p_q": "7/3",
+          "predicted_freq": 3047.33,
+          "observed_freq": 3019.0,
+          "deviation_cm": 28.33,
+          "relative_deviation_pct": 0.9385
+        }
+      },
+      "status": "PASS",
+      "is_single_loop": false,
+      "note": "PASS (max deviation = 0.94%)"
+    },
+    "C6H6": {
+      "predictions": {
+        "nu2": [
+          {
+            "loop": "nu2-nu3-nu5-nu4-nu2",
+            "via_mode": "nu4",
+            "ratio_p_q": "7/3",
+            "predicted_freq": 1570.33,
+            "observed_freq": 1596.0,
+            "deviation_cm": 25.67,
+            "relative_deviation_pct": 1.6082
+          },
+          {
+            "loop": "nu2-nu3-nu5-nu2",
+            "via_mode": "nu5",
+            "ratio_p_q": "8/5",
+            "predicted_freq": 1588.8,
+            "observed_freq": 1596.0,
+            "deviation_cm": 7.2,
+            "relative_deviation_pct": 0.4511
+          }
+        ],
+        "nu3": [
+          {
+            "loop": "nu3-nu5-nu4-nu3",
+            "via_mode": "nu4",
+            "ratio_p_q": "7/4",
+            "predicted_freq": 1177.75,
+            "observed_freq": 1178.0,
+            "deviation_cm": 0.25,
+            "relative_deviation_pct": 0.0212
+          }
+        ],
+        "nu5": [
+          {
+            "loop": "nu2-nu3-nu5-nu2",
+            "via_mode": "nu2",
+            "ratio_p_q": "8/5",
+            "predicted_freq": 997.5,
+            "observed_freq": 993.0,
+            "deviation_cm": 4.5,
+            "relative_deviation_pct": 0.4532
+          }
+        ],
+        "nu4": [
+          {
+            "loop": "nu2-nu3-nu5-nu4-nu2",
+            "via_mode": "nu2",
+            "ratio_p_q": "7/3",
+            "predicted_freq": 684.0,
+            "observed_freq": 673.0,
+            "deviation_cm": 11.0,
+            "relative_deviation_pct": 1.6345
+          },
+          {
+            "loop": "nu3-nu5-nu4-nu3",
+            "via_mode": "nu3",
+            "ratio_p_q": "7/4",
+            "predicted_freq": 673.14,
+            "observed_freq": 673.0,
+            "deviation_cm": 0.14,
+            "relative_deviation_pct": 0.0212
+          }
+        ]
+      },
+      "shared_vertices": {
+        "nu2": [
+          0,
+          1
+        ],
+        "nu3": [
+          0,
+          1,
+          2
+        ],
+        "nu5": [
+          0,
+          1,
+          2
+        ],
+        "nu4": [
+          0,
+          2
+        ]
+      },
+      "num_shared_vertices": 4,
+      "max_deviation_pct": 1.6345,
+      "max_deviation_details": {
+        "node": "nu4",
+        "prediction": {
+          "loop": "nu2-nu3-nu5-nu4-nu2",
+          "via_mode": "nu2",
+          "ratio_p_q": "7/3",
+          "predicted_freq": 684.0,
+          "observed_freq": 673.0,
+          "deviation_cm": 11.0,
+          "relative_deviation_pct": 1.6345
+        }
+      },
+      "status": "PASS",
+      "is_single_loop": false,
+      "note": "PASS (max deviation = 1.63%)"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "max_overall_deviation_pct": 1.6345,
+    "threshold_pct": 2.0,
+    "status": "PASS"
+  }
+}

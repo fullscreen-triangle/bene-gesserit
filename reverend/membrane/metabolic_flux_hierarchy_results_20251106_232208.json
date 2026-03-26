@@ -1,0 +1,31 @@
+{
+  "timestamp": "20251106_232208",
+  "description": "Hierarchical metabolic flux analysis",
+  "n_levels": 5,
+  "results": [
+    {
+      "drug_name": "baseline",
+      "active_levels": 5,
+      "total_levels": 5,
+      "hierarchical_depth": 1.0,
+      "end_to_end_flux_ratio": 0.2976768000000001,
+      "total_information_compression": 7.29110818193408,
+      "total_atp_cost": 1722.1184000000003,
+      "atp_efficiency": 4.233801916252726,
+      "level_results": [
+        {
+          "level": 1,
+          "name": "Glucose_Transport",
+          "flux": 100.0,
+          "information_content": 8.0,
+          "atp_cost": 100.0,
+          "active": true,
+          "timescale_hours": 0.01
+        },
+        {
+          "level": 2,
+          "name": "Glycolysis",
+          "flux": 80.0,
+          "information_content": 5.120000000000001,
+          "atp_cost": 160.0,
+          "active": 

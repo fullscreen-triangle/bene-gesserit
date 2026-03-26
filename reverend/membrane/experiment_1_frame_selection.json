@@ -1,0 +1,23 @@
+{
+  "selection_analysis": {
+    "most_selected_frame": [
+      "4157",
+      4
+    ],
+    "least_selected_frame": [
+      "5144",
+      1
+    ],
+    "selection_entropy": 6.791986148795357,
+    "mean_selection_probability": 0.00556008304319216
+  },
+  "function_validation": {
+    "probability_normalization": true,
+    "positive_probabilities": true,
+    "bm\u0434_function_valid": true
+  },
+  "total_experiences": 1000,
+  "total_frames": 10000,
+  "experiment": "Frame Selection Probability Dynamics",
+  "validation_success": true
+}

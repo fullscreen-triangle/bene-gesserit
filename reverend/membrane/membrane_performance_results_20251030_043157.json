@@ -1,0 +1,25 @@
+{
+  "timestamp": "20251030_043157",
+  "response_time_validation": {
+    "measured_ms": 19.019019019019016,
+    "requirement_ms": 10,
+    "meets_requirement": 0.0,
+    "final_deformation_nm": 0.00013586109528907677
+  },
+  "spatial_resolution_validation": {
+    "measured_um": 10.101010101010102,
+    "requirement_um": 10,
+    "meets_requirement": 0.0
+  },
+  "membrane_parameters": {
+    "thickness_um": 1.0,
+    "stiffness_N_per_m": 1000000.0,
+    "fluid_resistance_N_per_m": 1000.0,
+    "pressure_sensitivity_Pa": 0.1
+  },
+  "validation_summary": {
+    "all_tests_passed": false,
+    "response_time_pass": false,
+    "spatial_resolution_pass": false
+  }
+}

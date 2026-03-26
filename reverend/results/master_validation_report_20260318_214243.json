@@ -1,0 +1,66 @@
+{
+  "timestamp": "20260318_214243",
+  "mode": "quick",
+  "validations": {
+    "index_retrieval": {
+      "status": "SUCCESS",
+      "r_squared": 0.9992960432057281,
+      "validated": true,
+      "file": "index_retrieval_validation_20260318_214243.json"
+    },
+    "sorting": {
+      "status": "SUCCESS",
+      "summary": {
+        "overall_mean_speedup": 20.312311380938162,
+        "overall_std_speedup": 15.344236151653138,
+        "best_speedup": 43.53271802973418,
+        "best_speedup_size": 10000,
+        "overall_mean_energy_ratio": 0.10634061719613525,
+        "best_energy_ratio": 0.061438899094703486,
+        "speedup_scaling": "INCREASING",
+        "all_tests_passed": true,
+        "claim_validation": {
+          "categorical_is_log3_n": true,
+          "conventional_is_n_log_n": true,
+          "speedup_increases_with_n": true,
+          "energy_dramatically_lower": false
+        }
+      },
+      "file": "sorting_validation_20260318_214243.json"
+    },
+    "ipc": {
+      "status": "SUCCESS",
+      "summary": {
+        "best_speedup_vs_pipe": 5434.649521603628,
+        "best_speedup_vs_shared_mem": 2733.970665631859,
+        "best_speedup_vs_message_queue": 5852.109734062548,
+        "latency_is_constant": false,
+        "true_zero_copy_validated": true,
+        "claim_validation": {
+          "100x_speedup_achieved": true,
+          "speedup_increases_with_size": true,
+          "energy_dramatically_lower": true,
+          "latency_independent_of_size": false
+        }
+      },
+      "file": "ipc_validation_20260318_214243.json"
+    },
+    "commutation": {
+      "status": "SUCCESS",
+      "summary": {
+        "position_commutes_with_categorical": true,
+        "momentum_commutes_with_categorical": true,
+        "hamiltonian_commutes_with_categorical": true,
+        "categorical_ops_mutually_commute": true,
+        "claim_validation": {
+          "commutation_exact_for_position": true,
+          "commutation_holds_for_all": true,
+          "categorical_ops_form_complete_set": true
+        }
+      },
+      "file": "commutation_validation_20260318_214243.json"
+    }
+  },
+  "completion_time": "2026-03-18T21:42:46.412379",
+  "overall_status": "SUCCESS"
+}

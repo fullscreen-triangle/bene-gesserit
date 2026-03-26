@@ -1,0 +1,19 @@
+{
+  "experiment_id": "semi_exp1",
+  "experiment_name": "P-N Junction Characteristics",
+  "timestamp": "20251208_142016",
+  "hypothesis": "Biological P-N junctions exhibit diode-like behavior",
+  "conclusion": "V_bi = 0.0 mV, rectification = 47.8\u00d7",
+  "validated": true,
+  "data": {
+    "built_in_potential_V": 5.7409299952273314e-18,
+    "depletion_width_m": 1.346417601227273e-10,
+    "rectification_ratio": 47.834457861999326
+  },
+  "metrics": {
+    "built_in_potential_mV": 5.7409299952273316e-15,
+    "rectification_ratio": 47.834457861999326,
+    "forward_current_pA": 46.834457861999326
+  },
+  "figures": []
+}

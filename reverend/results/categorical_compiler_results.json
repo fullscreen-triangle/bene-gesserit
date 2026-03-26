@@ -1,0 +1,484 @@
+{
+  "timestamp": "2025-12-12 19:04:13",
+  "experiments": {
+    "bidirectional_translation": {
+      "initial_state": {
+        "id": 77,
+        "s_coord": [
+          0.5026370931051921,
+          0.5769038846263591,
+          0.4925176938188639
+        ]
+      },
+      "translations": [
+        {
+          "step": 0,
+          "state_id": 438,
+          "observable": 1.6222986406509383,
+          "distance": 0.15357474093655948
+        },
+        {
+          "step": 1,
+          "state_id": 219,
+          "observable": 1.5797778423991482,
+          "distance": 0.21224482865102104
+        },
+        {
+          "step": 2,
+          "state_id": 116,
+          "observable": 1.5036087889207952,
+          "distance": 0.17768666498160654
+        },
+        {
+          "step": 3,
+          "state_id": 120,
+          "observable": 1.4897110351403917,
+          "distance": 0.18649477231641529
+        },
+        {
+          "step": 4,
+          "state_id": 408,
+          "observable": 1.4558476625530021,
+          "distance": 0.19005275360466298
+        },
+        {
+          "step": 5,
+          "state_id": 188,
+          "observable": 1.3327492907609624,
+          "distance": 0.20498930169432866
+        },
+        {
+          "step": 6,
+          "state_id": 303,
+          "observable": 1.238050991504951,
+          "distance": 0.2764445116197529
+        },
+        {
+          "step": 7,
+          "state_id": 288,
+          "observable": 1.1156436381142565,
+          "distance": 0.36368149146100887
+        },
+        {
+          "step": 8,
+          "state_id": 165,
+          "observable": 1.0147429768419096,
+          "distance": 0.45476581983920206
+        },
+        {
+          "step": 9,
+          "state_id": 96,
+          "observable": 0.9078747626363446,
+          "distance": 0.5236843835516327
+        },
+        {
+          "step": 10,
+          "state_id": 325,
+          "observable": 0.9087677884843303,
+          "distance": 0.5165045966370334
+        },
+        {
+          "step": 11,
+          "state_id": 99,
+          "observable": 0.9240589683096114,
+          "distance": 0.5174905624714954
+        },
+        {
+          "step": 12,
+          "state_id": 232,
+          "observable": 1.0242314899370704,
+          "distance": 0.4132091773376432
+        },
+        {
+          "step": 13,
+          "state_id": 428,
+          "observable": 0.9320394507735367,
+          "distance": 0.44753033682076754
+        },
+        {
+          "step": 14,
+          "state_id": 103,
+          "observable": 0.7882600533099763,
+          "distance": 0.4836748566789002
+        },
+        {
+          "step": 15,
+          "state_id": 179,
+          "observable": 0.8270516522047862,
+          "distance": 0.45144390971168635
+        },
+        {
+          "step": 16,
+          "state_id": 336,
+          "observable": 0.9603024143219286,
+          "distance": 0.3748361142059437
+        },
+        {
+          "step": 17,
+          "state_id": 47,
+          "observable": 1.0499091115345194,
+          "distance": 0.31822797942195097
+        },
+        {
+          "step": 18,
+          "state_id": 464,
+          "observable": 1.0265350300748448,
+          "distance": 0.3688072867869562
+        },
+        {
+          "step": 19,
+          "state_id": 114,
+          "observable": 1.0055582535453618,
+          "distance": 0.34853107620210066
+        },
+        {
+          "step": 20,
+          "state_id": 113,
+          "observable": 1.0629218065483994,
+          "distance": 0.4031270306427738
+        },
+        {
+          "step": 21,
+          "state_id": 224,
+          "observable": 1.0151419622215583,
+          "distance": 0.42992237103160885
+        },
+        {
+          "step": 22,
+          "state_id": 173,
+          "observable": 1.125438463086685,
+          "distance": 0.381124559209347
+        },
+        {
+          "step": 23,
+          "state_id": 486,
+          "observable": 1.2684250282845329,
+          "distance": 0.3425638276325435
+        },
+        {
+          "step": 24,
+          "state_id": 461,
+          "observable": 1.2400601614671145,
+          "distance": 0.33708208500932807
+        },
+        {
+          "step": 25,
+          "state_id": 78,
+          "observable": 1.1984674655004057,
+          "distance": 0.4363743085246248
+        },
+        {
+          "step": 26,
+          "state_id": 71,
+          "observable": 1.1736976183048957,
+          "distance": 0.43598793297322735
+        },
+        {
+          "step": 27,
+          "state_id": 295,
+          "observable": 1.0694735509529347,
+          "distance": 0.4418293379780087
+        },
+        {
+          "step": 28,
+          "state_id": 320,
+          "observable": 0.9312998870728356,
+          "distance": 0.49954417733821155
+        },
+        {
+          "step": 29,
+          "state_id": 79,
+          "observable": 0.8468989417456706,
+          "distance": 0.5930387862707817
+        },
+        {
+          "step": 30,
+          "state_id": 280,
+          "observable": 0.8546677954747957,
+          "distance": 0.6062031993322353
+        },
+        {
+          "step": 31,
+          "state_id": 124,
+          "observable": 0.8486383826325142,
+          "distance": 0.617937833771366
+        },
+        {
+          "step": 32,
+          "state_id": 118,
+          "observable": 0.7394993361483673,
+          "distance": 0.6548938773259804
+        },
+        {
+          "step": 33,
+          "state_id": 22,
+          "observable": 1.0176718494085732,
+          "distance": 0.6334552724384963
+        },
+        {
+          "step": 34,
+          "state_id": 254,
+          "observable": 1.025967867122922,
+          "distance": 0.5834033732288076
+        },
+        {
+          "step": 35,
+          "state_id": 396,
+          "observable": 1.0764862570608695,
+          "distance": 0.5197466904395901
+        },
+        {
+          "step": 36,
+          "state_id": 110,
+          "observable": 1.1282122777453867,
+          "distance": 0.5683679880690637
+        },
+        {
+          "step": 37,
+          "state_id": 273,
+          "observable": 1.1426827132485153,
+          "distance": 0.6035475069299352
+        },
+        {
+          "step": 38,
+          "state_id": 125,
+          "observable": 1.1871228769990418,
+          "distance": 0.6156122560515551
+        },
+        {
+          "step": 39,
+          "state_id": 436,
+          "observable": 1.2343901526739933,
+          "distance": 0.5488120216855781
+        },
+        {
+          "step": 40,
+          "state_id": 256,
+          "observable": 1.2739707903431277,
+          "distance": 0.5289159424334563
+        },
+        {
+          "step": 41,
+          "state_id": 493,
+          "observable": 1.3736265863585633,
+          "distance": 0.49940891053781333
+        },
+        {
+          "step": 42,
+          "state_id": 481,
+          "observable": 1.4890422631294624,
+          "distance": 0.49287423927438423
+        },
+        {
+          "step": 43,
+          "state_id": 8,
+          "observable": 1.4409197277684092,
+          "distance": 0.4164745038609031
+        },
+        {
+          "step": 44,
+          "state_id": 134,
+          "observable": 1.6517594395862105,
+          "distance": 0.37280586192153725
+        },
+        {
+          "step": 45,
+          "state_id": 142,
+          "observable": 1.6801496966837552,
+          "distance": 0.41947532594930614
+        },
+        {
+          "step": 46,
+          "state_id": 189,
+          "observable": 1.6898890835407778,
+          "distance": 0.43621100284053643
+        },
+        {
+          "step": 47,
+          "state_id": 393,
+          "observable": 1.846130748573791,
+          "distance": 0.49098771677741165
+        },
+        {
+          "step": 48,
+          "state_id": 121,
+          "observable": 1.8731842358932345,
+          "distance": 0.4581972042380114
+        },
+        {
+          "step": 49,
+          "state_id": 159,
+          "observable": 2.0462546641905686,
+          "distance": 0.47294678801341117
+        }
+      ],
+      "demonstrates_bidirectionality": true
+    },
+    "convergence_detection": {
+      "results": [
+        {
+          "epsilon": 0.05,
+          "converged": true,
+          "steps": 503,
+          "final_distance": 0.6387446246229359
+        },
+        {
+          "epsilon": 0.1,
+          "converged": true,
+          "steps": 503,
+          "final_distance": 0.5938684444119052
+        },
+        {
+          "epsilon": 0.2,
+          "converged": true,
+          "steps": 503,
+          "final_distance": 0.5390240584077587
+        },
+        {
+          "epsilon": 0.3,
+          "converged": true,
+          "steps": 504,
+          "final_distance": 0.6725510308672223
+        }
+      ],
+      "detector_delta": 0.01,
+      "detector_k": 5
+    },
+    "asymptotic_solutions": {
+      "n_runs": 20,
+      "distances": [
+        0.6387446246229359,
+        0.5938684444119052,
+        0.5390240584077587,
+        0.6725510308672223,
+        0.7308022258349577,
+        0.38489655039612014,
+        0.6909107327781536,
+        0.6607754527923791,
+        0.6506315361588845,
+        0.38489655039612014,
+        0.59088298095558,
+        0.5977453734969302,
+        0.6244885552570206,
+        0.6596194695748632,
+        0.7414211193279567,
+        0.6596194695748632,
+        0.6607754527923791,
+        0.5301810051011021,
+        0.7523645296938648,
+        0.8044479133371598
+      ],
+      "verification": {
+        "min_distance": 0.38489655039612014,
+        "mean_distance": 0.6284323537889078,
+        "all_nonzero": true,
+        "interpretation": "System never exactly reaches initial state"
+      }
+    },
+    "epsilon_boundary": {
+      "tests": [
+        {
+          "final_distance": 0.6387446246229359,
+          "epsilon": 0.1,
+          "in_epsilon_neighborhood": "False",
+          "penultimate_distance": 0.6493129420137569,
+          "one_step_closer": "True",
+          "interpretation": "Solution recognized at epsilon boundary"
+        },
+        {
+          "final_distance": 0.5938684444119052,
+          "epsilon": 0.15,
+          "in_epsilon_neighborhood": "False",
+          "penultimate_distance": 0.6065163149469941,
+          "one_step_closer": "True",
+          "interpretation": "Solution recognized at epsilon boundary"
+        },
+        {
+          "final_distance": 0.5390240584077587,
+          "epsilon": 0.2,
+          "in_epsilon_neighborhood": "False",
+          "penultimate_distance": 0.5579138695873659,
+          "one_step_closer": "True",
+          "interpretation": "Solution recognized at epsilon boundary"
+        }
+      ]
+    },
+    "penultimate_state": {
+      "trajectory_length": 504,
+      "final_states": [
+        {
+          "position": 494,
+          "state_id": 172,
+          "distance_to_initial": 0.5615138309724266
+        },
+        {
+          "position": 495,
+          "state_id": 456,
+          "distance_to_initial": 0.6699167335265886
+        },
+        {
+          "position": 496,
+          "state_id": 81,
+          "distance_to_initial": 0.7229771480799951
+        },
+        {
+          "position": 497,
+          "state_id": 235,
+          "distance_to_initial": 0.6348187716440734
+        },
+        {
+          "position": 498,
+          "state_id": 269,
+          "distance_to_initial": 0.581907465770752
+        },
+        {
+          "position": 499,
+          "state_id": 135,
+          "distance_to_initial": 0.6493129420137569
+        },
+        {
+          "position": 500,
+          "state_id": 135,
+          "distance_to_initial": 0.6493129420137569
+        },
+        {
+          "position": 501,
+          "state_id": 135,
+          "distance_to_initial": 0.6493129420137569
+        },
+        {
+          "position": 502,
+          "state_id": 135,
+          "distance_to_initial": 0.6493129420137569
+        },
+        {
+          "position": 503,
+          "state_id": 135,
+          "distance_to_initial": 0.6493129420137569
+        }
+      ],
+      "penultimate_demonstrated": true
+    },
+    "problem_perturbation": {
+      "addition": {
+        "initial_categories": 101,
+        "final_categories": 151,
+        "added": 50,
+        "continuous_adaptation": true
+      },
+      "separation": {
+        "region_a_size": 51,
+        "region_b_size": 50,
+        "separation_achieved": true,
+        "continuous": true
+      },
+      "demonstrates_continuous_adaptation": true
+    },
+    "non_terminating_runtime": {
+      "convergence_step": null,
+      "total_steps": 500,
+      "post_convergence_steps": 0,
+      "continues_after_convergence": false
+    }
+  }
+}

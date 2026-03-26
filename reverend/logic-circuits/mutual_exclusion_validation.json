@@ -1,0 +1,91 @@
+{
+  "molecule": "CH4+",
+  "temperature_K": 4.0,
+  "mode_data": {
+    "raman_modes": [
+      1297.249235898861,
+      1521.3114754098362,
+      2986.7185329258127,
+      3144.762434009447
+    ],
+    "ir_modes": [
+      1306.2517365934982,
+      3156.7657682689637
+    ],
+    "overlaps": [
+      [
+        1297.249235898861,
+        1306.2517365934982
+      ],
+      [
+        3144.762434009447,
+        3156.7657682689637
+      ]
+    ],
+    "expected_overlaps": [
+      [
+        1297.249235898861,
+        1306.2517365934982
+      ],
+      [
+        3144.762434009447,
+        3156.7657682689637
+      ]
+    ],
+    "n_raman": 4,
+    "n_ir": 2,
+    "n_overlap": 2,
+    "n_expected": 2,
+    "n_unexpected": 0,
+    "violation_metric": 0.5,
+    "violation_metric_strict": 0.0,
+    "passes": true
+  },
+  "mode_separation": {
+    "raman_min_spacing": 158.0439010836344,
+    "raman_max_spacing": 1465.4070575159765,
+    "ir_min_spacing": 1850.5140316754655,
+    "ir_max_spacing": 1850.5140316754655,
+    "all_min_spacing": 9.00250069463732,
+    "all_max_spacing": 1465.4070575159765,
+    "frequency_range": [
+      1297.249235898861,
+      3156.7657682689637
+    ],
+    "raman_range": [
+      1297.249235898861,
+      3144.762434009447
+    ],
+    "ir_range": [
+      1306.2517365934982,
+      3156.7657682689637
+    ]
+  },
+  "cross_prediction": {
+    "raman_from_ir_accuracy": 0.9917295847407113,
+    "ir_from_raman_accuracy": 0.9988793704552247,
+    "average_accuracy": 0.995304477597968,
+    "threshold": 0.95,
+    "passes_threshold": true,
+    "accuracy_percentage": 99.5304477597968
+  },
+  "overlap_analysis": {
+    "n_overlaps": 2,
+    "n_expected": 2,
+    "n_unexpected": 0,
+    "overlap_frequency_diffs": [
+      9.00250069463732,
+      12.003334259516578
+    ],
+    "mean_overlap_diff": 10.502917477076949,
+    "all_expected": true
+  },
+  "validation_summary": {
+    "mutual_exclusion_pass": true,
+    "cross_prediction_pass": true,
+    "no_unexpected_overlaps": true,
+    "overall_pass": true,
+    "violation_metric": 0.5,
+    "strict_violation_metric": 0.0
+  }
+}

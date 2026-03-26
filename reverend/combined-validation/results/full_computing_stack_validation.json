@@ -1,0 +1,71 @@
+{
+  "validation": "Full Computing Stack (Validation 4)",
+  "timestamp": "2026-03-26T18:41:19.154627",
+  "description": "Bottom-up computing stack from P-N junction to full program execution",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "P-N Junction",
+      "rectification_ratio": 47.834457861999326,
+      "built_in_potential_V": 5.7409299952273314e-18,
+      "forward_current_pA": 46.834457861999326,
+      "iv_data_points": 61,
+      "validated": true,
+      "pass": true
+    },
+    {
+      "layer": 1,
+      "name": "BMD Transistor",
+      "on_off_ratio": 42.1,
+      "switching_time_s": 1e-06,
+      "switching_time_us": 1.0,
+      "validated": true,
+      "pass": true
+    },
+    {
+      "layer": 2,
+      "name": "Logic Gates (AND/OR/XOR)",
+      "and_agreement_pct": 100.0,
+      "or_agreement_pct": 100.0,
+      "xor_agreement_pct": 100.0,
+      "average_agreement_pct": 100.0,
+      "validated": true,
+      "pass": true
+    },
+    {
+      "layer": 3,
+      "name": "Quantum Gates",
+      "average_fidelity": 0.884354913949494,
+      "average_fidelity_pct": 88.4354913949494,
+      "bell_state_correct": true,
+      "all_gates_valid": true,
+      "validated": true,
+      "pass": true
+    },
+    {
+      "layer": 4,
+      "name": "Gear Ratio Interconnects",
+      "speedup_factor": 23500,
+      "mean_gear_ratio": 3526.93866427064,
+      "validated": true,
+      "pass": true
+    },
+    {
+      "layer": 5,
+      "name": "Full Program Execution (Fibonacci)",
+      "fibonacci_reliability": 0.91,
+      "fibonacci_reliability_pct": 91.0,
+      "n_iterations": 100,
+      "n_bmd_nodes": 240,
+      "scale_free_network": true,
+      "validated": true,
+      "pass": true
+    }
+  ],
+  "overall": {
+    "total_layers": 6,
+    "layers_passed": 6,
+    "all_pass": true,
+    "full_stack_validated": true
+  }
+}

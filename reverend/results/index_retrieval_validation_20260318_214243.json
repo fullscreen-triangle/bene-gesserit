@@ -1,0 +1,86 @@
+{
+  "description": "Per-item retrieval from a pre-built value-indexed ternary partition tree. Demonstrates O(log_3 N) navigation steps vs O(N) linear scan.",
+  "sizes": [
+    27,
+    81,
+    243,
+    729,
+    2187,
+    6561,
+    19683,
+    59049
+  ],
+  "data_points": [
+    {
+      "n": 27,
+      "mean_navigation_steps": 3.2666666666666666,
+      "mean_linear_steps": 27.0,
+      "theoretical_log3_n": 3.0,
+      "speedup": 8.26530612244898,
+      "nav_vs_theory_ratio": 1.0888888888888888
+    },
+    {
+      "n": 81,
+      "mean_navigation_steps": 4.3,
+      "mean_linear_steps": 81.0,
+      "theoretical_log3_n": 4.0,
+      "speedup": 18.837209302325583,
+      "nav_vs_theory_ratio": 1.075
+    },
+    {
+      "n": 243,
+      "mean_navigation_steps": 5.2,
+      "mean_linear_steps": 243.0,
+      "theoretical_log3_n": 4.999999999999999,
+      "speedup": 46.730769230769226,
+      "nav_vs_theory_ratio": 1.0400000000000003
+    },
+    {
+      "n": 729,
+      "mean_navigation_steps": 6.233333333333333,
+      "mean_linear_steps": 729.0,
+      "theoretical_log3_n": 6.0,
+      "speedup": 116.95187165775401,
+      "nav_vs_theory_ratio": 1.038888888888889
+    },
+    {
+      "n": 2187,
+      "mean_navigation_steps": 7.266666666666667,
+      "mean_linear_steps": 2187.0,
+      "theoretical_log3_n": 7.0,
+      "speedup": 300.9633027522936,
+      "nav_vs_theory_ratio": 1.0380952380952382
+    },
+    {
+      "n": 6561,
+      "mean_navigation_steps": 8.066666666666666,
+      "mean_linear_steps": 6561.0,
+      "theoretical_log3_n": 8.0,
+      "speedup": 813.3471074380166,
+      "nav_vs_theory_ratio": 1.0083333333333333
+    },
+    {
+      "n": 19683,
+      "mean_navigation_steps": 9.166666666666666,
+      "mean_linear_steps": 19683.0,
+      "theoretical_log3_n": 9.0,
+      "speedup": 2147.236363636364,
+      "nav_vs_theory_ratio": 1.0185185185185184
+    },
+    {
+      "n": 59049,
+      "mean_navigation_steps": 10.0,
+      "mean_linear_steps": 59049.0,
+      "theoretical_log3_n": 9.999999999999998,
+      "speedup": 5904.9,
+      "nav_vs_theory_ratio": 1.0000000000000002
+    }
+  ],
+  "complexity_fit": {
+    "model": "navigation_steps = a * log_3(N) + b",
+    "a": 0.9654761904761908,
+    "b": 0.4119047619047568,
+    "r_squared": 0.9992960432057281,
+    "validated_o_log3_n": true
+  }
+}
