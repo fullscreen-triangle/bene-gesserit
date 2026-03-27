@@ -24,6 +24,13 @@
 \usepackage{siunitx}
 \usepackage[numbers,sort&compress]{natbib}
 
+\usepackage{caption}
+\captionsetup{
+  font=small,          % or footnotesize, scriptsize
+  labelfont=footnotesize,        % Keep "Figure 1" bold
+  textfont=it          % Optional: italicize caption text
+}
+
 % Theorem environments
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -62,11 +69,11 @@
     linkcolor=blue,
     citecolor=blue,
     urlcolor=blue,
-    pdftitle={Membrane-Mediated Categorical Processing Architecture},
+    pdftitle={On the Geometric Consequences of Aperture Traversal Mechanisms on Amphiphilic Lipid Bilayer Substrates},
     pdfauthor={Kundai Farai Sachikonye}
 }
 
-\title{\textbf{Membrane-Mediated Categorical Processing Architecture: \\Trajectory Completion, Aperture-Based Filtering, and Partition Gradient Optimization on Amphiphilic Bilayer Substrates}}
+\title{\textbf{On the Geometric Consequences of Aperture Traversal Mechanisms on Amphiphilic Lipid Bilayer Substrates: Membrane-Mediated Categorical Processing Architecture}}
 
 \author{
 Kundai Farai Sachikonye\\
@@ -576,6 +583,13 @@ The Landauer bound at this temperature is $E_L = \kB T \ln 2 = 2.97 \times 10^{-
 The energy per equivalent binary bit is $E_{\mathrm{op}} / I_{\mathrm{out}} \approx 6 \times 10^{-20} / 34.2 \approx 1.75 \times 10^{-21}\;\mathrm{J/bit}$. Compare silicon transistors at $\sim 10^{-15}\;\mathrm{J/bit}$ \cite{landauer1961,bennett1982}: the BMD transistor is approximately $10^6$ times more energy-efficient per bit.
 \end{proof}
 
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/panel_exp01_membrane_substrate.png}
+\caption{\textbf{Membrane computational substrate characterization.} (\textbf{A}) Amphiphilic bilayer partition geometry showing lipid packing at area $A_L = 0.64\;\mathrm{nm}^2$ and bilayer thickness $d = 4.0\;\mathrm{nm}$ with hydrophobic core and hydrophilic headgroup regions. (\textbf{B}) Oscillator network dynamics illustrating coupled conformational oscillations at rate $\nu_{\mathrm{conf}} \sim 10^{11}\;\mathrm{s}^{-1}$ across the trans-gauche isomerization landscape. (\textbf{C}) Biological semiconductor P-N junction profile at lipid raft boundaries with built-in potential $V_{\mathrm{bi}} = 615\;\mathrm{mV}$ and carrier concentration asymmetry between ordered and disordered domains. (\textbf{D}) BMD transistor transfer characteristics showing on/off current ratio of $42.1$, switching time $< 1\;\mu\mathrm{s}$, and energy per operation $E_{\mathrm{op}} \approx 6 \times 10^{-20}\;\mathrm{J}$.}
+\label{fig:exp01}
+\end{figure*}
+
 %==============================================================================
 \section{Categorical Aperture Architecture}
 \label{sec:aperture}
@@ -721,6 +735,13 @@ The work is additive: $W_{\mathrm{total}} = \sum_{i=1}^n W_i = \sum_{i=1}^n 0 = 
 
 For $n = 10$ stages, each with $\eta_i = 10^{10}$ (selectivity of a multipole aperture at high partition depth): $\eta_{\mathrm{total}} = 10^{100}$.
 \end{proof}
+
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/panel_exp02_categorical_apertures.png}
+\caption{\textbf{Categorical aperture architecture and zero-work filtering.} (\textbf{A}) Single aperture geometry showing the topological constraint $\mathcal{A}: \Gamma \to \{\mathrm{pass}, \mathrm{block}\}$ with zero thermodynamic work, partitioning configuration space into admitted and excluded domains. (\textbf{B}) Aperture taxonomy across monopole, dipole, and multipole configurations with increasing angular complexity $\ell$ and corresponding selectivity profiles in S-entropy space. (\textbf{C}) Ternary trisection of the $(\Sk, \St, \Se) \in [0,1]^3$ coordinate space illustrating how each aperture stage refines partition depth by a factor of $3$. (\textbf{D}) Stacked aperture cascade demonstrating multiplicative selectivity $\eta_{\mathrm{total}} = \prod_{i=1}^{n} \eta_i$ with $n = 10$ stages achieving $\eta_{\mathrm{total}} \sim 10^{100}$ at zero cumulative work.}
+\label{fig:exp02}
+\end{figure*}
 
 %==============================================================================
 \section{Trajectory Completion Architecture}
@@ -965,6 +986,13 @@ The integral $\int_{\gamma_i} ds / \|\nabla L\|$ is minimized when $\gamma_i$ fo
 
 Formally: $L_i = \int_{\gamma_i} ds$ and $T_c^{(i)} \geq L_i / (\alpha \|\nabla L\|_{\max})$. If $L_i < L_j$, then $T_c^{(i)} < T_c^{(j)}$ whenever $\|\nabla L\|$ is bounded uniformly along both paths, which holds in a bounded phase space. This provides automatic priority: shorter paths complete first without any explicit scheduling logic.
 \end{proof}
+
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/panel_exp03_trajectory_completion.png}
+\caption{\textbf{Trajectory completion and categorical speedup.} (\textbf{A}) Backward trajectory completion in S-entropy space $(\Sk, \St, \Se) \in [0,1]^3$, showing gradient-driven navigation from specified terminus $\Gamma_f$ converging via the partition loss landscape $L(\gamma)$. (\textbf{B}) Categorical speedup comparison: $O(\log_3 N)$ navigations for the membrane architecture versus $O(N)$ sequential binary steps, with speedup factor $\mathcal{S}(N) = N / \log_3 N$ reaching $\sim 10^5$ at $N = 10^6$. (\textbf{C}) Path-independent convergence demonstrating that multiple trajectories $\gamma_1, \ldots, \gamma_m$ initiated from different origins converge to the same target $\Gamma^*$ under the sufficiency condition $\|\nabla L\| < \eps$. (\textbf{D}) Race dynamics illustrating automatic priority scheduling where shorter-path trajectories ($L_i < L_j$) complete first ($T_c^{(i)} < T_c^{(j)}$) without explicit scheduling logic.}
+\label{fig:exp03}
+\end{figure*}
 
 %==============================================================================
 \section{Tri-Dimensional Logic and Arithmetic}
@@ -1618,6 +1646,13 @@ This means $\sim 10^5$ membrane oscillation cycles are integrated per processing
 Each processing cycle at Level 2 ($\sim 100\;\mathrm{ms}$) integrates $f_0 \times \Delta t = 10^6 \times 0.1 = 10^5$ membrane oscillation cycles. The gear ratio $\mathcal{R}_{2,0} = f_2/f_0 \sim 10/10^6 = 10^{-5}$ confirms this. Each Level 2 cycle processes $10^5$ Level 0 events, providing massive parallelism in the temporal domain. The intermediate Level 1 ($\sim 10^3\;\mathrm{Hz}$) groups $f_0/f_1 = 10^3$ membrane oscillations into circuit-level events, and $f_1/f_2 = 10^2$ circuit events compose one processing cycle.
 \end{proof}
 
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/panel_exp04_processing_cycle.png}
+\caption{\textbf{Processing cycle dynamics and regime structure.} (\textbf{A}) Dual decay envelope model showing the input coupling envelope $P(t) = P_0 \exp(-t/\tau_1)$ and integration envelope $T(t) = T_0(1 - \exp(-t/\tau_2))\exp(-t/\tau_3)$ defining the processing window $\Delta t \sim 100$--$500\;\mathrm{ms}$. (\textbf{B}) Five operational regimes classified by the Kuramoto order parameter $R$: quiescent ($R < 0.2$), incoherent ($0.2 \leq R < 0.5$), partial ($0.5 \leq R < 0.8$), coherent ($0.8 \leq R < 0.95$), and locked ($R \geq 0.95$), with regime transitions as Landau phase transitions. (\textbf{C}) Gear-reduced clock hierarchy spanning four levels from membrane oscillations ($f_0 \sim 10^6\;\mathrm{Hz}$) through circuit ($f_1 \sim 10^3\;\mathrm{Hz}$) and processing ($f_2 \sim 1$--$10\;\mathrm{Hz}$) to regime transitions ($f_3 \sim 10^{-2}\;\mathrm{Hz}$), with gear ratio $\mathcal{R}_{2,0} \sim 10^{-5}$. (\textbf{D}) Poincar\'{e} deviation analysis demonstrating $\delta > 0$ almost surely, confirming that each processing cycle generates a genuinely novel state with minimum deviation bounded by the Nyquist noise floor.}
+\label{fig:exp04}
+\end{figure*}
+
 %==============================================================================
 \section{Input-Output Architecture}
 \label{sec:io}
@@ -1939,6 +1974,13 @@ Since the architecture can simulate any Turing machine, it can compute any compu
 
 \textbf{Part 4:} The oscillator network with $N_L$ lipids has $N_L$ oscillatory modes. By frequency partitioning---assigning different frequency bands to different virtual processors---the network can implement $N_{\mathrm{virtual}} = N_L / N_{\mathrm{min}}$ independent virtual processors, where $N_{\mathrm{min}}$ is the minimum number of oscillators per processor (determined by the coherence requirement). For $N_L \sim 10^{14}$ per $\mathrm{cm}^2$ and $N_{\mathrm{min}} \sim 100$: $N_{\mathrm{virtual}} \sim 10^{12}$ virtual processors per $\mathrm{cm}^2$. This provides resource completeness: any number of processors can be instantiated (up to the physical limit).
 \end{proof}
+
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/panel_exp05_performance.png}
+\caption{\textbf{Performance analysis of the membrane-mediated categorical architecture.} (\textbf{A}) Throughput scaling from per-lipid ($\sim 10^{11}$ ops/s) through per-$\mathrm{cm}^2$ ($\sim 10^{20}$ ops/s) to per-$\mathrm{m}^2$ ($\sim 10^{24}$ ops/s), compared against modern GPU throughput ($\sim 10^{14}$ FLOPS), demonstrating $6$--$10$ orders of magnitude advantage. (\textbf{B}) Energy efficiency comparison: BMD transistor at $E_{\mathrm{op}} \approx 6 \times 10^{-20}\;\mathrm{J}$ per operation ($\sim 20$ times the Landauer bound) and $E_{\mathrm{bit}} \approx 1.75 \times 10^{-21}\;\mathrm{J/bit}$, yielding $\sim 10^6\times$ improvement over silicon at $\sim 10^{-15}\;\mathrm{J/bit}$. (\textbf{C}) Categorical speedup $\mathcal{S}(N) = N / \log_3 N$ as a function of problem size $N$, showing the complexity class change from $O(N)$ to $O(\log_3 N)$ with speedup factors ranging from $\sim 10^2$ at $N = 10^3$ to $\sim 10^{13}$ at $N = 10^{15}$. (\textbf{D}) Computational completeness verification across Boolean, arithmetic, algorithmic, and resource dimensions, with resource completeness providing $N_{\mathrm{virtual}} \sim 10^{12}$ independent virtual processors per $\mathrm{cm}^2$ via frequency partitioning.}
+\label{fig:exp05}
+\end{figure*}
 
 %==============================================================================
 \section{Virtual Implementation Specification}
