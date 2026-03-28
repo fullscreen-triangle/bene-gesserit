@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-03-25T05:26:31.620590+00:00",
+  "description": "Hydrogen spectral line validation: Rydberg formula vs NIST wavelengths for Lyman and Balmer series",
+  "formula": "1/lambda = R_inf * (1/n1^2 - 1/n2^2)",
+  "R_infinity_m-1": 10973731.568539,
+  "results": [
+    {
+      "line": "Lyman_alpha",
+      "series": "Lyman",
+      "n1": 1,
+      "n2": 2,
+      "lambda_derived_nm": 121.5023,
+      "lambda_nist_nm": 121.567,
+      "abs_error_nm": 0.0647,
+      "pct_error": 0.053244
+    },
+    {
+      "line": "Lyman_beta",
+      "series": "Lyman",
+      "n1": 1,
+      "n2": 3,
+      "lambda_derived_nm": 102.5175,
+      "lambda_nist_nm": 102.572,
+      "abs_error_nm": 0.0545,
+      "pct_error": 0.053091
+    },
+    {
+      "line": "Lyman_gamma",
+      "series": "Lyman",
+      "n1": 1,
+      "n2": 4,
+      "lambda_derived_nm": 97.2018,
+      "lambda_nist_nm": 97.254,
+      "abs_error_nm": 0.0522,
+      "pct_error": 0.053655
+    },
+    {
+      "line": "Balmer_alpha",
+      "series": "Balmer",
+      "n1": 2,
+      "n2": 3,
+      "lambda_derived_nm": 656.1123,
+      "lambda_nist_nm": 656.281,
+      "abs_error_nm": 0.1687,
+      "pct_error": 0.025709
+    },
+    {
+      "line": "Balmer_beta",
+      "series": "Balmer",
+      "n1": 2,
+      "n2": 4,
+      "lambda_derived_nm": 486.0091,
+      "lambda_nist_nm": 486.135,
+      "abs_error_nm": 0.1259,
+      "pct_error": 0.025899
+    },
+    {
+      "line": "Balmer_gamma",
+      "series": "Balmer",
+      "n1": 2,
+      "n2": 5,
+      "lambda_derived_nm": 433.9367,
+      "lambda_nist_nm": 434.047,
+      "abs_error_nm": 0.1103,
+      "pct_error": 0.025414
+    }
+  ],
+  "statistics": {
+    "mean_pct_error": 0.039502,
+    "max_pct_error": 0.053655,
+    "all_within_0.1pct": true
+  },
+  "total": 6
+}

@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-03-25T05:26:31.620590+00:00",
+  "description": "Shell capacity validation: C(n) = 2n^2 for n = 1..7",
+  "results": [
+    {
+      "n": 1,
+      "C_derived": 2,
+      "C_expected": 2,
+      "match": true
+    },
+    {
+      "n": 2,
+      "C_derived": 8,
+      "C_expected": 8,
+      "match": true
+    },
+    {
+      "n": 3,
+      "C_derived": 18,
+      "C_expected": 18,
+      "match": true
+    },
+    {
+      "n": 4,
+      "C_derived": 32,
+      "C_expected": 32,
+      "match": true
+    },
+    {
+      "n": 5,
+      "C_derived": 50,
+      "C_expected": 50,
+      "match": true
+    },
+    {
+      "n": 6,
+      "C_derived": 72,
+      "C_expected": 72,
+      "match": true
+    },
+    {
+      "n": 7,
+      "C_derived": 98,
+      "C_expected": 98,
+      "match": true
+    }
+  ],
+  "all_pass": true,
+  "pass_count": 7,
+  "total": 7
+}

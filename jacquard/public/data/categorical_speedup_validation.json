@@ -1,0 +1,70 @@
+{
+  "validation": "Categorical Speedup Scaling (Validation 5)",
+  "timestamp": "2026-03-26T18:41:19.379551",
+  "description": "Validates O(log3 N) categorical vs O(N log N) conventional scaling",
+  "per_size": [
+    {
+      "N": 100,
+      "categorical_ops": 6.0,
+      "conventional_ops": 662.0,
+      "speedup": 2.6870754967497064,
+      "energy_ratio": 0.15395651525684714,
+      "theoretical_log3_N": 5,
+      "categorical_matches_log3": true
+    },
+    {
+      "N": 1000,
+      "categorical_ops": 8.0,
+      "conventional_ops": 10665.88888888889,
+      "speedup": 19.498927341573363,
+      "energy_ratio": 0.09597009699384033,
+      "theoretical_log3_N": 7,
+      "categorical_matches_log3": true
+    },
+    {
+      "N": 10000,
+      "categorical_ops": 10.0,
+      "conventional_ops": 147699.22222222225,
+      "speedup": 38.75093130449142,
+      "energy_ratio": 0.06909523933771826,
+      "theoretical_log3_N": 9,
+      "categorical_matches_log3": true
+    }
+  ],
+  "fit_quality": {
+    "categorical_complexity": "O(log_3 N)",
+    "categorical_r2": 1.0,
+    "categorical_matches_log3": true,
+    "conventional_complexity": "O(N log N)",
+    "conventional_r2": 0.9999908813208728
+  },
+  "extrapolations": [
+    {
+      "N": "10^6",
+      "N_value": 1000000,
+      "categorical_ops_predicted": 13,
+      "conventional_ops_predicted": 16954340.864846483,
+      "predicted_speedup": 1304180.0665266525
+    },
+    {
+      "N": "10^9",
+      "N_value": 1000000000,
+      "categorical_ops_predicted": 19,
+      "conventional_ops_predicted": 25431999960.941853,
+      "predicted_speedup": 1338526313.7337818
+    },
+    {
+      "N": "10^12",
+      "N_value": 1000000000000,
+      "categorical_ops_predicted": 26,
+      "conventional_ops_predicted": 33909333715587.293,
+      "predicted_speedup": 1304205142907.2036
+    }
+  ],
+  "overall": {
+    "categorical_is_log3_N": true,
+    "conventional_is_N_log_N": true,
+    "speedup_increases_with_N": true,
+    "validated": true
+  }
+}
