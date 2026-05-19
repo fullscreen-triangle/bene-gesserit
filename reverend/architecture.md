@@ -613,9 +613,339 @@ BPS Axiom
 
 ---
 
+## Layer 12 — Molecular Phase Space Addressing: The Categorical Compound Database
+
+### The Molecular Search Problem
+
+Traditional cheminformatics represents molecules as binary fingerprint vectors in an extrinsic descriptor space and computes similarity via pairwise Tanimoto comparison. For PubChem ($N \approx 10^8$, $d = 1024$), this yields $\sim 10^{11}$ operations per query. The BPS framework eliminates this burden entirely through a change of representation.
+
+### Oscillatory Necessity for Molecules
+
+**Theorem (Molecular Oscillatory Necessity):** Every stable molecule is a bounded oscillatory system. Its identity is its oscillatory structure.
+
+*Proof chain:* A molecule occupies a bounded region of nuclear phase space (the potential well). By the Bounded Phase Space Law, the system admits hierarchical partition. By Poincaré recurrence on bounded measure-preserving systems, almost every trajectory returns arbitrarily close to its initial condition — this is oscillatory by Definition. Static, monotonic, and non-recurrent chaotic modes are each eliminated: static has no dynamics; monotonic violates boundedness; non-recurrent chaos has measure zero in bounded domains. Oscillatory dynamics is the unique survivor.
+
+**Corollary (Discrete Mode Spectrum):** By the Koopman operator theory for bounded systems, the vibrational modes form a discrete spectrum $\{\omega_1, \ldots, \omega_N\}$, providing complete oscillatory characterization of the molecule's identity.
+
+### S-Entropy Molecular Coordinates
+
+The vibrational spectrum $\{\omega_i\}$ admits exactly three independent summarizations, forced by the dimensionality of bounded oscillatory structure:
+
+| Coordinate | Definition | Physical meaning |
+|---|---|---|
+| $S_k$ (knowledge entropy) | Normalized Shannon entropy of frequency distribution $p_i = \omega_i / \sum_j \omega_j$ | How evenly energy distributes across modes |
+| $S_t$ (temporal entropy) | $\log(\omega_{\max}/\omega_{\min}) / \log(\omega_{\text{ref,max}}/\omega_{\text{ref,min}})$ | How many timescales the dynamics spans |
+| $S_e$ (evolution entropy) | Fraction of mode pairs with rational frequency ratios $\vert \omega_a/\omega_b - p/q \vert < \delta$ | Harmonic network density; Fermi resonance potential |
+
+**Theorem (Dimensional Sufficiency):** Three coordinates $(S_k, S_t, S_e) \in [0,1]^3$ suffice to characterize bounded oscillatory molecular systems up to partition-depth resolution.
+
+*Proof sketch:* $S_k$ encodes the shape of the frequency distribution; $S_t$ encodes the scale of the frequency range; $S_e$ encodes the connectivity of the harmonic network. These three aspects are algebraically independent — changing one determines nothing about the others. Together they span the full oscillatory identity. $\square$
+
+### Ternary Naturalness
+
+**Theorem (Ternary Naturalness):** For a $d$-dimensional coordinate space $[0,1]^d$, base-$d$ representation provides native $d$-dimensional addressing with each digit refining one coordinate. For $d=3$ (S-entropy space), base-3 is the natural encoding.
+
+*Consequence:* Each ternary digit (trit) in the interleaved string refines exactly one S-entropy coordinate. After $3m$ trits, each dimension has been refined $m$ times. Binary encoding wastes $\approx 26\%$ of bits per refinement and obscures the three-dimensional structure.
+
+**Encoding algorithm (from vibrational spectrum to ternary address):**
+
+```
+Encode(ω₁,...,ωₙ, depth k):
+  Compute Sₖ, Sₜ, Sₑ from frequency set
+  r₀ ← Sₖ; r₁ ← Sₜ; r₂ ← Sₑ
+  for j = 1 to k:
+    dim ← (j-1) mod 3
+    t_j ← ⌊3·r_dim⌋  (clamped to {0,1,2})
+    r_dim ← 3·r_dim - t_j
+  return (t₁,...,t_k)
+```
+
+Each trit is one oscillation-counting observation — exactly as meaningful as measuring which phase bin a vibrational oscillation falls in.
+
+### The Ternary Trie: O(k) Molecular Search
+
+**Definition (Categorical Compound Database):** A ternary trie $\mathcal{T}$ over molecular S-entropy space $[0,1]^3$ where:
+- Root = entire S-entropy space
+- Each internal node has exactly 3 children (trits 0, 1, 2)
+- Compounds stored at leaves at depth $k$
+
+**Theorem (Scaling Independence):** Ternary trie search requires $O(k)$ operations for $k$-trit resolution, regardless of database size $N$.
+
+*Proof:* The traversal follows $k$ edges root-to-leaf. Each edge is $O(1)$ (3-element array lookup). Total cost $T(k) = O(k)$. Database size $N$ affects only storage, not search time. $\square$
+
+**Speedup vs. fingerprint search:** $(N \times d) / k$. At PubChem scale: $(10^8 \times 1024) / 18 \approx 5.7 \times 10^9\times$.
+
+### Position-Trajectory Duality
+
+**Theorem:** Every ternary string simultaneously encodes:
+1. A **position**: the cell it addresses in $[0,1]^3$
+2. A **trajectory**: the path of successive refinements to that cell
+
+These are the same mathematical object. The address IS the path. The insertion algorithm IS the address. The search algorithm IS the address. The comparison IS the common prefix. There is no separate indexing step.
+
+*Connection to trajectory computing (Layer 5):* The Position-Trajectory Duality for molecular addresses is the molecular realization of Path Opacity — the receiver's internal search path is the address itself, opaque to the outcome.
+
+### Fuzzy Search and Property Inversion
+
+**Theorem (Fuzzy Search Completeness):** For any query $\mathbf{q} \in [0,1]^3$ and radius $\varepsilon > 0$, prefix matching at depth $k = O(\log_3(1/\varepsilon))$ returns all compounds within distance $\varepsilon$ of $\mathbf{q}$.
+
+**Property-Based Retrieval (Inversion):** Given constraints on S-entropy coordinates (e.g., $S_k \in [a,b]$, $S_e \in [c,d]$), the matching ternary prefixes can be enumerated in $O(3^k)$ time, inverting the traditional pipeline: from "given molecule, compute properties" to "given property constraints, retrieve molecules."
+
+### Chemical Validation
+
+Validated on 39 NIST compounds spanning diatomics to polyatomics:
+- All 39 uniquely resolved at trit depth 12 (out of $3^{12} = 531,441$ possible cells)
+- 5 of 6 chemically defined families show intra-group ternary cohesion exceeding inter-group (cohesion ratios 1.09–4.38)
+- Chemical groupings emerge at depth 3 without any chemical knowledge encoded
+- CO–N₂ pairing (isoelectronic) discovered from spectral data alone
+
+---
+
+## Layer 13 — Universal Spectral Matching
+
+### The Universal Reduction Theorem
+
+**Theorem (Universal Reduction):** For any two persistent non-degenerate bounded systems $X$ and $Y$, the categorical partition distance equals the $L^2$ image distance between their spectral images:
+
+$$d_{\mathrm{part}}(X, Y) = d_{\mathrm{CV}}(I_X, I_Y)$$
+
+This is an exact identity, not an approximation. ALL comparison between bounded systems reduces to comparing images: a computer vision problem.
+
+*Derivation chain:*
+1. Every bounded persistent system is oscillatory (Oscillatory Necessity — Layer 0)
+2. Every oscillatory system admits a complete Koopman spectral decomposition $\mathrm{Spec}(X) = \{(\omega_k, A_k, \phi_k)\}$ (Koopman Spectral Decomposition)
+3. Every spectrum is isomorphic to a 2D image $I_X(\omega, \phi)$ with frequency on the horizontal axis, phase on the vertical, amplitude as intensity (Spectral Image Theorem)
+4. The $L^2$ image distance is bi-Lipschitz equivalent to the partition distance, and with normalized kernels achieves exact identity (Universal Reduction Theorem)
+5. GPU fragment shaders implement massively parallel per-pixel interference, so comparing two spectral images reduces to a single render pass (GPU-Interference Isomorphism)
+
+### The Spectral Image
+
+**Definition:** For $\mathrm{Spec}(X) = \{(\omega_k, A_k, \phi_k)\}_{k=1}^N$, the spectral image is:
+
+$$I_X(\omega, \varphi) = \sum_{k=1}^N |A_k|^2 \, g_\sigma(\omega - \omega_k) \, h_\kappa(\varphi - \phi_k)$$
+
+where $g_\sigma$ is a Gaussian frequency kernel and $h_\kappa$ is a von Mises phase kernel. Each pixel at $(\omega_i, \varphi_j)$ carries a pixel wavefunction:
+
+$$\Psi_{ij}(t) = A_{ij} \exp(i(\omega_i t + \varphi_j))$$
+
+**Theorem (Spectral Image):** The mapping $X \mapsto I_X$ is: (i) injective — distinct spectra produce distinct images; (ii) metric-preserving — $L^2$ image distance is bi-Lipschitz equivalent to Wasserstein spectral distance; (iii) complete — spectrum recoverable from image by deconvolution; (iv) domain-independent — depends only on $(\omega_k, A_k, \phi_k)$, not the physical origin.
+
+### S-Entropy Conservation During Interference
+
+**Theorem (S-Entropy Conservation):** During any spectral comparison operation (superposition, interference, visibility computation):
+
+$$S_k + S_t + S_e = 1$$
+
+The interference term $2\Re(\Psi_A^* \Psi_B)$ redistributes intensity between the $\omega$ and $\varphi$ axes but cannot create or destroy total intensity (Parseval's theorem). Interference transfers information between frequency and phase representations but conserves total information content.
+
+*Consequence for computing:* The comparison operation is a non-demolition measurement — it extracts match information without destroying the data being compared. Multiple sequential comparisons require no re-encoding.
+
+### Interference as Comparison
+
+The superposition $\Psi_{\text{tot}} = (\Psi_A + \Psi_B)/\sqrt{2}$ produces a time-averaged interference pattern:
+
+$$I_{\text{int}}(\omega, \varphi) = \tfrac{1}{2}\left[I_A + I_B + 2\sqrt{I_A I_B}\cos(\Delta\varphi(\omega))\right]$$
+
+The cross-term is **constructive** where $A$ and $B$ are in phase (match) and **destructive** where out of phase (mismatch). The Michelson visibility:
+
+$$V(\omega, \varphi) = \frac{2\sqrt{I_A I_B}}{I_A + I_B} \left|\cos(\Delta\varphi/2)\right|$$
+
+gives $V \to 1$ for identical systems and $V \to 0$ for completely dissimilar systems. The match score subsumes cosine similarity ($V = \cos\theta$ when intensities equal), $L^2$ distance ($\|\mathbf{a} - \mathbf{b}\|^2 = 2(1 - \mathrm{Match})$), and mutual information ($I(A;B) = -\tfrac{1}{2}\ln(1-V^2)$) as special cases.
+
+### Harmonic Coupling Networks and Matching Circuits
+
+When comparing collections rather than pairs, a harmonic coupling graph $G = (V, E, w)$ encodes pairwise matches. A **matching circuit** is a simple cycle satisfying:
+1. All edge weights positive (constructive pairwise interference)
+2. Resonance condition: total phase around circuit $= 2\pi m$ (Bohr-Sommerfeld quantization)
+
+**Theorem (Circuit Consistency):** Match scores around circuits satisfy the inequality $\mathrm{Match}(A,C) \geq \mathrm{Match}(A,B) \cdot \mathrm{Match}(B,C) - \sqrt{(1-\mathrm{Match}(A,B)^2)(1-\mathrm{Match}(B,C)^2)}$.
+
+The resonance condition prevents transitive closure errors: $A$ matches $B$ and $B$ matches $C$ does not imply $A$ matches $C$ unless the round-trip phase is quantised.
+
+### Commutation Relation
+
+The categorical observation operator $\hat{O}_{\mathrm{cat}}$ (extracting partition coordinates) and physical observation operator $\hat{O}_{\mathrm{phys}}$ (extracting intensities) act on orthogonal subspaces:
+
+$$[\hat{O}_{\mathrm{cat}}, \hat{O}_{\mathrm{phys}}] = 0$$
+
+This is the formal statement that spectral encoding does not disturb the physical system. It is the exact same commutation relation that appears in the Demon I/O Controller (Layer 9, DIC) — the Five Names Theorem identity operating at the spectral image level.
+
+---
+
+## Layer 14 — GPU as Formal Interference Substrate
+
+### The GPU-Interference Isomorphism
+
+**Theorem (GPU-Interference Isomorphism):** A GPU fragment shader executing per-pixel in parallel over a $W \times H$ framebuffer is mathematically isomorphic to an interference engine computing the superposition of two wave fields on a $W \times H$ grid:
+
+| GPU component | Interference component |
+|---|---|
+| Each shader core | One spectral grid point $(\omega_i, \varphi_j)$ |
+| Fragment shader function | Wavefunction evaluation $\Psi(\omega_i, \varphi_j) \to I(\omega_i, \varphi_j)$ |
+| Single render pass | Simultaneous evaluation at all grid points — the superposition |
+| Framebuffer | Interference pattern |
+| Input texture reads | Sampling the input wave fields |
+
+A GPU is not "extra computing" added to the membrane system — it is a formal simulation of the same interference process that the membrane implements physically via ion channel superposition. The membrane computes by physical oscillation; the GPU computes by simulated oscillation in the fragment shader. They are the same mathematical operation at different physical scales.
+
+*Proof:* A fragment shader is a pure function $f: (\mathbf{u}, \mathcal{T}, \mathbf{p}) \to \mathbf{c}$ executed in parallel for all fragments with no inter-fragment communication within a single pass. This is exactly the computational model of a discretised wave field: each grid point evaluates the wavefunction independently. The isomorphism preserves linearity of superposition, parallelism, and output accumulation. No approximation is introduced. $\square$
+
+### The Five-Pass Pipeline
+
+The Universal Spectral Matching Module is a five-pass GPU pipeline:
+
+| Pass | Purpose | Input | Output | Cost |
+|---|---|---|---|---|
+| Pass 0 | Spectral encoding | Raw data (any domain) | Spectral image $\mathcal{T}_\Psi$ | $O(D/P)$ per item |
+| Pass 1 | Partition mapping | $\mathcal{T}_\Psi$ | Wavefunction texture with $(n,\ell,m,s)$ coordinates | $O(D/P)$ |
+| Pass 2 | Interference | $\mathcal{T}_{\Psi_A}$, $\mathcal{T}_{\Psi_B}$ | Interference pattern + visibility $V(\omega,\varphi)$ | $O(D/P) = O(1)$ when $D \leq P$ |
+| Pass 3 | Circuit detection | Stack of interference textures | Matching circuit map; resonance-validated scores | $O(N^3/P)$ |
+| Pass 4 | Readback | Interference + circuit map | Match score, confidence, entropy residual | $O(D/P)$ |
+
+Wall-clock complexity: **$O(1)$ per pairwise comparison** on commodity GPU hardware when the spectral image dimension $D \leq P$ (shader cores). For an NVIDIA RTX 4090 with $P = 16,384$ cores and a $128 \times 128 = 16,384$-pixel spectral image, every comparison completes in a single render pass.
+
+### Domain Encoders
+
+Pass 0 is the only domain-specific component. The remaining four passes are universal. Encoders for seven domains map raw data to the spectral image representation:
+
+| Domain | Encoding | Spectral content |
+|---|---|---|
+| Molecular spectra | IR/Raman frequencies → $(n,\ell,m,s)$ from vibrational modes | Vibrational fingerprint |
+| Microscopy images | 2D FFT → polar coordinates $(k,\theta)$ | Spatial frequency structure |
+| Chromatography | Peak detection → theoretical plate depth | Retention spectrum |
+| Time series | STFT spectrogram | Temporal-frequency structure |
+| Text/sequences | Embedding SVD → singular value spectrum | Semantic frequency content |
+| Genomic sequences | $k$-mer 2D FFT → spatial frequency spectrum | Composition + structural motifs |
+| Graph structures | Laplacian eigendecomposition → nodal count spectrum | Graph frequency structure |
+
+The same four passes (partition, interference, circuit, readback) operate identically on all seven encodings. Comparison between any two bounded systems, regardless of origin, uses the same GPU pipeline.
+
+### Complexity Summary
+
+| Method | Time | Hardware |
+|---|---|---|
+| Brute-force $L^2$ | $O(N^2 D)$ | CPU |
+| KD-tree | $O(ND \log N)$ | CPU |
+| Fingerprint (PubChem) | $O(N \times d) = O(10^{11})$ per query | CPU |
+| Ternary trie (Layer 12) | $O(k)$, independent of $N$ | CPU |
+| Spectral match (single pair) | $O(1)$ when $D \leq P$ | GPU |
+| Spectral match (all pairs) | $O(N^2 D / P)$ | GPU |
+
+### Integration with the Membrane Computer
+
+The full computing substrate has three layers, each forced by a separate theorem:
+
+| Substrate | Theorem | Operation | Complexity |
+|---|---|---|---|
+| Lipid membrane | Amphiphile Necessity + iCat | Trajectory computation via backward completion | $O(\log_3 N)$ per computation |
+| Ternary trie (CPU-resident) | Oscillatory Necessity + Dimensional Sufficiency | Molecular state retrieval and fuzzy search | $O(k)$ independent of $N$ |
+| GPU interference engine | GPU-Interference Isomorphism | State comparison and matching | $O(1)$ per pair |
+
+These three substrates are not independent. They implement the same underlying operation (partition refinement in bounded phase space) at three different speeds and using three different physical media:
+- The **membrane** refines partitions via conformational oscillations ($10^{20}$ ops/sec)
+- The **ternary trie** refines partitions by digit-by-digit address traversal ($O(k)$ steps)
+- The **GPU** refines partitions by parallel pixel-level interference ($O(1)$ wall-clock)
+
+The GPU is the membrane computer's comparison oracle — it answers "how similar are states $A$ and $B$?" in $O(1)$ time, while the membrane computes the trajectory to state $A$ in $O(\log_3 N)$ time, and the trie retrieves all states similar to a query in $O(k)$ time.
+
+### GPU-Supervised Training Without Labels
+
+A direct consequence of the commutation relation $[\hat{O}_{\mathrm{cat}}, \hat{O}_{\mathrm{phys}}] = 0$ is that physical observables (partition sharpness, phase coherence, noise floor) form a valid loss function for training spectral encoders without human labels:
+
+$$\mathcal{L}_{\mathrm{cons}} = (S_k + S_t + S_e - 1)^2 + \mathcal{L}_{\mathrm{sharpness}} + \mathcal{L}_{\mathrm{phase}}$$
+
+The GPU measures physical observables from the interference pattern; these drive gradient descent; the encoder improves. No ground-truth labels are needed because the S-entropy conservation law is the ground truth.
+
+---
+
+## Updated Performance Summary
+
+| Metric | Value | Source |
+|---|---|---|
+| Membrane throughput | $\sim 10^{20}$ partition ops/sec per membrane | Categorical Converter |
+| Single-layer trajectory complexity | $O(\log_3 N)$ | Backward Trajectory Theorem |
+| Molecular retrieval (trie) | $O(k)$, $N$-independent | Scaling Independence Theorem |
+| Pairwise comparison (GPU) | $O(1)$ wall-clock when $D \leq P$ | GPU-Interference Isomorphism |
+| All-pairs batch (GPU) | $O(N^2 D/P)$ | Complexity of Spectral Matching |
+| Speedup over fingerprint search (PubChem) | $> 5.7 \times 10^9 \times$ | Categorical Compound Database |
+| Binary equivalent trajectory | $O(N)$ | Discrete Lower Bound |
+| Floor error | $S_\flat(\mathcal{R}) > 0$ (receiver-intrinsic) | Floor Theorem |
+| Quantum coherence | 660 fs at 300 K (FMO, experimental) | ENAQT |
+| Membrane thickness | $4.0 \pm 0.2$ nm | Partition geometry (zero params) |
+| Energy per operation | $\sim k_B T \ln 2$ per partition | Landauer bound |
+| Chemical family cohesion (trie) | 5/6 families pass, ratios 1.09–4.38 | NIST 39-compound validation |
+
+---
+
+## Updated Derivation Chain
+
+```
+BPS Axiom
+  └─ Partition coordinates (n,ℓ,m,s)
+  └─ Capacity formula C(n) = 2n²
+  └─ Universal Oscillation Theorem
+        │
+        ├─ [Polar solvent] → Amphiphile Necessity → Bilayer (d, A_L, κ, T_m)
+        │
+        ├─ [Physical computation]
+        │     └─ Oscillatory / Charge / ENAQT / iCat
+        │
+        ├─ [S-entropy framework]
+        │     └─ Receiver / Floor Theorem / Information Bound
+        │
+        ├─ [Triple equivalence]
+        │     └─ Osc ↔ Cat ↔ Part / Optimal Representation / Circular Validity
+        │
+        ├─ [Trajectory computing]
+        │     └─ S-entropy embedding → Backward completion O(log₃N)
+        │     └─ Virtual sub-states / Path Opacity / Five Names
+        │
+        ├─ [Catalyst algebra]
+        │     └─ κ(γ₁◇γ₂) = 1-(1-κ₁)(1-κ₂) / Saturation / ENAQT formalization
+        │
+        ├─ [Categorical architecture]
+        │     └─ Binary = base-2 partition / Categorical converter / Complexity hierarchy
+        │     └─ No Privileged Level → Architectural Self-Similarity
+        │
+        ├─ [Operating system: Buhera]
+        │     └─ CMM / PSS / DIC / PVE / TEM / Cascade Router
+        │     └─ vaHera AST / Frozen Interface Contract
+        │
+        ├─ [Circuit interface]
+        │     └─ Membrane → RC circuit / Nebuchadnezzar / dx/dATP equations
+        │
+        ├─ [Molecular phase space addressing]  ← NEW (Categorical Compound Database)
+        │     └─ Oscillatory Necessity for molecules: identity = vibrational spectrum
+        │     └─ Dimensional Sufficiency: three coordinates (Sₖ, Sₜ, Sₑ) suffice
+        │     └─ Ternary Naturalness: base-3 is the native encoding for d=3
+        │     └─ Ternary trie: O(k) search, N-independent
+        │     └─ Position-Trajectory Duality: address IS path
+        │     └─ Fuzzy search: prefix truncation = resolution adjustment
+        │     └─ Property Inversion: constraints → molecules (not molecules → properties)
+        │
+        ├─ [Universal spectral matching]  ← NEW (Universal Spectral Matching)
+        │     └─ Koopman spectral decomposition: spectrum = {(ω,A,φ)} for any bounded system
+        │     └─ Spectral Image Theorem: spectrum ≅ 2D image (injective, metric-preserving)
+        │     └─ Universal Reduction: d_part(X,Y) = d_CV(I_X, I_Y)   [exact identity]
+        │     └─ S-entropy conservation: Sₖ + Sₜ + Sₑ = 1 under interference
+        │     └─ Commutation: [Ô_cat, Ô_phys] = 0  (non-demolition measurement)
+        │     └─ Interference-based comparison: V→1 match, V→0 mismatch
+        │     └─ Resonance condition: matching circuits must satisfy Σ Δφ = 2πm
+        │
+        └─ [GPU as interference substrate]  ← NEW (GPU integration)
+              └─ GPU-Interference Isomorphism: fragment shader ≅ interference engine
+              └─ O(1) wall-clock per comparison when D ≤ P
+              └─ Five-pass pipeline (Encode → Partition → Interfere → Circuit → Readback)
+              └─ Domain encoders: 7 domains → same universal 4 passes
+              └─ GPU-supervised training: S-conservation law replaces human labels
+              └─ Full substrate: Membrane (O(log N)) + Trie (O(k)) + GPU (O(1))
+```
+
+---
+
 ## Open Derivations (Monograph Chapters in Progress)
 
-The following results are established in the 22 additional papers and await formal integration into this document:
+The following results are established in the additional papers and await formal integration into this document:
 
 | Paper | Primary Result |
 |---|---|
@@ -625,14 +955,14 @@ The following results are established in the 22 additional papers and await form
 | Semantic categorical aperture | Aperture in meaning-space rather than physical space |
 | Biological current flux | Ionic current as the primary computational variable; flux quantization |
 | Charge computing framework | Charge states as partition labels; charge-based memory |
-| Molecular dynamics categorical memory | Trajectory-terminus pairs as persistent memory; (S_k, S_t, S_e) as address |
+| Molecular dynamics categorical memory | Trajectory-terminus pairs as persistent memory; $(S_k, S_t, S_e)$ as address |
 | Psychon circuit mechanics | Trajectory-terminus-memory triples in S-entropy space; circuit mechanics |
 | Neuro-partitioning operator trajectory | Partition operator applied at neural scale |
-| Microfluidic regime classification | Experimental regime detection; T_c measurement protocol |
+| Microfluidic regime classification | Experimental regime detection; $T_c$ measurement protocol |
 | Euler-Lagrangian equations | Lagrangian mechanics of membrane computing; field-theoretic formulation |
 | Unified cellular circuit model | Complete integration of all layers into single circuit model |
 | Automobile membrane sensor | First real-world application; membrane-based environmental sensing |
-| Emission-strobe spectroscopy | Readout protocol for (S_k, S_t, S_e) state without computation disruption |
+| Emission-strobe spectroscopy | Readout protocol for $(S_k, S_t, S_e)$ state without computation disruption |
 | Biological integrated circuits | Full assembly of computing stack in biological tissue |
 | Phase space mechanics | Geometric mechanics of bounded phase space; canonical coordinates |
 | Buhera operating system | Full implementation specification of the six-subsystem OS |

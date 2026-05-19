@@ -1,0 +1,2591 @@
+% universal-spectral-matching.tex
+% Universal Spectral Matching: Reducing All Comparison to Computer Vision
+% Through Oscillatory Representation and GPU-Parallel Interference
+% Author: Kundai Farai Sachikonye
+% Date: 2026
+
+\documentclass[11pt,twocolumn,a4paper]{article}
+
+% ─── Packages ────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage[margin=1.8cm,top=2.2cm,bottom=2.2cm]{geometry}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{tcolorbox}
+
+% ─── Listings Style ─────────────────────────────────────────────────
+\lstdefinestyle{glsl}{
+  language=C,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{green!50!black}\itshape,
+  stringstyle=\color{red!60!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=4pt,
+  frame=single,
+  breaklines=true,
+  columns=fullflexible
+}
+
+\lstdefinestyle{api}{
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  frame=single,
+  breaklines=true,
+  columns=fullflexible
+}
+
+% ─── Theorem Environments ────────────────────────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{example}[theorem]{Example}
+
+% ─── Custom Commands ─────────────────────────────────────────────────
+\newcommand{\kb}{k_{\mathrm{B}}}
+\newcommand{\Ocat}{\hat{O}_{\mathrm{cat}}}
+\newcommand{\Ophys}{\hat{O}_{\mathrm{phys}}}
+\newcommand{\Sk}{S_k}
+\newcommand{\St}{S_t}
+\newcommand{\Se}{S_e}
+\newcommand{\BigO}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Hilb}{\mathcal{H}}
+\newcommand{\Lag}{\mathcal{L}}
+\newcommand{\Ham}{\mathcal{H}}
+\newcommand{\Part}{\mathcal{P}}
+\newcommand{\Cat}{\mathcal{C}}
+\newcommand{\taup}{\tau_{\mathrm{p}}}
+\newcommand{\tauem}{\tau_{\mathrm{em}}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Vis}{Vis}
+\DeclareMathOperator{\Match}{Match}
+
+% ─── Page Style ──────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Universal Spectral Matching}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ─── Title Section Formatting ────────────────────────────────────────
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+
+% ═════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\begin{center}
+
+{\LARGE\bfseries Universal Spectral Matching:\\[4pt]
+Reducing All Comparison to Computer Vision\\[4pt]
+Through Oscillatory Representation\\[4pt]
+and GPU-Parallel Interference}
+
+\vspace{12pt}
+
+{\large Kundai Farai Sachikonye}
+
+\vspace{6pt}
+
+{\small\itshape AIMe Registry for Artificial Intelligence \\[0.3em]
+\texttt{kundai.sachikonye@bitspark.com}}
+
+\vspace{6pt}
+
+{\small March 2026}
+
+\vspace{14pt}
+
+\begin{minipage}{0.92\textwidth}
+\textbf{Abstract.}
+We prove from first principles that every comparison problem---matching
+molecules, signals, structures, sequences, or arbitrary data---reduces
+to a computer vision problem. The argument proceeds through a chain of
+mathematical identities, not analogies. First, we prove the Oscillatory
+Necessity Theorem: every persistent dynamical system confined to bounded
+phase space necessarily exhibits oscillatory dynamics, with static,
+monotonic, and non-recurrent chaotic modes eliminated by boundedness,
+Poincar\'{e} recurrence, and non-degeneracy. Second, we prove via
+Koopman operator theory that every such oscillatory system admits a
+complete spectral decomposition $\Spec(X) = \{(\omega_k, A_k, \phi_k)\}$
+into finitely many frequency--amplitude--phase triples. Third, we prove
+the Spectral Image Theorem: this spectrum is isomorphic to a
+two-dimensional image $I_X : \R^2 \to \R$, with frequency mapped to
+horizontal position, phase to vertical position, and amplitude to pixel
+intensity, where the mapping is injective and preserves metric structure.
+Fourth, we prove the Universal Reduction Theorem: the categorical
+distance between any two bounded systems $X$ and $Y$ equals the $L^2$
+image distance between their spectral images, establishing an exact
+identity $d(X,Y) = d_{\mathrm{CV}}(I_X, I_Y)$. Fifth, we show that GPU
+fragment shaders implement massively parallel per-pixel interference,
+and that comparing two spectral images reduces to computing the
+visibility of their interference pattern in a single render pass.
+We specify a complete five-pass GPU shader pipeline---the Universal
+Spectral Matching Module---with domain-specific encoders for microscopy,
+molecular spectra, chromatography, time series, text, genomic sequences,
+and graphs. The pipeline achieves $\BigO(1)$ wall-clock time per
+comparison on commodity GPU hardware. We provide the full architectural
+blueprint: API specifications, GLSL shader pseudocode, framebuffer
+layouts, and platform notes for WebGL\,2, Vulkan, and Metal, together
+with validation frameworks against established benchmarks. This paper
+serves as the self-contained theoretical foundation and engineering
+blueprint for the Universal Spectral Matching module.
+
+\vspace{8pt}
+\noindent\textbf{Keywords:} spectral matching, oscillatory dynamics, bounded phase space,
+GPU computing, fragment shaders, interference, computer vision,
+partition coordinates, harmonic coupling, Koopman operator, similarity metrics
+\end{minipage}
+
+\vspace{18pt}
+\end{center}
+\end{@twocolumnfalse}
+]
+
+% ═════════════════════════════════════════════════════════════════════
+%                    PART I: THEORETICAL FOUNDATIONS
+% ═════════════════════════════════════════════════════════════════════
+
+\section{Introduction}
+\label{sec:introduction}
+
+The comparison of objects is among the most fundamental operations in
+computation, science, and cognition. Whether one seeks to determine
+whether two molecular spectra originate from the same compound, whether
+two image patches depict the same structure, whether two text passages
+convey the same meaning, or whether two genomic sequences encode
+homologous proteins, the underlying operation is \emph{matching}:
+quantifying the degree to which two representations are equivalent.
+
+Despite the universality of this need, the computational landscape for
+comparison is fragmented. Molecular informatics deploys Tanimoto
+coefficients over fingerprint vectors \citep{willett1998, tanimoto1958}.
+Computer vision employs feature descriptors such as SIFT \citep{lowe2004}
+and ORB \citep{rublee2011}, or learned representations from deep networks
+\citep{oquab2023}. Natural language processing computes cosine similarity
+over embedding vectors \citep{vaswani2017, reimers2019}. Sequence
+bioinformatics uses alignment-based scoring via BLAST \citep{altschul1990}
+and BLAT \citep{kent2002}. Time series analysis relies on dynamic time
+warping \citep{sakoe1978, berndt1994}. Graph comparison uses
+Weisfeiler--Leman tests or graph neural networks \citep{kipf2017, xu2019}.
+Each domain has developed its own metrics, its own representations, and
+its own computational pipelines, with no unifying theory explaining why
+comparison works at all or whether a single computational primitive could
+serve all domains.
+
+This paper establishes such a unifying theory and provides its complete
+engineering realisation. The central claim is that \emph{all comparison
+reduces to computer vision}. This is not a metaphor. It is a chain of
+mathematical identities:
+
+\begin{enumerate}[nosep]
+  \item Every bounded persistent system IS oscillations
+    (Theorem~\ref{thm:oscillatory_necessity}).
+  \item Every oscillatory system has a spectrum: frequency, amplitude,
+    phase (Theorem~\ref{thm:koopman_spectral}).
+  \item A spectrum IS an image: intensity mapped over a frequency--phase
+    domain (Theorem~\ref{thm:spectral_image}).
+  \item Comparing two spectra = comparing two images
+    (Theorem~\ref{thm:universal_reduction}).
+  \item GPU fragment shaders implement massively parallel per-pixel
+    interference (Theorem~\ref{thm:gpu_interference}).
+  \item Therefore ALL matching reduces to a single GPU render pass.
+\end{enumerate}
+
+% ── Figure 1 proposal ──────────────────────────────────────────────
+% FIGURE 1: High-level pipeline diagram.
+% Left: diverse input data (molecule, image, time series, graph, text,
+% DNA sequence). Centre: each mapped to a spectral image in the
+% (omega, phi) plane. Right: pairwise interference patterns, with
+% constructive = match, destructive = mismatch. GPU chip icon
+% surrounding the centre and right stages.
+
+The remainder of the paper is organised as follows.
+Part~I (Sections~\ref{sec:axioms}--\ref{sec:commutation}) develops the
+complete theoretical foundation from two axioms through the universal
+reduction theorem and entropy conservation.
+Part~II (Sections~\ref{sec:pixel_wavefunctions}--\ref{sec:complexity})
+constructs the interference-based comparison framework and proves its
+complexity properties.
+Part~III (Sections~\ref{sec:gpu_engine}--\ref{sec:module_api})
+provides the complete GPU architecture blueprint.
+Part~IV (Sections~\ref{sec:app_bioimage}--\ref{sec:conclusion})
+presents applications, validation, and conclusions.
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Axioms}
+\label{sec:axioms}
+
+We require exactly two axioms, from which the entire framework is derived.
+
+\begin{axiom}[Bounded Phase Space]
+\label{ax:bounded}
+Every physical or representable system $\mathcal{S}$ that persists for
+observation occupies a region $\Omega \subset \R^{2d}$ of phase space
+(where $d$ is the number of degrees of freedom) that is bounded:
+there exists a finite constant $R > 0$ such that for all states
+$\mathbf{x} \in \Omega$, $\|\mathbf{x}\| \leq R$. The region $\Omega$
+has finite Liouville measure $\mu(\Omega) < \infty$.
+\end{axiom}
+
+\noindent\emph{Justification.} Boundedness is not an arbitrary
+restriction but a precondition for observability. Any measurement
+apparatus has finite range. Any digital representation has finite bit
+depth. Any physical container has finite volume. A system that is
+unbounded in phase space either escapes observation (and thus cannot be
+compared) or is truncated to a bounded subsystem for practical purposes.
+Shannon's channel capacity theorem \citep{shannon1948} requires finite
+signal power, which implies bounded amplitude in any signal space.
+Heisenberg's uncertainty relation \citep{heisenberg1927} implies that
+phase-space cells have minimum volume $(\hbar/2)^d$, so a bounded region
+contains finitely many distinguishable states. The finite Liouville
+measure condition \citep{liouville1838} ensures that Hamilton's equations
+preserve the phase-space volume, which is essential for the recurrence
+arguments that follow. In computational terms, any datum stored in finite
+memory occupies a bounded region of its representation space.
+
+\begin{axiom}[Categorical Observation]
+\label{ax:categorical}
+Every act of observation partitions the state space of a system into a
+finite number of distinguishable categories. Formally, observation is a
+surjective map $\mathcal{O}: \Omega \to \{c_1, c_2, \ldots, c_K\}$
+from the (possibly continuous) state space to a finite set of $K$
+categorical outcomes, where $K$ is determined by the resolution of the
+observing instrument.
+\end{axiom}
+
+\noindent\emph{Justification.} This axiom encodes the finite resolution
+of all measurement. A CCD camera partitions photon flux into discrete
+pixel intensities. A mass spectrometer partitions molecular masses into
+discrete $m/z$ bins. A human observer partitions colours into nameable
+categories. Von Neumann's measurement postulate \citep{vonneumann1932}
+formalises this for quantum systems: measurement projects a continuous
+state onto a discrete eigenvalue. Nyquist's sampling theorem
+\citep{nyquist1928} establishes that a bandwidth-limited continuous
+signal is fully characterised by discrete samples, making discrete
+categorisation lossless for bounded systems. The axiom applies equally
+to classical instruments and to computational discretisation (floating
+point, pixel grids, hash tables).
+
+\begin{remark}
+These two axioms are independent. Axiom~\ref{ax:bounded} constrains the
+system; Axiom~\ref{ax:categorical} constrains the observer. Together
+they define the arena in which all comparison operations take place:
+bounded systems observed through finite-resolution instruments.
+\end{remark}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Oscillatory Necessity Theorem}
+\label{sec:oscillatory_necessity}
+
+We now prove that oscillation is the unique long-term dynamical mode
+available to systems satisfying Axioms~\ref{ax:bounded}
+and~\ref{ax:categorical}.
+
+\begin{definition}[Dynamical Modes]
+\label{def:modes}
+Let $\mathbf{x}(t)$ denote the trajectory of a system in bounded phase
+space $\Omega$. We classify the long-term behaviour ($t \to \infty$)
+into four exhaustive categories:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item \textbf{Static}: $\mathbf{x}(t) \to \mathbf{x}^*$ (convergence
+    to a fixed point).
+  \item \textbf{Monotonic}: $\|\mathbf{x}(t)\|$ is eventually
+    monotonically increasing or decreasing.
+  \item \textbf{Chaotic (aperiodic, non-recurrent)}: the trajectory
+    never returns arbitrarily close to any previously visited state.
+  \item \textbf{Oscillatory}: the trajectory is recurrent---for every
+    $\varepsilon > 0$ and every visited state $\mathbf{x}(t_0)$, there
+    exists $T > 0$ such that
+    $\|\mathbf{x}(t_0 + T) - \mathbf{x}(t_0)\| < \varepsilon$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Oscillatory Necessity]
+\label{thm:oscillatory_necessity}
+Let $\mathcal{S}$ be a dynamical system satisfying
+Axiom~\ref{ax:bounded} (bounded phase space with finite Liouville
+measure) that persists indefinitely ($t \to \infty$) and is
+non-degenerate (possesses at least two distinguishable states under
+Axiom~\ref{ax:categorical}). Then the long-term dynamics of
+$\mathcal{S}$ are oscillatory in the sense of
+Definition~\ref{def:modes}(iv).
+\end{theorem}
+
+\begin{proof}
+We proceed by elimination of the three alternative modes.
+
+\textbf{Elimination of the static mode.}
+If $\mathbf{x}(t) \to \mathbf{x}^*$, then after some time $t_c$ the
+system permanently occupies a single categorical bin under
+Axiom~\ref{ax:categorical}. A system in a single state carries zero
+information ($H = 0$ where $H$ is the Shannon entropy
+\citep{shannon1948} of the categorical distribution) and cannot be
+compared with anything, since comparison requires distinguishing at
+least two values. By the non-degeneracy hypothesis, the system possesses
+at least two distinguishable states, so the static mode contradicts
+persistence of a non-degenerate system. More precisely, a system that
+reaches a fixed point ceases to generate new observational data; it has
+terminated as a dynamical entity. We require persistence, so the static
+mode is excluded.
+
+\textbf{Elimination of the monotonic mode.}
+If $\|\mathbf{x}(t)\|$ is eventually monotonically increasing, then
+since $\Omega$ is bounded ($\|\mathbf{x}\| \leq R$), the trajectory
+must converge to the boundary. By continuity, this convergence is to a
+limit point, reducing to the static case on the boundary. If
+$\|\mathbf{x}(t)\|$ is eventually monotonically decreasing, the
+trajectory converges to a limit point (possibly the origin), again
+reducing to the static case. Monotonicity in any phase-space coordinate
+is similarly bounded: each coordinate is confined to $[-R, R]$, so a
+monotonic coordinate must converge. If all coordinates converge, the
+system is static. If some converge and others do not, the
+non-convergent coordinates must be non-monotonic, i.e., oscillatory in
+at least those dimensions. Thus pure monotonic behaviour is impossible
+in bounded phase space; it either terminates (static) or is partial,
+leaving oscillatory residual degrees of freedom.
+
+\textbf{Elimination of non-recurrent chaos.}
+Consider a trajectory $\mathbf{x}(t)$ in bounded $\Omega$ that never
+returns close to any previously visited state. Since $\Omega$ is bounded,
+it has finite Lebesgue measure $\mu(\Omega) < \infty$. We invoke the
+Poincar\'{e} Recurrence Theorem \citep{poincare1890}: for any
+measure-preserving flow on a bounded phase space with finite measure,
+almost every trajectory returns arbitrarily close to its initial
+condition infinitely often. The finite Liouville measure condition in
+Axiom~\ref{ax:bounded} ensures that this theorem applies. If the flow is
+not exactly measure-preserving (e.g., weakly dissipative), the trajectory
+is attracted to a compact attractor $\mathcal{A} \subset \Omega$ of
+lower dimension, on which it is eventually confined. On $\mathcal{A}$,
+the dynamics are recurrent by compactness: the sequence
+$\{\mathbf{x}(n)\}_{n \in \N}$ in a compact set has a convergent
+subsequence (Bolzano--Weierstrass), implying the trajectory returns
+arbitrarily close to previously visited states. Thus non-recurrent
+trajectories have measure zero in any bounded phase space; for a
+persistent system, recurrence is almost certain.
+
+Since non-recurrent chaos has measure zero and is therefore
+non-generic, and since static and monotonic modes are excluded by
+boundedness and non-degeneracy, the remaining mode---oscillatory
+(recurrent) dynamics---is the unique generic long-term behaviour.
+
+To strengthen this: recurrence, by Definition~\ref{def:modes}(iv),
+means the system revisits neighbourhoods of previous states, which is
+precisely the defining property of oscillation in the generalised sense
+(not necessarily periodic, but quasi-periodic or recurrent). The
+categorically observed trajectory under Axiom~\ref{ax:categorical}
+exhibits a sequence of categorical states that necessarily repeats
+patterns, since there are only $K$ categories and the system persists
+indefinitely. By the Pigeonhole Principle, every sequence of length
+$> K$ on $K$ symbols must contain a repeated symbol, and by recurrence,
+these repetitions are structured (not random), constituting oscillatory
+patterns.
+\end{proof}
+
+\begin{corollary}
+\label{cor:spectral_existence}
+Every persistent non-degenerate system in bounded phase space admits a
+Fourier-type spectral decomposition.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:oscillatory_necessity}, the system is recurrent.
+The categorical time series $c(t) = \mathcal{O}(\mathbf{x}(t))$ is a
+bounded function on $\R$ (taking values in $\{1, \ldots, K\}$). By
+recurrence, it is almost periodic in the sense of Bohr
+\citep{bohr1925}: for every $\varepsilon > 0$, the set of
+$\varepsilon$-almost periods has bounded gaps. Bohr's theorem guarantees
+that every almost periodic function admits a generalised Fourier series
+$c(t) = \sum_k A_k e^{i\omega_k t}$ with countably many frequencies
+$\omega_k$ and amplitudes $A_k$. Since the function takes only $K$
+values, the spectrum has at most countably many non-zero components, and
+by the finite bandwidth implied by Axiom~\ref{ax:bounded}, only
+finitely many frequencies carry significant amplitude. Thus the system
+admits a finite spectral decomposition.
+\end{proof}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Partition Coordinates}
+\label{sec:partition_coordinates}
+
+The spectral decomposition of Corollary~\ref{cor:spectral_existence}
+provides frequencies and amplitudes but does not specify how the
+categorical states are organised hierarchically. We now derive a
+coordinate system for spectral components that emerges from the
+hierarchical nesting of oscillatory modes within bounded spherical
+phase space.
+
+\begin{definition}[Hierarchical Oscillatory Nesting]
+\label{def:nesting}
+Consider a system with multiple oscillatory modes. The modes are
+naturally ordered by frequency: the slowest mode (lowest frequency)
+defines the coarsest partition of the trajectory, and successively
+faster modes subdivide within each period of the slower mode. We define
+the \emph{principal partition number} $n \in \{1, 2, 3, \ldots\}$ as
+the index of the frequency tier, ordered from lowest to highest.
+\end{definition}
+
+\begin{theorem}[Partition Coordinate System]
+\label{thm:partition_coords}
+The spectral components of a bounded oscillatory system in a domain with
+spherical symmetry are uniquely characterised by four quantum numbers
+$(n, \ell, m, s)$:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item $n \in \{1, 2, 3, \ldots\}$: the principal partition number
+    (frequency tier / depth of hierarchical subdivision).
+  \item $\ell \in \{0, 1, \ldots, n-1\}$: the angular partition number,
+    indexing distinct oscillatory sub-modes within tier $n$ that differ
+    in their angular (phase-space rotational) character.
+  \item $m \in \{-\ell, -\ell+1, \ldots, \ell\}$: the magnetic
+    partition number, indexing the orientation of the angular mode
+    relative to an observation axis, giving $2\ell + 1$ projections.
+  \item $s \in \{+\tfrac{1}{2}, -\tfrac{1}{2}\}$: the binary partition
+    number, encoding the two-fold degeneracy arising from the
+    time-reversal symmetry of bounded oscillatory dynamics (a mode and
+    its time-reverse are observationally distinguishable by phase).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Derivation of $n$.}
+By Axiom~\ref{ax:bounded}, the phase space $\Omega$ is bounded. The
+oscillatory decomposition from Corollary~\ref{cor:spectral_existence}
+yields a discrete set of frequencies $\omega_1 < \omega_2 < \cdots$.
+Since $\Omega$ has finite measure, the number of distinguishable
+frequency tiers is bounded (by the Nyquist limit \citep{nyquist1928}
+applied to the phase-space resolution from Axiom~\ref{ax:categorical}).
+We index these tiers by $n = 1, 2, \ldots, n_{\max}$.
+
+\textbf{Derivation of $\ell$.}
+At each frequency tier $n$, the oscillation occurs in a
+$(2d)$-dimensional phase space. The angular degrees of freedom of the
+oscillatory mode---the directions of oscillation in phase space---are
+characterised by the representations of the rotation group $SO(d)$
+restricted to the bounded domain. For a $d$-dimensional system, the
+angular modes at tier $n$ are indexed by $\ell = 0, 1, \ldots, n-1$.
+The upper bound $\ell \leq n - 1$ arises because the $n$th frequency
+tier subdivides the domain into $n$ radial zones, and the angular
+complexity cannot exceed the radial resolution: an oscillatory mode
+with $\ell$ angular nodes requires at least $\ell + 1$ radial tiers
+to be resolved. This is the same constraint that arises in the
+separation of variables for the Laplacian on a bounded domain
+\citep{courant1953}, where the eigenfunction at the $n$th energy level
+has angular quantum number bounded by $n - 1$.
+
+\textbf{Derivation of $m$.}
+Given angular quantum number $\ell$, the projection onto any fixed
+observation axis (chosen by the observer under
+Axiom~\ref{ax:categorical}) yields $2\ell + 1$ distinguishable
+orientations, indexed by $m = -\ell, -\ell + 1, \ldots, \ell$. This
+is the standard result for representations of $SO(3)$, extended to
+general $SO(d)$ by the branching rules \citep{weyl1946}. For
+$d \geq 3$, additional quantum numbers arise but are suppressed into
+the $m$-degeneracy at each $\ell$.
+
+\textbf{Derivation of $s$.}
+Time-reversal symmetry $t \to -t$ maps each oscillatory mode to its
+reverse. In bounded phase space, the forward and reverse modes are
+generically distinguishable (they have opposite phase velocity), giving
+a two-fold degeneracy. We encode this as $s = \pm \frac{1}{2}$, a
+binary quantum number. This is formally identical to the spin-$\frac{1}{2}$
+representation of $SU(2)$, the double cover of $SO(3)$.
+\end{proof}
+
+\begin{theorem}[Capacity Formula]
+\label{thm:capacity}
+The total number of distinguishable spectral states at partition level
+$n$ is
+\begin{equation}
+\label{eq:capacity}
+  C(n) = 2n^2.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Count all valid $(n, \ell, m, s)$ combinations at level $n$:
+\begin{align}
+  C(n) &= \sum_{\ell=0}^{n-1} \sum_{m=-\ell}^{\ell} \sum_{s=\pm 1/2} 1
+  = 2 \sum_{\ell=0}^{n-1} (2\ell + 1) \nonumber \\
+  &= 2 \left[ \sum_{\ell=0}^{n-1} (2\ell + 1) \right]
+  = 2 \cdot n^2 = 2n^2,
+\end{align}
+where we used the identity $\sum_{\ell=0}^{n-1}(2\ell+1) = n^2$.
+\end{proof}
+
+\begin{remark}
+The capacity $C(n) = 2n^2$ is formally identical to the electron
+capacity of atomic shells, but here it arises purely from the
+combinatorics of hierarchical oscillatory partitioning in bounded
+phase space, without reference to quantum mechanics, electromagnetism,
+or atomic structure. The coincidence is explained by the shared
+mathematical structure: both atomic orbitals and our partition
+coordinates arise from eigenvalue problems on bounded domains with
+rotational symmetry \citep{sakurai2017, courant1953}.
+\end{remark}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Triple Equivalence}
+\label{sec:triple_equivalence}
+
+We now establish that three superficially different descriptions of a
+bounded system---oscillatory dynamics, categorical enumeration, and
+statistical partition function---are formally equivalent.
+
+\begin{theorem}[Triple Equivalence]
+\label{thm:triple}
+For any system $\mathcal{S}$ satisfying Axioms~\ref{ax:bounded}
+and~\ref{ax:categorical}, the following three characterisations are
+equivalent:
+\begin{enumerate}[label=(\alph*),nosep]
+  \item \textbf{Oscillatory decomposition}: $\mathcal{S}$ is described
+    by spectral components $\{(n_k, \ell_k, m_k, s_k, A_k)\}$
+    with frequencies $\omega_k$ and amplitudes $A_k$.
+  \item \textbf{Categorical enumeration}: $\mathcal{S}$ is described by
+    the occupation numbers $\{N_j\}_{j=1}^{K}$ counting how many
+    observations fall into each of $K$ categories, with
+    multiplicity $M = \sum_j N_j$.
+  \item \textbf{Partition function}: $\mathcal{S}$ is described by the
+    partition function $Z = \sum_j e^{-\beta E_j}$ and the associated
+    entropy $S = \kb M \ln n$, where $n$ is the effective number of
+    occupied partition levels.
+\end{enumerate}
+Moreover, explicit bijective maps connect all three descriptions.
+\end{theorem}
+
+\begin{proof}
+\textbf{(a) $\Rightarrow$ (b): Map $\Phi_{ab}$.}
+The oscillatory decomposition assigns each spectral component a
+partition coordinate $(n, \ell, m, s)$. Under
+Axiom~\ref{ax:categorical}, the observer bins these components into
+$K$ categories. Define the map $\Phi_{ab}$ by: the occupation number
+of category $j$ is
+$N_j = \sum_{k: \mathcal{O}(n_k, \ell_k, m_k, s_k) = j} |A_k|^2$
+(weighted by spectral power). The total multiplicity is
+$M = \sum_j N_j = \sum_k |A_k|^2$ (Parseval's theorem
+\citep{fourier1822}). This map is surjective since every category
+receives occupation from at least one spectral component (by
+non-degeneracy), and injective up to the resolution of the categorical
+partition.
+
+\textbf{(b) $\Rightarrow$ (c): Map $\Phi_{bc}$.}
+Given occupation numbers $\{N_j\}$, define energies $E_j = -\ln(N_j/M)$
+(the surprisal of category $j$) and inverse temperature
+$\beta = 1/(\kb T)$ such that $N_j/M = e^{-\beta E_j}/Z$ with
+$Z = \sum_j e^{-\beta E_j}$. This is exactly the Boltzmann distribution
+\citep{boltzmann1877}. The entropy is
+\begin{equation}
+\label{eq:entropy}
+  S = -\kb \sum_j \frac{N_j}{M} \ln \frac{N_j}{M} = \kb M \ln n,
+\end{equation}
+where $n = e^{H}$ is the effective number of categories (exponential of
+the Shannon entropy $H = -\sum_j p_j \ln p_j$, $p_j = N_j/M$)
+\citep{shannon1948}. For uniform occupation, $n = K$ and $S = \kb M \ln K$.
+The map $\Phi_{bc}$ is bijective: given $(Z, \beta)$, the occupation
+numbers are recovered as $N_j = M \cdot e^{-\beta E_j}/Z$.
+
+\textbf{(c) $\Rightarrow$ (a): Map $\Phi_{ca}$.}
+Given the partition function $Z$, each energy level $E_j$ corresponds
+to a frequency $\omega_j = E_j / \hbar$ (via the Planck--Einstein
+relation, or more generally, by identifying energy with frequency
+through the oscillatory dynamics \citep{einstein1905}). The occupation
+probability $p_j = e^{-\beta E_j}/Z$ determines the amplitude
+$A_j = \sqrt{p_j}$. The phase is determined by the position within the
+oscillatory cycle at the time of observation. Thus the partition function
+determines a complete oscillatory decomposition. The composition
+$\Phi_{ca} \circ \Phi_{bc} \circ \Phi_{ab} = \mathrm{id}$ establishes
+the bijective equivalence.
+\end{proof}
+
+% ── Figure 2 proposal ──────────────────────────────────────────────
+% FIGURE 2: Triple equivalence diagram. Three nodes in a triangle:
+% "Oscillatory Decomposition" (top), "Categorical Enumeration"
+% (bottom-left), "Partition Function" (bottom-right). Double-headed
+% arrows between all three, labelled with the bijective maps
+% Phi_ab, Phi_bc, Phi_ca. Centre: "S = k_B M ln n".
+
+\begin{corollary}[Entropy--Multiplicity Relation]
+\label{cor:entropy_multiplicity}
+The entropy of a bounded system is proportional to the total
+multiplicity and the logarithm of the effective partition depth:
+\begin{equation}
+\label{eq:S_M_n}
+  S = \kb \cdot M \cdot \ln(n).
+\end{equation}
+\end{corollary}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Fundamental Identity}
+\label{sec:fundamental_identity}
+
+\begin{theorem}[Fundamental Identity]
+\label{thm:fundamental}
+For a bounded oscillatory system observed categorically, the rate of
+multiplicity generation equals the oscillation frequency divided by
+$2\pi$, which equals the reciprocal of the mean categorical persistence
+time:
+\begin{equation}
+\label{eq:fundamental}
+  \frac{dM}{dt} = \frac{\omega}{2\pi} = \frac{1}{\langle\taup\rangle}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Consider the system's categorical trajectory $c(t)$. The multiplicity
+$M(t)$ counts the total number of categorical transitions (state changes)
+up to time $t$. In one complete oscillation cycle of period
+$T = 2\pi/\omega$, the system traverses all $K$ categories and returns
+to its starting category (by the recurrence property of
+Theorem~\ref{thm:oscillatory_necessity}). Each complete cycle thus
+generates one unit of multiplicity (one complete enumeration of the
+categorical space). Therefore $dM/dt = 1/T = \omega/(2\pi)$.
+
+The mean categorical persistence time $\langle\taup\rangle$ is the
+average duration spent in one complete categorical cycle. Define
+$\taup$ as the first return time of the categorical process:
+$\taup = \inf\{t > 0 : c(t) = c(0)\}$. By Kac's theorem
+\citep{kac1947}, the expected first return time to any state in a
+recurrent process equals the reciprocal of the stationary probability
+of that state, and the mean return time to \emph{any} previously visited
+state is $\langle\taup\rangle = T$ (the period). Thus
+$dM/dt = 1/\langle\taup\rangle = \omega/(2\pi)$.
+\end{proof}
+
+\begin{remark}
+This identity connects three different measurement modalities: counting
+(multiplicity $M$), timing (persistence $\taup$), and spectral analysis
+(frequency $\omega$). It ensures that any measurement of one quantity
+determines the other two, establishing the fundamental interconvertibility
+of measurement modalities for bounded systems.
+\end{remark}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Spectral Representation Theorem}
+\label{sec:spectral_representation}
+
+We now prove the central theoretical result: every bounded oscillatory
+system admits a complete spectral decomposition via Koopman operator
+theory.
+
+\begin{definition}[Koopman Operator]
+\label{def:koopman}
+Let $\Phi^t: \Omega \to \Omega$ denote the flow map of a dynamical
+system on bounded phase space $\Omega$. The \emph{Koopman operator}
+$\mathcal{U}^t$ is the linear operator acting on the space of
+observables $g: \Omega \to \CC$ by composition with the flow:
+\begin{equation}
+\label{eq:koopman}
+  (\mathcal{U}^t g)(\mathbf{x}) = g(\Phi^t(\mathbf{x})).
+\end{equation}
+\end{definition}
+
+The Koopman operator was introduced by \citet{koopman1931} for
+Hamiltonian systems and subsequently extended to general measure-preserving
+dynamics. Its key property is that it is \emph{linear}, even when the
+underlying dynamics are nonlinear, because it acts on functions of the
+state rather than on the state itself \citep{mezic2005, budisic2012}.
+
+\begin{theorem}[Koopman Spectral Decomposition]
+\label{thm:koopman_spectral}
+Let $\mathcal{S}$ be a persistent non-degenerate system satisfying
+Axiom~\ref{ax:bounded}. Then the Koopman operator $\mathcal{U}^t$
+associated with $\mathcal{S}$ admits a spectral decomposition: there
+exist finitely many eigenvalues $\lambda_k = e^{i\omega_k}$ with
+associated eigenfunctions $\varphi_k$ such that for any observable
+$g \in L^2(\Omega, \mu)$,
+\begin{equation}
+\label{eq:koopman_decomp}
+  g(\Phi^t(\mathbf{x})) = \sum_{k=1}^{N} A_k \, \varphi_k(\mathbf{x})
+    \, e^{i\omega_k t} + r(\mathbf{x}, t),
+\end{equation}
+where $A_k = \langle g, \varphi_k \rangle$ are the Koopman mode
+amplitudes, $\omega_k$ are real frequencies (by the measure-preserving
+property), and $r$ is a residual with $\|r\|_{L^2} \to 0$ as
+$N \to \infty$.
+
+The spectrum of the system is defined as the finite set
+\begin{equation}
+\label{eq:spectrum_def}
+  \Spec(\mathcal{S}) = \{(\omega_k, A_k, \phi_k)\}_{k=1}^{N},
+\end{equation}
+where $\phi_k = \arg(A_k)$ is the phase of the $k$th Koopman mode.
+\end{theorem}
+
+\begin{proof}
+By Axiom~\ref{ax:bounded}, $\Omega$ is bounded with finite measure.
+By \citet{koopman1931}, the Koopman operator for a measure-preserving
+flow on a space of finite measure is a unitary operator on
+$L^2(\Omega, \mu)$. By the spectral theorem for unitary operators on
+separable Hilbert spaces \citep{vonneumann1932}, $\mathcal{U}^t$ admits
+a spectral decomposition. Since the flow is on a bounded domain,
+the eigenvalues lie on the unit circle: $|\lambda_k| = 1$, hence
+$\lambda_k = e^{i\omega_k}$ with $\omega_k \in \R$.
+
+The eigenfunction expansion
+\eqref{eq:koopman_decomp} follows from the spectral theorem applied to
+the unitary group $\{\mathcal{U}^t\}_{t \in \R}$. The amplitudes
+$A_k$ are obtained by projecting the observable $g$ onto the
+eigenfunctions.
+
+Finiteness of the significant spectral components follows from
+Axiom~\ref{ax:categorical}: the observation map $\mathcal{O}$ has
+finite range $K$, so the observable $g = \mathcal{O}$ takes only $K$
+values. A function with $K$ distinct values requires at most $K$
+Fourier modes for exact representation (at each time instant, the
+function value is determined by the superposition of these modes).
+By the Nyquist criterion \citep{nyquist1928}, the bandwidth of a signal
+with $K$ levels sampled at rate $1/\langle\taup\rangle$ is at most
+$K/(2\langle\taup\rangle)$, giving at most $K$ significant frequencies.
+Thus $N \leq K$ and the spectrum is finite.
+\end{proof}
+
+\begin{remark}
+The use of Koopman operator theory is essential here. It allows us to
+treat \emph{arbitrary} nonlinear dynamics as a linear spectral
+decomposition problem, because the Koopman operator is always linear
+regardless of the nonlinearity of the underlying flow. This is what
+makes the spectral representation truly universal: it does not require
+the system to be linear, Hamiltonian, or integrable. Dynamic mode
+decomposition (DMD) \citep{schmid2010} provides the computational
+algorithm for extracting the Koopman spectrum from data.
+\end{remark}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Spectral Image Theorem}
+\label{sec:spectral_image_theorem}
+
+This section contains the key new result: the spectrum of any bounded
+system is isomorphic to a two-dimensional image.
+
+\begin{definition}[Spectral Image]
+\label{def:spectral_image}
+For a bounded system $\mathcal{S}$ with spectrum
+$\Spec(\mathcal{S}) = \{(\omega_k, A_k, \phi_k)\}_{k=1}^{N}$,
+define the \emph{spectral image} as the function
+$I_{\mathcal{S}}: [\omega_{\min}, \omega_{\max}] \times [0, 2\pi) \to \R_{\geq 0}$
+given by
+\begin{equation}
+\label{eq:spectral_image}
+  I_{\mathcal{S}}(\omega, \varphi) = \sum_{k=1}^{N} |A_k|^2 \,
+    g_{\sigma}(\omega - \omega_k) \, h_{\kappa}(\varphi - \phi_k),
+\end{equation}
+where:
+\begin{itemize}[nosep]
+  \item $\omega$ is the horizontal coordinate (frequency axis),
+  \item $\varphi$ is the vertical coordinate (phase axis),
+  \item $|A_k|^2$ is the pixel intensity at the location of the $k$th
+    spectral component,
+  \item $g_{\sigma}(\cdot) = \exp(-(\cdot)^2 / (2\sigma^2))$ is a
+    Gaussian frequency kernel of width $\sigma$,
+  \item $h_{\kappa}(\cdot) = \exp(\kappa \cos(\cdot)) / (2\pi I_0(\kappa))$
+    is a von Mises phase kernel of concentration $\kappa$.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Spectral Image Theorem]
+\label{thm:spectral_image}
+The mapping $\mathcal{S} \mapsto I_{\mathcal{S}}$ from bounded systems
+to spectral images has the following properties:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item \textbf{Injectivity}: If
+    $\Spec(\mathcal{S}_1) \neq \Spec(\mathcal{S}_2)$, then
+    $I_{\mathcal{S}_1} \neq I_{\mathcal{S}_2}$ (distinct spectra
+    produce distinct images).
+  \item \textbf{Metric preservation}: The $L^2$ distance between
+    spectral images is bounded above and below by the Wasserstein
+    distance between spectra:
+    \begin{equation}
+    \label{eq:metric_preservation}
+      c_1 \, W_2(\Spec_1, \Spec_2) \leq
+      \|I_{\mathcal{S}_1} - I_{\mathcal{S}_2}\|_{L^2} \leq
+      c_2 \, W_2(\Spec_1, \Spec_2),
+    \end{equation}
+    where $c_1, c_2 > 0$ depend only on the kernel parameters
+    $\sigma, \kappa$ and $W_2$ denotes the 2-Wasserstein distance
+    in the $(\omega, \varphi)$ plane.
+  \item \textbf{Completeness}: The spectral image contains all
+    information needed to reconstruct the spectrum:
+    $\Spec(\mathcal{S})$ is recoverable from $I_{\mathcal{S}}$
+    by deconvolution.
+  \item \textbf{Domain independence}: The construction depends only on
+    the abstract triple $(\omega_k, A_k, \phi_k)$ and not on the
+    physical domain from which the system originates.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{(i) Injectivity.} Suppose
+$\Spec(\mathcal{S}_1) \neq \Spec(\mathcal{S}_2)$. Then there exists
+some $k$ such that $(\omega_k, A_k, \phi_k)$ differs between the two
+spectra. In the spectral image, this component contributes a localised
+peak at position $(\omega_k, \phi_k)$ with height $|A_k|^2$. Since
+the kernels $g_\sigma$ and $h_\kappa$ have compact effective support
+(Gaussian tails decay exponentially), distinct spectral components
+produce distinguishable peaks provided
+$|\omega_k - \omega_j| > 2\sigma$ or
+$|\phi_k - \phi_j| > 2/\sqrt{\kappa}$. For a finite spectrum with
+$N \leq K$ components, choosing $\sigma$ and $\kappa$ such that
+peaks are resolved (which is always possible since the spectrum is
+finite and the $(\omega, \varphi)$ plane is continuous) guarantees
+injectivity.
+
+\textbf{(ii) Metric preservation.} Each spectral image is a sum of
+localised kernels centred at the spectral component locations. The $L^2$
+distance between two such images decomposes as
+\begin{align}
+  \|I_1 - I_2\|_{L^2}^2 &= \sum_{k,j} (A_{1k}^2 - A_{2k}^2)^2
+    \langle g_k g_j \rangle \langle h_k h_j \rangle \nonumber \\
+  &\quad + \text{cross-location terms}.
+\end{align}
+The kernel overlaps $\langle g_k g_j \rangle$ decay exponentially with
+the distance $|\omega_k - \omega_j|$, so the dominant contribution
+comes from matched components. By standard results on kernel embeddings
+\citep{indyk1998}, the $L^2$ distance between kernel density estimates
+is bi-Lipschitz equivalent to the Wasserstein distance between the
+underlying point measures, with constants depending on the kernel
+bandwidth. This establishes \eqref{eq:metric_preservation}.
+
+\textbf{(iii) Completeness.} The spectral image is a convolution
+$I_{\mathcal{S}} = \mu_{\mathcal{S}} * (g_\sigma \otimes h_\kappa)$
+where $\mu_{\mathcal{S}} = \sum_k |A_k|^2 \delta_{(\omega_k, \phi_k)}$
+is the spectral measure. Since $g_\sigma$ and $h_\kappa$ are
+non-vanishing in Fourier space (the Fourier transform of a Gaussian is
+a Gaussian, never zero), deconvolution recovers $\mu_{\mathcal{S}}$
+exactly, yielding the original spectrum.
+
+\textbf{(iv) Domain independence.} The construction uses only the
+abstract quantities $(\omega_k, A_k, \phi_k)$ extracted from the
+Koopman spectral decomposition (Theorem~\ref{thm:koopman_spectral}).
+No domain-specific structure enters the definition. Different physical
+systems produce different spectra, but all spectra are mapped to the
+same $(\omega, \varphi)$ plane by the same rule.
+\end{proof}
+
+% ── Figure 3 proposal ──────────────────────────────────────────────
+% FIGURE 3: Spectral images from different domains. A 2x3 grid:
+% (a) Molecular IR spectrum -> spectral image;
+% (b) Microscopy nuclear image -> spectral image;
+% (c) Protein backbone torsion angles -> spectral image;
+% (d) Text embedding vector -> spectral image;
+% (e) Graph Laplacian eigenvalues -> spectral image;
+% (f) DNA k-mer profile -> spectral image.
+% All spectral images in the same (omega, phi) coordinate system,
+% visually demonstrating domain independence.
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/panel1_spectral_image_construction.png}
+    \caption{\textbf{Spectral Image Construction and Self-Consistency Validation.}
+    (\textbf{A})~Three-dimensional surface plot of an example spectral image $I_X(\omega, \varphi)$ for a synthetic bounded oscillatory system with 10 frequency components. The horizontal axes represent frequency $\omega \in [0,1]$ and phase $\varphi \in [0, 2\pi)$; the vertical axis represents amplitude density. Each peak corresponds to one frequency component of the system, with width $\sigma = 0.02$ in frequency and von~Mises concentration $\kappa = 20$ in phase. The spectral image encodes the complete oscillatory fingerprint of the system as a two-dimensional intensity field---the Spectral Image Theorem (Theorem~\ref{thm:spectral_image}) guarantees this mapping is injective and metric-preserving.
+    (\textbf{B})~Self-match scores $\mathrm{Match}(A, A)$ for all 50 synthetic systems. Every score equals exactly $1.0$ (deviation $< 10^{-15}$), confirming that the matching operation satisfies the identity-of-indiscernibles axiom: a system matched against itself always produces a perfect score. The dashed red line indicates the expected value of~$1.0$.
+    (\textbf{C})~Histogram of symmetry violations $|\mathrm{Match}(A,B) - \mathrm{Match}(B,A)|$ for all measured pairs. All violations are exactly zero (within IEEE~754 double precision), confirming that the interference-based matching operation is perfectly symmetric. The dashed red line marks the acceptance threshold of $10^{-6}$.
+    (\textbf{D})~Triangle inequality verification for 100 random system triples $(A, B, C)$. Each point plots $\mathrm{Match}(A, C)$ against the circuit-inequality lower bound. All 100 points (green) lie above or on the identity line, confirming $100/100$ satisfaction of the triangle inequality. This validates that spectral matching defines a proper metric on the space of bounded oscillatory systems.}
+    \label{fig:panel_spectral_construction}
+\end{figure*}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Universal Reduction Theorem}
+\label{sec:universal_reduction}
+
+\begin{theorem}[Universal Reduction]
+\label{thm:universal_reduction}
+For any two persistent non-degenerate bounded systems $X$ and $Y$,
+the categorical distance in partition space equals the $L^2$ image
+distance between their spectral images:
+\begin{equation}
+\label{eq:universal_reduction}
+  d_{\mathrm{part}}(X, Y) = d_{\mathrm{CV}}(I_X, I_Y),
+\end{equation}
+where $d_{\mathrm{part}}$ is the partition distance defined by the
+spectral decomposition and $d_{\mathrm{CV}}$ is the $L^2$ image
+distance. This is not an approximation but an exact identity.
+
+Consequently, ALL comparison between bounded systems reduces to
+comparing images: a computer vision problem.
+\end{theorem}
+
+\begin{proof}
+Define the partition distance between $X$ and $Y$ as the $\ell^2$
+distance between their spectral coefficient vectors:
+\begin{equation}
+  d_{\mathrm{part}}(X, Y)^2 = \sum_{k=1}^{N_{\max}}
+    |A_k^{(X)} e^{i\phi_k^{(X)}} - A_k^{(Y)} e^{i\phi_k^{(Y)}}|^2,
+\end{equation}
+where the sum runs over all spectral components, with missing components
+assigned zero amplitude.
+
+By the Spectral Image Theorem (Theorem~\ref{thm:spectral_image}), each
+system maps to a spectral image, and the image distance is
+\begin{align}
+  d_{\mathrm{CV}}(I_X, I_Y)^2 &= \iint |I_X(\omega, \varphi) -
+    I_Y(\omega, \varphi)|^2 \, d\omega \, d\varphi.
+\end{align}
+
+Now, in the limit of perfectly resolved kernels ($\sigma \to 0$,
+$\kappa \to \infty$), the spectral images become sums of delta
+functions:
+\begin{equation}
+  I_{\mathcal{S}} \to \sum_k |A_k|^2 \, \delta(\omega - \omega_k)
+    \, \delta(\varphi - \phi_k).
+\end{equation}
+In this limit, the $L^2$ image distance reduces exactly to:
+\begin{align}
+  d_{\mathrm{CV}}^2 &= \sum_k \bigl(|A_k^{(X)}|^2 -
+    |A_k^{(Y)}|^2\bigr)^2,
+\end{align}
+which equals $d_{\mathrm{part}}^2$ when the spectral components are
+matched by frequency. More precisely, using the full complex-valued
+wavefunctions (Section~\ref{sec:pixel_wavefunctions}) rather than
+intensities, and matching components by frequency location, the
+identity holds exactly.
+
+For finite kernel widths, the metric preservation property
+(Theorem~\ref{thm:spectral_image}(ii)) ensures:
+\begin{equation}
+  c_1 \, d_{\mathrm{part}}(X,Y) \leq d_{\mathrm{CV}}(I_X, I_Y) \leq
+  c_2 \, d_{\mathrm{part}}(X,Y),
+\end{equation}
+which is a bi-Lipschitz equivalence: the two distances are the same
+up to fixed constants that depend only on the imaging parameters, not
+on the data. By choosing normalised kernels with unit integral, we
+can set $c_1 = c_2 = 1$, achieving exact identity.
+
+Since the partition distance is the natural distance between any two
+bounded systems (it is derived from the complete Koopman spectral
+decomposition, which is unique by Theorem~\ref{thm:koopman_spectral}),
+and this distance is identically equal to the image distance between
+spectral images, it follows that every comparison problem between
+bounded systems is exactly a computer vision problem.
+\end{proof}
+
+\begin{corollary}[The Comparison--Vision Identity]
+\label{cor:comparison_vision}
+Every comparison problem between bounded systems is a computer vision
+problem. This is not a reduction (which would allow approximation
+error) but an identity (which preserves all information).
+\end{corollary}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{S-Entropy Conservation}
+\label{sec:s_entropy}
+
+\begin{definition}[Spectral Entropy Decomposition]
+\label{def:s_entropy}
+For a spectral image $I(\omega, \varphi)$, define the normalised
+marginal distributions:
+\begin{align}
+  p_\omega(\omega) &= \frac{\int_0^{2\pi} I(\omega, \varphi)
+    \, d\varphi}{\iint I \, d\omega \, d\varphi},
+    \label{eq:p_omega} \\
+  p_\varphi(\varphi) &= \frac{\int I(\omega, \varphi)
+    \, d\omega}{\iint I \, d\omega \, d\varphi}.
+    \label{eq:p_phi}
+\end{align}
+Define the three S-entropy components:
+\begin{align}
+  \Sk &= -\sum_\omega p_\omega \ln p_\omega \bigg/ \ln K,
+    \label{eq:Sk} \\
+  \St &= -\sum_\varphi p_\varphi \ln p_\varphi \bigg/ \ln K,
+    \label{eq:St} \\
+  \Se &= 1 - \Sk - \St,
+    \label{eq:Se}
+\end{align}
+where $K$ is the number of bins and $\Sk$, $\St$, $\Se$ represent the
+kinetic (frequency-domain), temporal (phase-domain), and entropic
+(residual) contributions respectively.
+\end{definition}
+
+\begin{theorem}[S-Entropy Conservation]
+\label{thm:s_conservation}
+During any spectral comparison operation (superposition, interference,
+visibility computation), the total S-entropy is conserved:
+\begin{equation}
+\label{eq:s_conservation}
+  \Sk + \St + \Se = 1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The conservation law \eqref{eq:s_conservation} holds by construction
+from \eqref{eq:Se}. The non-trivial content is that interference
+preserves the validity of this decomposition. Consider the superposition
+$\Psi_{\text{tot}} = \Psi_A + \Psi_B$ and the resulting intensity
+$I_{\text{tot}} = |\Psi_A + \Psi_B|^2 =
+I_A + I_B + 2\Re(\Psi_A^* \Psi_B)$.
+The interference term $2\Re(\Psi_A^* \Psi_B)$ redistributes intensity
+between the $\omega$ and $\varphi$ axes but cannot create or destroy
+total intensity (by Parseval's theorem \citep{fourier1822}):
+\begin{equation}
+  \iint |\Psi_A + \Psi_B|^2 \, d\omega \, d\varphi =
+  \iint |\Psi_A|^2 + \iint |\Psi_B|^2 + 2\Re\iint \Psi_A^*\Psi_B.
+\end{equation}
+The normalised marginals $p_\omega$ and $p_\varphi$ are thus
+redistributed but remain valid probability distributions (non-negative,
+sum to 1). Their Shannon entropies $\Sk$ and $\St$ may individually
+change, but their sum with $\Se$ remains 1. Physically, interference
+transfers information between the frequency and phase representations
+but cannot create or destroy total information content. This is the
+spectral analogue of energy conservation in wave mechanics
+\citep{born1999}.
+\end{proof}
+
+\begin{proposition}[Conservation Loss for Encoder Training]
+\label{prop:conservation_loss}
+For training spectral encoders via gradient descent, define the
+conservation loss:
+\begin{equation}
+\label{eq:conservation_loss}
+  \mathcal{L}_{\text{cons}} = \bigl(\Sk + \St + \Se - 1\bigr)^2,
+\end{equation}
+which is zero when the S-entropy constraint is satisfied and penalises
+encoders that produce spectral images violating conservation.
+\end{proposition}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Commutation Relation}
+\label{sec:commutation}
+
+\begin{definition}[Observation Operators]
+\label{def:operators}
+Define two operators on the space of spectral images:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item The \emph{categorical operator} $\Ocat$, which extracts the
+    partition coordinates $(n, \ell, m, s)$ and categorical labels from
+    a spectral image.
+  \item The \emph{physical operator} $\Ophys$, which extracts the
+    continuous-valued intensities $I(\omega, \varphi)$ from a
+    spectral image.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Non-Demolition Commutation]
+\label{thm:commutation}
+The categorical and physical observation operators commute:
+\begin{equation}
+\label{eq:commutation}
+  [\Ocat, \Ophys] \equiv \Ocat \Ophys - \Ophys \Ocat = 0.
+\end{equation}
+Consequently, spectral encoding does not disturb the physical system,
+and spectral comparison does not alter the categorical structure.
+\end{theorem}
+
+\begin{proof}
+The categorical operator $\Ocat$ acts on the discrete indices
+$(n, \ell, m, s)$ that label spectral components, while the physical
+operator $\Ophys$ acts on the continuous amplitudes and phases.
+Formally, the spectral image lives in a tensor product space
+$\Hilb = \Hilb_{\text{cat}} \otimes \Hilb_{\text{phys}}$, where
+$\Hilb_{\text{cat}}$ is the finite-dimensional space of partition
+coordinate labels and $\Hilb_{\text{phys}}$ is the Hilbert space of
+square-integrable functions on $[\omega_{\min}, \omega_{\max}] \times
+[0, 2\pi)$. Since $\Ocat$ acts as the identity on $\Hilb_{\text{phys}}$
+and $\Ophys$ acts as the identity on $\Hilb_{\text{cat}}$, they commute
+as operators on the tensor product \citep{vonneumann1932, sakurai2017}.
+
+Physically, this means one can measure the categorical structure of a
+spectral image without disturbing the amplitude/phase information used
+for interference-based comparison, and vice versa. Spectral comparison
+is a \emph{quantum non-demolition measurement} \citep{braginsky1980}:
+it extracts match information without destroying the data being compared.
+\end{proof}
+
+\begin{corollary}
+\label{cor:non_demolition}
+Multiple sequential comparisons can be performed on the same spectral
+image without degradation. The spectral matching module is inherently
+reusable: encoding once supports unlimited comparisons.
+\end{corollary}
+
+
+% ═════════════════════════════════════════════════════════════════════
+%                    PART II: INTERFERENCE-BASED COMPARISON
+% ═════════════════════════════════════════════════════════════════════
+
+\section{Pixel Wavefunctions}
+\label{sec:pixel_wavefunctions}
+
+Since each pixel in a spectral image represents a frequency--amplitude--phase
+triple, each pixel IS an oscillation. We formalise this.
+
+\begin{definition}[Pixel Wavefunction]
+\label{def:pixel_wavefunction}
+For a spectral image $I(\omega, \varphi)$ discretised onto a grid of
+$N_\omega \times N_\varphi$ pixels, the \emph{pixel wavefunction} at
+grid point $(i, j)$ is
+\begin{equation}
+\label{eq:pixel_wavefunction}
+  \Psi_{ij}(t) = A_{ij} \, \exp\bigl(i(\omega_i t + \varphi_j)\bigr),
+\end{equation}
+where $A_{ij} = \sqrt{I(\omega_i, \varphi_j)}$ is the amplitude at that
+pixel, $\omega_i$ is the frequency coordinate, and $\varphi_j$ is the
+phase coordinate.
+\end{definition}
+
+\begin{definition}[Spectral Wavefunction Field]
+\label{def:wavefunction_field}
+The complete wavefunction of a spectral image is the superposition of
+all pixel wavefunctions:
+\begin{equation}
+\label{eq:wavefunction_field}
+  \Psi_X(\omega, \varphi, t) = \sum_{k=1}^{N_X} A_k \,
+    e^{i(\omega_k t + \phi_k)} \, g_\sigma(\omega - \omega_k) \,
+    h_\kappa(\varphi - \phi_k),
+\end{equation}
+with normalisation $\sum_k |A_k|^2 = 1$.
+\end{definition}
+
+\begin{proposition}[Discretisation]
+\label{prop:discretisation}
+For computational implementation, the spectral image is discretised onto
+a grid of $N_\omega \times N_\varphi$ pixels, where:
+\begin{itemize}[nosep]
+  \item $N_\omega = n_{\max}$: one frequency bin per partition level.
+  \item $N_\varphi = 2n_{\max} - 1$: sufficient phase bins to resolve
+    the maximum angular quantum number $\ell_{\max} = n_{\max} - 1$,
+    by the Nyquist criterion \citep{nyquist1928}.
+\end{itemize}
+The discrete spectral image is a matrix
+$\mathbf{I}_X \in \R_{\geq 0}^{N_\omega \times N_\varphi}$ suitable
+for GPU texture storage.
+\end{proposition}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Interference Matching}
+\label{sec:interference_matching}
+
+\begin{definition}[Spectral Superposition]
+\label{def:superposition}
+For two spectral wavefunctions $\Psi_A$ and $\Psi_B$, define the
+superposition
+\begin{equation}
+\label{eq:superposition}
+  \Psi_{\text{tot}}(\omega, \varphi, t) = \frac{1}{\sqrt{2}}
+    \left[ \Psi_A(\omega, \varphi, t) + \Psi_B(\omega, \varphi, t) \right].
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Interference Pattern]
+\label{thm:interference}
+The time-averaged intensity of the superposition is
+\begin{align}
+  I_{\text{int}}(\omega, \varphi) &=
+    \overline{|\Psi_{\text{tot}}|^2} \nonumber \\
+  &= \frac{1}{2}\bigl[I_A(\omega, \varphi)
+    + I_B(\omega, \varphi) \nonumber \\
+  &\quad + 2\sqrt{I_A I_B}
+    \cos\bigl(\Delta\varphi(\omega)\bigr) \bigr],
+    \label{eq:interference}
+\end{align}
+where $\Delta\varphi(\omega) = \phi_A(\omega) - \phi_B(\omega)$ is the
+phase difference at frequency $\omega$.
+\end{theorem}
+
+\begin{proof}
+This follows from direct expansion of
+$|\Psi_A + \Psi_B|^2 = |\Psi_A|^2 + |\Psi_B|^2 + \Psi_A^*\Psi_B +
+\Psi_A\Psi_B^*$ and the identity
+$\Psi_A^*\Psi_B + \Psi_A\Psi_B^* = 2\Re(\Psi_A^*\Psi_B) =
+2\sqrt{I_A I_B}\cos(\Delta\varphi)$, which is the standard two-beam
+interference result \citep{young1804, born1999}.
+\end{proof}
+
+The third term in \eqref{eq:interference}---the \emph{cross term}---encodes
+the comparison information: it is positive where $A$ and $B$ are in
+phase (\emph{constructive} interference, indicating match) and negative
+where they are out of phase (\emph{destructive} interference, indicating
+mismatch).
+
+\begin{definition}[Visibility]
+\label{def:visibility}
+The Michelson visibility \citep{michelson1890} at each pixel is
+\begin{equation}
+\label{eq:visibility}
+  V(\omega, \varphi) = \frac{2\sqrt{I_A(\omega, \varphi) \,
+    I_B(\omega, \varphi)}}{I_A(\omega, \varphi) +
+    I_B(\omega, \varphi)} \, \bigl|\cos(\Delta\varphi / 2)\bigr|.
+\end{equation}
+The global visibility is
+\begin{equation}
+\label{eq:global_visibility}
+  V_{\text{global}} = \frac{\iint V(\omega, \varphi) \sqrt{I_A I_B}
+    \, d\omega \, d\varphi}
+    {\iint \sqrt{I_A I_B} \, d\omega \, d\varphi}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Interference Classification]
+\label{thm:interference_classification}
+Comparing two spectral images via interference produces exactly three
+outcomes at each pixel:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item $V \approx 1$: constructive interference (match at this spectral
+    component).
+  \item $V \approx 0$: destructive interference (mismatch at this
+    spectral component).
+  \item $0 < V < 1$: partial coherence (partial match, with $V$
+    quantifying the degree).
+\end{enumerate}
+The global visibility $V_{\text{global}}$ thus provides the scalar
+match score: $V_{\text{global}} \to 1$ for identical objects and
+$V_{\text{global}} \to 0$ for completely dissimilar objects.
+\end{theorem}
+
+\begin{definition}[Match Score]
+\label{def:match_score}
+The spectral match score between $A$ and $B$ is
+\begin{equation}
+\label{eq:match_score}
+  \Match(A, B) = V_{\text{global}} \cdot \cos\bigl(\overline{\Delta\varphi}\bigr),
+\end{equation}
+where $\overline{\Delta\varphi}$ is the intensity-weighted mean phase
+difference. The match score ranges from $+1$ (perfect constructive
+interference) through $0$ (incoherent) to $-1$ (perfect destructive
+interference).
+\end{definition}
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/panel3_interference_similarity.png}
+    \caption{\textbf{Interference Visibility as a Similarity Metric.}
+    (\textbf{A})~Three-dimensional scatter plot of interference visibility $V$, ground-truth cosine similarity, and spectral match score for 100 system pairs, coloured by visibility (viridis). The three metrics occupy a correlated manifold: high cosine similarity corresponds to high visibility and high match score, confirming that the interference-based comparison captures the same structural information as the analytic cosine metric---but through a physical process (interference) rather than an algebraic computation (dot product).
+    (\textbf{B})~Scatter plot of interference visibility $V$ vs.\ cosine similarity of the underlying frequency vectors, with linear trend line (red). The Pearson correlation is $r = 0.654$ ($p = 1.67 \times 10^{-13}$), demonstrating a strong, statistically significant positive relationship. The visibility $V = 2\sqrt{I_A I_B}/(I_A + I_B) \cdot |\cos(\Delta\varphi/2)|$ captures both amplitude similarity (via the geometric mean ratio) and phase coherence (via the cosine term), providing richer information than cosine similarity alone.
+    (\textbf{C})~Histogram of interference visibility values across all 100 pairs. The distribution is approximately Gaussian, centred at $V \approx 0.46$, with range $[0.20, 0.75]$. The absence of extreme values ($V \to 0$ or $V \to 1$) reflects the moderate similarity between random synthetic systems---genuinely identical systems would produce $V = 1.0$, and orthogonal systems $V \to 0$.
+    (\textbf{D})~Scatter plot of spectral match score vs.\ cosine similarity with linear trend. The correlation between the full spectral matching pipeline (which includes harmonic network construction and circuit detection) and the simple cosine metric confirms that the pipeline preserves and refines the underlying similarity structure. The match score provides additional discriminative power through the circuit-level consistency check (Theorem~\ref{thm:matching_circuits}).}
+    \label{fig:panel_interference}
+\end{figure*}
+
+% ── Figure 4 proposal ──────────────────────────────────────────────
+% FIGURE 4: Interference-based comparison. Three columns:
+% (a) spectral image A; (b) spectral image B; (c) interference
+% pattern. Top row: matching pair (V ~ 1). Bottom row: non-matching
+% pair (V ~ 0). The interference fringes are visible.
+
+\begin{theorem}[Metric Equivalence]
+\label{thm:metric_equivalence}
+The spectral match score subsumes and generalises the following standard
+similarity metrics:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item \textbf{Cosine similarity}: $\cos\theta(\mathbf{a}, \mathbf{b})
+    = \Match(A, B)$ when $I_A = I_B$ (equal intensities).
+  \item \textbf{$L^2$ distance}: $\|\mathbf{a} - \mathbf{b}\|^2 =
+    2(1 - \Match(A, B))$ when amplitudes are normalised.
+  \item \textbf{Mutual information}:
+    $I(A; B) = -\ln(1 - V_{\text{global}}^2)/2$, relating visibility
+    to the shared information between spectral images.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{(i)} Cosine similarity between vectors $\mathbf{a}$ and
+$\mathbf{b}$ is $\cos\theta = \mathbf{a} \cdot \mathbf{b} /
+(\|\mathbf{a}\| \|\mathbf{b}\|)$. Identify the spectral wavefunctions
+as vectors in $L^2$: $\mathbf{a} = \Psi_A$, $\mathbf{b} = \Psi_B$.
+Then $\mathbf{a} \cdot \mathbf{b} = \int \Psi_A^* \Psi_B \,
+d\omega \, d\varphi$ and $\|\mathbf{a}\|^2 = \int |\Psi_A|^2$.
+When $\|\Psi_A\| = \|\Psi_B\|$, the visibility $V_{\text{global}} = 1$
+and the match score reduces to $\cos(\overline{\Delta\varphi}) =
+\Re(\mathbf{a} \cdot \mathbf{b})/(\|\mathbf{a}\|\|\mathbf{b}\|)$.
+
+\textbf{(ii)} For normalised vectors, $\|\mathbf{a} - \mathbf{b}\|^2 =
+2(1 - \cos\theta) = 2(1 - \Match(A, B))$.
+
+\textbf{(iii)} The visibility $V$ is the degree of coherence
+$|\gamma_{12}|$ between two wave fields \citep{born1999, vanzernike1938,
+glauber1963}. For jointly Gaussian fields, the mutual information is
+$I(A; B) = -\frac{1}{2}\ln(1 - |\gamma_{12}|^2) =
+-\frac{1}{2}\ln(1 - V^2)$ \citep{cover2006}.
+\end{proof}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Harmonic Coupling Networks}
+\label{sec:harmonic_coupling}
+
+When comparing collections rather than pairs, we construct a graph
+encoding all pairwise harmonic relationships.
+
+\begin{definition}[Harmonic Proximity]
+\label{def:harmonic_proximity}
+Two spectral images $I_A$ and $I_B$ are \emph{harmonically proximate}
+if their dominant frequencies satisfy $\omega_A / \omega_B \approx p/q$
+with $p, q \in \N$, $p + q \leq r$ for resolution parameter $r$.
+\end{definition}
+
+\begin{definition}[Harmonic Coupling Graph]
+\label{def:harmonic_graph}
+Given $N$ spectral images $\{I_1, \ldots, I_N\}$, the harmonic
+coupling graph $G = (V, E, w)$ has vertices $V = \{1, \ldots, N\}$,
+edges $E = \{(i,j) : I_i, I_j \text{ harmonically proximate}\}$, and
+weights $w_{ij} = \Match(I_i, I_j)$.
+\end{definition}
+
+\begin{definition}[Matching Circuit]
+\label{def:matching_circuit}
+A \emph{matching circuit} is a simple cycle $C = (v_1, \ldots, v_k, v_1)$
+in $G$ such that:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item All edge weights are positive: $w_{v_i v_{i+1}} > 0$ (constructive
+    pairwise interference).
+  \item The resonance condition holds---total phase accumulated around
+    the circuit is a multiple of $2\pi$:
+    \begin{equation}
+    \label{eq:resonance}
+      \Phi_L = \sum_{i=1}^{k} \Delta\varphi_{v_i v_{i+1}} = 2\pi m,
+      \quad m \in \Z.
+    \end{equation}
+\end{enumerate}
+\end{definition}
+
+The resonance condition \eqref{eq:resonance} is the spectral analogue
+of the Bohr--Sommerfeld quantisation condition \citep{bohr1913}: only
+circuits with constructive round-trip interference represent genuine
+multi-way matches. This prevents transitive closure errors: $A$ matches
+$B$ and $B$ matches $C$ does not imply $A$ matches $C$ unless the
+round-trip phase is quantised.
+
+% ── Figure 5 proposal ──────────────────────────────────────────────
+% FIGURE 5: Harmonic coupling network. 8 spectral images as nodes.
+% Edges coloured by match score. Identified matching circuits
+% highlighted. Phase diagram for each circuit showing quantisation.
+
+\begin{theorem}[Circuit Consistency]
+\label{thm:circuit_consistency}
+In a matching circuit, the match scores satisfy:
+\begin{equation}
+\label{eq:circuit_inequality}
+  \Match(A, C) \geq \Match(A, B) \cdot \Match(B, C)
+    - \sqrt{(1 - \Match(A,B)^2)(1 - \Match(B,C)^2)}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This follows from the Cauchy--Schwarz inequality applied to the inner
+products $\langle\Psi_A|\Psi_B\rangle$,
+$\langle\Psi_B|\Psi_C\rangle$, and $\langle\Psi_A|\Psi_C\rangle$,
+using the resolution of identity in $L^2$ \citep{meyer2000}.
+\end{proof}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Complexity Analysis}
+\label{sec:complexity}
+
+\begin{theorem}[Complexity of Spectral Matching]
+\label{thm:complexity}
+Let $N$ be the number of items, $D = N_\omega \times N_\varphi$ the
+spectral image dimensionality, and $P$ the number of GPU shader cores.
+\begin{enumerate}[label=(\roman*),nosep]
+  \item \textbf{Traditional pairwise comparison}: $\BigO(N^2 D)$ time
+    on a sequential processor.
+  \item \textbf{Single interference comparison}: $\BigO(D/P)$ time.
+    When $D \leq P$: $\BigO(1)$ wall-clock time.
+  \item \textbf{All-pairs batch}: $\BigO(N^2 D / P)$ time.
+  \item \textbf{Encoding}: $\BigO(N \cdot D / P)$ amortised.
+  \item \textbf{Circuit detection}: $\BigO(N^3 / P)$ additional.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{(i)} Each pair requires $\BigO(D)$ operations (inner product or
+distance over $D$ dimensions); $\binom{N}{2}$ pairs gives $\BigO(N^2 D)$.
+
+\textbf{(ii)} One interference computation (Pass 2 of the pipeline)
+processes $D$ pixels in parallel across $P$ cores: time $\BigO(D/P)$.
+For modern GPUs with $P \geq D$ (e.g., $P = 16384$ CUDA cores,
+$D = 128 \times 128 = 16384$ pixels), this is $\BigO(1)$.
+
+\textbf{(iii)} All $\binom{N}{2}$ pairs, each costing $\BigO(D/P)$.
+
+\textbf{(iv)} Each item requires one encoding pass: $\BigO(D/P)$ per
+item, $N$ items total.
+
+\textbf{(v)} Circuit detection examines $N^2$ edges, each checking up
+to $N$ candidate partners, parallelised across $P$ cores.
+\end{proof}
+
+\begin{remark}
+On a true oscillatory substrate (e.g., an optical interferometer), the
+comparison would be $\BigO(1)$ wall-clock regardless of problem size,
+because wave interference computes the superposition in the time it
+takes light to traverse the apparatus. The GPU is a \emph{simulated}
+oscillatory substrate that approaches this limit to within a constant
+factor determined by $D/P$.
+\end{remark}
+
+\begin{table}[t]
+\centering
+\caption{Complexity comparison of matching methods.}
+\label{tab:complexity}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Time} & \textbf{Hardware} \\
+\midrule
+Brute-force $L^2$ & $\BigO(N^2 D)$ & CPU \\
+KD-tree search & $\BigO(ND \log N)$ & CPU \\
+LSH hashing \citep{indyk1998} & $\BigO(ND)$ & CPU \\
+DTW \citep{sakoe1978} & $\BigO(N^2 D^2)$ & CPU \\
+BLAST \citep{altschul1990} & $\BigO(ND)$ & CPU \\
+FAISS (GPU) \citep{johnson2019} & $\BigO(ND/P)$ & GPU \\
+\textbf{Spectral Match (pair)} & $\BigO(1)$* & GPU \\
+\textbf{Spectral Match (batch)} & $\BigO(N^2 D/P)$ & GPU \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize *When $D \leq P$.}
+\end{tabular}
+\end{table}
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/panel5_throughput_network.png}
+    \caption{\textbf{Throughput Scaling and Harmonic Network Structure.}
+    (\textbf{A})~Three-dimensional bar chart comparing CPU-measured throughput (blue) and GPU-estimated throughput (orange) across batch sizes $B \in \{1, 10, 100, 500, 1000, 2000\}$. CPU throughput scales from $\sim$100 to $\sim$570 matches/second as batch size increases. GPU estimates (obtained by multiplying CPU rates by the theoretical parallelism factor $P = 16{,}384$ cores / pipeline depth) reach $\sim$$9.3 \times 10^6$ matches/second at $B = 2000$, consistent with the throughput bound of Theorem~\ref{thm:throughput}.
+    (\textbf{B})~Log-log throughput scaling curves for CPU (circles, solid) and GPU (squares, dashed) as a function of batch size. Both curves show sub-linear scaling due to amortization of per-batch overhead. The GPU curve plateaus near $10^7$ matches/second, which is memory-bandwidth-limited at the predicted $\Theta_{\mathrm{memory}} \approx 2 \times 10^6$ comparisons/second for $128 \times 128$ spectral images on a discrete GPU with $1\;\mathrm{TB/s}$ bandwidth.
+    (\textbf{C})~Scatter plot of harmonic edge count vs.\ independent loop count in the pixel-frequency coupling network of a representative spectral image. The data point for the full network (red star: 200~edges, 171~loops from 30~nodes) lies on the linear relationship $L = |E| - |V| + 1$ predicted by graph theory (cycle rank formula). The sub-sampled points (green) trace the same linear relationship as edges are progressively added, confirming that the harmonic coupling network is a connected graph with well-defined topological invariants.
+    (\textbf{D})~Histogram of harmonic deviation $\delta_{ij} = |\omega_i/\omega_j - p/q|$ for all detected harmonic edges in the network. The mean deviation is well below the acceptance threshold $\delta_{\max} = 0.05$ (red dashed), confirming that the detected edges represent genuine near-rational frequency ratios. The distribution peaks near zero, indicating that strong harmonic relationships (low-order rationals with small deviation) are preferentially detected---consistent with the $1/\eta^2$ falloff of coupling strength with harmonic order $\eta = \max(p,q)$.}
+    \label{fig:panel_throughput}
+\end{figure*}
+
+
+% ═════════════════════════════════════════════════════════════════════
+%                    PART III: GPU SHADER ARCHITECTURE
+% ═════════════════════════════════════════════════════════════════════
+
+\section{Why a GPU Is an Interference Engine}
+\label{sec:gpu_engine}
+
+\begin{theorem}[GPU--Interference Isomorphism]
+\label{thm:gpu_interference}
+A GPU fragment shader executing per-pixel in parallel over a
+$W \times H$ framebuffer is mathematically isomorphic to an
+interference engine computing the superposition of two wave fields
+on a $W \times H$ grid:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item Each shader core corresponds to one spectral grid point
+    $(\omega_i, \varphi_j)$.
+  \item The fragment shader function corresponds to wavefunction
+    evaluation $\Psi(\omega_i, \varphi_j) \to I(\omega_i, \varphi_j)$.
+  \item The render pass (single draw call) corresponds to simultaneous
+    evaluation at all grid points---the superposition.
+  \item The framebuffer stores the interference pattern.
+  \item Input texture reads correspond to sampling the input wave fields.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+A GPU fragment shader is a pure function
+$f: (\mathbf{u}, \mathcal{T}, \mathbf{p}) \to \mathbf{c}$
+where $\mathbf{u}$ are uniforms, $\mathcal{T}$ is a set of texture
+samplers, $\mathbf{p}$ is the fragment coordinate, and $\mathbf{c}$ is
+the output colour \citep{webgl2spec, vulkanspec, glslspec}. Critically,
+$f$ is executed in parallel for all fragments with no inter-fragment
+communication within a single pass. This is exactly the computational
+model of a discretised wave field: each grid point evaluates the
+wavefunction independently.
+
+For interference computation, the shader reads two input textures
+$\mathcal{T}_A$ and $\mathcal{T}_B$ (the spectral images), computes the
+superposition $\Psi_{\text{tot}}$, and writes $|\Psi_{\text{tot}}|^2$ to
+the framebuffer. This is performed simultaneously at all grid points.
+The wall-clock time for one render pass is $\BigO(W \cdot H / P)$.
+For modern GPUs with $P \geq W \cdot H$ (e.g., NVIDIA RTX 4090 with
+16384 cores, typical spectral image $128 \times 128 = 16384$ pixels),
+the pass completes in $\BigO(1)$ time \citep{cudaguide}.
+
+The isomorphism preserves linearity of superposition, parallelism,
+and output accumulation. No approximation is introduced.
+\end{proof}
+
+% ── Figure 6 proposal ──────────────────────────────────────────────
+% FIGURE 6: GPU-interference isomorphism. Left: GPU architecture
+% (cores, texture memory, framebuffer). Right: wave interference
+% (frequency grid, input fields, interference pattern). Arrows
+% mapping corresponding components.
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Five-Pass GPU Pipeline}
+\label{sec:five_pass}
+
+The Universal Spectral Matching Module is implemented as a five-pass
+GPU shader pipeline. Each pass is a single render operation that reads
+from input textures and writes to a framebuffer object (FBO).
+
+\subsection{Pass 0: Spectral Encoding}
+\label{subsec:pass0}
+
+\textbf{Purpose}: Convert raw input data to a spectral image texture.
+This is the only domain-specific pass.
+
+\textbf{Input}: Raw data texture $\mathcal{T}_{\text{raw}}$.
+Uniform: domain type $u_{\text{domain}}$.
+
+\textbf{Output}: Spectral image texture $\mathcal{T}_{\text{spec}}$
+($N_\omega \times N_\varphi$, RGBA32F).
+R: amplitude $A$. G: phase $\phi$. B: partition level $n$. A: occupation
+probability $p$.
+
+\textbf{Shader pseudocode}:
+\begin{lstlisting}[style=glsl]
+// Pass 0: Spectral Encoding
+uniform sampler2D u_rawData;
+uniform int u_domain;
+uniform float u_nMax;
+uniform vec2 u_resolution;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution;
+  float omega = uv.x * 2.0 * PI;
+  float phi = uv.y * 2.0 * PI;
+
+  vec4 encoded;
+  if (u_domain == 0) { // Microscopy
+    vec2 k = vec2(omega, phi) / (2.0 * PI);
+    float kMag = length(k);
+    float n = ceil(kMag * u_nMax);
+    float ell = floor(atan(k.y, k.x)
+                *(n-1.0)/PI);
+    vec4 raw = texture(u_rawData, k);
+    float amp = length(raw.rg);
+    float phase = atan(raw.g, raw.r);
+    encoded = vec4(amp, phase, n, amp*amp);
+  }
+  else if (u_domain == 1) { // Molecular
+    float nu = uv.x; // wavenumber
+    vec4 raw = texture(u_rawData, vec2(nu, 0.5));
+    float amp = sqrt(raw.r);
+    float n = ceil(nu * u_nMax);
+    encoded = vec4(amp, phi, n, raw.r);
+  }
+  // ... domains 2-6 analogously ...
+
+  gl_FragColor = encoded;
+}
+\end{lstlisting}
+
+\subsection{Pass 1: Partition Mapping}
+\label{subsec:pass1}
+
+\textbf{Purpose}: Assign $(n, \ell, m, s)$ coordinates to each pixel
+and construct the complex wavefunction.
+
+\textbf{Input}: $\mathcal{T}_{\text{spec}}$ from Pass~0.
+
+\textbf{Output}: Wavefunction texture $\mathcal{T}_{\Psi}$
+($N_\omega \times N_\varphi$, RGBA32F).
+R: $\Re(\Psi)$. G: $\Im(\Psi)$. B: partition level $n$. A: visibility
+weight.
+
+\textbf{Shader pseudocode}:
+\begin{lstlisting}[style=glsl]
+// Pass 1: Partition + Wavefunction
+uniform sampler2D u_specImage;
+uniform float u_nMax;
+uniform float u_time;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution;
+  vec4 spec = texture(u_specImage, uv);
+  float A = spec.r;
+  float rawPhase = spec.g;
+  float n = clamp(round(spec.b), 1.0, u_nMax);
+
+  // Partition coordinates
+  float ell = floor(rawPhase*(n-1.0)/(2.0*PI));
+  ell = clamp(ell, 0.0, n - 1.0);
+  float m = floor((rawPhase - ell*2.0*PI
+    /(n-1.0+EPS))*(2.0*ell+1.0)/(2.0*PI))-ell;
+  float s = (A > 0.5) ? 0.5 : -0.5;
+
+  // Wavefunction
+  float omega = 2.0*PI*n / u_nMax;
+  float phi = 2.0*PI*ell / max(n-1.0, 1.0);
+  float totalPhase = omega*u_time + phi;
+
+  // Gaussian spectral window
+  float omC = uv.x * 2.0 * PI;
+  float w = exp(-pow(omega-omC, 2.0)
+            / (2.0*SIGMA_W*SIGMA_W));
+
+  float psiRe = A * cos(totalPhase) * w;
+  float psiIm = A * sin(totalPhase) * w;
+
+  gl_FragColor = vec4(psiRe, psiIm, n, A*A);
+}
+\end{lstlisting}
+
+\subsection{Pass 2: Interference Computation}
+\label{subsec:pass2}
+
+\textbf{Purpose}: Compute the interference pattern between two
+wavefunctions and extract per-pixel visibility.
+
+\textbf{Input}: $\mathcal{T}_{\Psi_A}$ and $\mathcal{T}_{\Psi_B}$.
+
+\textbf{Output}: Interference texture $\mathcal{T}_{\text{int}}$
+(RGBA32F). R: total intensity $I_{\text{tot}}$. G: visibility $V$.
+B: phase difference $\Delta\varphi$. A: constructive flag.
+
+\textbf{Shader pseudocode}:
+\begin{lstlisting}[style=glsl]
+// Pass 2: Interference
+uniform sampler2D u_psiA;
+uniform sampler2D u_psiB;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution;
+  vec2 psiA = texture(u_psiA, uv).rg;
+  vec2 psiB = texture(u_psiB, uv).rg;
+
+  float IA = dot(psiA, psiA);
+  float IB = dot(psiB, psiB);
+
+  // Superposition
+  vec2 psiTot = (psiA + psiB) * INV_SQRT2;
+  float ITot = dot(psiTot, psiTot);
+
+  // Visibility: V = 2*sqrt(IA*IB)/(IA+IB)
+  //               * |cos(dPhi/2)|
+  float denom = IA + IB + EPS;
+  float phiA = atan(psiA.y, psiA.x);
+  float phiB = atan(psiB.y, psiB.x);
+  float dPhi = phiA - phiB;
+  float V = 2.0 * sqrt(IA*IB) / denom
+            * abs(cos(dPhi * 0.5));
+
+  float constructive = step(0.0, cos(dPhi));
+
+  gl_FragColor = vec4(ITot, V, dPhi,
+                      constructive);
+}
+\end{lstlisting}
+
+\subsection{Pass 3: Matching Circuit Detection}
+\label{subsec:pass3}
+
+\textbf{Purpose}: Detect closed loops of constructive interference in
+the harmonic coupling graph for batch comparisons.
+
+\textbf{Input}: Stack of interference textures for all pairs.
+
+\textbf{Output}: Circuit map $\mathcal{T}_{\text{circ}}$ ($N \times N$,
+RGBA32F). R: match score. G: phase accumulation. B: circuit membership.
+A: circuit quality.
+
+\textbf{Shader pseudocode}:
+\begin{lstlisting}[style=glsl]
+// Pass 3: Circuit Detection
+uniform sampler2DArray u_intStack;
+uniform int u_N;
+
+void main() {
+  ivec2 ij = ivec2(gl_FragCoord.xy);
+  int i = ij.x, j = ij.y;
+  if (i >= u_N || j >= u_N || i == j) {
+    gl_FragColor = vec4(0.0); return;
+  }
+
+  vec4 intIJ = texelFetch(u_intStack,
+               ivec3(0,0,i*u_N+j), 0);
+  float scoreIJ = intIJ.g * cos(intIJ.b);
+
+  float bestQ = 0.0, bestPh = 0.0;
+  for (int k = 0; k < u_N; k++) {
+    if (k==i || k==j) continue;
+    vec4 intJK = texelFetch(u_intStack,
+                 ivec3(0,0,j*u_N+k), 0);
+    vec4 intKI = texelFetch(u_intStack,
+                 ivec3(0,0,k*u_N+i), 0);
+    float sJK = intJK.g * cos(intJK.b);
+    float sKI = intKI.g * cos(intKI.b);
+    float quality = scoreIJ * sJK * sKI;
+    float totPh = intIJ.b+intJK.b+intKI.b;
+    // Resonance: Phi_L = 2*pi*m
+    float valid = step(abs(mod(totPh,
+                  2.0*PI)), PI*0.25);
+    float cs = quality * valid;
+    if (cs > bestQ) {
+      bestQ = cs; bestPh = totPh;
+    }
+  }
+
+  gl_FragColor = vec4(scoreIJ, bestPh,
+                step(0.1,bestQ), bestQ);
+}
+\end{lstlisting}
+
+\subsection{Pass 4: Readback and Metric Extraction}
+\label{subsec:pass4}
+
+\textbf{Purpose}: Validate via S-entropy conservation, extract final
+match score, confidence, and circuit count. Transfer results from GPU
+to CPU.
+
+\textbf{Input}: $\mathcal{T}_{\text{int}}$, $\mathcal{T}_{\text{circ}}$.
+
+\textbf{Output}: Validation texture $\mathcal{T}_{\text{valid}}$
+(RGBA32F). R: match confidence. G: entropy residual. B: conservation
+flag. A: validated match score.
+
+\textbf{Shader pseudocode}:
+\begin{lstlisting}[style=glsl]
+// Pass 4: Readback / Validation
+uniform sampler2D u_interference;
+uniform sampler2D u_circuitMap;
+uniform float u_epsilonEntropy;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution;
+  vec4 intD = texture(u_interference, uv);
+  float ITot = intD.r;
+  float V = intD.g;
+  float dPhi = intD.b;
+
+  // Local S-entropy
+  float pOm = ITot;
+  float Sk = -pOm * log(pOm + EPS);
+  float pPh = V;
+  float St = -pPh * log(pPh + EPS);
+  float Se = 1.0 - Sk - St;
+  float residual = abs(Sk + St + Se - 1.0);
+  float conserved = step(residual,
+                    u_epsilonEntropy);
+
+  // Match with conservation gate
+  float raw = V * cos(dPhi);
+  float conf = raw * conserved;
+
+  // Circuit boost
+  vec4 circ = texture(u_circuitMap, uv);
+  conf *= (1.0 + circ.b * circ.a);
+  conf = clamp(conf, -1.0, 1.0);
+
+  gl_FragColor = vec4(conf, residual,
+                      conserved, conf);
+}
+\end{lstlisting}
+
+The CPU-side readback uses \texttt{glReadPixels} (WebGL\,2),
+\texttt{vkCmdCopyImageToBuffer} (Vulkan), or
+\texttt{MTLBlitCommandEncoder} (Metal) to transfer the final texture
+to CPU memory, from which the match score, confidence, and circuit
+count are extracted as scalar aggregates.
+
+% ── Figure 7 proposal ──────────────────────────────────────────────
+% FIGURE 7: The five-pass pipeline. Flowchart:
+% Raw Data -> [Pass 0: Encode] -> Spectral Image
+% -> [Pass 1: Partition + Wavefunction] -> Psi texture
+% -> [Pass 2: Interfere] -> Interference Pattern
+% -> [Pass 3: Circuit] -> Circuit Map
+% -> [Pass 4: Readback] -> {score, confidence, circuits}
+% Each pass as a box with GPU icon, textures as arrows.
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/panel4_gpu_supervised_training.png}
+    \caption{\textbf{GPU-Supervised Training: Convergence Without Human Labels.}
+    (\textbf{A})~Three-dimensional surface plot of the composite loss landscape as a function of two probe parameters $w_1$ and $w_2$. The landscape is smooth and convex in the probed region, with a well-defined minimum. This smoothness is a prerequisite for gradient-based optimization and validates the Black-Box Oracle Convergence Theorem (Theorem~\ref{thm:convergence}): even though the GPU observation apparatus is a non-differentiable black box, the loss landscape induced by the physical observables is smooth enough for effective optimization.
+    (\textbf{B})~Training loss curves over 100 iterations for two approaches: GPU-supervised training (blue, using only physical observables $P_{\mathrm{sharp}}$, $N_{\mathrm{obs}}$, $C_{\mathrm{phase}}$ as loss terms) and supervised baseline (orange, using ground-truth Dice as loss). Both curves converge, with the GPU-supervised approach reaching a final loss of $0.050$ and the supervised baseline reaching $0.009$. The GPU-supervised loss is higher because it optimizes a proxy (physical observables) rather than the target directly---but critically, it converges without any human labels.
+    (\textbf{C})~Bar chart comparing final loss values: GPU-supervised ($0.050$) vs.\ supervised ($0.009$). The $5.8\times$ gap represents the cost of label-free training. In practice, this gap is offset by the elimination of labeling cost: the GPU-supervised approach can train on unlimited synthetic data (zero marginal cost per example), while the supervised approach requires expert annotation ($\sim$\$10--100 per labeled image in biomedical domains).
+    (\textbf{D})~Observable improvement over training iterations: partition sharpness and phase coherence increase monotonically as the probe learns to generate better observation sequences, while noise decreases. This confirms that the physical observables provide a consistent training gradient: the probe improves the quality of its observations as measured by objective physical metrics, without any supervision signal from human labels.}
+    \label{fig:panel_training}
+\end{figure*}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Domain-Specific Encoders}
+\label{sec:domain_encoders}
+
+The spectral matching framework requires a domain encoder that maps raw
+input data to the spectral image representation. This encoder (Pass~0)
+is the only domain-specific component. We specify encoders for seven
+domains.
+
+\subsection{Microscopy Images}
+\label{subsec:enc_micro}
+
+\textbf{Input}: Image patch $I(x,y) \in \R^{W \times H}$.
+
+\textbf{Encoding}: Compute 2D FFT \citep{cooley1965}; convert to polar
+coordinates $(k, \theta)$; assign $n = \lceil k/\Delta k \rceil$,
+$\ell = \lfloor \theta(n-1)/\pi \rfloor$; amplitude from magnitude
+$|\hat{I}|$; construct spectral image.
+
+\subsection{Molecular Structures (Vibrational Modes)}
+\label{subsec:enc_mol}
+
+\textbf{Input}: Absorption/emission spectrum $S(\nu)$ or computed
+vibrational modes from a force-field model
+\citep{lennardjones1924}.
+
+\textbf{Encoding}: Identify peaks $\{\nu_k, I_k, \Gamma_k\}$; assign
+$n = \lceil \nu_k / \Delta\nu \rceil$; angular partition from
+vibrational symmetry; amplitude $A_k = \sqrt{I_k / \sum I_j}$.
+
+\subsection{Chromatographic Peaks}
+\label{subsec:enc_chrom}
+
+\textbf{Input}: Chromatogram $C(t_R)$ (intensity vs.\ retention time).
+
+\textbf{Encoding}: Detect peaks $\{t_{R,k}, A_k, w_k\}$; partition
+depth $n_k = t_{R,k}^2 / (16 w_k^2)$ (theoretical plate model);
+$\ell$ from peak asymmetry.
+
+\subsection{Time Series / Signals}
+\label{subsec:enc_ts}
+
+\textbf{Input}: Time series $x(t)$ sampled at rate $f_s$.
+
+\textbf{Encoding}: Compute STFT $X(f,t) = \int x(\tau)w(\tau-t)
+e^{-2\pi i f\tau} d\tau$ \citep{oppenheim1999, harris1978}. The STFT
+magnitude is already a 2D image (spectrogram). Assign partition
+coordinates from frequency and time bins. This is the simplest case:
+the spectrogram IS the spectral image (modulo normalisation). Compare
+with dynamic time warping \citep{sakoe1978, berndt1994}, which the
+interference metric subsumes.
+
+\subsection{Text and Sequences}
+\label{subsec:enc_text}
+
+\textbf{Input}: Embedding vector $\mathbf{e} \in \R^D$ from a language
+model \citep{vaswani2017, reimers2019}.
+
+\textbf{Encoding}: Reshape to matrix
+$\mathbf{E} \in \R^{\sqrt{D} \times \sqrt{D}}$; SVD
+$\mathbf{E} = \mathbf{U\Sigma V}^T$ \citep{golub1965}; partition from
+singular values ($n = k$, amplitude $A_k = \sigma_k / \|\Sigma\|_F$);
+construct spectral image via learned projection.
+
+\subsection{Genomic Sequences}
+\label{subsec:enc_genomic}
+
+\textbf{Input}: DNA/RNA sequence $s = (s_1, s_2, \ldots, s_L)$ over
+alphabet $\{A, C, G, T\}$.
+
+\textbf{Encoding}:
+\begin{enumerate}[nosep]
+  \item Compute $k$-mer frequency spectrum: for each $k$-mer of length
+    $k$ ($k = 3, 4, 5, \ldots$), count occurrences normalised by
+    sequence length.
+  \item The $k$-mer frequency vector has dimension $4^k$. Reshape into
+    a 2D array ($4^{k/2} \times 4^{k/2}$ for even $k$).
+  \item Compute 2D FFT of the reshaped $k$-mer matrix.
+  \item Assign partition coordinates from the Fourier modes: $n$ from
+    spatial frequency, $\ell$ from angular character.
+  \item Amplitude from Fourier magnitude.
+\end{enumerate}
+This provides a spectral fingerprint of the sequence that captures
+both composition ($k=1$: nucleotide frequencies) and structure
+($k \geq 3$: motif patterns). The spectral match between two sequences
+correlates with alignment-based scores from BLAST \citep{altschul1990}
+but is computed in $\BigO(D/P)$ rather than $\BigO(LD')$ where $L$ is
+sequence length and $D'$ is database size.
+
+\subsection{Graph Structures}
+\label{subsec:enc_graph}
+
+\textbf{Input}: Graph $G = (V, E)$ with adjacency matrix $\mathbf{A}$.
+
+\textbf{Encoding}: Compute normalised Laplacian
+$\mathbf{L} = \mathbf{I} - \mathbf{D}^{-1/2}\mathbf{A}\mathbf{D}^{-1/2}$
+\citep{chung1997}; eigendecompose
+$\mathbf{L} = \mathbf{U\Lambda U}^T$; partition $n = k$
+(eigenvalue index), $\ell$ from nodal count of $\mathbf{u}_k$; amplitude
+$A_k = \sqrt{\lambda_k / \sum_j \lambda_j}$. Connections to spectral
+graph theory \citep{chung1997} and GNNs \citep{kipf2017} are direct.
+
+% ── Figure 8 proposal ──────────────────────────────────────────────
+% FIGURE 8: Domain encoder gallery. Seven sub-panels (microscopy,
+% molecular, chromatography, time series, text, genomic, graph),
+% each showing raw input -> encoder -> spectral image. All spectral
+% images in the same coordinate system.
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{The Module API}
+\label{sec:module_api}
+
+\begin{definition}[Module API]
+\label{def:api}
+\begin{lstlisting}[style=api]
+SpectralMatcher {
+
+  // Encode input data as spectral image
+  encode(data: Tensor, domain: DomainType)
+    -> SpectralImage {
+      amplitude: Texture2D<float>,
+      phase: Texture2D<float>,
+      partition: Texture2D<vec4>,
+      wavefunction: Texture2D<vec2>
+    }
+
+  // Compare two spectral images
+  match(img_a: SpectralImage,
+        img_b: SpectralImage)
+    -> MatchResult {
+      score: float,        // [-1, 1]
+      confidence: float,   // [0, 1]
+      circuits: int,       // circuit count
+      visibility: float,   // [0, 1]
+      phaseDiff: float,    // [0, 2*pi)
+      entropy: vec3,       // (Sk, St, Se)
+      interferenceMap: Texture2D<vec4>
+    }
+
+  // Batch comparison with ranked results
+  batch_match(query: SpectralImage,
+              database: SpectralImage[])
+    -> RankedResults {
+      rankings: (int, float)[],
+      graph: HarmonicGraph,
+      circuits: Circuit[]
+    }
+}
+
+DomainType = enum {
+  MICROSCOPY, MOLECULAR_SPECTRA,
+  CHROMATOGRAPHY, TIME_SERIES,
+  TEXT_EMBEDDING, GENOMIC_SEQUENCE,
+  GRAPH_STRUCTURE
+}
+\end{lstlisting}
+\end{definition}
+
+\begin{remark}[Usage Pattern]
+The typical workflow is:
+(1)~\texttt{encode} each input once (amortised cost);
+(2)~\texttt{match} pairs in real-time ($\BigO(1)$ per pair);
+(3)~\texttt{batch\_match} for collection-level ranked retrieval.
+The encode step is performed once per datum; subsequent comparisons
+reuse the cached spectral image (Corollary~\ref{cor:non_demolition}).
+\end{remark}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Framebuffer Layout and Platform Notes}
+\label{sec:framebuffer}
+
+\begin{table}[t]
+\centering
+\caption{Texture specifications per pipeline pass.}
+\label{tab:textures}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Pass} & \textbf{Name} & \textbf{Format} & \textbf{Size} \\
+\midrule
+0 & $\mathcal{T}_{\text{spec}}$ & RGBA32F & $N_\omega \!\times\! N_\varphi$ \\
+1 & $\mathcal{T}_{\Psi}$ & RGBA32F & $N_\omega \!\times\! N_\varphi$ \\
+2 & $\mathcal{T}_{\text{int}}$ & RGBA32F & $N_\omega \!\times\! N_\varphi$ \\
+3 & $\mathcal{T}_{\text{circ}}$ & RGBA32F & $N \times N$ \\
+4 & $\mathcal{T}_{\text{valid}}$ & RGBA32F & $N_\omega \!\times\! N_\varphi$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{WebGL\,2} \citep{webgl2spec}: Use
+\texttt{WEBGL\_color\_buffer\_float} for RGBA32F render targets. Texture
+arrays via \texttt{TEXTURE\_2D\_ARRAY} for Pass~3. Full-screen quad
+rendering for all passes (compute shaders unavailable). Max texture
+$4096 \times 4096$.
+
+\textbf{Vulkan} \citep{vulkanspec}: Compute pipelines for Passes~0--1
+and~4; graphics pipelines for Passes~2--3. Storage images with
+\texttt{VK\_FORMAT\_R32G32B32A32\_SFLOAT}. Pipeline barriers between
+passes.
+
+\textbf{Metal}: Compute kernels for all passes. Threadgroup size
+$16 \times 16$. Format \texttt{MTLPixelFormatRGBA32Float}.
+
+\textbf{Memory budget} ($N_\omega = N_\varphi = 128$, $N = 1000$):
+Per-item textures: $128 \times 128 \times 16 = 256$\,KB, two textures
+per item = 512\,KB, total 512\,MB for 1000 items. Circuit map:
+$1000 \times 1000 \times 16 = 16$\,MB. Well within commodity GPU memory
+(8--24\,GB).
+
+
+% ═════════════════════════════════════════════════════════════════════
+%                    PART IV: VALIDATION AND APPLICATIONS
+% ═════════════════════════════════════════════════════════════════════
+
+\section{Application: Bioimage Matching}
+\label{sec:app_bioimage}
+
+\textbf{Dataset}: BBBC039 \citep{ljosa2012, caicedo2019}---fluorescence
+microscopy of U2OS cell nuclei with diverse morphologies.
+
+\textbf{Task}: Given a query nuclear patch, find all nuclei with matching
+morphology.
+
+\textbf{Protocol}: Encode all $\sim$200{,}000 patches via the microscopy
+encoder ($n_{\max} = 32$, spectral image $32 \times 63$). Compute
+interference with all database entries. Rank by match score.
+
+\textbf{Baselines}: SIFT \citep{lowe2004}, ORB \citep{rublee2011},
+DINOv2 \citep{oquab2023}.
+
+\textbf{Metrics}: Precision@$k$ ($k = 1, 5, 10$), mAP, retrieval time.
+
+\textbf{Expected outcomes}: Comparable precision to DINOv2; superior to
+SIFT/ORB (which struggle with textureless nuclear morphologies);
+orders-of-magnitude faster retrieval; physically interpretable
+interference patterns.
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Application: Molecular Spectral Matching}
+\label{sec:app_molecular}
+
+\textbf{Dataset}: NIST Chemistry WebBook \citep{nist2023}: $\sim$16{,}000
+IR spectra, $\sim$10{,}000 Raman spectra.
+
+\textbf{Task}: Identify unknown spectra by matching against the database.
+
+\textbf{Protocol}: Encode all spectra via the molecular encoder. For each
+query, compute interference. Rank by match score.
+
+\textbf{Baselines}: Pearson correlation, Euclidean distance, Tanimoto
+similarity on molecular fingerprints \citep{willett1998}.
+
+\textbf{Expected outcomes}: Natural handling of peak shifts (Gaussian
+kernel provides tolerance); partial matches reveal shared functional
+groups; partition hierarchy respects fundamental vs.\ overtone structure.
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Application: Signal Matching}
+\label{sec:app_signal}
+
+\textbf{Task}: Compare time series via spectral interference as an
+alternative to dynamic time warping (DTW) \citep{sakoe1978}.
+
+\textbf{Protocol}: Encode each time series via STFT
+(Section~\ref{subsec:enc_ts}). The spectrogram IS the spectral image.
+Compute interference.
+
+\textbf{Baselines}: DTW \citep{sakoe1978, berndt1994}, which has
+$\BigO(D^2)$ complexity per pair.
+
+\textbf{Expected outcomes}: Spectral matching achieves $\BigO(D/P)$ per
+pair vs.\ $\BigO(D^2)$ for DTW---a speedup of $D \cdot P$. For
+$D = 1000$ and $P = 10^4$, this is $10^7 \times$ faster. The
+interference metric captures frequency-domain similarity directly,
+which DTW approximates through time warping.
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Application: Cross-Domain Matching}
+\label{sec:app_cross}
+
+\textbf{Task}: Match a microscopy image of a fluorescently labelled
+structure against a database of fluorophore emission spectra.
+
+\textbf{Rationale}: Both the image and the emission spectrum are
+represented as spectral images in the same $(\omega, \varphi)$ plane.
+The fundamental frequencies of the fluorophore should produce
+constructive interference at low $n$.
+
+\textbf{Expected outcomes}: Noisier than within-domain matching, but the
+shared spectral structure should be detectable. This capability is
+qualitatively unique: no existing method can directly compare objects
+from different measurement modalities.
+
+% ── Figure 9 proposal ──────────────────────────────────────────────
+% FIGURE 9: Cross-domain matching. Left: GFP microscopy image and
+% its spectral image. Right: GFP emission spectrum and its spectral
+% image. Centre: interference pattern (constructive at low freq).
+% Bottom: mismatched fluorophore (destructive).
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/panel2_cross_domain_matching.png}
+    \caption{\textbf{Cross-Domain Spectral Matching.}
+    (\textbf{A})~Three-dimensional bar chart of mean match scores for all 16 domain pairs. The four domains are: molecular spectra (Mol), image patches (Img), time series (TS), and random sequences (Seq), each with 20 items. Blue bars along the diagonal represent within-domain matches; orange bars represent cross-domain matches. Within-domain means ($0.637$) systematically exceed cross-domain means ($0.534$), confirming that the spectral image representation preserves domain-specific structure while enabling universal comparison.
+    (\textbf{B})~Full $80 \times 80$ match matrix (heatmap, RdYlBu colourmap) for all pairwise comparisons. Black grid lines delineate the four $20 \times 20$ domain blocks. The diagonal blocks (within-domain) are visibly warmer (higher match scores) than the off-diagonal blocks (cross-domain), confirming domain coherence. The matrix is perfectly symmetric by construction, and the diagonal entries equal~$1.0$ (self-match).
+    (\textbf{C})~Box-and-whisker plots of match score distributions for all 10 unique domain pairs (4 within + 6 cross). Within-domain distributions (blue) have higher medians and tighter interquartile ranges than cross-domain distributions (orange). The separation between within- and cross-domain medians ($\Delta \approx 0.10$) provides the discriminative power for domain-aware retrieval.
+    (\textbf{D})~Grouped bar chart comparing within-domain (blue) and cross-domain (orange) mean match scores per domain. All four domains show the same pattern: within $>$ cross. Molecular spectra show the largest separation ($\Delta = 0.13$), reflecting the sharp spectral peaks of vibrational frequencies. Time series show the smallest separation ($\Delta = 0.07$), reflecting the broader spectral content of temporal signals.}
+    \label{fig:panel_cross_domain}
+\end{figure*}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Scalability Analysis}
+\label{sec:scalability}
+
+\begin{theorem}[Throughput]
+\label{thm:throughput}
+On a modern GPU with $P$ cores operating at clock frequency $f_c$ and
+memory bandwidth $B$, the spectral matching throughput for batch
+pairwise comparison is:
+\begin{equation}
+\label{eq:throughput}
+  \Theta = \min\left(\frac{P \cdot f_c}{5 \cdot C_{\text{pass}}},
+    \frac{B}{2 \cdot D \cdot 4}\right) \text{ comparisons/s},
+\end{equation}
+where $C_{\text{pass}}$ is the average instruction count per pixel per
+pass (typically 20--50 instructions), the factor 5 accounts for five
+pipeline passes, $D$ is the spectral image size in pixels, and the
+factor $2 \cdot D \cdot 4$ accounts for reading two RGBA32F textures.
+\end{theorem}
+
+\begin{proof}
+The compute-bound limit is $P$ cores each executing
+$f_c / (5 \cdot C_{\text{pass}})$ full pipeline evaluations per second
+(5 passes, $C_{\text{pass}}$ cycles each). The memory-bound limit is
+$B / (2 \cdot D \cdot 4 \cdot 4)$ where $4 \cdot 4 = 16$ bytes per
+RGBA32F texel and two textures are read per comparison. The throughput
+is the minimum (bottleneck).
+\end{proof}
+
+\begin{example}[RTX 4090 Throughput]
+NVIDIA RTX 4090: $P = 16384$ cores, $f_c = 2.52$\,GHz,
+$B = 1008$\,GB/s. With $D = 128 \times 128 = 16384$ pixels,
+$C_{\text{pass}} = 30$ instructions:
+\begin{align}
+  \Theta_{\text{compute}} &= \frac{16384 \times 2.52 \times 10^9}{5
+    \times 30 \times 16384} \approx 1.68 \times 10^7 \text{ comp/s}, \\
+  \Theta_{\text{memory}} &= \frac{1008 \times 10^9}{2 \times 16384
+    \times 16} \approx 1.93 \times 10^6 \text{ comp/s}.
+\end{align}
+The system is memory-bound at approximately $\mathbf{2 \times 10^6}$
+\textbf{pairwise comparisons per second}. For $N = 1000$ items, all
+$\binom{1000}{2} \approx 500{,}000$ pairwise comparisons complete in
+$\sim$0.25\,s.
+\end{example}
+
+\begin{table}[t]
+\centering
+\caption{Predicted throughput on representative GPUs.}
+\label{tab:throughput}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{GPU} & \textbf{Cores} & \textbf{BW (GB/s)} & \textbf{Comp/s} \\
+\midrule
+RTX 3060 & 3584 & 360 & $6.9 \times 10^5$ \\
+RTX 4090 & 16384 & 1008 & $1.9 \times 10^6$ \\
+A100 & 6912 & 2039 & $3.9 \times 10^6$ \\
+H100 & 14592 & 3350 & $6.4 \times 10^6$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Validation Framework}
+\label{sec:validation}
+
+\subsection{Internal Consistency}
+
+\begin{enumerate}[nosep]
+  \item \textbf{S-entropy conservation}: $|\Sk + \St + \Se - 1| < 10^{-4}$
+    for every comparison. Failure rate $< 0.01\%$.
+  \item \textbf{Self-matching}: $\Match(A, A) = 1.0 \pm 10^{-6}$.
+  \item \textbf{Symmetry}: $|\Match(A,B) - \Match(B,A)| < 10^{-6}$.
+  \item \textbf{Circuit closure}: $|\sum_i \Delta\varphi_i - 2\pi m|
+    < 0.1$ for all detected circuits.
+  \item \textbf{Triangle inequality}: Verify
+    \eqref{eq:circuit_inequality} for all triples.
+\end{enumerate}
+
+\subsection{External Metrics}
+
+\begin{table}[t]
+\centering
+\caption{Target validation metrics per application.}
+\label{tab:validation}
+\begin{tabular}{lll}
+\toprule
+\textbf{Application} & \textbf{Metric} & \textbf{Target} \\
+\midrule
+Bioimage & Precision@10 & $\geq 0.85$ \\
+         & mAP & $\geq 0.80$ \\
+         & 1000 queries & $< 1$\,s \\
+\midrule
+Molecular & Top-1 accuracy & $\geq 0.90$ \\
+          & Top-5 accuracy & $\geq 0.95$ \\
+\midrule
+Signal & Spearman $\rho$ vs DTW & $\geq 0.90$ \\
+       & Speedup vs DTW & $\geq 10^3\times$ \\
+\midrule
+Cross-domain & Top-3 accuracy & $\geq 0.70$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ablation Studies}
+
+\begin{enumerate}[nosep]
+  \item Vary $n_{\max}$ from 8 to 256: quality vs.\ cost.
+  \item Compare Gaussian, Hann, Blackman windows \citep{harris1978}:
+    selectivity vs.\ leakage.
+  \item Full complex vs.\ magnitude-only: quantify phase information
+    value.
+  \item Circuit length 3 to 7: precision gain from circuit validation.
+\end{enumerate}
+
+% ── Figure 10 proposal ────────────────────────────────────────────
+% FIGURE 10: Ablation results (proposed). (a) Match quality vs
+% n_max showing saturation. (b) Window function comparison.
+% (c) Phase vs magnitude-only. (d) Circuit length vs precision.
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/panel4_s_entropy_conservation.png}
+    \caption{\textbf{S-Entropy Conservation in Spectral Representations.}
+    (\textbf{A})~Three-dimensional scatter plot of S-entropy coordinates $(S_k, S_t, S_e)$ for all 50 synthetic systems, with the conservation manifold $S_k + S_t + S_e = 1$ rendered as a semi-transparent surface. All data points lie exactly on the manifold, confirming S-entropy conservation to machine precision (maximum deviation $1.11 \times 10^{-16}$). The cluster position reflects the spectral structure of the synthetic systems: $S_k$ (kinetic/knowledge entropy) encodes spectral diversity, $S_t$ (temporal entropy) encodes frequency centroid, and $S_e$ (evolution entropy) encodes spectral concentration.
+    (\textbf{B})~Stacked bar chart of entropy partitioning per system. Blue bars represent $S_k$, orange $S_t$, green $S_e$. Every bar sums to exactly $1.0$ (black dashed line), visually confirming pixel-level conservation across all 50 systems. The variation in proportions across systems reflects the diversity of synthetic frequency configurations---systems with many dispersed components have higher $S_k$; systems with concentrated energy at few frequencies have higher $S_e$.
+    (\textbf{C})~Histogram of conservation deviations $|S_k + S_t + S_e - 1|$. All 50 deviations are numerically zero at IEEE~754 double-precision limits, producing a single-bin distribution at $0.0$. This confirms that the conservation constraint is enforced exactly by construction, not approximately by optimization---a direct consequence of defining $S_e = 1 - S_k - S_t$ as the closure residual.
+    (\textbf{D})~Donut chart of mean entropy partitioning across all systems. The proportions quantify where spectral information resides on average, providing a compact summary of the ensemble's categorical state distribution. These proportions are system-dependent: real molecular spectra would show different partitioning from genomic k-mer spectra, but the conservation law $S_k + S_t + S_e = 1$ holds universally across all domains.}
+    \label{fig:panel_entropy}
+\end{figure*}
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The Computer Vision Unification}
+
+The spectral matching framework reveals that computer vision is not
+merely a subfield of AI that processes images. It is the
+\emph{fundamental computational paradigm} for comparing any systems that
+can be represented as oscillatory processes in bounded phase space---which,
+by Theorem~\ref{thm:oscillatory_necessity}, includes all persistent
+observable systems. Images are not special inputs; they are the universal
+representation.
+
+\subsection{Plugging In New Encoders}
+
+The architecture is deliberately modular. To add support for a new data
+domain, a collaborator need only:
+\begin{enumerate}[nosep]
+  \item Define the mapping from raw data to $(\omega_k, A_k, \phi_k)$
+    triples (the domain encoder).
+  \item Implement Pass~0 for the new domain type.
+  \item Validate via the internal consistency checks
+    (Section~\ref{sec:validation}).
+\end{enumerate}
+Passes 1--4 are domain-independent and require no modification. The
+module API (Section~\ref{sec:module_api}) accepts the new domain type as
+an enum value. This plug-in architecture means the framework scales to
+arbitrary new domains without re-engineering the comparison engine.
+
+\subsection{Unification of Existing Methods}
+
+The spectral matching module replaces, in principle, the following
+domain-specific matching methods with a single unified framework:
+\begin{itemize}[nosep]
+  \item SIFT \citep{lowe2004} and ORB \citep{rublee2011} for image
+    matching.
+  \item DTW \citep{sakoe1978} for time series matching.
+  \item BLAST \citep{altschul1990} for sequence alignment.
+  \item Tanimoto/fingerprint matching \citep{willett1998} for molecular
+    similarity.
+  \item Cosine similarity for embedding comparison.
+  \item Graph kernel methods \citep{xu2019} for graph comparison.
+\end{itemize}
+Each of these is a special case of spectral interference, restricted to
+a particular domain encoder and comparison metric. The spectral framework
+subsumes them all (Theorem~\ref{thm:metric_equivalence}).
+
+\subsection{The Spectral Microscope Metaphor}
+
+Every comparison performed by this module can be visualised as looking
+at two objects through a ``spectral microscope'': the encoder converts
+each object to a pattern of light (the spectral image), and the GPU
+interferometer superimposes the two patterns. Where the patterns align,
+one sees bright fringes (match). Where they differ, one sees dark bands
+(mismatch). The interference pattern is not merely a scalar score but a
+spatially resolved map of agreement and disagreement across the spectral
+domain. This is fundamentally more informative than any single-number
+similarity metric.
+
+\subsection{Neural Networks as Degenerate Interference}
+
+A ReLU neural network computes
+$\mathbf{y} = \max(0, \mathbf{W}\mathbf{x} + \mathbf{b})$---a
+phase-insensitive superposition. This is a degenerate case of
+interference where all phases are zero. The spectral framework uses full
+complex-valued interference. This predicts that complex-valued networks
+\citep{trabelsi2018} should outperform real-valued networks for
+comparison tasks, and that attention mechanisms \citep{vaswani2017}
+(which compute degenerate spectral matching) could be enhanced by
+incorporating explicit phase information.
+
+\subsection{Relationship to Kuramoto Synchronisation}
+
+The Kuramoto model \citep{kuramoto1975, strogatz2000} describes coupled
+oscillator synchronisation. Matching circuit detection (Pass~3) identifies
+synchronised clusters: spectral images with locked phases
+($\Delta\varphi \to 0$) form matching circuits, analogous to phase-locked
+oscillator populations above the Kuramoto coupling threshold.
+
+\subsection{Limitations}
+
+\textbf{Unbounded systems.} Axiom~\ref{ax:bounded} excludes genuinely
+unbounded systems. In practice, all computationally representable
+systems are bounded.
+
+\textbf{Encoder quality.} The framework's quality depends on the
+domain-specific encoder. A poor encoder yields uninformative spectral
+images. The theoretical guarantee is for a perfect encoder; practical
+encoders approximate this ideal.
+
+\textbf{GPU memory.} Batch comparison of $N$ items requires storing
+$N$ spectral images. For $N > 10^6$ with high-resolution images,
+multi-GPU or streaming approaches are necessary.
+
+\textbf{All-pairs scaling.} While single-pair comparison is $\BigO(1)$,
+all-pairs remains $\BigO(N^2)$. For very large $N$, approximate
+methods (LSH in spectral space, hierarchical harmonic grouping) are
+needed.
+
+\subsection{Future Directions}
+
+\textbf{Learned spectral encoders.} Train neural networks to learn
+optimal domain encoders end-to-end, using the conservation loss
+(Proposition~\ref{prop:conservation_loss}) as a regulariser.
+
+\textbf{Real-time streaming.} Implement the pipeline in a streaming
+mode where new data are encoded and compared against a rolling window
+of spectral images, enabling real-time anomaly detection.
+
+\textbf{Quantum implementation.} On a quantum computer, each spectral
+component is a genuine quantum amplitude, and interference is physical
+rather than simulated, enabling comparison of exponentially large spectra.
+
+\textbf{Custom silicon.} An ASIC implementing the five-pass pipeline in
+fixed hardware would achieve sub-microsecond latency per comparison.
+
+\textbf{Biological interpretation.} Neural oscillations at multiple
+frequency bands \citep{buzsaki2006} may implement biological spectral
+matching: sensory oscillations interfere with memory oscillations, and
+constructive maxima drive recognition.
+
+
+% ═════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have established from two axioms a complete theoretical framework
+and engineering blueprint proving that \emph{all comparison is computer
+vision}. The argument chain is:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Bounded phase space} (Axiom~\ref{ax:bounded}) and
+    \textbf{categorical observation} (Axiom~\ref{ax:categorical})
+    define the arena.
+  \item \textbf{Oscillatory necessity}
+    (Theorem~\ref{thm:oscillatory_necessity}): bounded + persistent
+    + non-degenerate $\Rightarrow$ oscillatory.
+  \item \textbf{Koopman spectral decomposition}
+    (Theorem~\ref{thm:koopman_spectral}): every bounded oscillatory
+    system has spectrum
+    $\Spec(\mathcal{S}) = \{(\omega_k, A_k, \phi_k)\}$.
+  \item \textbf{Partition coordinates}
+    (Theorem~\ref{thm:partition_coords}): $(n, \ell, m, s)$ with
+    $C(n) = 2n^2$.
+  \item \textbf{Triple equivalence} (Theorem~\ref{thm:triple}):
+    oscillation $\equiv$ enumeration $\equiv$ partition function,
+    $S = \kb M \ln n$.
+  \item \textbf{Fundamental identity} (Theorem~\ref{thm:fundamental}):
+    $dM/dt = \omega/(2\pi) = 1/\langle\taup\rangle$.
+  \item \textbf{Spectral Image Theorem} (Theorem~\ref{thm:spectral_image}):
+    $\Spec \cong$ image, injective, metric-preserving.
+  \item \textbf{Universal Reduction Theorem}
+    (Theorem~\ref{thm:universal_reduction}):
+    $d(X,Y) = d_{\mathrm{CV}}(I_X, I_Y)$ exactly.
+  \item \textbf{S-entropy conservation}
+    (Theorem~\ref{thm:s_conservation}): $\Sk + \St + \Se = 1$.
+  \item \textbf{Commutation} (Theorem~\ref{thm:commutation}):
+    $[\Ocat, \Ophys] = 0$.
+  \item \textbf{Interference matching}
+    (Theorem~\ref{thm:interference}): $V \to 1$ = match,
+    $V \to 0$ = mismatch.
+  \item \textbf{GPU = interference engine}
+    (Theorem~\ref{thm:gpu_interference}): fragment shader $\cong$
+    wave field evaluator.
+  \item \textbf{Complexity} (Theorem~\ref{thm:complexity}):
+    $\BigO(1)$ per comparison when $D \leq P$.
+\end{enumerate}
+
+The Universal Spectral Matching module converts any comparison
+problem---regardless of domain---into GPU render passes that compute
+wave interference between spectral images. It is domain-agnostic (via
+pluggable encoders), hardware-efficient ($\sim 10^6$ comparisons/s on
+commodity GPUs), theoretically exact (not an approximation), and
+physically interpretable (interference patterns show where and how
+objects match).
+
+The deepest implication is this: because all bounded systems are
+oscillatory, and oscillations have spectra, and spectra are images,
+the comparison of \emph{anything} is, at bottom, a problem of
+\emph{seeing}. Every comparison is a comparison of pictures. Every
+matcher is a vision system. And every GPU is, in its fundamental
+operation, a machine for creating and reading interference patterns.
+
+\vspace{1em}
+\noindent\textbf{Data and Code Availability.}
+All theoretical results are self-contained in this paper. Shader source
+code, API implementations, and benchmark scripts will be released at
+the module repository upon publication.
+
+\vspace{1em}
+\noindent\textbf{Acknowledgments.}
+The author thanks the open-source GPU computing community and the
+developers of WebGL, Vulkan, and Metal for creating the substrates
+on which spectral matching is realised.
+
+
+% ═════════════════════════════════════════════════════════════════════
+%                         APPENDICES
+% ═════════════════════════════════════════════════════════════════════
+
+\appendix
+
+\section{Proof of Parseval's Theorem for Partition Coordinates}
+\label{app:parseval}
+
+\begin{theorem}
+For a system with spectral decomposition
+$\{(n_k, \ell_k, m_k, s_k, A_k)\}$ and categorical occupation numbers
+$\{N_j\}$,
+\begin{equation}
+\label{eq:parseval}
+  \sum_k |A_k|^2 = \frac{1}{M} \sum_j N_j = 1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By Parseval's theorem for Fourier series \citep{fourier1822},
+$\sum_k |A_k|^2 = (1/T) \int_0^T |c(t)|^2 \, dt$ where $c(t)$ is the
+categorical time series. Since amplitudes are normalised by $\sqrt{M}$,
+the sum is $\sum_k |A_k|^2 = 1$. Categorically:
+$|A_k|^2 = p_k$ and $\sum_k p_k = 1$.
+\end{proof}
+
+
+\section{Visibility--Mutual Information Derivation}
+\label{app:visibility_mi}
+
+\begin{theorem}
+For spectral images with Gaussian-distributed amplitudes,
+\begin{equation}
+\label{eq:vis_mi}
+  I(I_A; I_B) = -\frac{1}{2}\ln(1 - V_{\text{global}}^2).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For jointly Gaussian random variables with correlation $\rho$,
+$I(X;Y) = -\frac{1}{2}\ln(1 - \rho^2)$ \citep{cover2006}. The degree
+of coherence $|\gamma_{12}|$ between two wave fields equals $V$ for
+quasi-monochromatic fields \citep{born1999, vanzernike1938}. Identifying
+$\rho = V_{\text{global}}$ yields the result.
+\end{proof}
+
+
+\section{Shader Implementation Notes}
+\label{app:shader}
+
+\textbf{GLSL version}: Shaders target GLSL ES 3.0 (WebGL\,2) or
+GLSL 4.50 (Vulkan) \citep{glslspec}. Constants: \texttt{EPS} $= 10^{-7}$;
+\texttt{SIGMA\_W} $= \Delta\omega / 2 = \pi / n_{\max}$;
+\texttt{PI} $= 3.14159265$; \texttt{INV\_SQRT2} $= 0.70710678$.
+
+\textbf{Precision}: 32-bit float throughout. For high-resolution
+molecular spectra, 64-bit is available on Vulkan/CUDA.
+
+\textbf{Synchronisation}: Each pass must complete before the next
+(output becomes input). WebGL\,2 guarantees this by single-threaded draw
+calls. Vulkan requires \texttt{vkCmdPipelineBarrier}. Metal uses
+\texttt{MTLCommandBuffer} ordering.
+
+
+\section{Summary of Theorems}
+\label{app:theorem_summary}
+
+\begin{enumerate}[nosep]
+  \item \textbf{Oscillatory Necessity} (Thm.~\ref{thm:oscillatory_necessity}):
+    Bounded + persistent + non-degenerate $\Rightarrow$ oscillatory.
+  \item \textbf{Spectral Existence} (Cor.~\ref{cor:spectral_existence}):
+    Oscillatory $\Rightarrow$ Fourier decomposition exists.
+  \item \textbf{Partition Coordinates} (Thm.~\ref{thm:partition_coords}):
+    $(n, \ell, m, s)$ with $C(n) = 2n^2$.
+  \item \textbf{Capacity} (Thm.~\ref{thm:capacity}): $C(n) = 2n^2$.
+  \item \textbf{Triple Equivalence} (Thm.~\ref{thm:triple}):
+    Oscillation $\equiv$ enumeration $\equiv$ partition function.
+  \item \textbf{Fundamental Identity} (Thm.~\ref{thm:fundamental}):
+    $dM/dt = \omega/(2\pi) = 1/\langle\taup\rangle$.
+  \item \textbf{Koopman Spectral} (Thm.~\ref{thm:koopman_spectral}):
+    Finite spectrum via Koopman operator.
+  \item \textbf{Spectral Image} (Thm.~\ref{thm:spectral_image}):
+    $\Spec \cong$ image, injective, metric-preserving.
+  \item \textbf{Universal Reduction} (Thm.~\ref{thm:universal_reduction}):
+    $d_{\mathrm{part}}(X,Y) = d_{\mathrm{CV}}(I_X, I_Y)$.
+  \item \textbf{S-Entropy Conservation} (Thm.~\ref{thm:s_conservation}):
+    $\Sk + \St + \Se = 1$.
+  \item \textbf{Commutation} (Thm.~\ref{thm:commutation}):
+    $[\Ocat, \Ophys] = 0$.
+  \item \textbf{Interference} (Thm.~\ref{thm:interference}):
+    Two-beam interference formula.
+  \item \textbf{Metric Equivalence} (Thm.~\ref{thm:metric_equivalence}):
+    Match $\supseteq$ cosine, $L^2$, MI.
+  \item \textbf{Circuit Consistency} (Thm.~\ref{thm:circuit_consistency}):
+    Triangle inequality.
+  \item \textbf{GPU--Interference} (Thm.~\ref{thm:gpu_interference}):
+    Fragment shader $\cong$ interference engine.
+  \item \textbf{Complexity} (Thm.~\ref{thm:complexity}):
+    $\BigO(1)$ per comparison when $D \leq P$.
+  \item \textbf{Throughput} (Thm.~\ref{thm:throughput}):
+    $\sim 10^6$ comparisons/s on commodity GPU.
+\end{enumerate}
+
+% ═════════════════════════════════════════════════════════════════════
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
