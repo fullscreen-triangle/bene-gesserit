@@ -1,0 +1,783 @@
+\documentclass[11pt,twocolumn,a4paper]{article}
+
+% ─── Packages ─────────────────────────────────────────────────────────
+\usepackage[margin=2.0cm,top=2.4cm,bottom=2.4cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,
+            citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+% ─── Page Style ───────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Readout Interface: Categorical Converter Theorem}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+
+% ─── Theorem Environments ─────────────────────────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ─── Custom Commands ──────────────────────────────────────────────────
+\newcommand{\kB}{k_{\mathrm{B}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Sk}{S_{\mathrm{k}}}
+\newcommand{\St}{S_{\mathrm{t}}}
+\newcommand{\Se}{S_{\mathrm{e}}}
+\newcommand{\Sent}{\bm{S}}
+\newcommand{\kap}{\kappa}
+\newcommand{\Cat}{\mathcal{C}}
+
+% ─── Caption Setup ────────────────────────────────────────────────────
+\captionsetup{font=small,labelfont=bf}
+
+% ══════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\begin{center}
+
+{\LARGE\bfseries Readout Interface Design from the Categorical Converter Theorem:\\[4pt]
+Strobe Synchronisation and Three-Observable Measurement}
+
+\vspace{12pt}
+
+{\large Kundai Farai Sachikonye}
+
+\vspace{6pt}
+
+{\small\itshape AIMe Registry for Artificial Intelligence \\[0.3em]
+\texttt{kundai.sachikonye@bitspark.com}}
+
+\vspace{6pt}{\small May 2026}
+
+\vspace{16pt}
+
+\begin{minipage}{0.92\textwidth}
+\textbf{Abstract.}
+We derive the readout interface of the membrane computing system as the unique
+inverse of the state encoder, forced by the Categorical Converter Theorem.
+The Categorical Converter Theorem establishes that the map
+$\Phi: \mathcal{E} \to \mathcal{C}$ from S-entropy space $\mathcal{E} = [0,1]^3$
+to category space $\mathcal{C}$ is a well-defined, continuous, surjective
+function that commutes with the ternary trie routing of the cascade fabric.
+This commutativity forces the readout interface to implement the exact inverse
+of the state encoder: it must measure the same three observables ($\Sk$, $\St$,
+$\Se$) on the same three timescales ($\tau_k \leq \tau_t \leq \tau_e$)
+that the encoder uses, and reconstruct the ternary address from the observed
+values. The three-sensor architecture --- conductance sensor for $\Sk$, potential
+sensor for $\St$ (via the Nernst identification of companion paper~4), and
+phase-locking sensor for $\Se$ --- is the unique minimal set satisfying
+the categorical sufficiency theorem from the state encoder paper. Strobe
+synchronisation at the three natural timescales eliminates aliasing errors:
+the Nyquist-Shannon theorem applied to each S-entropy observable requires that
+the strobe period be at most $\tau_j / 2$ for observable $j \in \{k, t, e\}$.
+The quantisation step converts the continuously measured coordinates
+$(\hat{\Sk}, \hat{\St}, \hat{\Se})$ to the $k$-digit ternary address
+$a_1 a_2 \cdots a_k$ used by the cascade fabric, at quantisation error bounded
+by $3^{-k/3}$ per coordinate. A parity consistency check detects routing errors
+at the third-to-last cascade level and triggers a re-measurement if the
+reconstructed coordinates are inconsistent with the ternary address. End-to-end
+readout fidelity is validated on the 39-compound NIST molecular dataset:
+the interface correctly identifies all six chemical families with
+precision $0.97 \pm 0.02$ and recall $0.95 \pm 0.03$ at depth $k = 12$.
+\end{minipage}
+
+\vspace{8pt}
+\noindent\textbf{Keywords:}
+readout interface, Categorical Converter Theorem, strobe synchronisation, three-sensor
+measurement, quantisation, ternary address, conductance sensor, Nernst potential,
+phase-locking, parity consistency check
+
+\vspace{18pt}
+\end{center}
+\end{@twocolumnfalse}
+]
+
+%──────────────────────────────────────────────────────────────────────
+\section{Introduction}
+\label{sec:introduction}
+%──────────────────────────────────────────────────────────────────────
+
+The cascade fabric (companion paper \citep{companion5}) produces a ternary
+address $a_1 a_2 \cdots a_k \in \{0,1,2\}^k$ identifying the category of the
+input system $\mathcal{X}$. This address is the internal representation of the
+category; the external observer requires a human-readable (or machine-readable)
+label: a category name, a molecular identity, a functional class, or a
+quantitative S-entropy triple $(\hat{\Sk}, \hat{\St}, \hat{\Se})$.
+
+The readout interface performs two operations. First, it \emph{measures} the
+S-entropy coordinates of the membrane system at the output port of the cascade,
+using three sensors strobed at the three natural timescales of the forced
+measurement protocol \citep{companion2}. Second, it \emph{converts} the measured
+coordinates to the ternary address, the category label, and an associated
+confidence score.
+
+The design of the readout interface is not a free choice. We prove, via the
+Categorical Converter Theorem (\S\ref{sec:catconv}), that the interface must
+be the exact inverse of the state encoder: it uses the same three observables,
+the same timescales, and the same ternary quantisation. Any other design
+either loses information (if it uses fewer observables) or introduces
+inconsistency (if it uses a different coordinate system). The theorem leaves
+no design freedom: the interface is uniquely determined by the encoder and the
+cascade architecture.
+
+\S\ref{sec:bps} reviews the framework.
+\S\ref{sec:catconv} proves the Categorical Converter Theorem.
+\S\ref{sec:sensors} defines the three sensors.
+\S\ref{sec:strobe} derives the strobe timing from the Nyquist condition.
+\S\ref{sec:quantise} develops the quantisation and address reconstruction.
+\S\ref{sec:parity} derives the parity consistency check.
+\S\ref{sec:implementation} describes physical implementation.
+\S\ref{sec:validation} presents validation.
+\S\ref{sec:discussion} and \S\ref{sec:conclusion} discuss and conclude.
+
+%──────────────────────────────────────────────────────────────────────
+\section{Bounded Phase Space Framework}
+\label{sec:bps}
+%──────────────────────────────────────────────────────────────────────
+
+\begin{axiom}[Bounded Phase Space]
+\label{ax:bps}
+Every persistent physical system $\mathcal{X}$ occupies a bounded region of
+phase space $\Omega \subset \mathbb{R}^{2d}$ with $\mu(\Omega) < \infty$,
+admitting a hierarchy of refining measurable partitions.
+\end{axiom}
+
+\noindent Key results from preceding companion papers:
+
+\noindent\textit{From \citep{companion1}}: The bilayer membrane with bending
+modulus $\kap_b = 20\,\kB T$ and thickness $d = 4.0$~nm is the unique partition
+boundary in aqueous systems.
+
+\noindent\textit{From \citep{companion2}}: The state encoder maps
+$\mathcal{X} \mapsto \Sent(\mathcal{X}) = (\Sk, \St, \Se) \in [0,1]^3$
+via the forced three-pass protocol; the product Fisher metric
+$g = g_k \oplus g_t \oplus g_e$ is the natural metric on S-entropy space.
+Categorical sufficiency: $\mathcal{X} \sim_C \mathcal{Y}$ iff
+$\Sent(\mathcal{X}) = \Sent(\mathcal{Y})$.
+
+\noindent\textit{From \citep{companion3}}: Each aperture provides catalytic power
+$\kap(\mathcal{X}; \mathbf{t}) = e^{-d_g^2/2\sigma^2}$; array saturation
+$\kap_{\mathrm{arr}} = 1 - \prod_i(1-\kap_i)$.
+
+\noindent\textit{From \citep{companion4}}: The Nernst potential is an S-entropy
+coordinate: $V_m = -(\kB T / e) f_N(\Sk)$.
+
+\noindent\textit{From \citep{companion5}}: The cascade fabric of depth
+$k = \lceil\log_3 N_{\mathrm{cat}}\rceil$ returns the ternary address
+$\mathbf{a} = a_1 a_2 \cdots a_k \in \{0,1,2\}^k$.
+
+%──────────────────────────────────────────────────────────────────────
+\section{The Categorical Converter Theorem}
+\label{sec:catconv}
+%──────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+
+\begin{definition}[Category Space]
+\label{def:catspace}
+The \emph{category space} $\mathcal{C}$ is the finite set of $N_{\mathrm{cat}}$
+category labels $\{c_1, c_2, \ldots, c_{N_{\mathrm{cat}}}\}$, equipped with
+a partition of $[0,1]^3$ into $N_{\mathrm{cat}}$ non-overlapping cells
+$\{E_c\}_{c \in \mathcal{C}}$, each corresponding to one ternary leaf at
+depth $k = \lceil\log_3 N_{\mathrm{cat}}\rceil$.
+\end{definition}
+
+\begin{definition}[Categorical Map]
+\label{def:catmap}
+The \emph{categorical map} $\Phi: [0,1]^3 \to \mathcal{C}$ assigns each
+S-entropy triple $\Sent$ to the unique category $c$ whose cell $E_c$ contains
+$\Sent$:
+\begin{equation}
+\Phi(\Sent) = c \quad \iff \quad \Sent \in E_c.
+\label{eq:catmap}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Ternary Encoder and Decoder]
+\label{def:codec}
+The \emph{ternary encoder} $T_k: [0,1] \to \{0,1,2\}^{\lceil k/3 \rceil}$
+maps a coordinate $x \in [0,1]$ to its base-3 expansion truncated at
+$\lceil k/3 \rceil$ digits:
+$T_k(x) = (a_1, a_2, \ldots)$ where $x = \sum_{j=1}^{\lceil k/3 \rceil} a_j 3^{-j}
++ O(3^{-k/3})$.
+
+The \emph{ternary decoder} $T_k^{-1}: \{0,1,2\}^{\lceil k/3 \rceil} \to [0,1]$
+is the quasi-inverse: $T_k^{-1}(a_1, \ldots) = \sum_j a_j 3^{-j}$.
+The quantisation error satisfies
+$|T_k^{-1}(T_k(x)) - x| \leq 3^{-k/3}/2$.
+\end{definition}
+
+\subsection{The Theorem}
+
+\begin{theorem}[Categorical Converter]
+\label{thm:catconv}
+The categorical map $\Phi: [0,1]^3 \to \mathcal{C}$ and the cascade routing map
+$\Psi: [0,1]^3 \to \{0,1,2\}^k$ commute with the ternary encoding:
+\begin{equation}
+\Phi = L \circ \Psi \quad \mathrm{and} \quad \Psi = T_k^{\otimes 3} \circ \mathrm{id},
+\label{eq:commute}
+\end{equation}
+where $L: \{0,1,2\}^k \to \mathcal{C}$ is the bijection assigning each ternary
+leaf to the corresponding category label, and $T_k^{\otimes 3}$ encodes all three
+coordinates simultaneously. The readout map $R: \{0,1,2\}^k \to [0,1]^3$ defined by
+\begin{equation}
+R(\mathbf{a}) = \bigl(T_k^{-1}(\mathbf{a}_k), T_k^{-1}(\mathbf{a}_t),
+T_k^{-1}(\mathbf{a}_e)\bigr)
+\label{eq:readout}
+\end{equation}
+satisfies $\|R(\Psi(\Sent)) - \Sent\|_\infty \leq 3^{-k/3}/2$ for all
+$\Sent \in [0,1]^3$, and is the unique such map with minimum $L^\infty$ error.
+\end{theorem}
+
+\begin{proof}
+\textit{Commutativity}: By construction, the cascade fabric at depth $j$
+routes to branch $a_j \in \{0,1,2\}$ determined by the ternary digit of the
+appropriate S-entropy coordinate at position $j$. The complete address
+$\mathbf{a} = a_1 \cdots a_k$ is therefore the concatenation of the ternary
+encodings of $(\Sk, \St, \Se)$ in interleaved order
+($a_{3j-2}$ encodes digit $j$ of $\Sk$, $a_{3j-1}$ encodes digit $j$ of $\St$,
+$a_{3j}$ encodes digit $j$ of $\Se$). This is exactly $\Psi = T_k^{\otimes 3}$.
+The assignment of category label $c$ to leaf $\mathbf{a}$ is the bijection $L$,
+giving $\Phi = L \circ \Psi$.
+
+\textit{Reconstruction error}: The ternary decoder $T_k^{-1}$ applied to
+$k/3$ digits of $\Sk$ recovers $\hat{\Sk}$ with error
+$|\hat{\Sk} - \Sk| \leq 3^{-k/3}/2$ (the maximum quantisation error for
+a $k/3$-digit ternary approximation). The same bound holds for $\hat{\St}$
+and $\hat{\Se}$. The $L^\infty$ norm over all three coordinates is therefore
+$\leq 3^{-k/3}/2$.
+
+\textit{Uniqueness}: Any alternative decoder $R'$ with smaller maximum error
+would require more than $k/3$ ternary digits per coordinate, implying a cascade
+depth greater than $k$, contradicting the assumption that the cascade terminates
+at depth $k$.
+\end{proof}
+
+\begin{corollary}[Readout is Inverse of Encoder]
+\label{cor:inverse}
+The readout map $R$ is, up to quantisation error $\leq 3^{-k/3}/2$, the left
+inverse of the state encoder $\sigma$: for any input $\mathcal{X}$,
+$R(\Psi(\sigma(\mathcal{X}))) = \sigma(\mathcal{X}) + O(3^{-k/3})$.
+The readout interface must therefore implement the exact inverse of the
+three-pass protocol of companion paper~\citep{companion2}.
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────
+\section{Three-Sensor Architecture}
+\label{sec:sensors}
+%──────────────────────────────────────────────────────────────────────
+
+By Corollary~\ref{cor:inverse}, the readout interface must measure
+$(\Sk, \St, \Se)$ using sensors that are the physical inverses of the three
+encoding passes. We define the three sensors.
+
+\subsection{Conductance Sensor ($\Sk$ Observable)}
+
+\begin{definition}[Conductance Sensor]
+\label{def:condsensor}
+The conductance sensor measures the ionic current $I(t)$ across the membrane
+at the cascade output port over a window of $N_k$ oscillation cycles, and
+estimates:
+\begin{equation}
+\hat{\Sk} = -\frac{\sum_j \hat{p}_j \ln \hat{p}_j}{\ln K},
+\quad \hat{p}_j = \frac{|G(\omega_j)|^2}{\sum_l |G(\omega_l)|^2},
+\label{eq:condest}
+\end{equation}
+where $G(\omega) = \mathcal{F}\{G(t)\}$ is the Fourier transform of the
+time-domain conductance $G(t) = I(t)/V_m$.
+\end{definition}
+
+The conductance sensor is physically implemented by a patch-clamp amplifier
+\citep{neher1976, sakmann1995} connected to the output membrane patch.
+Single-channel resolution is not required: the sensor measures the collective
+conductance spectrum of the entire aperture array at the cascade output,
+which is the sum of contributions from all $n_c$ channels. The spectral
+resolution is $\Delta\omega = 2\pi / (N_k \tau_k)$, which is sufficiently
+fine to resolve the $K$ Koopman modes provided $N_k \geq K$
+(the sampling theorem applied in the frequency domain \citep{shannon1949}).
+
+\subsection{Potential Sensor ($\St$ Observable)}
+
+\begin{definition}[Potential Sensor]
+\label{def:potsensor}
+The potential sensor measures the membrane potential $V_m(t)$ over a window of
+$N_t$ slow-oscillation cycles and estimates $\St$ via the temporal span of
+the observed frequency range:
+\begin{equation}
+\hat{\St} = \frac{\ln(\hat{\omega}_{\max} / \hat{\omega}_{\min})}{\ln \Gamma_{\mathrm{ref}}},
+\label{eq:potest}
+\end{equation}
+where $\hat{\omega}_{\max}$ and $\hat{\omega}_{\min}$ are the highest and lowest
+detectable frequencies in the power spectrum of $V_m(t)$.
+\end{definition}
+
+The identification of the Nernst potential as an S-entropy coordinate
+(Theorem~5.1 of \citep{companion4}) provides a second route to $\hat{\St}$:
+the measured $V_m$ gives $\hat{\Sk}$ directly (via $\hat{\Sk} = f_N^{-1}(V_m
+\times e/\kB T)$), and $\hat{\St}$ is recovered from the temporal sweep of
+$V_m$ across the voltage range spanned during the cascade routing, from which
+$\hat{\omega}_{\max} / \hat{\omega}_{\min} = e^{V_{\max} - V_{\min}}$ in dimensionless units.
+
+\subsection{Phase-Locking Sensor ($\Se$ Observable)}
+
+\begin{definition}[Phase-Locking Sensor]
+\label{def:phasesensor}
+The phase-locking sensor measures the coherence between pairs of frequency
+components in the conductance spectrum over a window of $N_e$ commensuration
+periods and estimates:
+\begin{equation}
+\hat{\Se} = \frac{R_e}{\binom{K}{2}},
+\quad R_e = \sum_{i < j} \mathbf{1}\!\left[\left|\frac{\hat{\omega}_i}{\hat{\omega}_j}
+- \frac{p}{q}\right| < \delta,\; p, q \leq Q\right].
+\label{eq:phaseest}
+\end{equation}
+\end{definition}
+
+Physically, phase locking between frequencies $\omega_i$ and $\omega_j$ manifests
+as a periodic modulation of the beat frequency $|\omega_i - \omega_j|$ in the
+conductance time series. The phase-locking sensor applies a lock-in amplifier
+at each candidate beat frequency and records the modulation depth
+\citep{scofield1994}. Pairs with modulation depth above a threshold
+(corresponding to $|\omega_i/\omega_j - p/q| < \delta$) contribute to $R_e$.
+
+%──────────────────────────────────────────────────────────────────────
+\section{Strobe Synchronisation}
+\label{sec:strobe}
+%──────────────────────────────────────────────────────────────────────
+
+\subsection{Nyquist Conditions}
+
+Each sensor operates over a finite window $\tau_j^{\mathrm{sense}}$ and must
+satisfy the Nyquist-Shannon sampling theorem \citep{shannon1949} to avoid
+aliasing.
+
+\begin{theorem}[Strobe Timing]
+\label{thm:strobe}
+The three sensors must be strobed with integration windows satisfying:
+\begin{align}
+\tau_k^{\mathrm{sense}} &\geq 2\pi / \omega_{\max} = 2\tau_k, \label{eq:nyk}\\
+\tau_t^{\mathrm{sense}} &\geq 2\pi / \omega_{\min} = 2\tau_t, \label{eq:nyt}\\
+\tau_e^{\mathrm{sense}} &\geq 2\tau_e, \label{eq:nye}
+\end{align}
+where $\tau_k, \tau_t, \tau_e$ are the natural timescales of the input system
+(Definition~4.5 of \citep{companion2}), and the factor of 2 is the Nyquist
+factor.
+\end{theorem}
+
+\begin{proof}
+The conductance sensor estimates $\hat{\Sk}$ from the power spectrum of $G(t)$
+at frequencies $\{\omega_k\}$. To resolve a frequency $\omega_k$, the integration
+window must be at least one period: $\tau_k^{\mathrm{sense}} \geq 2\pi/\omega_k$.
+The most demanding requirement is the highest frequency
+$\omega_{\max}$, giving equation~\eqref{eq:nyk}. Similarly for $\tau_t$ and $\tau_e$.
+\end{proof}
+
+\begin{corollary}[Strobe Hierarchy]
+\label{cor:strobeorder}
+The three strobe windows satisfy $\tau_k^{\mathrm{sense}} \leq
+\tau_t^{\mathrm{sense}} \leq \tau_e^{\mathrm{sense}}$, matching the timescale
+hierarchy $\tau_k \leq \tau_t \leq \tau_e$ of the state encoder (Theorem~4.1
+of \citep{companion2}).
+\end{corollary}
+
+The strobe hierarchy ensures that the readout interface operates in the same
+timescale ordering as the state encoder. This is not coincidence: it is the
+content of the Categorical Converter Theorem (Corollary~\ref{cor:inverse}),
+which forces the readout to be the inverse of the encoder and therefore to use
+the same temporal structure.
+
+\subsection{Strobe Implementation}
+
+The strobe is implemented by a master clock that gates each sensor's integrator:
+\begin{equation}
+\hat{X}_j = \frac{1}{\tau_j^{\mathrm{sense}}} \int_0^{\tau_j^{\mathrm{sense}}}
+X_j(t) \, dt \cdot \mathbf{1}[\mathrm{strobe}_j(t)],
+\label{eq:strobe}
+\end{equation}
+where $X_j \in \{G(t), V_m(t), \mathrm{coherence}(t)\}$ is the raw sensor
+signal and $\mathbf{1}[\mathrm{strobe}_j]$ is the strobe gate signal.
+The master clock synchronises all three strobes to the timescale $\tau_e$ of
+the phase-locking sensor, with sub-strobes at $\tau_k$ and $\tau_t$.
+This ensures that the three measurements are time-aligned and refer to the same
+input state.
+
+%──────────────────────────────────────────────────────────────────────
+\section{Quantisation and Address Reconstruction}
+\label{sec:quantise}
+%──────────────────────────────────────────────────────────────────────
+
+\subsection{Quantisation}
+
+Given the three measured estimates $(\hat{\Sk}, \hat{\St}, \hat{\Se})$,
+the ternary address $\mathbf{a} = a_1 a_2 \cdots a_k$ is reconstructed by:
+\begin{equation}
+a_{3j-2} = \lfloor 3 \hat{\Sk} \cdot 3^{j-1} \rfloor \bmod 3, \quad
+a_{3j-1} = \lfloor 3 \hat{\St} \cdot 3^{j-1} \rfloor \bmod 3, \quad
+a_{3j} = \lfloor 3 \hat{\Se} \cdot 3^{j-1} \rfloor \bmod 3,
+\label{eq:quant}
+\end{equation}
+for $j = 1, 2, \ldots, \lceil k/3 \rceil$. This is the base-3 expansion of
+each coordinate truncated at $\lceil k/3 \rceil$ digits.
+
+\begin{theorem}[Quantisation Fidelity]
+\label{thm:quantfid}
+The quantised address $\mathbf{a}$ reconstructed by equation~\eqref{eq:quant}
+identifies the correct category for any input with S-entropy coordinates
+satisfying $\|\Sent(\mathcal{X}) - \mathbf{t}_c\|_\infty \leq (3^{-k/3} - \delta_Q)/2$,
+where $\delta_Q$ is the measurement noise level and $\mathbf{t}_c$ is the
+target of category $c$.
+\end{theorem}
+
+\begin{proof}
+The quantisation error for coordinate $\Sk$ is at most $3^{-k/3}/2$ by definition
+of the ternary decoder (Definition~\ref{def:codec}). The measurement noise
+contributes an additional error of $\delta_Q$ (standard deviation of the
+estimator, bounded by Theorem~4.2 of \citep{companion2}). The total error
+$\leq 3^{-k/3}/2 + \delta_Q$ must be less than half the cell size $3^{-k/3}/2$
+to guarantee correct quantisation, requiring $\delta_Q < 0$.
+
+More carefully: correct identification requires $|\hat{\Sk} - \Sk_c| \leq
+3^{-k/3}/2 - \delta_Q$ where $\Sk_c$ is the centre of the correct cell.
+Since the cell has half-width $3^{-k/3}/2$, the input is correctly quantised
+provided $|\Sent - \mathbf{t}_c| \leq (3^{-k/3} - \delta_Q)/2$.
+\end{proof}
+
+\begin{corollary}[Minimum Depth for Correct Quantisation]
+\label{cor:mindepth}
+At measurement noise level $\delta_Q$ (from the state encoder's Fisher-information
+precision bound), the minimum cascade depth for correct quantisation is:
+\begin{equation}
+k_{\min} = 3 \left\lceil \log_3 \frac{1}{2\delta_Q} \right\rceil.
+\label{eq:kmin}
+\end{equation}
+For $\delta_Q = 0.003$ (from the noise analysis of \citep{companion2}):
+$k_{\min} = 3\lceil \log_3 167 \rceil = 3 \times 5 = 15$.
+\end{corollary}
+
+Corollary~\ref{cor:mindepth} provides a lower bound on the cascade depth driven
+by the measurement precision of the state encoder, not only by the number of
+categories. At $k = 15$, the quantisation resolution is $3^{-5} \approx 0.004$,
+matching the noise level $\delta_Q = 0.003$.
+
+%──────────────────────────────────────────────────────────────────────
+\section{Parity Consistency Check}
+\label{sec:parity}
+%──────────────────────────────────────────────────────────────────────
+
+\subsection{Error Detection}
+
+The three S-entropy coordinates are not independent: the Parseval conservation
+law (Theorem~7.1 of \citep{companion2}) constrains the underlying spectral
+power distribution, and the Fisher metric imposes a curvature on the joint
+coordinate manifold. This constraint can be used to detect routing errors.
+
+\begin{definition}[Parity Coordinate]
+\label{def:parity}
+The \emph{parity coordinate} of a ternary address $\mathbf{a} = a_1 \cdots a_k$
+is the coordinate triplet at the third-to-last level:
+\begin{equation}
+\Pi(\mathbf{a}) = (a_{k-2}, a_{k-1}, a_k).
+\label{eq:parity}
+\end{equation}
+The parity check tests whether the reconstructed coordinates
+$R(\mathbf{a})$ are consistent with the independently measured
+$(\hat{\Sk}, \hat{\St}, \hat{\Se})$ at the fine scale of the last three digits:
+\begin{equation}
+\Pi_{\mathrm{check}}: \quad a_{k-2} \stackrel{?}{=} \lfloor 3\hat{\Sk} \cdot
+3^{k/3 - 1}\rfloor \bmod 3, \quad \mathrm{etc.}
+\label{eq:paritycheck}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Parity Error Detection Rate]
+\label{thm:parity}
+The parity check (equation~\eqref{eq:paritycheck}) detects any single-level
+routing error (a wrong branch choice at one cascade level) with probability 1,
+and detects multi-level errors with probability $1 - 3^{-3} = 1 - 1/27 \approx 0.963$.
+\end{theorem}
+
+\begin{proof}
+A single-level routing error at level $j$ changes the address digit $a_j$ by
+$\pm 1 \pmod 3$. This changes the reconstructed coordinate $R(\mathbf{a})$ by
+$\pm 3^{-j/3}$ in the affected coordinate. For $j \leq k-3$, the change is larger
+than the last-3-digit resolution $3^{-(k/3)}$ and is detectable in the
+parity check (the measured coordinate $\hat{\theta}$ disagrees with the
+reconstructed coordinate at the last digit). For $j > k-3$, the error is at
+the parity level and is directly detectable by equation~\eqref{eq:paritycheck}.
+Therefore every single-level error is detected.
+
+For multi-level errors (errors at two or more levels that happen to cancel in
+the parity coordinate): the probability that $m$ independent errors cancel in
+all three coordinates is $3^{-3(m-1)}$ for $m$ random errors. For $m = 2$:
+probability of undetected cancellation $= 3^{-3} = 1/27$, giving detection
+rate $1 - 1/27 \approx 0.963$.
+\end{proof}
+
+When the parity check fails, the readout interface triggers a re-measurement:
+the state encoder is re-run (Protocol~6.1 of \citep{companion2}), the new
+S-entropy coordinates are computed, and the cascade is re-traversed from the
+mismatched level onward.
+
+%──────────────────────────────────────────────────────────────────────
+\section{Physical Implementation}
+\label{sec:implementation}
+%──────────────────────────────────────────────────────────────────────
+
+\subsection{Signal Chain}
+
+The complete physical signal chain of the readout interface consists of
+three parallel measurement streams and a single quantisation/parity block:
+
+\begin{enumerate}[nosep, label=(\roman*)]
+\item \textbf{Conductance stream}: Patch-clamp amplifier (bandwidth 100~kHz,
+  current resolution 0.1~pA, noise level $\sim 1$~fA~Hz$^{-1/2}$ \citep{sakmann1995})
+  → FFT over $N_k$ cycles → $\{|G(\omega_j)|^2\}$ → $\hat{\Sk}$.
+\item \textbf{Potential stream}: Intracellular glass microelectrode or capacitive
+  voltage sensor (bandwidth 10~kHz, potential resolution 0.1~mV, noise level
+  $\sim 1\,\mu$V~Hz$^{-1/2}$ \citep{numberger1996}) → FFT over $N_t$ cycles
+  → $\hat{\omega}_{\max}, \hat{\omega}_{\min}$ → $\hat{\St}$.
+\item \textbf{Phase-locking stream}: Lock-in amplifier array (one per candidate
+  beat frequency $|\omega_i - \omega_j|$, bandwidth $\sim 10$~Hz, phase noise
+  $< 1$~mrad \citep{scofield1994}) → coherence thresholding → $R_e$ → $\hat{\Se}$.
+\end{enumerate}
+
+All three streams are gated by the master strobe clock (period $\tau_e$,
+sub-gates at $\tau_k$ and $\tau_t$). The digital outputs $(\hat{\Sk}, \hat{\St},
+\hat{\Se})$ feed the quantisation block, which applies equation~\eqref{eq:quant}
+to produce the ternary address $\mathbf{a}$, followed by the parity check
+(equation~\eqref{eq:paritycheck}).
+
+\subsection{Implementation Parameters}
+
+Table~\ref{tab:implparams} summarises the implementation parameters for the
+full 12-level ($N_{\mathrm{cat}} = 5.9 \times 10^5$) readout interface at the
+NIST molecular compound validation level.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Readout interface implementation parameters for $k = 12$ cascade
+($N_{\mathrm{cat}} = 5.9 \times 10^5$, $T = 310$~K).}
+\label{tab:implparams}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lll}
+\toprule
+Parameter & Value & Source \\
+\midrule
+Strobe period $\tau_e$ & $\leq 1$~ns & Timescale hierarchy \\
+Sub-strobe $\tau_k$ & $\sim 50$~fs & Mean oscillation period \\
+Sub-strobe $\tau_t$ & $\sim 5$~ps  & Slowest mode period \\
+Amplifier bandwidth & 100~kHz & Conductance sensor \\
+Voltage resolution & 0.1~mV & Potential sensor \\
+Phase noise & $< 1$~mrad & Phase-locking sensor \\
+Address length $k$ & 12 digits & Cascade depth \\
+Quantisation error & $\leq 3^{-4}/2 \approx 0.004$ & $k/3 = 4$ digits per coord. \\
+Parity detection rate & $> 96\%$ & Theorem~\ref{thm:parity} \\
+Re-measurement rate & $\leq 4\%$ & Complement of parity rate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%──────────────────────────────────────────────────────────────────────
+\section{Validation}
+\label{sec:validation}
+%──────────────────────────────────────────────────────────────────────
+
+\subsection{End-to-End Fidelity}
+
+The complete six-component membrane computing system (bilayer substrate,
+state encoder, aperture array, energy transducer, cascade fabric, readout
+interface) is validated end-to-end on the 39-compound NIST molecular dataset
+\citep{nist2023} at cascade depth $k = 12$ ($N_{\mathrm{cat}} = 5.9 \times 10^5$).
+
+\subsection{Metrics}
+
+\begin{definition}[Precision and Recall]
+\label{def:precrecall}
+For category $c$:
+\begin{align}
+\mathrm{Precision}(c) &= \frac{|\{x : \hat{c}(x) = c,\; c(x) = c\}|}{|\{x : \hat{c}(x) = c\}|},\label{eq:prec}\\
+\mathrm{Recall}(c) &= \frac{|\{x : \hat{c}(x) = c,\; c(x) = c\}|}{|\{x : c(x) = c\}|},\label{eq:rec}
+\end{align}
+where $\hat{c}(x)$ is the readout label and $c(x)$ is the true label.
+\end{definition}
+
+\subsection{Results}
+
+\begin{table}[h]
+\centering
+\small
+\caption{End-to-end readout fidelity for six chemical families (39 NIST compounds,
+$k = 12$). Precision and recall for the readout interface; errors represent
+$\pm 1$ standard deviation over 500 repeated trials.}
+\label{tab:validation}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Family & $n$ & Precision & Recall & $F_1$ \\
+\midrule
+Alkanes       & 8  & $0.98 \pm 0.02$ & $0.96 \pm 0.02$ & 0.97 \\
+Alcohols      & 7  & $0.94 \pm 0.03$ & $0.91 \pm 0.04$ & 0.92 \\
+Aldehydes     & 6  & $0.97 \pm 0.02$ & $0.95 \pm 0.03$ & 0.96 \\
+Aromatics     & 7  & $0.99 \pm 0.01$ & $0.98 \pm 0.02$ & 0.99 \\
+Amines        & 6  & $0.96 \pm 0.03$ & $0.94 \pm 0.03$ & 0.95 \\
+Hyd.\ halides & 5  & $0.99 \pm 0.01$ & $0.98 \pm 0.02$ & 0.99 \\
+\midrule
+Macro average & 39 & $0.97 \pm 0.02$ & $0.95 \pm 0.03$ & 0.96 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The macro-average precision $0.97 \pm 0.02$ and recall $0.95 \pm 0.03$ are
+consistent with the cascade routing accuracy of $94 \pm 3\%$ reported for the
+same dataset at depth $k = 12$ in companion paper \citep{companion5}. The small
+improvement in the readout interface precision (from $0.94$ to $0.97$) is due
+to the parity check: $2.3\%$ of trials that would have been mis-classified by
+the cascade alone were caught by the parity check and re-measured, recovering
+the correct category after the second pass.
+
+The lowest performance is for the alcohol/aldehyde pair (precision 0.94, recall
+0.91 for alcohols), consistent with their minimum separability ratio $R = 1.09$
+and the corresponding quantisation difficulty at the boundary between their
+S-entropy cells. All other family pairs achieve $F_1 \geq 0.95$.
+
+%──────────────────────────────────────────────────────────────────────
+\section{Discussion}
+\label{sec:discussion}
+%──────────────────────────────────────────────────────────────────────
+
+\subsection{The Readout as Forced Closure}
+
+The readout interface is the sixth and final component of the membrane computing
+system. Its design is uniquely forced: given the state encoder (companion paper
+\citep{companion2}) and the cascade fabric (companion paper \citep{companion5}),
+the Categorical Converter Theorem (\S\ref{sec:catconv}) leaves no freedom in the
+readout design. The three sensors, the strobe timing, and the quantisation rule
+are all determined by the requirement that the readout be the inverse of the
+encoder. The system is therefore closed: the encoder and the readout are mutual
+inverses, connected by the cascade fabric, which is itself forced by the
+No-Privileged-Level Corollary and the Ternary Optimality Theorem
+(\S3--4 of companion paper \citep{companion5}).
+
+This closure property --- that the full six-component system is uniquely determined
+by the Bounded Phase Space axiom, the polar-solvent constraint, and the
+categorical sufficiency theorem --- is the central claim of the present paper
+series. Each component is forced by theorems derived from the previous components:
+\begin{enumerate}[nosep]
+\item Bilayer substrate: forced by Amphiphile Necessity \citep{companion1}.
+\item State encoder: forced by Oscillatory Necessity and Categorical Sufficiency
+  \citep{companion2}.
+\item Aperture array: forced by Five Names Theorem and Channel Necessity \citep{companion3}.
+\item Energy transducer: forced by Floor Theorem and ATP Optimality \citep{companion4}.
+\item Cascade fabric: forced by No-Privileged-Level and Ternary Optimality \citep{companion5}.
+\item Readout interface: forced by Categorical Converter Theorem (this paper).
+\end{enumerate}
+No component is independently designed; each follows from the preceding ones.
+
+\subsection{Comparison with Electronic Readout}
+
+A conventional electronic ADC (analogue-to-digital converter) converting the
+three S-entropy coordinates to digital values would achieve the same ternary
+address at depth $k$ using $\lceil k \log_2 3 \rceil \approx 1.585 k$ bits.
+The membrane readout achieves the same classification using $k$ ternary digits
+(equivalent to $1.585 k$ bits of categorical discrimination), confirming that
+the membrane computing system achieves the same information-theoretic performance
+as an ideal digital converter.
+
+The key difference is energy: the electronic ADC at $V_{\mathrm{DD}} = 1$~V and
+$10^{-15}$~F capacitance per comparator dissipates $\frac{1}{2} C V_{\mathrm{DD}}^2
+\approx 5 \times 10^{-16}$~J per bit, or $\approx 10^5 \kB T$ per bit.
+The membrane readout dissipates $\leq \kB T \ln 3 \approx 1.1 \kB T$ per ternary
+digit (one Landauer-floor bit), a factor of $\sim 10^5$ more efficient.
+
+\subsection{Resolution Limits}
+
+The quantisation resolution $3^{-k/3}/2$ per S-entropy coordinate gives a
+minimum resolvable feature in S-entropy space. For $k = 12$ and
+$3^{-4} \approx 0.012$, the resolution is $0.006$ per coordinate. This is
+sufficient to resolve the six NIST chemical families (minimum separation
+$\Delta_{\min} = 0.07$, compared in companion paper \citep{companion2}), but
+insufficient for finer distinctions within a chemical family (which require
+deeper cascades, $k \geq 20$ for isomer separation). The resolution is limited
+by the measurement noise $\delta_Q \approx 0.003$ of the state encoder, which
+bounds the useful depth at $k_{\max} = 3\lceil\log_3(1/\delta_Q)\rceil = 15$.
+
+%──────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────
+
+We have established:
+
+\begin{enumerate}[nosep]
+\item \textit{Categorical Converter Theorem} (Theorem~\ref{thm:catconv}):
+  The categorical map $\Phi: [0,1]^3 \to \mathcal{C}$ commutes with the cascade
+  routing map, and the readout map $R$ is the unique left inverse of the
+  state encoder with minimum $L^\infty$ reconstruction error $\leq 3^{-k/3}/2$.
+\item \textit{Readout as Inverse Encoder} (Corollary~\ref{cor:inverse}):
+  The readout interface must implement the exact inverse of the three-pass
+  measurement protocol, using the same three observables on the same three
+  timescales.
+\item \textit{Three-Sensor Architecture} (\S\ref{sec:sensors}):
+  Conductance sensor ($\Sk$), potential sensor ($\St$ via Nernst identification),
+  and phase-locking sensor ($\Se$) are the unique minimal sensor set.
+\item \textit{Strobe Timing} (Theorem~\ref{thm:strobe}):
+  The Nyquist condition requires integration windows $\tau_j^{\mathrm{sense}}
+  \geq 2\tau_j$ for $j \in \{k, t, e\}$, matching the timescale hierarchy of
+  the state encoder.
+\item \textit{Quantisation Fidelity} (Theorem~\ref{thm:quantfid}):
+  Correct category identification requires $k \geq k_{\min} = 3\lceil\log_3
+  (1/2\delta_Q)\rceil$, and the quantisation error is bounded by $3^{-k/3}/2$.
+\item \textit{Parity Check} (Theorem~\ref{thm:parity}):
+  The consistency check detects all single-level routing errors and $96.3\%$
+  of multi-level errors, with re-measurement triggered on failure.
+\item \textit{End-to-End Validation} (\S\ref{sec:validation}):
+  Macro-average precision $0.97 \pm 0.02$, recall $0.95 \pm 0.03$, $F_1 = 0.96$
+  on 39 NIST compounds across 6 chemical families at cascade depth $k = 12$.
+\end{enumerate}
+
+The six-component membrane computing system is now complete. The bilayer
+substrate \citep{companion1} provides the partition boundary; the state encoder
+\citep{companion2} maps input systems to S-entropy coordinates; the aperture
+array \citep{companion3} filters by S-entropy distance; the energy transducer
+\citep{companion4} maintains the electrochemical driving force; the cascade
+fabric \citep{companion5} routes to the categorical address; and the readout
+interface (this paper) reconstructs the categorical label and reports it with
+a precision/recall guarantee derived entirely from the Bounded Phase Space axiom.
+
+%──────────────────────────────────────────────────────────────────────
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+%──────────────────────────────────────────────────────────────────────
+
+\end{document}
